@@ -129,8 +129,6 @@
                 </div>
 
             </section>
-            <!-- Basic Floating Label Form section end -->
-
         </div>
     </div>
 </div>
