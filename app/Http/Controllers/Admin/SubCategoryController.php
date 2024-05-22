@@ -20,7 +20,6 @@ class SubCategoryController extends Controller
     public function index()
     {
         $sub_categories = SubCategory::with('cateogry')->latest()->paginate(10);
-
         foreach ($sub_categories as $key => $value) {
             $value->date = Carbon::parse($value->created_at)->format('d-m-y');
         }
@@ -43,20 +42,15 @@ class SubCategoryController extends Controller
     public function store(StoreSubCategoryRequest $request)
     {
         try {
-            if ($request->id) {
-                $category = SubCategory::find($request->id);
-            } else {
-                $category = new SubCategory();
-            }
+            $category = SubCategory::firstOrNew(['id' => $request->id]);
             $category->fill($request->all());
             if ($request->status == 'on') {
                 $category->status = SubCategory::$active;
             } else {
                 $category->status = SubCategory::$in_active;
-
             }
             if ($file = $request->file('image')) {
-                $folder = public_path('/uploads/category');
+                $folder = public_path('/uploads/subcategory');
                 $category->image = $this->uploadFile($file, $folder);
             }
             $category->save();

@@ -24,12 +24,12 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Sub Category</h2>
+                            <h2 class="content-header-title float-start mb-0">Cities</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{  route('admin.dashboard') }}">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.categories.index') }}">Categories</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.cities.index') }}">cities</a>
                                     </li>
                                     <li class="breadcrumb-item active">List
                                     </li>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="col-md-3" style="text-align: end">
-                    <a href="{{ route('admin.subcategories.create') }}" class=" btn btn-primary btn-gradient round">Create</a>
+                    <a href="{{ route('admin.cities.create') }}" class=" btn btn-primary btn-gradient round">Create</a>
                 </div>
             </div>
             <div class="content-body">
@@ -74,9 +74,7 @@
                                     <thead class="table-dark">
                                         <tr>
                                             <th scope="col" >#</th>
-                                            <th scope="col" >Category</th>
                                             <th scope="col" >Name</th>
-                                            <th scope="col" >Cateogry Name</th>
                                             <th scope="col" >Status</th>
                                             <th>Created at</th>
                                             <th>Action</th>
@@ -85,16 +83,12 @@
                                     <tbody>
                                     @php  $i = 1; @endphp
  
-                                        @foreach ($sub_categories as $item)
+                                        @foreach ($cities as $item)
                                             
                                             <tr>
                                                 <td>{{$i }}</td>
-                                                <td>
-                                                <img src="{{ url('public/uploads/category/'.$item->image)}}" alt="Toolbar svg" width="50px" />
-                                                   
-                                                </td>
+                                               
                                                 <td>{{ $item->name }}</td>
-                                                <td>{{ $item->cateogry->name }}</td>
 
                                                 <td >
                                                    @if($item->status == '1') Active @else Inactive @endif 
@@ -107,13 +101,13 @@
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="{{route('admin.subcategories.edit',$item->id)}}">
+                                                            <a class="dropdown-item" href="{{route('admin.cities.edit',$item->id)}}">
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
                                                           
                                                             
-                                                            {{-- <a class="dropdown-item" href="{{route('categories.show',$item->id)}}">
+                                                            {{-- <a class="dropdown-item" href="{{route('cities.show',$item->id)}}">
                                                                 <i data-feather="eye" class="me-50"></i>
                                                                 <span>View</span>
                                                             </a> --}}
@@ -135,13 +129,13 @@
                                     </tbody>
                                 </table>
                             </div>
-                            @include('backend._pagination', ['data' => $sub_categories])
+                            @include('backend._pagination', ['data' => $cities])
 
                             {{-- <div class="table-responsive">
                                 <tbody>
                                     <!-- ... (your table structure) ... -->
                                 </tbody>
-                                {{ $categories->links('admin._pagination') }}
+                                {{ $cities->links('admin._pagination') }}
                             </div> --}}
 
                         </div>
@@ -169,7 +163,7 @@
 
         function fetch_data(query = '') {
             $.ajax({
-                url: "{{ route('admin.categories.index') }}",
+                url: "{{ route('admin.cities.index') }}",
                 method: 'GET',
                 data: {search: query},
                 dataType: 'html',
@@ -183,9 +177,9 @@
     });
     $(document).on('click', '.delete-record', function () {
             var associateId =  $(this).data('id');            
-            if (confirm('Are you sure you want to delete this categories ?')) {
+            if (confirm('Are you sure you want to delete this cities ?')) {
                 $.ajax({
-                    url: "{{ url('admin/categories') }}/" + associateId, // Use the url() function
+                    url: "{{ url('admin/cities') }}/" + associateId, // Use the url() function
                     type: 'DELETE',
                     data: {
                         '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
@@ -194,7 +188,7 @@
                         if (res.status === 200) {
                             toastr.success(res.message);
                             window.location.href =
-                                "{{ route('admin.categories.index') }}";
+                                "{{ route('admin.cities.index') }}";
                         }
                     },
                     error: function (xhr) {

@@ -758,9 +758,8 @@ footer.footer-border {
 }
 
 .pagination-primary .page-item.active .page-link {
-  background: #751750 !important;
+  background: #172748 !important;
 }
-
 .form-check-primary .form-check-input:checked {
   background-color: #781650;
 }
