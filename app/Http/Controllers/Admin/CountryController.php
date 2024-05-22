@@ -1,16 +1,16 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Models\Category;
+
+use App\Http\Requests\StoreCountryRequest;
+use App\Models\Country;
 use App\Traits\FileUploadTrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class CategoryController extends Controller
+class CountryController extends Controller
 {
     use FileUploadTrait;
     /**
@@ -18,11 +18,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->paginate(10);
-        foreach ($categories as $key => $value) {
+        $countries = Country::latest()->paginate(10);
+        foreach ($countries as $key => $value) {
             $value->date = Carbon::parse($value->created_at)->format('d-m-y');
         }
-        return view('backend.categories.index', compact('categories'));
+        return view('backend.countries.index', compact('countries'));
     }
 
     /**
@@ -30,30 +30,20 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = new Category();
-        return view('backend.categories.create',compact('categories'));
+        $countries = new Country();
+        return view('backend.countries.create',compact('countries'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreCountryRequest $request)
     {
         try {
-            $category = Category::firstOrNew(['id' => $request->id]);
+            $category = Country::firstOrNew(['id' => $request->id]);
             $category->fill($request->all());
-            if ($request->status == 'on') {
-                $category->status = Category::$active;
-            } else {
-                $category->status = Category::$in_active;
-
-            }
-            if ($file = $request->file('image')) {
-                $folder = public_path('/uploads/category');
-                $category->image = $this->uploadFile($file, $folder);
-            }
             $category->save();
-            return response()->json(['status' => 200, 'message' => ' Category Create Successfully ']);
+            return response()->json(['status' => 200, 'message' => ' Country Create Successfully ']);
         } catch (\Exception $exception) {
             Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
@@ -73,8 +63,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::findOrFail($id);
-        return view('backend.categories.create',compact('categories'));
+        $countries = Country::findOrFail($id);
+        return view('backend.countries.create',compact('countries'));
     }
 
     /**
@@ -91,8 +81,8 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $categories = Category::findOrFail($id)->delete();
-            return response()->json(['status' => 200, 'message' => 'Delete Category Successfully login!']);
+            $countries = Country::findOrFail($id)->delete();
+            return response()->json(['status' => 200, 'message' => 'Delete Country Successfully login!']);
         } catch (\Exception $exception) {
             Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
