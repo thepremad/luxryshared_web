@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,5 +27,20 @@ Route::middleware(['admin'])->group(function () {
     });
     Route::resource('categories',CategoryController::class);
     Route::resource('subcategories',SubCategoryController::class);
+    Route::resource('images',ImageController::class);
+    Route::resource('sizes',SizeController::class);
+    Route::resource('countries',CountryController::class);
+    Route::resource('cities',CityController::class);
+    Route::resource('faq',FaqController::class);
+
+Route::controller(TermsAndConditionsController::class)->group(function () {
+    Route::get('/delivery', 'delivry')->name('deliveries.delivry');
+    Route::post('/delivery', 'saveDelivry')->name('deliveries.store');
+    Route::get('/terms-and-condetions', 'termsAndConditions')->name('terms_condetion.get_terms');
+    Route::post('/save-terms-and-condetions', 'saveTermsAndCondetions')->name('terms_condetion.save_terms');
+    Route::get('/privacy-policy', 'privacyPolicies')->name('privacy_policies.get_policies');
+    Route::post('/save-privicy-policy', 'saveDelivry')->name('privacy_policies.save_policies');
+});
+
     
 });

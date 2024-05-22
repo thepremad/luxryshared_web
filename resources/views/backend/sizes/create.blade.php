@@ -22,13 +22,13 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Sub Category</h2>
+                        <h2 class="content-header-title float-start mb-0">Size</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item"><a
-                                        href="{{ route('admin.subcategories.index') }}">Categories</a>
+                                        href="{{ route('admin.sizes.index') }}">sizes</a>
                                 </li>
                                 <li class="breadcrumb-item active">Create
                                 </li>
@@ -60,59 +60,23 @@
                                 {{-- <h4 class="card-title">Create</h4> --}}
                             </div>
                             <div class="card-body">
-                                <form class="form" id="frmLogin" action="{{ route('admin.subcategories.store') }}" method="post"
+                                <form class="form" id="frmLogin" action="{{ route('admin.sizes.store') }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
-                                    @if ($sub_categories->id)
-                                     <input type="hidden" name="id" value="{{$sub_categories->id}}">
+                                    @if ($sizes->id)
+                                     <input type="hidden" name="id" value="{{$sizes->id}}">
                                     @endif
                                     <div class="row">
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-md-8 col-12">
                                             <div class="mb-1">
                                                 <label class="form-label" for="first-name-column">Name <span
                                                         class="error"></span></label>
-                                                <input type="text" id="first-name-column" value="{{$sub_categories->name}}" name="name"
+                                                <input type="text" id="first-name-column" value="{{$sizes->name}}" name="name"
                                                     class="form-control" placeholder="Name"
                                                     value="{{ old('name') }}" />
                                                     
                                                     <span class="text-danger validation-class" id="name-error"></span>
                                                 </div>
-                                        </div>
-                                        <div class="col-md-6 mt-2">
-                                        <select class="form-select mb-1" name="category_id"  aria-label="Default select example">
-                                                <option value="" selected>Select Category</option>
-                                                @foreach($categories as $val)
-                                                <option @if($val->id == $sub_categories->category_id) selected  @endif value="{{$val->id}}">{{$val->name}}</option>
-                                                @endforeach
-                                              </select>
-                                              <span class="text-danger validation-class" id="category_id-error"></span>
-
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Upload Icon <span
-                                                            class="error"></span></label>
-                                                    <input type="file" id="imageInput" name="image" class="form-control"
-                                                        placeholder="Category Image" value="{{ old('file') }}" />
-                                                    <span class="text-danger validation-class" id="image-error"></span>
-    
-    
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-1">
-                                                    <div class="d-flex flex-column">
-                                                        <label class="form-check-label mb-50"
-                                                            for="customSwitch3">Status</label>
-                                                        <div class="form-check form-check-primary form-switch">
-                                                            <input type="checkbox" name="status" @if ($sub_categories->status == '1') checked @endif class="form-check-input" id="customSwitch3" />
-                                                                
-                                                            </div>
-                                                            <span class="text-danger validation-class"
-                                                                id="status-error"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
 
                                         
@@ -129,6 +93,8 @@
                 </div>
 
             </section>
+            <!-- Basic Floating Label Form section end -->
+
         </div>
     </div>
 </div>
@@ -156,7 +122,7 @@
                 $('.spinner-loader').css('display', 'none');
                   if (res.status === 200) {
                       toastr.success(res.message);
-                      window.location.href = "{{ route('admin.subcategories.index') }}"; 
+                      window.location.href = "{{ route('admin.sizes.index') }}"; 
                   } else if(res.status === 422) {
                     $.each(res.message, function (key, value) {
                             $("#" + key + "-error").text(value[0]);
