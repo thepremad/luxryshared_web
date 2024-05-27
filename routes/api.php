@@ -1,4 +1,5 @@
 <?php
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -13,7 +14,24 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/signup', 'signup');
+    Route::post('/login', 'login');
+});
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(ForgetPasswordController::class)->group(function () {
+    Route::post('/forgot_password', 'forgotPassword');
+    Route::post('/verify_otp', 'verifyOtp');
+    Route::post('/create_password', 'createPassword');
+    Route::get('unauthorized', function () {
+        return response()->json(['statusCode' => 400, 'status' => 'unauthorized', 'message' => 'Unauthorized user.']);
+    })->name('api.unauthorized');
+
+    Route::middleware('auth:api')->group(function () {
+        Route::controller(UserController::class)->group(function () {
+            Route::get('/profile', 'profile');
+            Route::post('/profile', 'updateProfile');
+        });
+    });
+
 });

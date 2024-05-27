@@ -66,7 +66,7 @@
                             <div class="card-header">
                                 <h4 class="card-title"></h4>
                                 <div class="col-md-3" style="text-align: end">
-                                    <input type="text" id="searchInput" class="form-control" placeholder="Search">
+                                    <input type="text" id="searchInput" onkeyup="myFunction()" class="form-control" placeholder="Search">
                                 </div>
                             </div>
                             <div class="table-responsive" id="table-responsive">
@@ -79,7 +79,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="myTable">
                                     @php  $i = 1; @endphp
  
                                         @foreach ($images as $item)
@@ -152,25 +152,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        $('#searchInput').on('input', function () {
-            fetch_data($(this).val());
-        });
 
-        function fetch_data(query = '') {
-            $.ajax({
-                url: "{{ route('admin.images.index') }}",
-                method: 'GET',
-                data: {search: query},
-                dataType: 'html',
-                success: function (data) {
-                    $('#table-responsive').html(data);
-                }
-            });
-        }
-
-
-    });
     $(document).on('click', '.delete-record', function () {
             var associateId =  $(this).data('id');            
             if (confirm('Are you sure you want to delete this images ?')) {
@@ -194,5 +176,28 @@
             }
         });
 </script>
+<script>
+        function myFunction() {
+            var input, filter, found, table, tr, td, i, j;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                for (j = 0; j < td.length; j++) {
+                    if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        found = true;
+                    }
+                }
+                if (found) {
+                    tr[i].style.display = "";
+                    found = false;  
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 
 @endsection

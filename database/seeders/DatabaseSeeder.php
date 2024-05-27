@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'number' => '000000000',
             'refer_code' => '',
-            'id_card' => '1',
+            'id_image' => '1',
+            'address' => 'pratap nagar',
             'password' => \Hash::make('Admin@123'),
         ]);
     }
