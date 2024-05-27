@@ -41,7 +41,7 @@
             </li>
             <li
                 class=" nav-item {{ Request::routeIs('admin.subcategories.index', 'admin.subcategories.create', 'admin.subcategories.show', 'admin.subcategories.edit', 'admin.subcategories.appraisals', 'admin.subcategories.loans', 'admin.subcategories.salaries') ? 'has-sub open' : '' }} ">
-                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-table-list"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">SubCategory Master</span></a>
                 <ul class="menu-content">
                     <li>
@@ -62,13 +62,13 @@
             </li>
             <li
                 class=" nav-item {{ Request::routeIs('admin.images.index', 'admin.images.create', 'admin.images.show', 'admin.images.edit','admin.sizes.index', 'admin.sizes.create', 'admin.sizes.show', 'admin.sizes.edit','admin.countries.index', 'admin.countries.create', 'admin.countries.show', 'admin.countries.edit','admin.cities.index', 'admin.cities.create', 'admin.cities.show', 'admin.cities.edit', 'admin.privacy_policies.get_policies', 'admin.terms_condetion.get_terms', 'admin.deliveries.delivry') ? 'has-sub open' : '' }} ">
-                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-gear"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Settings</span></a>
                 <ul class="menu-content">
 
                     <li
                         class=" nav-item {{ Request::routeIs('admin.images.index', 'admin.images.create', 'admin.images.show', 'admin.images.edit', 'admin.images.appraisals', 'admin.images.loans', 'admin.images.salaries') ? 'has-sub open' : '' }} ">
-                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
+                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-images"></i><span
                                 class="menu-title text-truncate" data-i18n="Invoice">Banner Master</span></a>
                         <ul class="menu-content">
                             <li>
@@ -89,7 +89,7 @@
                     </li>
                     <li
                         class=" nav-item {{ Request::routeIs('admin.sizes.index', 'admin.sizes.create', 'admin.sizes.show', 'admin.sizes.edit', 'admin.sizes.appraisals', 'admin.sizes.loans', 'admin.sizes.salaries') ? 'has-sub open' : '' }} ">
-                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
+                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-thermometer"></i><span
                                 class="menu-title text-truncate" data-i18n="Invoice">Size Master</span></a>
                         <ul class="menu-content">
                             <li>
@@ -110,7 +110,7 @@
                     </li>
                     <li
                         class=" nav-item {{ Request::routeIs('admin.countries.index', 'admin.countries.create', 'admin.countries.show', 'admin.countries.edit', 'admin.countries.appraisals', 'admin.countries.loans', 'admin.countries.salaries') ? 'has-sub open' : '' }} ">
-                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
+                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-earth-americas"></i><span
                                 class="menu-title text-truncate" data-i18n="Invoice">Country Master</span></a>
                         <ul class="menu-content">
                             <li>
@@ -122,7 +122,7 @@
                             </li>
 
                             <li><a class="d-flex align-items-center {{ Request::routeIs('admin.countries.create') ? 'active' : '' }} "
-                                    href="{{ route('admin.countries.create') }}"><i data-feather="circle"></i><span
+                                    href="{{ route('admin.countries.create') }}"><i class="fa-solid fa-city"></i><span
                                         class="menu-item text-truncate" data-i18n="Shop"> Add Country</span></a>
                             </li>
 
@@ -131,7 +131,7 @@
                     </li>
                     <li
                         class=" nav-item {{ Request::routeIs('admin.cities.index', 'admin.cities.create', 'admin.cities.show', 'admin.cities.edit', 'admin.cities.appraisals', 'admin.cities.loans', 'admin.cities.salaries') ? 'has-sub open' : '' }} ">
-                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
+                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-tree-city"></i><span
                                 class="menu-title text-truncate" data-i18n="Invoice">City Master</span></a>
                         <ul class="menu-content">
                             <li>
@@ -152,7 +152,7 @@
                     </li>
                     <li
                         class=" nav-item {{ Request::routeIs('admin.faq.index', 'admin.faq.create', 'admin.faq.show', 'admin.faq.edit', 'admin.faq.appraisals', 'admin.faq.loans', 'admin.faq.salaries') ? 'has-sub open' : '' }} ">
-                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
+                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-circle-question"></i><span
                                 class="menu-title text-truncate" data-i18n="Invoice">Faq</span></a>
                         <ul class="menu-content">
                             <li>
@@ -174,13 +174,13 @@
                     </li>
                     <li
                     class="d-flex align-items-center {{ Request::routeIs('admin.privacy_policies.get_policies') && !request()->input('archive') ? 'active' : '' }} ">
-                        <a class="d-flex align-items-center" href="{{route('admin.privacy_policies.get_policies')}}"><i class="fa-solid fa-list"></i><span
+                        <a class="d-flex align-items-center" href="{{route('admin.privacy_policies.get_policies')}}"><i class="fa-solid fa-shield-halved"></i><span
                                 class="menu-title text-truncate" data-i18n="Invoice">Privacy Policy</span></a>
 
                     </li>
                     <li
                     class="d-flex align-items-center {{ Request::routeIs('admin.terms_condetion.get_terms') && !request()->input('archive') ? 'active' : '' }}">
-                        <a class="d-flex align-items-center" href="{{route('admin.terms_condetion.get_terms')}}"><i class="fa-solid fa-list"></i><span
+                        <a class="d-flex align-items-center" href="{{route('admin.terms_condetion.get_terms')}}"><i class="fa-solid fa-fan"></i><span
                                 class="menu-title text-truncate" data-i18n="Invoice">Terms and Conditions</span></a>
 
                     </li>

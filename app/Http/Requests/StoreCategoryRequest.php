@@ -27,7 +27,7 @@ class StoreCategoryRequest extends FormRequest
             'status' => 'required',
         ];
         if(!$this->id){
-            $rules['image'] = 'required';
+            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
 
         }
         return $rules;
