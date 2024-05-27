@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-class StoreSubCategoryRequest extends FormRequest
+class StoreUpdateProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,19 +22,27 @@ class StoreSubCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'name' => 'required',
-            'status' => 'required',
-            'category_id' => 'required',
+        return [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'number' => 'required',
         ];
-        if(!$this->id){
-            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
-
-        }
-        return $rules;
     }
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json(['status' => 422, 'message' => $validator->getMessageBag()]));
+        $errors = $validator->errors()->all();
+        $errorObject = [];
+        
+        foreach ($errors as $error) {
+            $field = strtolower(preg_replace('/^The (.+?) field is required\.$/', '$1', $error));
+            $errorObject[$field] = $error;
+        }
+        
+        throw new HttpResponseException(
+            response()->json([
+                'error' => $errorObject
+            ], 422)
+        );
+                
     }
 }
