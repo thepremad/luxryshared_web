@@ -43,6 +43,7 @@
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{url('public/backend/urls/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/pages/page-profile.css')}}">
     <!-- END: Custom CSS-->
 
 </head>

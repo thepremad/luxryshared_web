@@ -53,4 +53,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    static $pending = 0;
+    static $approved = 1;
+    static $rejected = 2;
 }
