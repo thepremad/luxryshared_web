@@ -71,7 +71,7 @@
                                             <div class="mb-1">
                                                 <label class="form-label" for="first-name-column">Name <span
                                                         class="error"></span></label>
-                                                <input type="text" id="first-name-column" value="{{$cities->name}}" name="name"
+                                                <input type="text" oninput="filterAlphabets(this)"  id="first-name-column" value="{{$cities->name}}" name="name"
                                                     class="form-control" placeholder="Name"
                                                     value="{{ old('name') }}" />
                                                     
@@ -153,6 +153,10 @@
           });
       });
   });
+  function filterAlphabets(inputField) {
+      // Remove non-alphabetic characters using a regular expression
+      inputField.value = inputField.value.replace(/[^a-zA-Z\s]/g, '');
+    }
     </script>
 
 @endsection

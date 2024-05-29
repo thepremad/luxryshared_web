@@ -42,6 +42,12 @@ class CountryController extends Controller
         try {
             $category = Country::firstOrNew(['id' => $request->id]);
             $category->fill($request->all());
+            if ($request->status == 'on') {
+                $category->status = Country::$active;
+            } else {
+                $category->status = Country::$in_active;
+
+            }
             $category->save();
             return response()->json(['status' => 200, 'message' => ' Country Create Successfully ']);
         } catch (\Exception $exception) {

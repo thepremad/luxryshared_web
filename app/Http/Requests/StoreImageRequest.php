@@ -22,10 +22,15 @@ class StoreImageRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        $rules =  [
             'text' => 'required',
         ];
+        
+        if(!$this->id){
+            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
+
+        }
+        return $rules;
     }
     protected function failedValidation(Validator $validator)
     {
