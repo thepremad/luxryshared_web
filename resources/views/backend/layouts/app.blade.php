@@ -43,6 +43,8 @@
     <link rel="stylesheet" type="text/css" href="{{url('public/backend/urls/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/pages/page-profile.css')}}">
     <!-- END: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 
 </head>
 <!-- END: Head-->
@@ -97,12 +99,6 @@
     // Auto-hide flash message after 2 seconds
     setTimeout(function() {
         document.getElementById('flash-message').style.display = 'none';
-    }, 2000);
-</script>
-<script>
-    // Auto-hide flash message after 2 seconds
-    setTimeout(function() {
-        document.getElementById('flash-messagee').style.display = 'none';
     }, 2000);
 </script>
 
