@@ -57,8 +57,16 @@
         }).showToast();
     </script>
 @endif
+<script>
+    var message = localStorage.getItem('message');
+    localStorage.removeItem('message');
+    if (message) {
+        toastr.success(message);
+    }
+    </script>
 
-
+<script src="{{ url('public/backend/vendors/js/toster/toastr.js')}}"></script>
 
 <script src="{{ url('backend/vendors/js/forms/select/select2.full.min.js')}}"></script>
 <script src="{{ url('backend/js/scripts/forms/form-select2.js')}}"></script>
+@include('backend.layouts.toastr')
