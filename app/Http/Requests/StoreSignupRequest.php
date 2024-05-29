@@ -23,30 +23,29 @@ class StoreSignupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required',
             'first_name' => 'required',
+            'email' => 'required|unique:users,email',
             'last_name' => 'required',
             'password' => 'required|min:6',
-            'number' => 'required',
+            'number' => 'required|unique:users,number',
             'address' => 'required',
             'id_image' => 'required',
         ];
     }
     protected function failedValidation(Validator $validator)
     {
-        $errors = $validator->errors()->all();
-$errorObject = [];
-
-foreach ($errors as $error) {
-    $field = strtolower(preg_replace('/^The (.+?) field is required\.$/', '$1', $error));
-    $errorObject[$field] = $error;
-}
-
-throw new HttpResponseException(
-    response()->json([
-        'error' => $errorObject
-    ], 422)
-);
-
+        $errors = $validator->errors()->messages();
+        $errorObject = [];
+    
+        foreach ($errors as $field => $messages) {
+            $errorObject[$field] = $messages[0];  // Take the first error message for each field
+        }
+    
+        throw new HttpResponseException(
+            response()->json([
+                'error' => $errorObject
+            ], 422)
+        );
     }
+    
 }

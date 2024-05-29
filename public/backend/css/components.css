@@ -771,11 +771,18 @@ footer.footer-border {
 .toastify {
   display: none;
 }
-
+ 
 #toast-container {
-  display: none !important;
-}
+  color: white;
+} 
 
+.toast toast-success{
+  display: none !important;
+  color: white !important;
+}
+.toast-message{
+  color: white !important;
+}
 footer.footer.footer-static.footer-light {
   display: none;
 }
