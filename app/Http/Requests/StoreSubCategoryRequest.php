@@ -24,11 +24,11 @@ class StoreSubCategoryRequest extends FormRequest
     {
         $rules = [
             'name' => 'required',
-            'status' => 'required',
             'category_id' => 'required',
         ];
         if(!$this->id){
             $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['status'] = 'required';
 
         }
         return $rules;

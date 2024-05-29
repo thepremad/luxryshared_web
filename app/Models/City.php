@@ -11,4 +11,6 @@ class City extends Model
     protected $fillable = [
         'name','status'
     ];
+    static $active = 1;
+    static $in_active = 0;
 }

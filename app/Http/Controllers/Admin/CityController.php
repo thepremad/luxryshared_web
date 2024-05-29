@@ -42,10 +42,16 @@ class CityController extends Controller
         try {
             $category = City::firstOrNew(['id' => $request->id]);
             $category->fill($request->all());
+            if ($request->status == 'on') {
+                $category->status = City::$active;
+            } else {
+                $category->status = City::$in_active;
+
+            }
             $category->save();
             return response()->json(['status' => 200, 'message' => ' City Create Successfully ']);
         } catch (\Exception $exception) {
-            Log::error('Admin login error: ' . $exception->getMessage());
+            \Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
         }
     }
@@ -84,7 +90,7 @@ class CityController extends Controller
             $cities = City::findOrFail($id)->delete();
             return response()->json(['status' => 200, 'message' => 'Delete City Successfully login!']);
         } catch (\Exception $exception) {
-            Log::error('Admin login error: ' . $exception->getMessage());
+            \Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
         }
 

@@ -22,10 +22,15 @@ class StoreCityRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name'=>'required',
-            'status'=>'required',
+        $rules = [
+            'name' => 'required',
         ];
+        if(!$this->id){
+            $rules['status'] = 'required';
+
+        }
+        return $rules;
+    
     }
     protected function failedValidation(Validator $validator)
     {

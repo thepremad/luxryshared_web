@@ -90,7 +90,7 @@
                                             <tr>
                                                 <td>{{$i }}</td>
                                                 <td>
-                                                <img src="{{ url('public/uploads/category/'.$item->image)}}" alt="Toolbar svg" width="50px" />
+                                                <img src="{{ url('public/uploads/subcategory/'.$item->image)}}" alt="Toolbar svg" width="50px" />
                                                    
                                                 </td>
                                                 <td>{{ $item->name }}</td>
