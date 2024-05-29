@@ -25,6 +25,15 @@ Route::middleware(['admin'])->group(function () {
         Route::get('dashboard', 'dashboard')->name('dashboard');
         Route::get('/', 'dashboard');
     });
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('approve-request/{id}', 'approveRequest')->name('user.approve');
+        Route::get('reject-request/{id}', 'rejectRequest')->name('user.disapprove');
+        Route::get('register-request', 'registerRequest')->name('user.register_request');
+        Route::get('user-index', 'userIndex')->name('user.listing');
+        Route::get('user-profle/{id}', 'profile')->name('user.profile');
+    });
+
     Route::resource('categories',CategoryController::class);
     Route::resource('subcategories',SubCategoryController::class);
     Route::resource('images',ImageController::class);
