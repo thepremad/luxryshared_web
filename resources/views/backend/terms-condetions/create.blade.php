@@ -62,9 +62,6 @@
                                 <form class="form" id="frmLogin" action="{{ route('admin.deliveries.store') }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
-                                    @if ($deliveries->id)
-                                     <input type="hidden" name="id" value="{{$deliveries->id}}">
-                                    @endif
                                     <div class="row">
                                         <div class="col-md-8 col-12">
                                             <div class="mb-1">

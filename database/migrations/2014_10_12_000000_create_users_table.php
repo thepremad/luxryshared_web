@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('number')->unique();
             $table->string('id_image')->unique();
             $table->longText('address');
+            $table->string('status')->default('0');
             $table->string('profile')->nullable();
             $table->string('otp')->nullable();
             $table->string('refer_code')->nullable();

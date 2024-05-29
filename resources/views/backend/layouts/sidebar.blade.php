@@ -61,6 +61,28 @@
                 </ul>
             </li>
             <li
+                class=" nav-item {{ Request::routeIs('admin.user.listing', 'admin.user.register_request') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-user-injured"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">User Listing</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.user.register_request') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.user.register_request') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> Register Request</span>
+                        </a>
+                    </li>
+
+                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.user.listing') ? 'active' : '' }} "
+                            href="{{ route('admin.user.listing') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Shop"> List  Users</span></a>
+                    </li>
+
+
+                </ul>
+            </li>
+            
+            <li
                 class=" nav-item {{ Request::routeIs('admin.images.index', 'admin.images.create', 'admin.images.show', 'admin.images.edit','admin.sizes.index', 'admin.sizes.create', 'admin.sizes.show', 'admin.sizes.edit','admin.countries.index', 'admin.countries.create', 'admin.countries.show', 'admin.countries.edit','admin.cities.index', 'admin.cities.create', 'admin.cities.show', 'admin.cities.edit', 'admin.privacy_policies.get_policies', 'admin.terms_condetion.get_terms', 'admin.deliveries.delivry') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-gear"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Settings</span></a>
@@ -122,7 +144,7 @@
                             </li>
 
                             <li><a class="d-flex align-items-center {{ Request::routeIs('admin.countries.create') ? 'active' : '' }} "
-                                    href="{{ route('admin.countries.create') }}"><i class="fa-solid fa-city"></i><span
+                                    href="{{ route('admin.countries.create') }}"><i data-feather="circle"></i><span
                                         class="menu-item text-truncate" data-i18n="Shop"> Add Country</span></a>
                             </li>
 
