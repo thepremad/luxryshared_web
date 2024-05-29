@@ -67,7 +67,7 @@ class ImageController extends Controller
     public function edit($id)
     {
         $images = Image::findOrFail($id);
-        return view('backend.images.create',compact('images'));
+        return view('backend.image.create',compact('images'));
     }
 
     /**
