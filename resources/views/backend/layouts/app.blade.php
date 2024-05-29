@@ -18,8 +18,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{url('public/backend/vendors/css/vendors.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('public/backend/vendors/css/charts/apexcharts.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('public/backend/vendors/css/extensions/toastr.min.css')}}">
