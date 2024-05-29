@@ -126,8 +126,6 @@
                                     href="{{ route('admin.sizes.create') }}"><i data-feather="circle"></i><span
                                         class="menu-item text-truncate" data-i18n="Shop"> Add Size</span></a>
                             </li>
-
-
                         </ul>
                     </li>
                     <li
