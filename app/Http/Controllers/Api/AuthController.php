@@ -42,7 +42,8 @@ class AuthController extends Controller
 
               if (auth()->attempt($credentials)) {
                   $token = auth()->user()->createToken('Token')->accessToken;
-                  return response()->json(['access_token' => $token ],200);
+                  $status = auth()->user()->status == '1' ? true : false;
+                  return response()->json(['admin_approval' => $status,'access_token' => $token ],200);
               } else {
                   return response()->json(['email' => "User does not exist! Please Register"], 422);
               }

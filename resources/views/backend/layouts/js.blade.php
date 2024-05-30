@@ -33,7 +33,7 @@
         }
     })
 </script>
-
+<!-- 
 @if (session('success'))
     <script>
         Toastify({
@@ -56,7 +56,7 @@
             }
         }).showToast();
     </script>
-@endif
+@endif -->
 <script>
     var message = localStorage.getItem('message');
     localStorage.removeItem('message');

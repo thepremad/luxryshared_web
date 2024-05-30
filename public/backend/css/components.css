@@ -783,6 +783,11 @@ footer.footer-border {
 .toast-message{
   color: white !important;
 }
+.toast.toast-success {
+  background-color: #4cc551 !important; /* Solid color background */
+  color: white !important;
+}
+
 footer.footer.footer-static.footer-light {
   display: none;
 }
