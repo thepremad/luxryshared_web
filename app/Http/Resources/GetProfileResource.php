@@ -15,7 +15,7 @@ class GetProfileResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "profile"=> '',
+            "profile"=> $this->profile ? url('public/uploads/profile/'.$this->profile) : null,
             "first_name" => $this->first_name,
             "last_name" => $this->last_name,
             "email" => $this->email,

@@ -80,7 +80,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->status = User::$approved;
         $user->save();
-        return redirect()->back();
+        return response()->json(['status' => 200, 'message' => ' Approve Request Successfully ']);
+
     }
     public function rejectRequest($id){
         $user = User::findOrFail($id);
