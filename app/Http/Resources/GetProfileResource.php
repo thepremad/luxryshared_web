@@ -21,10 +21,10 @@ class GetProfileResource extends JsonResource
             "email" => $this->email,
             "mobile_number" => $this->number,
             "id_image" => $this->id_image ? url('public/uploads/image/'.$this->id_image) : null,
-            "facebook" => "",
-            "insta" => "",
-            "twitter" => "",
-            "tiktok" => "",
+            "facebook" =>$this->facebook ?? null,
+            "insta" => $this->instagram ?? null,
+            "twitter" => $this->twitter ?? null,
+            "tiktok" => $this->tiktok ?? null,
         ];
     }
 }
