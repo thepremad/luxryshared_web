@@ -104,13 +104,13 @@
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href='#' onclick="approveConformation({{$item->id}})">
+                                                            <a class="dropdown-item" href='{{route('admin.user.edit',$item->id)}}'>
                                                                 <i data-feather="edit-2" class="me-50"></i>
-                                                                <span>Approve</span>
+                                                                <span>Edit</span>
                                                             </a>
-                                                            <a class="dropdown-item delete-record" onclick="rejectConformation({{$item->id}})" href="#" >
+                                                            <a class="dropdown-item delete-record" data-id="{{$item->id}}"  href="#" >
                                                                 <i data-feather="trash" class="me-50"></i>
-                                                                <span>Disapprove</span>
+                                                                <span>Delete</span>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -190,5 +190,29 @@ function rejectConformation(id) {
             }
         }
     </script>
+    <script>
+    $(document).on('click', '.delete-record', function () {
+            var associateId =  $(this).data('id');            
+            if (confirm('Are you sure you want to delete this user ?')) {
+                $.ajax({
+                    url: "{{ url('admin/user') }}/" + associateId, // Use the url() function
+                    type: 'DELETE',
+                    data: {
+                        '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
+                    },
+                    success: function (res) {
+                        if (res.status === 200) {
+                            toastr.success(res.message);
+                            window.location.href =
+                                "{{ route('admin.user.index') }}";
+                        }
+                    },
+                    error: function (xhr) {
+                        toastr.error('Oops... Something went wrong. Please try again.');
+                    }
+                });
+            }
+        });
+</script>
 
 @endsection

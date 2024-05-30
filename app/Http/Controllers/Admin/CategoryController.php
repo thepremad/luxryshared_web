@@ -92,7 +92,7 @@ class CategoryController extends Controller
     {
         try {
             $categories = Category::findOrFail($id)->delete();
-            return response()->json(['status' => 200, 'message' => 'Delete Category Successfully login!']);
+            return response()->json(['status' => 200, 'message' => 'Delete Category Successfully ']);
         } catch (\Exception $exception) {
             Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);

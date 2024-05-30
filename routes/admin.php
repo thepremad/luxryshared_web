@@ -30,8 +30,8 @@ Route::middleware(['admin'])->group(function () {
         Route::get('approve-request/{id}', 'approveRequest')->name('user.approve');
         Route::get('reject-request/{id}', 'rejectRequest')->name('user.disapprove');
         Route::get('register-request', 'registerRequest')->name('user.register_request');
-        Route::get('user-index', 'userIndex')->name('user.listing');
         Route::get('user-profle/{id}', 'profile')->name('user.profile');
+        Route::get('user-delete/{id}', 'edit')->name('user.delete');
     });
 
     Route::resource('categories',CategoryController::class);
@@ -41,6 +41,7 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('countries',CountryController::class);
     Route::resource('cities',CityController::class);
     Route::resource('faq',FaqController::class);
+    Route::resource('user',UserController::class);
 
 Route::controller(TermsAndConditionsController::class)->group(function () {
     Route::get('/delivery', 'delivry')->name('deliveries.delivry');
