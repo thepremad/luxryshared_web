@@ -73,8 +73,8 @@
                         </a>
                     </li>
 
-                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.user.listing') ? 'active' : '' }} "
-                            href="{{ route('admin.user.listing') }}"><i data-feather="circle"></i><span
+                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.user.index') ? 'active' : '' }} "
+                            href="{{ route('admin.user.index') }}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="Shop"> List  Users</span></a>
                     </li>
 

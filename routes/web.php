@@ -16,3 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/run-migrations', function () {
+    try {
+        Artisan::call('migrate');
+        return 'Migrations executed successfully';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+Route::get('/route-cache', function () {
+    try {
+        Artisan::call('route:cache');
+        return ' routes cached successfully';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});

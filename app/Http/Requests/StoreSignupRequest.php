@@ -28,7 +28,6 @@ class StoreSignupRequest extends FormRequest
             'last_name' => 'required',
             'password' => 'required|min:6',
             'number' => 'required|unique:users,number',
-            'address' => 'required',
             'id_image' => 'required',
         ];
     }
