@@ -61,7 +61,7 @@
                 </ul>
             </li> -->
             <li
-                class=" nav-item {{ Request::routeIs('admin.user.listing', 'admin.user.register_request') ? 'has-sub open' : '' }} ">
+                class=" nav-item {{ Request::routeIs('admin.user.register_request','admin.user.index') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-user-injured"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">User Listing</span></a>
                 <ul class="menu-content">
