@@ -45,7 +45,7 @@ class AuthController extends Controller
                   $status = auth()->user()->status == '1' ? true : false;
                   return response()->json(['admin_approval' => $status,'access_token' => $token ],200);
               } else {
-                  return response()->json(['email' => "User does not exist! Please Register"], 422);
+                  return response()->json(['error'=>['email' => "User does not exist! Please Register"]], 422);
               }
           } catch (\Throwable $th) {
             Log::error('admin login post : exception');

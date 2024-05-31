@@ -40,7 +40,7 @@ class StoewVerifyOtpRequest extends FormRequest
         throw new HttpResponseException(
             response()->json([
                 'error' => $errorObject
-            ], 400)
+            ], 422)
         );
                 
     }

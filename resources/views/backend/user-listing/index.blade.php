@@ -90,7 +90,8 @@
                                                 <img src="{{ url('public/uploads/image/'.$item->id_image)}}" alt="Toolbar svg" width="50px" />
                                                    
                                                 </td>
-                                                <td><a href="">{{ $item->first_name }} {{ $item->last_name }}</a></td>
+                                                <td><a href="{{route('admin.user.show',$item->id)}}">{{ $item->first_name }} {{ $item->last_name }}</a></td>
+
 
 
                                                 <td >
@@ -103,12 +104,12 @@
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href='#' onclick="approveConformation({{$item->id}})">
+                                                        <div class="dropdown-menu dropdown-menu-end delete-record" data-id="{{$item->id}}">
+                                                            <a class="dropdown-item" href='#' >
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Approve</span>
                                                             </a>
-                                                            <a class="dropdown-item delete-record" onclick="rejectConformation({{$item->id}})" href="#" >
+                                                            <a class="dropdown-item " onclick="rejectConformation({{$item->id}})" href="#" >
                                                                 <i data-feather="trash" class="me-50"></i>
                                                                 <span>Disapprove</span>
                                                             </a>
@@ -190,5 +191,31 @@ function rejectConformation(id) {
             }
         }
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  
+    $(document).on('click', '.delete-record', function () {
+            var associateId =  $(this).data('id');            
+            if (confirm('Are you sure you want to approve request ?')) {
+                $.ajax({
+                    url: "{{ url('admin/approve-request') }}/" + associateId, // Use the url() function
+                    type: 'GET',
+                    data: {
+                        '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
+                    },
+                    success: function (res) {
+                        if (res.status === 200) {
+                            toastr.success(res.message);
+                            window.location.reload();
+                        }
+                    },
+                    error: function (xhr) {
+                        toastr.error('Oops... Something went wrong. Please try again.');
+                    }
+                });
+            }
+        });
+</script>
 
 @endsection
