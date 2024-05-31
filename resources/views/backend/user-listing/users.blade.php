@@ -90,7 +90,7 @@
                                                 <img src="{{ url('public/uploads/image/'.$item->id_image)}}" alt="Toolbar svg" width="50px" />
                                                    
                                                 </td>
-                                                <td><a href="{{route('admin.user.profile',$item->id)}}">{{ $item->first_name }} {{ $item->last_name }}</a></td>
+                                                <td><a href="{{route('admin.user.show',$item->id)}}">{{ $item->first_name }} {{ $item->last_name }}</a></td>
 
 
                                                 <td >

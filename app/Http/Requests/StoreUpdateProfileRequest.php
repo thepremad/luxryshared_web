@@ -25,7 +25,7 @@ class StoreUpdateProfileRequest extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'number' => 'required',
+            'number' => 'required|unique:users,number',
         ];
     }
     protected function failedValidation(Validator $validator)
