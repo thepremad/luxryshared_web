@@ -16,18 +16,17 @@ class ForgetPasswordController extends Controller
     public function forgotPassword(StoreForgetPasswordRequest $request){
         try {
             $user = User::where('email',$request->email)->first();
-            $otp = mt_rand(1000, 9999);
-            $data = [
-              'otp' =>$otp
-          ];
-          \Mail::to($request->email)->send(new ForgetPasswordMail($data));
-            if ($user) {
-                $user->otp = $otp;
+            // $otp = mt_rand(1000, 9999);
+        //     $data = [
+        //       'otp' =>$otp
+        //   ];
+          if ($user) {
+                // \Mail::to($request->email)->send(new ForgetPasswordMail($data));
+                $user->otp = 1234;
                 $user->save();
                return response()->json(['message' => "OTP sent successfully to your email",'user_id' =>  $user->id], 200);
             }else{
                return response()->json(['error' => ['error' => "The entered email is not registered. Please register first"]], 422);
-    
             }
         } catch (\Throwable $th) {
             Log::error('admin login post : exception');

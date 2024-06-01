@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-class StoreSignupRequest extends FormRequest
+class StoreEditUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,32 +24,16 @@ class StoreSignupRequest extends FormRequest
     {
         return [
             'first_name' => 'required',
-            'email' => 'required|unique:users,email',
             'last_name' => 'required',
-            'password' => 'required|min:6',
             'number' => [
                 'required',
-                'unique:users,number',
                 'digits_between:10,13',
                 'regex:/^[0-9]+$/'
             ],
-            'id_image' => 'required',
         ];
     }
     protected function failedValidation(Validator $validator)
     {
-        $errors = $validator->errors()->messages();
-        $errorObject = [];
-    
-        foreach ($errors as $field => $messages) {
-            $errorObject[$field] = $messages[0];  // Take the first error message for each field
-        }
-    
-        throw new HttpResponseException(
-            response()->json([
-                'error' => $errorObject
-            ], 422)
-        );
+        throw new HttpResponseException(response()->json(['status' => 422, 'message' => $validator->getMessageBag()]));
     }
-    
 }

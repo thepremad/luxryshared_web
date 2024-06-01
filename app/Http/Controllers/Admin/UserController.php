@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreEditUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEditUserRequest $request)
     {
         try {
             $user = User::findOrFail($request->id);
@@ -92,8 +93,16 @@ class UserController extends Controller
 
     }
     public function registerRequest(){
-        $user = User::where('status',User::$pending)->where('email','!=','admin@gmail.com')->latest()->paginate(10);
+        $user = User::where('email','!=','admin@gmail.com')->latest()->paginate(10);
         return view('backend.user-listing.index',compact('user'));
+    }
+    public function userSerach(Request $request){
+        $user = User::where('first_name', 'LIKE', "%{$request->val}%")
+            ->orWhere('email', 'LIKE', "%{$request->val}%")
+            ->orWhere('number', 'LIKE', "%{$request->val}%")
+            ->orWhere('last_name', 'LIKE', "%{$request->val}%")
+            ->get();
+            return response()->json(['status' =>200,'data' => $user]);
     }
  
 }
