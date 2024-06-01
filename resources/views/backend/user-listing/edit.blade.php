@@ -115,7 +115,7 @@
                                                 <input type="file" readonly  id="first-name-column" value="{{$user->id_image}}" name="id_image"
                                                     class="form-control" placeholder="Name"
                                                     value="{{ old('name') }}" />
-                                                    <img width="100px" src="{{url('public/uploads/image/'.$user->id_image)}}" alt="">
+                                                    <img width="100px" class="mt-1" src="{{url('public/uploads/image/'.$user->id_image)}}" alt="">
                                                 </div>
                                         </div>
                                         </div>

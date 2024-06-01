@@ -32,6 +32,7 @@ Route::middleware(['admin'])->group(function () {
         Route::get('register-request', 'registerRequest')->name('user.register_request');
         Route::get('user-profle/{id}', 'profile')->name('user.profile');
         Route::get('user-delete/{id}', 'edit')->name('user.delete');
+        Route::post('user-serach', 'userSerach')->name('user.serach');
     });
 
     Route::resource('categories',CategoryController::class);

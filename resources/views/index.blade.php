@@ -11,6 +11,10 @@
     border-radius: 7px;
     margin: 6px 40px
 }
+#imgset{
+    width: 77px !important;
+    height: 77px !important;
+}
 </style>
 <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -52,7 +56,7 @@
                                             
                                             <tr>
                                                 <td>{{$i }}</td>
-                                                <td><img src="{{url('public/uploads/image/'.$item->id_image)}}" width="50px" alt=""></td>
+                                                <td><img id="imgset" src="{{url('public/uploads/image/'.$item->id_image)}}"  alt=""></td>
 
                                                 <td >
                                                    {{$item->email}}
