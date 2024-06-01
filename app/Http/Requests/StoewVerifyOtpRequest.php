@@ -29,19 +29,17 @@ class StoewVerifyOtpRequest extends FormRequest
     }
     protected function failedValidation(Validator $validator)
     {
-        $errors = $validator->errors()->all();
+        $errors = $validator->errors()->messages();
         $errorObject = [];
-        
-        foreach ($errors as $error) {
-            $field = strtolower(preg_replace('/^The (.+?) field is required\.$/', '$1', $error));
-            $errorObject[$field] = $error;
+    
+        foreach ($errors as $field => $messages) {
+            $errorObject[$field] = $messages[0];  // Take the first error message for each field
         }
-        
+    
         throw new HttpResponseException(
             response()->json([
                 'error' => $errorObject
             ], 422)
         );
-                
     }
 }

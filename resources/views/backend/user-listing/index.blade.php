@@ -121,9 +121,9 @@
                                                                                                 <i data-feather="more-vertical"></i>
                                                                                             </button>
                                                                                             <div class="dropdown-menu dropdown-menu-end"
-                                                                                                data-id="{{$item->id}}">
-                                                                                                <a class="dropdown-item  delete-record" href='#'>
-                                                                                                    <i data-feather="edit-2" class="me-50"></i>
+                                                                                                >
+                                                                                                <a class="dropdown-item  delete-record" data-id="{{$item->id}}" href='#'>
+                                                                                                    <i data-feather="edit-2"  class="me-50"></i>
                                                                                                     <span>Approve</span>
                                                                                                 </a>
                                                                                                 <a class="dropdown-item "
