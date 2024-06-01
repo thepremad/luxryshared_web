@@ -19,11 +19,11 @@ class AuthController extends Controller
         try {
             $user = new User();
             $user->fill($request->all());
-            $user->password = \Hash::make($request->password);
             if ($file = $request->file('id_image')) {
-               $folder = public_path('/uploads/image');
-               $user->id_image = $this->uploadFile($file, $folder);
-           }
+                $folder = public_path('/uploads/image');
+                $user->id_image = $this->uploadFile($file, $folder);
+            }
+            $user->password = \Hash::make($request->password);
            $user->save();
            return response()->json(['message' => 'Successfully Registered'], 200);
         } catch (\Throwable $th) {
@@ -39,12 +39,12 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => $request->password
               ];
-
               if (auth()->attempt($credentials)) {
                   $token = auth()->user()->createToken('Token')->accessToken;
-                  return response()->json(['access_token' => $token ],200);
+                  $status = auth()->user()->status == '1' ? true : false;
+                  return response()->json(['admin_approval' => $status,'access_token' => $token ],200);
               } else {
-                  return response()->json(['email' => "User does not exist! Please Register"], 422);
+                  return response()->json(['error'=>['email' => "User does not exist! Please Register"]], 422);
               }
           } catch (\Throwable $th) {
             Log::error('admin login post : exception');

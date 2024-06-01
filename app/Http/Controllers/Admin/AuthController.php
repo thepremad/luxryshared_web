@@ -44,7 +44,7 @@ class AuthController extends Controller
     {
         try {
             Auth::logout();
-            return view('admin.login');
+            return redirect()->route('admin.login');
         } catch (\Exception $exception) {
             Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);

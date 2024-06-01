@@ -11,6 +11,10 @@
     border-radius: 7px;
     margin: 6px 40px
 }
+#imgset{
+    width: 77px !important;
+    height: 77px !important;
+}
 </style>
 <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -52,7 +56,7 @@
                                             
                                             <tr>
                                                 <td>{{$i }}</td>
-                                                <td><img src="{{url('public/uploads/image/'.$item->id_image)}}" width="50px" alt=""></td>
+                                                <td><img id="imgset" src="{{url('public/uploads/image/'.$item->id_image)}}"  alt=""></td>
 
                                                 <td >
                                                    {{$item->email}}
@@ -65,7 +69,7 @@
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href='#' onclick="approveConformation({{$item->id}})">
+                                                            <a class="dropdown-item delete-record" data-id="{{$item->id}}" href='#' >
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Approve</span>
                                                             </a>
@@ -158,6 +162,32 @@ function rejectConformation(id) {
 }
 
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  
+    $(document).on('click', '.delete-record', function () {
+            var associateId =  $(this).data('id');            
+            if (confirm('Are you sure you want to approve request ?')) {
+                $.ajax({
+                    url: "{{ url('admin/approve-request') }}/" + associateId, // Use the url() function
+                    type: 'GET',
+                    data: {
+                        '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
+                    },
+                    success: function (res) {
+                        if (res.status === 200) {
+                            toastr.success(res.message);
+                            window.location.reload();
+                        }
+                    },
+                    error: function (xhr) {
+                        toastr.error('Oops... Something went wrong. Please try again.');
+                    }
+                });
+            }
+        });
+</script>
 @endsection
 
 

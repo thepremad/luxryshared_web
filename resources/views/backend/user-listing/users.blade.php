@@ -12,6 +12,10 @@
         color: red;
         font-weight: 900;
     }
+    #imgset{
+    width: 77px !important;
+    height: 77px !important;
+}
 </style>
 
  <!-- BEGIN: Content-->
@@ -87,12 +91,10 @@
                                             <tr>
                                                 <td>{{$i }}</td>
                                                 <td>
-                                                <img src="{{ url('public/uploads/image/'.$item->id_image)}}" alt="Toolbar svg" width="50px" />
+                                                <img  id="imgset" src="{{ url('public/uploads/image/'.$item->id_image)}}" alt="Toolbar svg" width="50px" />
                                                    
                                                 </td>
-                                                <td><a href="{{route('admin.user.profile',$item->id)}}">{{ $item->first_name }} {{ $item->last_name }}</a></td>
-
-
+                                                <td><a href="{{route('admin.user.show',$item->id)}}">{{ $item->first_name }} {{ $item->last_name }}</a></td>
                                                 <td >
                                                    {{$item->email}}
                                                 </td>
@@ -169,26 +171,59 @@ function rejectConformation(id) {
     </script>
 <script>
         function myFunction() {
-            var input, filter, found, table, tr, td, i, j;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        found = true;
-                    }
+        var csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+
+        var input = document.getElementById("searchInput");
+        $.ajax({
+            url: '{{route('admin.user.serach')}}', // Replace with your server endpoint
+            method: 'POST', // You can use 'GET' or 'POST' based on your server-side handling
+            data: { val: input.value },
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            success: function (res) {
+                if (res.status == '200') {
+                    $('tbody').empty();
+                    let count = 0;
+                    res.data.forEach(function (item) {
+    count = count + 1;
+    var editUrl = '{{ route("admin.user.edit", ":id") }}'.replace(':id', item.id);
+    var newRow = `
+        <tr>
+            <td>${count}</td>
+            <td><img id="imgset" src="{{ url('public/uploads/image/') }}/${item.id_image}" alt="User Image"></td>
+            <td>${item.first_name} ${item.last_name}</td>
+            <td>${item.email}</td>
+            <td>${item.number}</td>
+            <td>
+                <div class="dropdown">
+                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
+                        <i data-feather="more-vertical"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="${editUrl}">
+                            <i data-feather="edit-2" class="me-50"></i>
+                            <span>Edit</span>
+                        </a>
+                        <a class="dropdown-item delete-record" data-id="${item.id}" href="#">
+                            <i data-feather="trash" class="me-50"></i>
+                            <span>Delete</span>
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>`;
+    $('tbody').append(newRow);
+});
+
                 }
-                if (found) {
-                    tr[i].style.display = "";
-                    found = false;  
-                } else {
-                    tr[i].style.display = "none";
-                }
+
+            },
+            error: function (error) {
+                console.error(error);
             }
-        }
+        });
+    }
     </script>
     <script>
     $(document).on('click', '.delete-record', function () {

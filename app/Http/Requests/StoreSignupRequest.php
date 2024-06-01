@@ -27,7 +27,12 @@ class StoreSignupRequest extends FormRequest
             'email' => 'required|unique:users,email',
             'last_name' => 'required',
             'password' => 'required|min:6',
-            'number' => 'required|unique:users,number',
+            'number' => [
+                'required',
+                'unique:users,number',
+                'digits_between:10,13',
+                'regex:/^[0-9]+$/'
+            ],
             'id_image' => 'required',
         ];
     }
