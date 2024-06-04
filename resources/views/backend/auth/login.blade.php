@@ -12,31 +12,31 @@
     <meta name="keywords" content="backend template, Vuexy backend template, dashboard template, flat backend template, responsive backend template, web app">
     <meta name="author" content="PIXINVENT">
     <title>Lxry-Shared</title>
-    <link rel="apple-touch-icon" href="{{url('public/backend/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{url('public/backend/images/ico/favicon.ico')}}">
+    {!! HTML::style(asset('/backend/images/ico/apple-icon-120.png'))!!}
+    {!! HTML::style(asset('/backend/images/ico/favicon.ico'))!!}
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/vendors/css/vendors.min.css')}}">
+    {!! HTML::style(asset('/backend/vendors/css/vendors.min.css'))!!}
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/bootstrap-extended.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/colors.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/components.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/themes/dark-layout.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/themes/bordered-layout.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/themes/semi-dark-layout.css')}}">
+    {!! HTML::style(asset('/backend/css/bootstrap.css'))!!}
+    {!! HTML::style(asset('/backend/css/bootstrap-extended.css'))!!}
+    {!! HTML::style(asset('/backend/css/colors.css'))!!}
+    {!! HTML::style(asset('/backend/css/components.css'))!!}
+    {!! HTML::style(asset('/backend/css/themes/dark-layout.css'))!!}
+    {!! HTML::style(asset('/backend/css/themes/bordered-layout.css'))!!}
+    {!! HTML::style(asset('/backend/css/themes/semi-dark-layout.css'))!!}
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/core/menu/menu-types/vertical-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/plugins/forms/form-validation.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/pages/authentication.css')}}">
+    {!! HTML::style(asset('/backend/css/core/menu/menu-types/vertical-menu.css'))!!}
+    {!! HTML::style(asset('/backend/css/plugins/forms/form-validation.css'))!!}
+    {!! HTML::style(asset('/backend/css/pages/authentication.css'))!!}
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{url('public/backend/css/style.css')}}">
+    {!! HTML::style(asset('/backend/css/style.css'))!!}
     <!-- END: Custom CSS-->
 
 </head>
@@ -62,28 +62,30 @@
                                     
                                     <img src="{{url('public/backend/logo/logo.png')}}" alt="">
                                 </a>
-                                <form class="auth-register-form mt-2" id="frmLogin" action="{{ route('admin.login.post') }}" method="post">
+                                {{ Form::model(null, ['route' => ['admin.login.post'], 'role' => 'form',
+                              'id'=>'frmLogin', 'autocomplete'=>"off", 'method'=>'post','files' => true]) }}
                                     @csrf
                                     <div id="error" class="text-danger"></div>
                                     <div class="mb-1">
-                                        <label for="register-email" class="form-label">Email</label>
-                                        <input type="text" class="form-control" id="register-email" name="email" placeholder="john@example.com" aria-describedby="register-email" tabindex="2" />
-                        <span class="text-danger validation-class" id="email-error"></span>
+                                    {!! Form::label('email', 'Email') !!}
+                                                        {!! Form::email('email', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'Email', 'id' =>
+                                                          'email']) !!}
+                                         <span class="text-danger validation-class" id="email-error"></span>
 
                                     </div>
 
                                     <div class="mb-1">
-                                        <label for="register-password" class="form-label">Password</label>
-
-                                        <div class="input-group input-group-merge form-password-toggle">
+                                          {!! Form::label('password', 'Password') !!}
+                            <div class="input-group input-group-merge form-password-toggle">
                                             <input type="password" class="form-control form-control-merge" id="register-password" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="register-password" tabindex="3" />
                                             <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                        <span class="text-danger validation-class" id="password-error"></span>
+                                             <span class="text-danger validation-class" id="password-error"></span>
 
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary w-100" tabindex="5">Login</button>
-                                </form>  
+                                    {!! Form::close() !!}
+
                             </div>
                         </div>
                         <!-- /Register basic -->
@@ -97,21 +99,11 @@
 
 
     <!-- BEGIN: Vendor JS-->
-    <script src="{{url('backend/vendors/js/vendors.min.js')}}"></script>
-    <!-- BEGIN Vendor JS-->
-
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="{{url('backend/vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
-    <script src="{{url('backend/js/core/app-menu.js')}}"></script>
-    <script src="{{url('backend/js/core/app.js')}}"></script>
-    <!-- END: Theme JS-->
-
-    <!-- BEGIN: Page JS-->
-    <script src="{{url('backend/js/scripts/pages/auth-register.js')}}"></script>
-    <!-- END: Page JS-->
+    {!! HTML::script(asset('backend/vendors/js/vendors.min.js'))!!}
+    {!! HTML::script(asset('backend/vendors/js/forms/validation/jquery.validate.min.js'))!!}
+    {!! HTML::script(asset('backend/js/core/app-menu.js'))!!}
+    {!! HTML::script(asset('backend/js/core/app.js'))!!}
+    {!! HTML::script(asset('backend/js/scripts/pages/auth-register.js'))!!}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(window).on('load', function() {

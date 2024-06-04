@@ -3,16 +3,6 @@
 namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('login', 'loginView')->name('login');
@@ -51,7 +41,5 @@ Route::controller(TermsAndConditionsController::class)->group(function () {
     Route::post('/save-terms-and-condetions', 'saveTermsAndCondetions')->name('terms_condetion.save_terms');
     Route::get('/privacy-policy', 'privacyPolicies')->name('privacy_policies.get_policies');
     Route::post('/save-privicy-policy', 'saveDelivry')->name('privacy_policies.save_policies');
-});
-
-    
+}); 
 });

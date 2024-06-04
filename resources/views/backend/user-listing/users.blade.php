@@ -1,7 +1,7 @@
 
-@extends('backend.layouts.app')
+@extends('index')
 
-@section('content')
+@section('style')
 
 <style>
     .Active{
@@ -17,9 +17,11 @@
     height: 77px !important;
 }
 </style>
+@endsection
 
- <!-- BEGIN: Content-->
 <!-- BEGIN: Content-->
+<!-- BEGIN: Content-->
+@section('content')
 <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -30,14 +32,6 @@
                         <div class="col-12">
                             <h2 class="content-header-title float-start mb-0">Users</h2>
                             <div class="breadcrumb-wrapper">
-                                <!-- <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{  route('admin.dashboard') }}">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.categories.index') }}">Categories</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">List
-                                    </li>
-                                </ol> -->
                             </div>
                         </div>
                     </div>
@@ -57,9 +51,6 @@
                 </div>
                 @endforeach
             @endif
-
-
-                <!-- Ajax Sourced Server-side -->
                 <section id="ajax-datatable">
                      <!-- Responsive tables start -->
                 <div class="row" >
@@ -92,13 +83,9 @@
                                                 <td>{{$i }}</td>
                                                 <td>
                                                 <img  id="imgset" src="{{ url('public/uploads/image/'.$item->id_image)}}" alt="Toolbar svg" width="50px" />
-                                                   
                                                 </td>
                                                 <td><a href="{{route('admin.user.show',$item->id)}}">{{ $item->first_name }} {{ $item->last_name }}</a></td>
-                                                <td >
-                                                   {{$item->email}}
-                                                </td>
-                                                
+                                                <td >{{$item->email}}</td>
                                                 <td>{{ $item->number }}</td>
                                                 <td>
                                                     <div class="dropdown">
@@ -116,8 +103,6 @@
                                                             </a>
                                                         </div>
                                                     </div>
-
-                                                    
                                                 </td>
                                             </tr>
                                             @php
@@ -129,29 +114,15 @@
                                 </table>
                             </div>
                             @include('backend._pagination', ['data' => $user])
-
-                            {{-- <div class="table-responsive">
-                                <tbody>
-                                    <!-- ... (your table structure) ... -->
-                                </tbody>
-                                {{ $categories->links('admin._pagination') }}
-                            </div> --}}
-
-                        </div>
                     </div>
                 </div>
-
-                <!-- Responsive tables end -->
                 </section>
-
-                <!--/ Ajax Sourced Server-side -->
             </div>
         </div>
 
     </div>
-
-    <!-- END: Content-->
-    <!-- END: Content-->
+@endsection
+@section('script')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use App\Traits\FileUploadTrait;
 use Carbon\Carbon;
+use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -42,7 +43,7 @@ class CategoryController extends Controller
         try {
             $category = Category::firstOrNew(['id' => $request->id]);
             $category->fill($request->all());
-            if ($request->status == 'on') {
+            if ($request->status == '1') {
                 $category->status = Category::$active;
             } else {
                 $category->status = Category::$in_active;

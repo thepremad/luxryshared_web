@@ -30,7 +30,7 @@ class AuthController extends Controller
         try {
             $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials)) {
-                return response()->json(['status' => 200, 'message' => 'Successfully login!']);
+                return redirect()->route('admin.dashboard');
             } else {
                 return response()->json(['status' => 500, 'message' => 'Account not found. Please check your Username/Email address and try again.']);
             }

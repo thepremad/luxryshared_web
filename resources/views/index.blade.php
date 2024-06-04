@@ -1,194 +1,125 @@
-@extends('backend.layouts.app')
-@section('content')
-<style>
-    .cards{
-    height: 120px;
-    background: #5cd95c;
-    color: white;
-    font-weight: 900;
-    text-align: center;
-    padding-top: 42px;
-    border-radius: 7px;
-    margin: 6px 40px
-}
-#imgset{
-    width: 77px !important;
-    height: 77px !important;
-}
-</style>
-<div class="app-content content ">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper container-xxl p-0">
-            <div class="content-header row">
-            </div>
-            <div class="content-body">
-                <!-- Dashboard Ecommerce Starts -->
-                <section id="dashboard-ecommerce">
-                    <div class="row match-height">
-                        <!-- Statistics Card -->
-                                <div class="col-md-3 cards">Total Register Count <br><span style="font-size:17px">100</span></div>
-                                <div class="col-md-3 cards" style="    background: #e78383;">Total Order Request <br><span style="font-size:17px">100</span></div>
-                                <div class="col-md-3 cards" style="    background: #bdbf4cd9;">Register request <br><span style="font-size:17px">100</span></div>
-                                <!-- <div class="col-md-3 cards">total Lend Count <br><span style="font-size:17px">100</span></div> -->
-                                <div class="col-md-3 cards" style="background: #66cdbfd9;">total Rent Count <br><span style="font-size:17px">100</span></div>
-                                <div class="col-md-3 cards" style="background: #5c7dd9;">Total Buy  Count <br><span style="font-size:17px">100</span></div>
-                                <div class="col-md-3 cards" style="    background: #cc5cd9;">Total Resale Count <br><span style="font-size:17px">100</span></div>
-                             
-                            </div>
-                        </div>
-                        <div class="row mt-5">
-                        <div class="table-responsive" id="table-responsive">
-                                <table class="table mb-0">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th scope="col" >#</th>
-                                            <th scope="col" >Id</th>
-                                            <th scope="col" >Email</th>
-                                            <th scope="col" >Number</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="myTable">
-                                    @php  $i = 1; @endphp
+
+<!-- dashboard data start from here..................................................................... -->
+
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
+    <meta name="description" >
+    <meta name="keywords" >
+    <meta name="author" content="PIXINVENT">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Lxry-Shared</title>
+    <link rel="apple-touch-icon" href="{{url('/backend/images/ico/apple-icon-120.png')}}">
+    <link rel="icon" href="{{url('/frontEnd/images/logo.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{url('//backend/images/ico/favicon.ico')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     {!! HTML::style(asset('/backend/vendors/css/vendors.min.css'))!!}
+     {!! HTML::style(asset('/backend/vendors/css/charts/apexcharts.css'))!!}
+     {!! HTML::style(asset('/backend/vendors/css/extensions/toastr.min.css'))!!}
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+     {!! HTML::style(asset('/backend/css/bootstrap.css'))!!}
+     {!! HTML::style(asset('/backend/css/bootstrap-extended.css'))!!}
+     {!! HTML::style(asset('/backend/css/colors.css'))!!}
+     {!! HTML::style(asset('/backend/css/components.css'))!!}
+     {!! HTML::style(asset('/backend/css/themes/dark-layout.css'))!!}
+     {!! HTML::style(asset('/backend/css/themes/bordered-layout.css'))!!}
+     {!! HTML::style(asset('/backend/css/themes/semi-dark-layout.css'))!!}
+
+    <!-- BEGIN: Page CSS-->
+     {!! HTML::style(asset('/backend/css/core/menu/menu-types/horizontal-menu.css'))!!}
+     {!! HTML::style(asset('/backend/css/pages/dashboard-ecommerce.css'))!!}
+     {!! HTML::style(asset('/backend/css/plugins/charts/chart-apex.css'))!!}
+     {!! HTML::style(asset('/backend/css/plugins/extensions/ext-component-toastr.css'))!!}
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+     {!! HTML::style(asset('/backend/urls/css/style.css'))!!}
+     {!! HTML::style(asset('/backend/css/pages/page-profile.css'))!!}
+    <!-- END: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
  
-                                        @foreach ($user as $item)
-                                            
-                                            <tr>
-                                                <td>{{$i }}</td>
-                                                <td><img id="imgset" src="{{url('public/uploads/image/'.$item->id_image)}}"  alt=""></td>
+    <style>
+        p.clearfix.mb-0 {
+    float: right !important;
+    display: none
+}
+   .alert.alert-success {
+    width: fit-content;
+    padding: 15px;
+    position: absolute;
+    top: 66px;
+    z-index: 999;
+    right: 0;
+}
+.alert.alert-warning {
+    width: fit-content;
+    padding: 15px;
+    position: absolute;
+    top: 66px;
+    z-index: 999;
+    right: 0;
+}
+   
+    .Active {
+            color: green;
+            font-weight: 900;
+        }
 
-                                                <td >
-                                                   {{$item->email}}
-                                                </td>
-                                                
-                                                <td>{{ $item->number }}</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
-                                                            <i data-feather="more-vertical"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item delete-record" data-id="{{$item->id}}" href='#' >
-                                                                <i data-feather="edit-2" class="me-50"></i>
-                                                                <span>Approve</span>
-                                                            </a>
-                                                            <a class="dropdown-item delete-record" onclick="rejectConformation({{$item->id}})" href="#" >
-                                                                <i data-feather="trash" class="me-50"></i>
-                                                                <span>Disapprove</span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    
-                                                </td>
-                                            </tr>
-                                            @php
-                                                $i++;
-                                            @endphp
-                                            @endforeach
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </section>
-                
-
-
-<style>
-    .Active{
-        color: green;
-        font-weight: 900;
-    }
-    .Inactive{
-        color: red;
-        font-weight: 900;
-    }
+        .Inactive {
+            color: red;
+            font-weight: 900;
+        }
 </style>
+@yield('style')
 
- <!-- BEGIN: Content-->
-<!-- BEGIN: Content-->
+</head>
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
-            
-            <div class="content-body">
-
-                @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <div class="alert-body">
-                                            {{$error}}
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endforeach
-            @endif
+    <!-- BEGIN: Header-->
+    @include('backend.layouts.header')
+    <!-- END: Header-->
 
 
-                <!-- Ajax Sourced Server-side -->
-                <section id="ajax-datatable">
-                     <!-- Responsive tables start -->
-                <div class="row" >
+    <!-- BEGIN: Main Menu-->
+    @include('backend.layouts.sidebar')
 
-                    
-                </div>
+    @yield('content')
 
-                <!-- Responsive tables end -->
-                
-    
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+    <!-- BEGIN: Footer-->
+    <footer class="footer footer-static footer-light">
+        <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021<a class="ms-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-end d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
+    </footer>
+    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <!-- END: Footer-->
 
-    
-
-    <!-- END: Content-->
-    <!-- END: Content-->
-
-            </div>
-        </div>
-    </div>
-    <script>
-  function approveConformation(id) {
-    let con = confirm('Are you sure you want to approve the request?');
-    if (con) {
-       location.href = "approve-request/" + id; // Concatenating id into the URL
-    }
-}
-function rejectConformation(id) {
-    let con = confirm('Are you sure you want to reject the request?');
-    if (con) {
-       location.href = "reject-request/" + id; // Concatenating id into the URL
-    }
-}
-
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @include('backend.layouts.js')
 
 <script>
-  
-    $(document).on('click', '.delete-record', function () {
-            var associateId =  $(this).data('id');            
-            if (confirm('Are you sure you want to approve request ?')) {
-                $.ajax({
-                    url: "{{ url('admin/approve-request') }}/" + associateId, // Use the url() function
-                    type: 'GET',
-                    data: {
-                        '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
-                    },
-                    success: function (res) {
-                        if (res.status === 200) {
-                            toastr.success(res.message);
-                            window.location.reload();
-                        }
-                    },
-                    error: function (xhr) {
-                        toastr.error('Oops... Something went wrong. Please try again.');
-                    }
-                });
-            }
-        });
+    // Auto-hide flash message after 2 seconds
+    setTimeout(function() {
+        document.getElementById('flash-message').style.display = 'none';
+    }, 2000);
+
+    function filterAlphabets(inputField) {
+      // Remove non-alphabetic characters using a regular expression
+      inputField.value = inputField.value.replace(/[^a-zA-Z\s]/g, '');
+    }
 </script>
-@endsection
+@yield('script')
 
 
+</body>
 
+</html>

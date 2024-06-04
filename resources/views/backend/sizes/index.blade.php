@@ -1,8 +1,8 @@
 
-@extends('backend.layouts.app')
+@extends('index')
 
-@section('content')
 
+@section('style')
 <style>
     .Active{
         color: green;
@@ -14,6 +14,8 @@
     }
 </style>
 
+@endsection
+@section('content')
  <!-- BEGIN: Content-->
 <!-- BEGIN: Content-->
 <div class="app-content content ">
@@ -43,20 +45,6 @@
                 </div>
             </div>
             <div class="content-body">
-
-                @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <div class="alert-body">
-                                            {{$error}}
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endforeach
-            @endif
-
-
-                <!-- Ajax Sourced Server-side -->
                 <section id="ajax-datatable">
                      <!-- Responsive tables start -->
                 <div class="row" >
@@ -124,14 +112,6 @@
                                 </table>
                             </div>
                             @include('backend._pagination', ['data' => $sizes])
-
-                            {{-- <div class="table-responsive">
-                                <tbody>
-                                    <!-- ... (your table structure) ... -->
-                                </tbody>
-                                {{ $sizes->links('admin._pagination') }}
-                            </div> --}}
-
                         </div>
                     </div>
                 </div>
@@ -144,6 +124,8 @@
         </div>
 
     </div>
+@endsection
+@section('script')
 
     <!-- END: Content-->
     <!-- END: Content-->

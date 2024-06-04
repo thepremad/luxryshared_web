@@ -1,18 +1,15 @@
-@extends('backend.layouts.app')
+@extends('index')
 
-@section('content')
-
+@section('style')
 <style>
     .error {
         color: #a93c3d !important;
         font-weight: 500;
     }
-
-    /* input {
-        text-transform: uppercase;
-    } */
 </style>
+@endsection
 
+@section('content')
 <!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-overlay"></div>
@@ -39,19 +36,6 @@
             </div>
         </div>
         <div class="content-body">
-
-            {{-- @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <div class="alert-body">
-                            {{$error}}
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endforeach
-            @endif --}}
-
-            <!-- Basic multiple Column Form section start -->
             <section id="multiple-column-form">
                 <div class="row">
                     <div class="col-12">
@@ -60,20 +44,18 @@
                                 {{-- <h4 class="card-title">Create</h4> --}}
                             </div>
                             <div class="card-body">
-                                <form class="form" id="frmLogin" action="{{ route('admin.countries.store') }}" method="post"
-                                    enctype="multipart/form-data">
+                            {{ Form::model($countries, ['route' => ['admin.countries.store'], 'role' => 'form',
+                              'id'=>'frmLogin', 'autocomplete'=>"off", 'method'=>'post','files' => true]) }}
                                     @csrf
-                                    @if ($countries->id)
-                                     <input type="hidden" name="id" value="{{$countries->id}}">
+                                    @if($countries->id)
+                                      {!! Form::hidden('id', $countries->id) !!}
                                     @endif
                                     <div class="row">
                                         <div class="col-md-8 col-12">
                                             <div class="mb-1">
-                                                <label class="form-label" for="first-name-column">Name <span
-                                                        class="error"></span></label>
-                                                <input type="text" oninput="filterAlphabets(this)" id="first-name-column" value="{{$countries->name}}" name="name"
-                                                    class="form-control" placeholder="Name"
-                                                    value="{{ old('name') }}" />
+                                            {!! Form::label('name', 'Name') !!}
+                                                        {!! Form::text('name', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'Name', 'id' =>
+                                                          'name','oninput' => 'filterAlphabets(this)']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="name-error"></span>
                                                 </div>
@@ -100,7 +82,8 @@
                                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
                                         </div>
                                     </div>
-                                </form>
+                                    {!! Form::close() !!}
+
                             </div>
                         </div>
                     </div>
@@ -113,6 +96,8 @@
     </div>
 </div>
 <!-- END: Content-->
+@endsction
+@section('script')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>

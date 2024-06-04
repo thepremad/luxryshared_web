@@ -1,7 +1,7 @@
 
-@extends('backend.layouts.app')
+@extends('index')
 
-@section('content')
+@section('style')
 
 <style>
     .Active{
@@ -13,9 +13,8 @@
         font-weight: 900;
     }
 </style>
-
- <!-- BEGIN: Content-->
-<!-- BEGIN: Content-->
+    @endsection
+@section('content')
 <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -55,8 +54,6 @@
                 @endforeach
             @endif
 
-
-                <!-- Ajax Sourced Server-side -->
                 <section id="ajax-datatable">
                      <!-- Responsive tables start -->
                 <div class="row" >
@@ -134,14 +131,6 @@
                                 </table>
                             </div>
                             @include('backend._pagination', ['data' => $categories])
-
-                            {{-- <div class="table-responsive">
-                                <tbody>
-                                    <!-- ... (your table structure) ... -->
-                                </tbody>
-                                {{ $categories->links('admin._pagination') }}
-                            </div> --}}
-
                         </div>
                     </div>
                 </div>
@@ -154,9 +143,10 @@
         </div>
 
     </div>
+@endsection
 
-    <!-- END: Content-->
-    <!-- END: Content-->
+@section('script')
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>

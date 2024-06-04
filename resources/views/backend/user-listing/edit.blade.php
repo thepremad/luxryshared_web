@@ -1,18 +1,15 @@
-@extends('backend.layouts.app')
+@extends('index')
 
-@section('content')
+@section('style')
 
 <style>
     .error {
         color: #a93c3d !important;
         font-weight: 500;
     }
-
-    /* input {
-        text-transform: uppercase;
-    } */
 </style>
-
+@endsection
+@section('content')
 <!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-overlay"></div>
@@ -57,68 +54,56 @@
                                 {{-- <h4 class="card-title">Create</h4> --}}
                             </div>
                             <div class="card-body">
-                                <form class="form" id="frmLogin" action="{{ route('admin.user.store') }}" method="post"
-                                    enctype="multipart/form-data">
+                            {{ Form::model($user, ['route' => ['admin.user.store'], 'role' => 'form',
+                              'id'=>'frmLogin', 'autocomplete'=>"off", 'method'=>'post','files' => true]) }}
                                     @csrf
-                                    @if ($user->id)
-                                     <input type="hidden" name="id" value="{{$user->id}}">
+                                    @if($user->id)
+                                      {!! Form::hidden('id', $user->id) !!}
                                     @endif
                                     <div class="row">
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
-                                                <label class="form-label" for="first-name-column">First Name <span
-                                                        class="error"></span></label>
-                                                <input type="text" oninput="filterAlphabets(this)" id="first-name-column" value="{{$user->first_name}}" name="first_name"
-                                                    class="form-control" placeholder="Name"
-                                                    value="{{ old('name') }}" />
-                                                    
+                                                    {!! Form::label('first_name', 'First Name') !!}
+                                                {!! Form::text('first_name', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
+                                                    'first_name','oninput' => 'filterAlphabets(this)']) !!}
                                                     <span class="text-danger validation-class" id="first_name-error"></span>
-                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
-                                                <label class="form-label" for="first-name-column">Last Name <span
-                                                        class="error"></span></label>
-                                                <input type="text" oninput="filterAlphabets(this)" id="first-name-column" value="{{$user->last_name}}" name="last_name"
-                                                    class="form-control" placeholder="Name"
-                                                    value="{{ old('name') }}" />
+                                                          {!! Form::label('last_name', 'Last Name') !!}
+                                                        {!! Form::text('last_name', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
+                                                          'last_name','oninput' => 'filterAlphabets(this)']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="last_name-error"></span>
-                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
-                                                <label class="form-label" for="first-name-column">Email <span
-                                                        class="error"></span></label>
-                                                <input type="text" readonly id="first-name-column" value="{{$user->email}}" name="email"
-                                                    class="form-control" placeholder="Name"
-                                                    value="{{ old('name') }}" />
+                                                           {!! Form::label('email', 'Email') !!}
+                                                        {!! Form::email('email', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
+                                                           'email']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="email-error"></span>
-                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
-                                                <label class="form-label" for="first-name-column">Number <span
-                                                        class="error"></span></label>
-                                                <input type="text"  id="first-name-column" value="{{$user->number}}" name="number"
-                                                    class="form-control" placeholder="Name"
-                                                    value="{{ old('name') }}" />
+                                                        {!! Form::label('number', 'Number') !!}
+                                                     {!! Form::number('number', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
+                                                          'number']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="number-error"></span>
-                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
-                                                <label class="form-label" for="first-name-column">Id Image <span
-                                                        class="error"></span></label>
-                                                <input type="file" readonly  id="first-name-column" value="{{$user->id_image}}" name="id_image"
-                                                    class="form-control" placeholder="Name"
-                                                    value="{{ old('name') }}" />
+                                                         {!! Form::label('id_image', 'Id Image') !!}
+                                                        {!! Form::file('id_image', ['class' => 'form-control', 'id' => 'id_image']) !!}
                                                     <img width="100px" class="mt-1" src="{{url('public/uploads/image/'.$user->id_image)}}" alt="">
-                                                </div>
+                                             </div>
                                         </div>
-                                        </div>
+                                    </div>
 
                                         
 
@@ -127,7 +112,7 @@
                                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
                                         </div>
                                     </div>
-                                </form>
+                                    {!! Form::close() !!}
                             </div>
                         </div>
                     </div>
@@ -137,7 +122,10 @@
         </div>
     </div>
 </div>
-<!-- END: Content-->
+@endsection
+
+@section('script')
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
@@ -183,5 +171,4 @@
       inputField.value = inputField.value.replace(/[^a-zA-Z\s]/g, '');
     }
     </script>
-
 @endsection

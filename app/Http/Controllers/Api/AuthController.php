@@ -31,7 +31,6 @@ class AuthController extends Controller
             Log::error($th);
             return response()->json(['error'=> "Something went wrong. Please try again later."],500);
         }
-
     }
     public function login(StoreLoginRequest $request){
         try {
