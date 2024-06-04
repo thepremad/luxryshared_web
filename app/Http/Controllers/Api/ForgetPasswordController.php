@@ -22,7 +22,7 @@ class ForgetPasswordController extends Controller
           ];
           if ($user) {
                 \Mail::to($request->email)->send(new ForgetPasswordMail($data));
-                // $user->otp = 1234;
+                $user->otp = $otp;
                 $user->save();
                return response()->json(['message' => "OTP sent successfully to your email",'user_id' =>  $user->id], 200);
             }else{

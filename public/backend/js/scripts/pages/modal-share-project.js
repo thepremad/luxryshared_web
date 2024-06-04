@@ -1,7 +1,7 @@
 $(function () {
   ('use strict');
 
-  var assetsPath = '../../../app-assets/',
+  var assetsPath = '../../../backend/',
     addMemberSelect = $('#addMemberSelect');
 
   if ($('body').attr('data-framework') === 'laravel') {

@@ -1,5 +1,4 @@
-@extends('index')
-
+@extends('backend.layouts')
 @section('style')
 
 <style>
@@ -35,8 +34,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3" style="text-align: end">
-            </div>
         </div>
         <div class="content-body">
             <section id="ajax-datatable">
@@ -44,96 +41,59 @@
                 <div class="row">
 
                     <div class="col-12">
-                        <div class="card card-company-table">
-                            <div class="card-header">
-                                <h4 class="card-title"></h4>
-                                <div class="col-md-3" style="text-align: end">
-                                    <input type="text" id="searchInput" onkeyup="myFunction()" class="form-control"
-                                        placeholder="Search">
-                                </div>
-                            </div>
-                            <div class="table-responsive" id="table-responsive">
-                                <table class="table mb-0">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Id</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">email</th>
-                                            <th>number</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="myTable">
-                                        @php  $i = 1; @endphp
-                                        @foreach ($user as $item)
-                                            <tr>
-                                                <td>{{$i }}</td>
-                                                <td>
-                                                    <img id="imgset"
-                                                        src="{{ url('public/uploads/image/' . $item->id_image)}}"
-                                                        alt="Toolbar svg" width="50px" />
-                                                </td>
-                                                <td><a href="{{route('admin.user.show', $item->id)}}">{{ $item->first_name }}
-                                                        {{ $item->last_name }}</a></td>
-                                                <td>
-                                                    {{$item->email}}
-                                                </td>
-                                                <td>{{ $item->number }}</td>
-                                                <td>
-                                                    @if ($item->status == '1')
-                                                    <a href="#" class="btn btn-success">Approved</a>
-                                                    @elseif($item->status == '2')
-                                                    <a href="#" class="btn btn-danger">Disaproved</a>
-                                                    @else
-                                                    <div class="dropdown">
-                                                        <button type="button"
-                                                            class="btn btn-sm dropdown-toggle hide-arrow py-0"
-                                                            data-bs-toggle="dropdown">
-                                                            <i data-feather="more-vertical"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-end"
-                                                            >
-                                                            <a class="dropdown-item  delete-record" data-id="{{$item->id}}" href='#'>
-                                                                <i data-feather="edit-2"  class="me-50"></i>
-                                                                <span>Approve</span>
-                                                            </a>
-                                                            <a class="dropdown-item "
-                                                                onclick="rejectConformation({{$item->id}})" href="#">
-                                                                <i data-feather="trash" class="me-50"></i>
-                                                                <span>Disapprove</span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                     @endif
-                                                </td>
-                                            </tr>
-                                            @php
-                                                $i++;
-                                            @endphp
-                                        @endforeach
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <span>
-                            @include('backend._pagination', ['data' => $user])
+                        <div class="card-datatable">
+                            <table class="datatables-ajax table-bordered  table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th> Name</th>
+                                        <th>Email</th>
+                                        <th>Number</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
-                </div>
-            </section>
-            <meta name="csrf-token" content="{{ csrf_token() }}">
-
         </div>
+        </section>
+
     </div>
+</div>
 
 </div>
 @endsection
 @section('script')
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
+    $(document).ready(function () {
+        // $.fn.dataTable.ext.errMode = 'throw'; // Enable detailed error messages
+        var table = $('.table-bordered').DataTable({
+            destroy: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('admin.user.index') }}",
+                data: function (d) {
+                    d.first_name = $('#searchInput').val()
+                }
+            },
+            columns: [
+                { data: 'first_name', name: 'first_name' },
+                { data: 'first_name', name: 'first_name' },
+                { data: 'email', name: 'email' },
+                { data: 'number', name: 'number' },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: true,
+                    searchable: true
+                },
+            ]
+        });
+        $('form.dt_adv_search input').on('keyup change input', function () {
+            table.ajax.reload();
+        });
+    });
     function approveConformation(id) {
         let con = confirm('Are you sure you want to approve the request?');
         if (con) {
@@ -149,69 +109,70 @@
 
 </script>
 <script>
-    var currentPage = 1;
-    function myFunction(page = 1) {
-        var csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+    // var currentPage = 1;
+    // function myFunction(page = 1) {
+    //     var csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
 
-        var input = document.getElementById("searchInput");
-        $.ajax({
-            url: '{{route('admin.user.serach')}}', // Replace with your server endpoint
-            method: 'POST', // You can use 'GET' or 'POST' based on your server-side handling
-            data: { val: input.value },
-            headers: {
-                'X-CSRF-TOKEN': csrfToken
-            },
-            success: function (res) {
-                if (res.status == '200') {
-                    $('tbody').empty();
-                    let count = 0;
-                    res.data.forEach(function (item) {
-                        count = count + 1;
-                        var newRow = '<tr>' +
-                            '<td>' + count + '</td>' +
-                            '<td><img id="imgset"  src="{{ url("public/uploads/image/") }}/' + item.id_image + '"></td>' +
-                            '<td>' + item.first_name + ' ' + item.last_name + '</td>' +
-                            '<td>' + item.email + '</td>' +
-                            '<td>' + item.number + '</td>' +
-                            '<td>' +
-                            '<div class="dropdown">' +
-                            '<button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">' +
-                            '<i data-feather="more-vertical"></i>' +
-                            '</button>' +
-                            '<div class="dropdown-menu dropdown-menu-end delete-record" data-id="' + item.id + '">' +
-                            '<a class="dropdown-item" href="#">' +
-                            '<i data-feather="edit-2" class="me-50"></i>' +
-                            '<span>Approve</span>' +
-                            '</a>' +
-                            '<a class="dropdown-item" onclick="rejectConformation(' + item.id + ')" href="#">' +
-                            '<i data-feather="trash" class="me-50"></i>' +
-                            '<span>Disapprove</span>' +
-                            '</a>' +
-                            '</div>' +
-                            '</div>' +
-                            '</td>' +
+    //     var input = document.getElementById("searchInput");
+    //     $.ajax({
+    //         url: '{{route('admin.user.serach')}}', // Replace with your server endpoint
+    //         method: 'POST', // You can use 'GET' or 'POST' based on your server-side handling
+    //         data: { val: input.value },
+    //         headers: {
+    //             'X-CSRF-TOKEN': csrfToken
+    //         },
+    //         success: function (res) {
+    //             if (res.status == '200') {
+    //                 $('tbody').empty();
+    //                 let count = 0;
+    //                 res.data.forEach(function (item) {
+    //                     count = count + 1;
+    //                     var newRow = '<tr>' +
+    //                         '<td>' + count + '</td>' +
+    //                         '<td><img id="imgset"  src="{{ url("public/uploads/image/") }}/' + item.id_image + '"></td>' +
+    //                         '<td>' + item.first_name + ' ' + item.last_name + '</td>' +
+    //                         '<td>' + item.email + '</td>' +
+    //                         '<td>' + item.number + '</td>' +
+    //                         '<td>' +
+    //                         '<div class="dropdown">' +
+    //                         '<button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">' +
+    //                         '<i data-feather="more-vertical"></i>' +
+    //                         '</button>' +
+    //                         '<div class="dropdown-menu dropdown-menu-end delete-record" data-id="' + item.id + '">' +
+    //                         '<a class="dropdown-item" href="#">' +
+    //                         '<i data-feather="edit-2" class="me-50"></i>' +
+    //                         '<span>Approve</span>' +
+    //                         '</a>' +
+    //                         '<a class="dropdown-item" onclick="rejectConformation(' + item.id + ')" href="#">' +
+    //                         '<i data-feather="trash" class="me-50"></i>' +
+    //                         '<span>Disapprove</span>' +
+    //                         '</a>' +
+    //                         '</div>' +
+    //                         '</div>' +
+    //                         '</td>' +
 
-                            '</tr>';
-                        $('tbody').append(newRow);
-                    });
-                }
+    //                         '</tr>';
+    //                     $('tbody').append(newRow);
+    //                 });
+    //             }
 
-            },
-            error: function (error) {
-                console.error(error);
-            }
-        });
-    }
+    //         },
+    //         error: function (error) {
+    //             console.error(error);
+    //         }
+    //     });
+    // }
+
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <script>
 
     $(document).on('click', '.delete-record', function () {
-        var associateId = $(this).data('id');
+        var userId = $(this).data('id');
         if (confirm('Are you sure you want to approve request ?')) {
             $.ajax({
-                url: "{{ url('admin/approve-request') }}/" + associateId, // Use the url() function
+                url: "{{ url('admin/approve-request') }}/" + userId, // Use the url() function
                 type: 'GET',
                 data: {
                     '_token': '{{ csrf_token() }}', // You may need to pass CSRF token

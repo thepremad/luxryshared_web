@@ -22,29 +22,27 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      {!! HTML::style(asset('/backend/vendors/css/vendors.min.css'))!!}
-     {!! HTML::style(asset('/backend/vendors/css/charts/apexcharts.css'))!!}
      {!! HTML::style(asset('/backend/vendors/css/extensions/toastr.min.css'))!!}
     <!-- END: Vendor CSS-->
+    }
 
     <!-- BEGIN: Theme CSS-->
      {!! HTML::style(asset('/backend/css/bootstrap.css'))!!}
      {!! HTML::style(asset('/backend/css/bootstrap-extended.css'))!!}
      {!! HTML::style(asset('/backend/css/colors.css'))!!}
      {!! HTML::style(asset('/backend/css/components.css'))!!}
-     {!! HTML::style(asset('/backend/css/themes/dark-layout.css'))!!}
      {!! HTML::style(asset('/backend/css/themes/bordered-layout.css'))!!}
      {!! HTML::style(asset('/backend/css/themes/semi-dark-layout.css'))!!}
 
     <!-- BEGIN: Page CSS-->
      {!! HTML::style(asset('/backend/css/core/menu/menu-types/horizontal-menu.css'))!!}
-     {!! HTML::style(asset('/backend/css/pages/dashboard-ecommerce.css'))!!}
-     {!! HTML::style(asset('/backend/css/plugins/charts/chart-apex.css'))!!}
      {!! HTML::style(asset('/backend/css/plugins/extensions/ext-component-toastr.css'))!!}
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-     {!! HTML::style(asset('/backend/urls/css/style.css'))!!}
      {!! HTML::style(asset('/backend/css/pages/page-profile.css'))!!}
+     {!! HTML::style(asset('/backend/vendors/css/tables/datatable/dataTables.bootstrap5.min.css'))!!}
+    {!! HTML::style(asset('/backend/vendors/css/tables/datatable/responsive.bootstrap5.min.css'))!!}
     <!-- END: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
  
@@ -88,7 +86,6 @@
     <!-- BEGIN: Header-->
     @include('backend.layouts.header')
     <!-- END: Header-->
-
 
     <!-- BEGIN: Main Menu-->
     @include('backend.layouts.sidebar')
