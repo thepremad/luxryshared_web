@@ -1,4 +1,4 @@
-@extends('index')
+@extends('backend.layouts')
 
 @section('style')
 <style>
@@ -83,7 +83,7 @@
                                                                     <i data-feather="edit-2" class="me-50"></i>
                                                                     <span>Approve</span>
                                                                 </a>
-                                                                <a class="dropdown-item delete-record"
+                                                                <a class="dropdown-item "
                                                                     onclick="rejectConformation({{$item->id}})" href="#">
                                                                     <i data-feather="trash" class="me-50"></i>
                                                                     <span>Disapprove</span>

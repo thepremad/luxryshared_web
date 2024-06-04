@@ -39,7 +39,7 @@ $(function () {
   var confirmText = $('#confirm-text');
   var confirmColor = $('#confirm-color');
 
-  var assetPath = '../../../app-assets/';
+  var assetPath = '../../../backend/';
   if ($('body').attr('data-framework') === 'laravel') {
     assetPath = $('body').attr('data-asset-path');
   }

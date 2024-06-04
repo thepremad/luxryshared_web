@@ -1,5 +1,5 @@
 
-@extends('index')
+@extends('backend.layouts')
 
 @section('style')
 

@@ -1,9 +1,7 @@
 {!! HTML::script(asset('/backend/vendors/js/vendors.min.js')) !!}
-{!! HTML::script(asset('/backend/vendors/js/charts/apexcharts.min.js')) !!}
 {!! HTML::script(asset('/backend/vendors/js/extensions/toastr.min.js')) !!}
 {!! HTML::script(asset('/backend/js/core/app-menu.js')) !!}
 {!! HTML::script(asset('/backend/js/core/app.js')) !!}
-{!! HTML::script(asset('/backend/js/scripts/pages/dashboard-ecommerce.js')) !!}
 
 {!! HTML::script(asset('/backend/js/scripts/components/components-popovers.js')) !!}
 
@@ -28,6 +26,9 @@
 
 {!! HTML::script(asset('/backend/vendors/js/toster/toastr.js')) !!}
 
-{!! HTML::script(asset('backend/vendors/js/forms/select/select2.full.min.js')) !!}
-{!! HTML::script(asset('backend/js/scripts/forms/form-select2.js')) !!}
+  {!! HTML::script(asset('/backend/vendors/js/tables/datatable/jquery.dataTables.min.js')) !!}
+    <!-- {!! HTML::script(asset('/backend/vendors/js/tables/datatable/dataTables.bootstrap5.min.js')) !!} -->
+    <!-- {!! HTML::script(asset('/backend/vendors/js/tables/datatable/dataTables.responsive.min.js')) !!} -->
+    {!! HTML::script(asset('/backend/js/scripts/tables/table-datatables-advanced.js')) !!}
+
 @include('backend.layouts.toastr')
