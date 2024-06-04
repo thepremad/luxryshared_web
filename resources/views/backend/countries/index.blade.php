@@ -1,7 +1,7 @@
 
-@extends('backend.layouts.app')
+@extends('index')
 
-@section('content')
+@section('style')
 
 <style>
     .Active{
@@ -13,9 +13,8 @@
         font-weight: 900;
     }
 </style>
-
- <!-- BEGIN: Content-->
-<!-- BEGIN: Content-->
+    @endsection
+@section('content')
 <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -43,20 +42,6 @@
                 </div>
             </div>
             <div class="content-body">
-
-                @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <div class="alert-body">
-                                            {{$error}}
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endforeach
-            @endif
-
-
-                <!-- Ajax Sourced Server-side -->
                 <section id="ajax-datatable">
                      <!-- Responsive tables start -->
                 <div class="row" >
@@ -104,12 +89,6 @@
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
-                                                          
-                                                            
-                                                            {{-- <a class="dropdown-item" href="{{route('countries.show',$item->id)}}">
-                                                                <i data-feather="eye" class="me-50"></i>
-                                                                <span>View</span>
-                                                            </a> --}}
                                                             <a class="dropdown-item delete-record" data-id="{{$item->id}}" href="#" >
                                                                 <i data-feather="trash" class="me-50"></i>
                                                                 <span>Delete</span>
@@ -130,13 +109,6 @@
                             </div>
                             @include('backend._pagination', ['data' => $countries])
 
-                            {{-- <div class="table-responsive">
-                                <tbody>
-                                    <!-- ... (your table structure) ... -->
-                                </tbody>
-                                {{ $countries->links('admin._pagination') }}
-                            </div> --}}
-
                         </div>
                     </div>
                 </div>
@@ -149,9 +121,9 @@
         </div>
 
     </div>
+    @endsection
+@section('script')
 
-    <!-- END: Content-->
-    <!-- END: Content-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>

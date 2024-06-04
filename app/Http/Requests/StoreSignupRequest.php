@@ -26,6 +26,7 @@ class StoreSignupRequest extends FormRequest
             'first_name' => 'required',
             'email' => 'required|unique:users,email',
             'last_name' => 'required',
+            'address' => 'required',
             'password' => 'required|min:6',
             'number' => [
                 'required',

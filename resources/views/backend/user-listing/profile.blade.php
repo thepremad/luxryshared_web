@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('index')
 
 @section('content')
 
@@ -280,6 +280,8 @@
                       
                     </div>
 
+@endsection
+@section('script')
 
 
 

@@ -1,6 +1,6 @@
-@extends('backend.layouts.app')
+@extends('index')
 
-@section('content')
+@section('style')
 
 <style>
     .Active {
@@ -18,9 +18,9 @@
         height: 77px !important;
     }
 </style>
+@endsection
+@section('content')
 
-<!-- BEGIN: Content-->
-<!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
@@ -31,14 +31,6 @@
                     <div class="col-12">
                         <h2 class="content-header-title float-start mb-0">Users</h2>
                         <div class="breadcrumb-wrapper">
-                            <!-- <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{  route('admin.dashboard') }}">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.categories.index') }}">Categories</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">List
-                                    </li>
-                                </ol> -->
                         </div>
                     </div>
                 </div>
@@ -47,20 +39,6 @@
             </div>
         </div>
         <div class="content-body">
-
-            @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <div class="alert-body">
-                            {{$error}}
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endforeach
-            @endif
-
-
-            <!-- Ajax Sourced Server-side -->
             <section id="ajax-datatable">
                 <!-- Responsive tables start -->
                 <div class="row">
@@ -88,69 +66,61 @@
                                     </thead>
                                     <tbody id="myTable">
                                         @php  $i = 1; @endphp
-
                                         @foreach ($user as $item)
-                                                                                <tr>
-                                                                                    <td>{{$i }}</td>
-                                                                                    <td>
-                                                                                        <img id="imgset"
-                                                                                            src="{{ url('public/uploads/image/' . $item->id_image)}}"
-                                                                                            alt="Toolbar svg" width="50px" />
-
-                                                                                    </td>
-                                                                                    <td><a href="{{route('admin.user.show', $item->id)}}">{{ $item->first_name }}
-                                                                                            {{ $item->last_name }}</a></td>
-
-
-
-                                                                                    <td>
-                                                                                        {{$item->email}}
-                                                                                    </td>
-
-                                                                                    <td>{{ $item->number }}</td>
-                                                                                    <td>
-                                                                                        @if ($item->status == '1')
-                                                                                        <a href="#" class="btn btn-success">Approved</a>
-                                                                                        @elseif($item->status == '2')
-                                                                                        <a href="#" class="btn btn-danger">Disaproved</a>
-                                                                                        @else
-                                                                                        <div class="dropdown">
-                                                                                            <button type="button"
-                                                                                                class="btn btn-sm dropdown-toggle hide-arrow py-0"
-                                                                                                data-bs-toggle="dropdown">
-                                                                                                <i data-feather="more-vertical"></i>
-                                                                                            </button>
-                                                                                            <div class="dropdown-menu dropdown-menu-end"
-                                                                                                >
-                                                                                                <a class="dropdown-item  delete-record" data-id="{{$item->id}}" href='#'>
-                                                                                                    <i data-feather="edit-2"  class="me-50"></i>
-                                                                                                    <span>Approve</span>
-                                                                                                </a>
-                                                                                                <a class="dropdown-item "
-                                                                                                    onclick="rejectConformation({{$item->id}})" href="#">
-                                                                                                    <i data-feather="trash" class="me-50"></i>
-                                                                                                    <span>Disapprove</span>
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-@endif
-
-                                                                                    </td>
-                                                                                </tr>
-                                                                                @php
-                                                                                    $i++;
-                                                                                @endphp
+                                            <tr>
+                                                <td>{{$i }}</td>
+                                                <td>
+                                                    <img id="imgset"
+                                                        src="{{ url('public/uploads/image/' . $item->id_image)}}"
+                                                        alt="Toolbar svg" width="50px" />
+                                                </td>
+                                                <td><a href="{{route('admin.user.show', $item->id)}}">{{ $item->first_name }}
+                                                        {{ $item->last_name }}</a></td>
+                                                <td>
+                                                    {{$item->email}}
+                                                </td>
+                                                <td>{{ $item->number }}</td>
+                                                <td>
+                                                    @if ($item->status == '1')
+                                                    <a href="#" class="btn btn-success">Approved</a>
+                                                    @elseif($item->status == '2')
+                                                    <a href="#" class="btn btn-danger">Disaproved</a>
+                                                    @else
+                                                    <div class="dropdown">
+                                                        <button type="button"
+                                                            class="btn btn-sm dropdown-toggle hide-arrow py-0"
+                                                            data-bs-toggle="dropdown">
+                                                            <i data-feather="more-vertical"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-end"
+                                                            >
+                                                            <a class="dropdown-item  delete-record" data-id="{{$item->id}}" href='#'>
+                                                                <i data-feather="edit-2"  class="me-50"></i>
+                                                                <span>Approve</span>
+                                                            </a>
+                                                            <a class="dropdown-item "
+                                                                onclick="rejectConformation({{$item->id}})" href="#">
+                                                                <i data-feather="trash" class="me-50"></i>
+                                                                <span>Disapprove</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                     @endif
+                                                </td>
+                                            </tr>
+                                            @php
+                                                $i++;
+                                            @endphp
                                         @endforeach
 
                                     </tbody>
                                 </table>
                             </div>
+                            <span>
                             @include('backend._pagination', ['data' => $user])
                         </div>
                     </div>
                 </div>
-
-                <!-- Responsive tables end -->
             </section>
             <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -158,9 +128,9 @@
     </div>
 
 </div>
+@endsection
+@section('script')
 
-<!-- END: Content-->
-<!-- END: Content-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
@@ -179,7 +149,8 @@
 
 </script>
 <script>
-    function myFunction() {
+    var currentPage = 1;
+    function myFunction(page = 1) {
         var csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
 
         var input = document.getElementById("searchInput");
@@ -258,5 +229,4 @@
         }
     });
 </script>
-
 @endsection

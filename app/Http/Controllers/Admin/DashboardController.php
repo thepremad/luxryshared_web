@@ -10,6 +10,6 @@ class DashboardController extends Controller
 {
     public function dashboard(){
         $user = User::where('status',User::$pending)->where('email','!=','admin@gmail.com')->latest()->take(10)->get();
-        return view('index',compact('user'));
+        return view('backend.dashboard.dashboard',compact('user'));
     }
 }

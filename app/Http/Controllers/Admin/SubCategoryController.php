@@ -44,7 +44,7 @@ class SubCategoryController extends Controller
         try {
             $category = SubCategory::firstOrNew(['id' => $request->id]);
             $category->fill($request->all());
-            if ($request->status == 'on') {
+            if ($request->status == '1') {
                 $category->status = SubCategory::$active;
             } else {
                 $category->status = SubCategory::$in_active;
