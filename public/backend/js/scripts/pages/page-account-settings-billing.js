@@ -3,7 +3,7 @@ $(function () {
 
   // variables
   var form = $('.validate-form'),
-    assetPath = '../../../app-assets/',
+    assetPath = '../../../backend/',
     dtInvoiceTable = $('.invoice-list-table'),
     invoicePreview = 'app-invoice-preview.html',
     invoiceEdit = 'app-invoice-edit.html',
