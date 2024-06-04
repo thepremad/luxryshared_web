@@ -1,7 +1,7 @@
 
-@extends('backend.layouts.app')
+@extends('index')
 
-@section('content')
+@section('style')
 
 <style>
     .Active{
@@ -13,9 +13,11 @@
         font-weight: 900;
     }
 </style>
+        @endsection
 
- <!-- BEGIN: Content-->
 <!-- BEGIN: Content-->
+<!-- BEGIN: Content-->
+@section('content')
 <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -43,20 +45,6 @@
                 </div>
             </div>
             <div class="content-body">
-
-                @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <div class="alert-body">
-                                            {{$error}}
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endforeach
-            @endif
-
-
-                <!-- Ajax Sourced Server-side -->
                 <section id="ajax-datatable">
                      <!-- Responsive tables start -->
                 <div class="row" >
@@ -131,13 +119,6 @@
                             </div>
                             @include('backend._pagination', ['data' => $cities])
 
-                            {{-- <div class="table-responsive">
-                                <tbody>
-                                    <!-- ... (your table structure) ... -->
-                                </tbody>
-                                {{ $cities->links('admin._pagination') }}
-                            </div> --}}
-
                         </div>
                     </div>
                 </div>
@@ -150,33 +131,32 @@
         </div>
 
     </div>
-
-    <!-- END: Content-->
-    <!-- END: Content-->
+    @endsection
+@section('script')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
     $(document).on('click', '.delete-record', function () {
-            var associateId =  $(this).data('id');            
-            if (confirm('Are you sure you want to delete this cities ?')) {
-                $.ajax({
-                    url: "{{ url('admin/cities') }}/" + associateId, // Use the url() function
-                    type: 'DELETE',
-                    data: {
-                        '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
-                    },
-                    success: function (res) {
-                        if (res.status === 200) {
-                            toastr.success(res.message);
-                            window.location.href =
-                                "{{ route('admin.cities.index') }}";
-                        }
-                    },
-                    error: function (xhr) {
-                        toastr.error('Oops... Something went wrong. Please try again.');
+        var associateId =  $(this).data('id');            
+        if (confirm('Are you sure you want to delete this cities ?')) {
+            $.ajax({
+                url: "{{ url('admin/cities') }}/" + associateId, // Use the url() function
+                type: 'DELETE',
+                data: {
+                    '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
+                },
+                success: function (res) {
+                    if (res.status === 200) {
+                        toastr.success(res.message);
+                        window.location.href =
+                            "{{ route('admin.cities.index') }}";
                     }
-                });
-            }
+                },
+                error: function (xhr) {
+                    toastr.error('Oops... Something went wrong. Please try again.');
+                }
+            });
+        }
         });
 </script>
 <script>

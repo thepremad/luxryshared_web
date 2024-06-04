@@ -59,7 +59,7 @@
 
 
                 </ul>
-            </li> -->
+            </li>  -->
             <li
                 class=" nav-item {{ Request::routeIs('admin.user.register_request','admin.user.index','admin.user.edit') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-user-injured"></i><span

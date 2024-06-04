@@ -1,28 +1,13 @@
-<script src="{{ url('public/backend/vendors/js/vendors.min.js')}}"></script>
-<!-- BEGIN Vendor JS-->
+{!! HTML::script(asset('/backend/vendors/js/vendors.min.js')) !!}
+{!! HTML::script(asset('/backend/vendors/js/charts/apexcharts.min.js')) !!}
+{!! HTML::script(asset('/backend/vendors/js/extensions/toastr.min.js')) !!}
+{!! HTML::script(asset('/backend/js/core/app-menu.js')) !!}
+{!! HTML::script(asset('/backend/js/core/app.js')) !!}
+{!! HTML::script(asset('/backend/js/scripts/pages/dashboard-ecommerce.js')) !!}
 
-<!-- BEGIN: Page Vendor JS-->
-<script src="{{ url('public/backend/vendors/js/charts/apexcharts.min.js')}}"></script>
-
-
-<script src="{{ url('public/backend/vendors/js/extensions/toastr.min.js')}}"></script>
-<!-- END: Page Vendor JS-->
-
-
-
-<!-- BEGIN: Theme JS-->
-<script src="{{ url('public/backend/js/core/app-menu.js')}}"></script>
-<script src="{{ url('public/backend/js/core/app.js')}}"></script>
-<!-- END: Theme JS-->
-
-<!-- BEGIN: Page JS-->
-<script src="{{ url('public/backend/js/scripts/pages/dashboard-ecommerce.js')}}"></script>
-
-<script src="{{ url('public/backend/js/scripts/components/components-popovers.js')}}"></script>
+{!! HTML::script(asset('/backend/js/scripts/components/components-popovers.js')) !!}
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-
 <script>
     $(window).on('load', function() {
         if (feather) {
@@ -33,30 +18,6 @@
         }
     })
 </script>
-<!-- 
-@if (session('success'))
-    <script>
-        Toastify({
-            text: `{{ session('success') }}`,
-            className: "success",
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            }
-        }).showToast();
-    </script>
-@endif
-
-@if (session('error'))
-    <script>
-        Toastify({
-            text: `{{ session('error') }}`,
-            className: "error",
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            }
-        }).showToast();
-    </script>
-@endif -->
 <script>
     var message = localStorage.getItem('message');
     localStorage.removeItem('message');
@@ -65,8 +26,8 @@
     }
     </script>
 
-<script src="{{ url('public/backend/vendors/js/toster/toastr.js')}}"></script>
+{!! HTML::script(asset('/backend/vendors/js/toster/toastr.js')) !!}
 
-<script src="{{ url('backend/vendors/js/forms/select/select2.full.min.js')}}"></script>
-<script src="{{ url('backend/js/scripts/forms/form-select2.js')}}"></script>
+{!! HTML::script(asset('backend/vendors/js/forms/select/select2.full.min.js')) !!}
+{!! HTML::script(asset('backend/js/scripts/forms/form-select2.js')) !!}
 @include('backend.layouts.toastr')
