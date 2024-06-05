@@ -43,20 +43,6 @@
                 </div>
             </div>
             <div class="content-body">
-
-                @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <div class="alert-body">
-                                            {{$error}}
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endforeach
-            @endif
-
-
-                <!-- Ajax Sourced Server-side -->
                 <section id="ajax-datatable">
                      <!-- Responsive tables start -->
                 <div class="row" >
@@ -101,12 +87,6 @@
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
-                                                          
-                                                            
-                                                            {{-- <a class="dropdown-item" href="{{route('images.show',$item->id)}}">
-                                                                <i data-feather="eye" class="me-50"></i>
-                                                                <span>View</span>
-                                                            </a> --}}
                                                             <a class="dropdown-item delete-record" data-id="{{$item->id}}" href="#" >
                                                                 <i data-feather="trash" class="me-50"></i>
                                                                 <span>Delete</span>
@@ -126,14 +106,6 @@
                                 </table>
                             </div>
                             @include('backend._pagination', ['data' => $images])
-
-                            {{-- <div class="table-responsive">
-                                <tbody>
-                                    <!-- ... (your table structure) ... -->
-                                </tbody>
-                                {{ $images->links('admin._pagination') }}
-                            </div> --}}
-
                         </div>
                     </div>
                 </div>
@@ -146,10 +118,6 @@
         </div>
 
     </div>
-
-    <!-- END: Content-->
-    <!-- END: Content-->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
 

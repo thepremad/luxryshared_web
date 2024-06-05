@@ -31,18 +31,18 @@
             <section id="dashboard-ecommerce">
                 <div class="row match-height">
                     <!-- Statistics Card -->
-                    <div class="col-md-3 cards">Total Register Count <br><span style="font-size:17px">100</span></div>
+                    <div class="col-md-3 cards">Total Register Count <br><span style="font-size:17px">{{$userCount}}</span></div>
                     <div class="col-md-3 cards" style="    background: #e78383;">Total Order Request <br><span
-                            style="font-size:17px">100</span></div>
+                            style="font-size:17px">__</span></div>
                     <div class="col-md-3 cards" style="    background: #bdbf4cd9;">Register request <br><span
-                            style="font-size:17px">100</span></div>
+                            style="font-size:17px">__</span></div>
                     <!-- <div class="col-md-3 cards">total Lend Count <br><span style="font-size:17px">100</span></div> -->
                     <div class="col-md-3 cards" style="background: #66cdbfd9;">total Rent Count <br><span
-                            style="font-size:17px">100</span></div>
+                            style="font-size:17px">__</span></div>
                     <div class="col-md-3 cards" style="background: #5c7dd9;">Total Buy Count <br><span
-                            style="font-size:17px">100</span></div>
+                            style="font-size:17px">__</span></div>
                     <div class="col-md-3 cards" style="    background: #cc5cd9;">Total Resale Count <br><span
-                            style="font-size:17px">100</span></div>
+                            style="font-size:17px">__</span></div>
 
                 </div>
         </div>
