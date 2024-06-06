@@ -8,8 +8,8 @@
         font-weight: 500;
     }
 </style>
-    @endsection
 
+@endsection
 @section('content')
 <!-- BEGIN: Content-->
 <div class="app-content content ">
@@ -20,13 +20,13 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Size</h2>
+                        <h2 class="content-header-title float-start mb-0">Brand</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item"><a
-                                        href="{{ route('admin.sizes.index') }}">sizes</a>
+                                        href="{{ route('admin.brands.index') }}">Brands</a>
                                 </li>
                                 <li class="breadcrumb-item active">Create
                                 </li>
@@ -45,31 +45,53 @@
                                 {{-- <h4 class="card-title">Create</h4> --}}
                             </div>
                             <div class="card-body">
-                            {{ Form::model($sizes, ['route' => ['admin.sizes.store'], 'role' => 'form',
+                            {{ Form::model($brand, ['route' => ['admin.brands.store'], 'role' => 'form',
                               'id'=>'frmLogin', 'autocomplete'=>"off", 'method'=>'post','files' => true]) }}
                                     @csrf
-                                    @if($sizes->id)
-                                      {!! Form::hidden('id', $sizes->id) !!}
+                                    @if($brand->id)
+                                      {!! Form::hidden('id', $brand->id) !!}
                                     @endif
                                     <div class="row">
                                         <div class="col-md-8 col-12">
                                             <div class="mb-1">
-                                                    {!! Form::label('name', 'Name') !!}
-                                                        {!! Form::text('name', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'Name', 'id' =>
+                                                      {!! Form::label('name', 'Name') !!}
+                                                        {!! Form::text('name', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Name', 'id' =>
                                                           'name','oninput' => 'filterAlphabets(this)']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="name-error"></span>
                                                 </div>
                                         </div>
 
-                                        
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <div class="d-flex flex-column">
+                                                    <label class="form-check-label mb-50"
+                                                     for="customSwitch3">Status</label>
+                                                    <div class="form-check form-check-primary form-switch">
+                                                    {!! Form::checkbox('status', '1', $brand->status == '1', ['class' => 'form-check-input', 'id' => 'customSwitch3']) !!}
+                                                        </div>
+                                                        <span class="text-danger validation-class"
+                                                            id="status-error"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-12">
+                                            <div class="mb-1">
+                                                     {!! Form::label('image', 'Image') !!}
+                                                        {!! Form::file('image', ['class' => 'form-control', 'id' => 'image']) !!}
+                                                <span class="text-danger validation-class" id="image-error"></span>
+
+
+                                            </div>
+                                        </div>
 
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary me-1">Submit</button>
                                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
                                         </div>
                                     </div>
-                                </form>
+                                    {!! Form::close() !!}
+
                             </div>
                         </div>
                     </div>
@@ -82,7 +104,10 @@
     </div>
 </div>
 @endsection
+
 @section('script')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
         $(document).ready(function () {
@@ -105,7 +130,7 @@
                 $('.spinner-loader').css('display', 'none');
                   if (res.status === 200) {
                       toastr.success(res.message);
-                      window.location.href = "{{ route('admin.sizes.index') }}"; 
+                      window.location.href = "{{ route('admin.brands.index') }}"; 
                   } else if(res.status === 422) {
                     $.each(res.message, function (key, value) {
                             $("#" + key + "-error").text(value[0]);
@@ -123,5 +148,4 @@
       });
   });
     </script>
-
 @endsection

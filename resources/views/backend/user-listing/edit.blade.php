@@ -32,19 +32,6 @@
             </div>
         </div>
         <div class="content-body">
-
-            {{-- @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <div class="alert-body">
-                            {{$error}}
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endforeach
-            @endif --}}
-
-            <!-- Basic multiple Column Form section start -->
             <section id="multiple-column-form">
                 <div class="row">
                     <div class="col-12">
@@ -63,7 +50,7 @@
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                     {!! Form::label('first_name', 'First Name') !!}
-                                                {!! Form::text('first_name', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
+                                                {!! Form::text('first_name', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
                                                     'first_name','oninput' => 'filterAlphabets(this)']) !!}
                                                     <span class="text-danger validation-class" id="first_name-error"></span>
                                             </div>
@@ -71,7 +58,7 @@
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                           {!! Form::label('last_name', 'Last Name') !!}
-                                                        {!! Form::text('last_name', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
+                                                        {!! Form::text('last_name', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
                                                           'last_name','oninput' => 'filterAlphabets(this)']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="last_name-error"></span>
@@ -80,7 +67,7 @@
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                            {!! Form::label('email', 'Email') !!}
-                                                        {!! Form::email('email', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
+                                                        {!! Form::email('email', null,  ['class' => 'form-control','readonly', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
                                                            'email']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="email-error"></span>
@@ -89,7 +76,7 @@
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                         {!! Form::label('number', 'Number') !!}
-                                                     {!! Form::number('number', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
+                                                     {!! Form::number('number', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'First Name', 'id' =>
                                                           'number']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="number-error"></span>
@@ -124,8 +111,6 @@
 @endsection
 
 @section('script')
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
         $(document).ready(function () {
@@ -165,9 +150,5 @@
           });
       });
   });
-  function filterAlphabets(inputField) {
-      // Remove non-alphabetic characters using a regular expression
-      inputField.value = inputField.value.replace(/[^a-zA-Z\s]/g, '');
-    }
     </script>
 @endsection

@@ -55,7 +55,7 @@
                                         <div class="col-md-8 col-12">
                                             <div class="mb-1">
                                                       {!! Form::label('name', 'Name') !!}
-                                                        {!! Form::text('name', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'Name', 'id' =>
+                                                        {!! Form::text('name', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Name', 'id' =>
                                                           'name','oninput' => 'filterAlphabets(this)']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="name-error"></span>
@@ -109,8 +109,6 @@
 
 @section('script')
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
         $(document).ready(function () {
       $('#frmLogin').on('submit', function (e) {
@@ -149,9 +147,5 @@
           });
       });
   });
-  function filterAlphabets(inputField) {
-      // Remove non-alphabetic characters using a regular expression
-      inputField.value = inputField.value.replace(/[^a-zA-Z\s]/g, '');
-    }
     </script>
 @endsection
