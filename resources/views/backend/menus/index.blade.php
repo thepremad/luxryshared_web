@@ -63,7 +63,6 @@
                                             <th scope="col" >Name</th>
                                             <th scope="col" >Link</th>
                                             <th scope="col" >Date</th>
-                                            <th scope="col" >Time</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -78,7 +77,6 @@
                                                 <td>{{ $item->link }}</td>
 
                                                 <td >{{$item->newDate}}</td>
-                                                <td >{{$item->time}}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
@@ -158,7 +156,7 @@
         });
         function fetch_data(query = '') {
             $.ajax({
-                url: "{{ route('admin.brands.index') }}",
+                url: "{{ route('admin.menus.index') }}",
                 method: 'GET',
                 data: { search: query },
                 dataType: 'html',

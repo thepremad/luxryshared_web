@@ -59,7 +59,6 @@
                                             <th scope="col" >#</th>
                                             <th scope="col" >Name</th>
                                             <th scope="col" >Status</th>
-                                            <th>Created at</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -73,10 +72,12 @@
                                                 <td>{{ $item->name }}</td>
 
                                                 <td >
-                                                   @if($item->status == '1') Active @else Inactive @endif 
+                                                @if($item->status == '1') 
+                                                    <span style="color:green">Active</span> 
+                                                @else 
+                                                    <span style="color:red">Inactive</span> 
+                                                @endif
                                                 </td>
-                                                
-                                                <td>{{ $item->date }}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
@@ -104,8 +105,8 @@
                                         
                                     </tbody>
                                 </table>
-                            </div>
                             @include('backend._pagination', ['data' => $countries])
+                            </div>
 
                         </div>
                     </div>
@@ -149,26 +150,21 @@
         });
 </script>
 <script>
-        function myFunction() {
-            var input, filter, found, table, tr, td, i, j;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        found = true;
-                    }
+    $(document).ready(function () {
+        $('#searchInput').on('input', function () {
+            fetch_data($(this).val());
+        });
+        function fetch_data(query = '') {
+            $.ajax({
+                url: "{{ route('admin.countries.index') }}",
+                method: 'GET',
+                data: { search: query },
+                dataType: 'html',
+                success: function (data) {
+                    $('#table-responsive').html(data);
                 }
-                if (found) {
-                    tr[i].style.display = "";
-                    found = false;  
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
+            });
         }
-    </script>
+    });
+</script>
 @endsection
