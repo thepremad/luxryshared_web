@@ -97,8 +97,6 @@
 </div>
 @endsection
 @section('script')
-<!-- END: Content-->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
         $(document).ready(function () {
@@ -138,10 +136,6 @@
           });
       });
   });
-  function filterAlphabets(inputField) {
-      // Remove non-alphabetic characters using a regular expression
-      inputField.value = inputField.value.replace(/[^a-zA-Z\s]/g, '');
-    }
     </script>
 
 @endsection

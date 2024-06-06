@@ -16,27 +16,19 @@ class UserController extends Controller
     public function index(Request $request)
     {
         try {
-            if ($request->ajax()) {
-                $users = new User();
-                $data = $users->where('email', '!=', 'admin@gmail.com')
-                ->where('first_name', 'LIKE', "%{$request->first_name}%")
-                ->latest()->get();
-                return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function ($row) {
-                        $actionBtn = '<a href="' . route('admin.user.edit', $row->id) . '" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-edit"><i class="mdi mdi-pencil-outline"></i></a>                    
-                        <div class="d-inline-block">
-                        <a href="javascript:;" class="btn btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-vertical"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end m-0" style="">
-                      
-                        <div class="dropdown-divider"></div><li><a href="javascript:;" class="dropdown-item text-danger delete-record" data-id="' . $row->id . '">Delete</a></li></ul></div>';
-                        return $actionBtn;
-                    })
+            $query_search = $request->input('search');
+            $user = User::where('email', '!=', 'admin@gmail.com')
+            ->when($query_search, function ($query) use ($query_search) {
+                $query->where('first_name', 'like', '%' . $query_search . '%')
+                    ->orWhere('email', 'like', '%' . $query_search . '%')
+                    ->orWhere('number', 'like', '%' . $query_search . '%');
+            })
+            ->latest()->paginate(10);
 
-                    ->rawColumns(['action'])
-                    ->make(true);
+            if ($request->ajax()) {
+                return view('backend.user-listing.pagination', compact('user'))->render();
             }
-            return view('backend.user-listing.index');
+            return view('backend.user-listing.users',compact('user'));
         } catch (\Throwable $th) {
             \Log::error('Admin login error: ' . $th->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
@@ -118,14 +110,30 @@ class UserController extends Controller
         return redirect()->back();
 
     }
-    public function registerRequest()
+    public function registerRequest(Request $request)
     {
-        $user = User::where('email', '!=', 'admin@gmail.com')->latest()->paginate(10);
-        return view('backend.user-listing.index', compact('user'));
+        try {
+            $query_search = $request->input('search');
+            $user = User::where('email', '!=', 'admin@gmail.com')
+            ->when($query_search, function ($query) use ($query_search) {
+                $query->where('first_name', 'like', '%' . $query_search . '%')
+                    ->orWhere('email', 'like', '%' . $query_search . '%')
+                    ->orWhere('number', 'like', '%' . $query_search . '%');
+            })
+            ->latest()->paginate(10);
+
+            if ($request->ajax()) {
+                return view('backend.user-listing.pagination', compact('user'))->render();
+            }
+            return view('backend.user-listing.index',compact('user'));
+        } catch (\Throwable $th) {
+            \Log::error('Admin login error: ' . $th->getMessage());
+            return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
+        }
     }
     public function userSerach(Request $request)
     {
-        $user = User::where('first_name', 'LIKE', "%{$request->val}%")
+        $user = User::where('first_name', 'LIKE', "%{$request->val}%")->where('email', '!=', 'admin@gmail.com')
             ->orWhere('email', 'LIKE', "%{$request->val}%")
             ->orWhere('number', 'LIKE', "%{$request->val}%")
             ->orWhere('last_name', 'LIKE', "%{$request->val}%")

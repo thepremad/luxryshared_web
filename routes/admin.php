@@ -15,7 +15,7 @@ Route::middleware(['admin'])->group(function () {
         Route::get('dashboard', 'dashboard')->name('dashboard');
         Route::get('/', 'dashboard');
     });
-
+ 
     Route::controller(UserController::class)->group(function () {
         Route::get('approve-request/{id}', 'approveRequest')->name('user.approve');
         Route::get('reject-request/{id}', 'rejectRequest')->name('user.disapprove');
@@ -33,6 +33,8 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('cities',CityController::class);
     Route::resource('faq',FaqController::class);
     Route::resource('user',UserController::class);
+    Route::resource('brands',BrandController::class);
+    Route::resource('menus',MenuController::class);
 
 Route::controller(TermsAndConditionsController::class)->group(function () {
     Route::get('/delivery', 'delivry')->name('deliveries.delivry');

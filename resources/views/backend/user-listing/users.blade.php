@@ -12,14 +12,11 @@
         font-weight: 900;
     }
     #imgset{
-    width: 77px !important;
-    height: 77px !important;
+    width: 40px !important;
+    height: 40px !important;
 }
 </style>
 @endsection
-
-<!-- BEGIN: Content-->
-<!-- BEGIN: Content-->
 @section('content')
 <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -81,7 +78,7 @@
                                             <tr>
                                                 <td>{{$i }}</td>
                                                 <td>
-                                                <img  id="imgset" src="{{ url('public/uploads/image/'.$item->id_image)}}" alt="Toolbar svg" width="50px" />
+                                                <img  id="imgset" src="{{ url('public/uploads/image/'.$item->id_image)}}" alt="Toolbar svg" width="30px" />
                                                 </td>
                                                 <td><a href="{{route('admin.user.show',$item->id)}}">{{ $item->first_name }} {{ $item->last_name }}</a></td>
                                                 <td >{{$item->email}}</td>
@@ -111,8 +108,8 @@
                                         
                                     </tbody>
                                 </table>
+                                @include('backend._pagination', ['data' => $user])
                             </div>
-                            @include('backend._pagination', ['data' => $user])
                     </div>
                 </div>
                 </section>
@@ -122,7 +119,6 @@
     </div>
 @endsection
 @section('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
   function approveConformation(id) {
@@ -139,62 +135,24 @@ function rejectConformation(id) {
 }
 
     </script>
-<script>
-        function myFunction() {
-        var csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
-
-        var input = document.getElementById("searchInput");
-        $.ajax({
-            url: '{{route('admin.user.serach')}}', // Replace with your server endpoint
-            method: 'POST', // You can use 'GET' or 'POST' based on your server-side handling
-            data: { val: input.value },
-            headers: {
-                'X-CSRF-TOKEN': csrfToken
-            },
-            success: function (res) {
-                if (res.status == '200') {
-                    $('tbody').empty();
-                    let count = 0;
-                    res.data.forEach(function (item) {
-    count = count + 1;
-    var editUrl = '{{ route("admin.user.edit", ":id") }}'.replace(':id', item.id);
-    var newRow = `
-        <tr>
-            <td>${count}</td>
-            <td><img id="imgset" src="{{ url('public/uploads/image/') }}/${item.id_image}" alt="User Image"></td>
-            <td>${item.first_name} ${item.last_name}</td>
-            <td>${item.email}</td>
-            <td>${item.number}</td>
-            <td>
-                <div class="dropdown">
-                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
-                        <i data-feather="more-vertical"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="${editUrl}">
-                            <i data-feather="edit-2" class="me-50"></i>
-                            <span>Edit</span>
-                        </a>
-                        <a class="dropdown-item delete-record" data-id="${item.id}" href="#">
-                            <i data-feather="trash" class="me-50"></i>
-                            <span>Delete</span>
-                        </a>
-                    </div>
-                </div>
-            </td>
-        </tr>`;
-    $('tbody').append(newRow);
-});
-
-                }
-
-            },
-            error: function (error) {
-                console.error(error);
-            }
+    <script>
+    $(document).ready(function () {
+        $('#searchInput').on('input', function () {
+            fetch_data($(this).val());
         });
-    }
-    </script>
+        function fetch_data(query = '') {
+            $.ajax({
+                url: "{{ route('admin.user.index') }}",
+                method: 'GET',
+                data: { search: query },
+                dataType: 'html',
+                success: function (data) {
+                    $('#table-responsive').html(data);
+                }
+            });
+        }
+    });
+</script>
     <script>
     $(document).on('click', '.delete-record', function () {
             var associateId =  $(this).data('id');            

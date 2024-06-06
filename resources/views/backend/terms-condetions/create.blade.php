@@ -10,9 +10,6 @@
     .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred {
     height: 200px !important;
 }
-    /* input {
-        text-transform: uppercase;
-    } */
 </style>
 
 <!-- BEGIN: Content-->
@@ -81,8 +78,6 @@
         </div>
     </div>
 </div>
-<!-- END: Content-->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
         $(document).ready(function () {
