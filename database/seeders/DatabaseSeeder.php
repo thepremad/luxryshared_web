@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             'refer_code' => '',
             'id_image' => '1',
             'address' => 'pratap nagar',
+            'role' => '1',
             'password' => \Hash::make('Admin@123'),
         ]);
     }

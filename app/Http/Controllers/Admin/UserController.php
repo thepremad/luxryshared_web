@@ -17,14 +17,13 @@ class UserController extends Controller
     {
         try {
             $query_search = $request->input('search');
-            $user = User::where('email', '!=', 'admin@gmail.com')
+            $user = User::where('email', '!=', 'admin@gmail.com')->where('status',User::$approved)
             ->when($query_search, function ($query) use ($query_search) {
                 $query->where('first_name', 'like', '%' . $query_search . '%')
                     ->orWhere('email', 'like', '%' . $query_search . '%')
                     ->orWhere('number', 'like', '%' . $query_search . '%');
             })
             ->latest()->paginate(10);
-
             if ($request->ajax()) {
                 return view('backend.user-listing.pagination', compact('user'))->render();
             }
@@ -140,5 +139,6 @@ class UserController extends Controller
             ->get();
         return response()->json(['status' => 200, 'data' => $user]);
     }
+ 
 
 }

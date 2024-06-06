@@ -17,13 +17,22 @@ class SubCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $sub_categories = SubCategory::with('cateogry')->latest()->paginate(10);
-        foreach ($sub_categories as $key => $value) {
-            $value->date = Carbon::parse($value->created_at)->format('d-m-y');
+        try {
+            $query_search = $request->input('search');
+            $sub_categories = SubCategory::when($query_search, function ($query) use ($query_search) {
+                $query->where('name', 'like', '%' . $query_search . '%');
+            })
+            ->latest()->paginate(10);
+            if ($request->ajax()) {
+                return view('backend.sub-categories.pagination', compact('sub_categories'))->render();
+            }
+            return view('backend.sub-categories.index',compact('sub_categories'));
+        } catch (\Throwable $th) {
+            \Log::error('Admin login error: ' . $th->getMessage());
+            return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
         }
-        return view('backend.sub-categories.index', compact('sub_categories'));
     }
 
     /**

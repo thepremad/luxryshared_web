@@ -6,7 +6,6 @@
                                             <th scope="col" >Name</th>
                                             <th scope="col" >Link</th>
                                             <th scope="col" >Date</th>
-                                            <th scope="col" >Time</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -21,7 +20,6 @@
                                                 <td>{{ $item->link }}</td>
 
                                                 <td >{{$item->newDate}}</td>
-                                                <td >{{$item->time}}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
@@ -49,5 +47,5 @@
                                         
                                     </tbody>
                                 </table>
-                            </div>
+                                </div>
                             @include('backend._pagination', ['data' => $menu])

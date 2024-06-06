@@ -38,8 +38,8 @@
 
 
                 </ul>
-            </li> -->
-            <!-- <li
+            </li>
+            <li
                 class=" nav-item {{ Request::routeIs('admin.subcategories.index', 'admin.subcategories.create', 'admin.subcategories.show', 'admin.subcategories.edit', 'admin.subcategories.appraisals', 'admin.subcategories.loans', 'admin.subcategories.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-table-list"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">SubCategory Master</span></a>
@@ -59,8 +59,8 @@
 
 
                 </ul>
-            </li>  -->
-             <!-- <li
+            </li> 
+             <li
                 class=" nav-item {{ Request::routeIs('admin.brands.index', 'admin.brands.create', 'admin.brands.show', 'admin.brands.edit', 'admin.brands.appraisals', 'admin.brands.loans', 'admin.brands.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-table-list"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Brand Master</span></a>
@@ -251,10 +251,10 @@
                         <a class="d-flex align-items-center" href="{{route('admin.deliveries.delivry')}}"><i class="fa-solid fa-list"></i><span
                                 class="menu-title text-truncate" data-i18n="Invoice">Delivery</span></a>
 
-                    </li>
+                    </li> -->
 
                 </ul>
-            </li>  -->
+            </li> 
 
 
         </ul>
