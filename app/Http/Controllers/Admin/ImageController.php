@@ -16,10 +16,22 @@ class ImageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $images = Image::latest()->paginate(10);
-        return view('backend.image.index', compact('images'));
+        try {
+            $query_search = $request->input('search');
+            $images =Image::when($query_search, function ($query) use ($query_search) {
+                $query->where('text', 'like', '%' . $query_search . '%');
+            })
+            ->latest()->paginate(10);
+            if ($request->ajax()) {
+                return view('backend.image.pagination', compact('images'))->render();
+            }
+            return view('backend.image.index',compact('images'));
+        } catch (\Throwable $th) {
+            \Log::error('Admin login error: ' . $th->getMessage());
+            return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
+        }
     }
 
     /**

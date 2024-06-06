@@ -70,24 +70,7 @@
                                                     <span class="text-danger validation-class" id="link-error"></span>
                                                 </div>
                                         </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                      {!! Form::label('date', 'Date') !!}
-                                                        {!! Form::date('date', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Date', 'id' =>
-                                                          'name']) !!}
-                                                    
-                                                    <span class="text-danger validation-class" id="date-error"></span>
-                                                </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                      {!! Form::label('time', 'Time') !!}
-                                                        {!! Form::time('time', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Time', 'id' =>
-                                                          'name']) !!}
-                                                    
-                                                    <span class="text-danger validation-class" id="time-error"></span>
-                                                </div>
-                                        </div>
+                                      
 
                                        
                           

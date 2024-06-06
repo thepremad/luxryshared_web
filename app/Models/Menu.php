@@ -10,8 +10,6 @@ class Menu extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'date',
         'link',
-        'time',
     ];
 }

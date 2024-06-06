@@ -18,8 +18,7 @@ class MenuController extends Controller
         try {
             $query_search = $request->input('search');
             $menu = Menu::when($query_search, function ($query) use ($query_search) {
-                $query->where('name', 'like', '%' . $query_search . '%')
-                ->whereOr('date', 'like', '%' . $query_search . '%');
+                $query->where('name', 'like', '%' . $query_search . '%');
             })
             ->latest()->paginate(10);
             $menu->getCollection()->transform(function ($item) {

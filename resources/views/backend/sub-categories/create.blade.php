@@ -71,6 +71,9 @@
                                                 {!! Form::label('image', 'Upload Icon') !!}
                                                         {!! Form::file('image', ['class' => 'form-control', 'id' => 'image']) !!}
                                                     <span class="text-danger validation-class" id="image-error"></span>
+                                                    @if($categories)
+                                                <img width="100px" class="mt-1" src="{{url('public/uploads/subcategory/'.$sub_categories->image)}}" alt="">
+                                                @endif
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
@@ -87,9 +90,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        
-
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary me-1">Submit</button>
                                             <button type="reset" class="btn btn-outline-secondary">Reset</button>

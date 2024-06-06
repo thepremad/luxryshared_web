@@ -1,13 +1,15 @@
 @extends('backend.layouts')
+
 @section('style')
+
 <style>
     .error {
         color: #a93c3d !important;
         font-weight: 500;
     }
 </style>
-@endsection
 
+@endsection
 @section('content')
 <!-- BEGIN: Content-->
 <div class="app-content content ">
@@ -18,13 +20,13 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Country</h2>
+                        <h2 class="content-header-title float-start mb-0">country</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item"><a
-                                        href="{{ route('admin.countries.index') }}">countries</a>
+                                        href="{{ route('admin.countries.index') }}">Brands</a>
                                 </li>
                                 <li class="breadcrumb-item active">Create
                                 </li>
@@ -52,8 +54,8 @@
                                     <div class="row">
                                         <div class="col-md-8 col-12">
                                             <div class="mb-1">
-                                            {!! Form::label('name', 'Name') !!}
-                                                        {!! Form::text('name', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'Name', 'id' =>
+                                                      {!! Form::label('name', 'Name') !!}
+                                                        {!! Form::text('name', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Name', 'id' =>
                                                           'name','oninput' => 'filterAlphabets(this)']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="name-error"></span>
@@ -64,17 +66,15 @@
                                             <div class="mb-1">
                                                 <div class="d-flex flex-column">
                                                     <label class="form-check-label mb-50"
-                                                        for="customSwitch3">Status</label>
+                                                     for="customSwitch3">Status</label>
                                                     <div class="form-check form-check-primary form-switch">
-                                                        <input type="checkbox" name="status" @if ($countries->status == '1') checked @endif class="form-check-input" id="customSwitch3" />
-                                                            
+                                                    {!! Form::checkbox('status', '1', $countries->status == '1', ['class' => 'form-check-input', 'id' => 'customSwitch3']) !!}
                                                         </div>
                                                         <span class="text-danger validation-class"
                                                             id="status-error"></span>
                                                 </div>
                                             </div>
                                         </div>
-                                    
 
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary me-1">Submit</button>
@@ -94,9 +94,10 @@
         </div>
     </div>
 </div>
-<!-- END: Content-->
-@endsction
+@endsection
+
 @section('script')
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
@@ -138,5 +139,4 @@
       });
   });
     </script>
-
 @endsection

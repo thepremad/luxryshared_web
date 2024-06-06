@@ -80,7 +80,11 @@
                                                 <td>{{ $item->name }}</td>
 
                                                 <td >
-                                                   @if($item->status == '1') Active @else Inactive @endif 
+                                                @if($item->status == '1') 
+                                                    <span style="color:green">Active</span> 
+                                                @else 
+                                                    <span style="color:red">Inactive</span> 
+                                                @endif
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">

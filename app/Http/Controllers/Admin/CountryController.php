@@ -16,13 +16,22 @@ class CountryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $countries = Country::latest()->paginate(10);
-        foreach ($countries as $key => $value) {
-            $value->date = Carbon::parse($value->created_at)->format('d-m-y');
+        try {
+            $query_search = $request->input('search');
+            $countries =Country::when($query_search, function ($query) use ($query_search) {
+                $query->where('name', 'like', '%' . $query_search . '%');
+            })
+            ->latest()->paginate(10);
+            if ($request->ajax()) {
+                return view('backend.countries.pagination', compact('countries'))->render();
+            }
+            return view('backend.countries.index',compact('countries'));
+        } catch (\Throwable $th) {
+            \Log::error('Admin login error: ' . $th->getMessage());
+            return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
         }
-        return view('backend.countries.index', compact('countries'));
     }
 
     /**
@@ -42,7 +51,7 @@ class CountryController extends Controller
         try {
             $category = Country::firstOrNew(['id' => $request->id]);
             $category->fill($request->all());
-            if ($request->status == 'on') {
+            if ($request->status == '1') {
                 $category->status = Country::$active;
             } else {
                 $category->status = Country::$in_active;

@@ -3,7 +3,6 @@
                                     <thead class="table-dark">
                                         <tr>
                                             <th scope="col" >#</th>
-                                            <th scope="col" >Brand</th>
                                             <th scope="col" >Name</th>
                                             <th scope="col" >Status</th>
                                             <th>Action</th>
@@ -12,14 +11,10 @@
                                     <tbody id="myTable">
                                     @php  $i = 1; @endphp
  
-                                        @foreach ($brand as $item)
+                                        @foreach ($countries as $item)
                                             
                                             <tr>
                                                 <td>{{$i }}</td>
-                                                <td>
-                                                <img src="{{ url('public/uploads/brand/'.$item->image)}}" alt="Toolbar svg" width="50px" />
-                                                   
-                                                </td>
                                                 <td>{{ $item->name }}</td>
 
                                                 <td >
@@ -35,16 +30,10 @@
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="{{route('admin.brands.edit',$item->id)}}">
+                                                            <a class="dropdown-item" href="{{route('admin.countries.edit',$item->id)}}">
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
-                                                          
-                                                            
-                                                            {{-- <a class="dropdown-item" href="{{route('categories.show',$item->id)}}">
-                                                                <i data-feather="eye" class="me-50"></i>
-                                                                <span>View</span>
-                                                            </a> --}}
                                                             <a class="dropdown-item delete-record" data-id="{{$item->id}}" href="#" >
                                                                 <i data-feather="trash" class="me-50"></i>
                                                                 <span>Delete</span>
@@ -63,4 +52,4 @@
                                     </tbody>
                                 </table>
                                 </div>
-                            @include('backend._pagination', ['data' => $brand])
+                            @include('backend._pagination', ['data' => $countries])

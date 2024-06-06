@@ -8,6 +8,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('login', 'loginView')->name('login');
     Route::post('loginPost', 'login')->name('login.post');
     Route::get('logout', 'logout')->name('logout');
+    Route::get('edit-user-profile', 'editProfile')->name('user.edit_profile');
+    Route::post('update-admin-profile', 'updateAdminProfile')->name('user.update_admin_profile');
+
 });
 
 Route::middleware(['admin'])->group(function () {

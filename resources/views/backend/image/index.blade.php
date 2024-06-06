@@ -1,7 +1,6 @@
+@extends('backend.layouts')
 
-@extends('backend.layouts.app')
-
-@section('content')
+@section('style')
 
 <style>
     .Active{
@@ -13,9 +12,10 @@
         font-weight: 900;
     }
 </style>
+@endsection
 
- <!-- BEGIN: Content-->
-<!-- BEGIN: Content-->
+@section('content')
+
 <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -52,7 +52,7 @@
                             <div class="card-header">
                                 <h4 class="card-title"></h4>
                                 <div class="col-md-3" style="text-align: end">
-                                    <input type="text" id="searchInput" onkeyup="myFunction()" class="form-control" placeholder="Search">
+                                    <input type="text" id="searchInput"  class="form-control" placeholder="Search">
                                 </div>
                             </div>
                             <div class="table-responsive" id="table-responsive">
@@ -104,8 +104,8 @@
                                         
                                     </tbody>
                                 </table>
-                            </div>
                             @include('backend._pagination', ['data' => $images])
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,6 +118,8 @@
         </div>
 
     </div>
+    @endsection
+@section('script')
 
 <script>
 
@@ -145,27 +147,22 @@
         });
 </script>
 <script>
-        function myFunction() {
-            var input, filter, found, table, tr, td, i, j;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        found = true;
-                    }
+    $(document).ready(function () {
+        $('#searchInput').on('input', function () {
+            fetch_data($(this).val());
+        });
+        function fetch_data(query = '') {
+            $.ajax({
+                url: "{{ route('admin.images.index') }}",
+                method: 'GET',
+                data: { search: query },
+                dataType: 'html',
+                success: function (data) {
+                    $('#table-responsive').html(data);
                 }
-                if (found) {
-                    tr[i].style.display = "";
-                    found = false;  
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
+            });
         }
-    </script>
+    });
+</script>
 
 @endsection

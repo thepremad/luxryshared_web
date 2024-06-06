@@ -14,13 +14,14 @@
                             class="user-name fw-bolder">{{ auth()->user()->first_name }}
                             {{ auth()->user()->last_name }}</span><span class="user-status">Admin</span></div><span
                         class="avatar"><img class="round"
-                            src="{{asset('public/uploads/profile/' . auth()->user()->profile)}}" alt="avatar" height="40"
+                            src="{{url('public/uploads/profile/' . auth()->user()->profile)}}" alt="avatar" height="40"
                             width="40"><span class="avatar-status-online"></span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
 
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="{{route('admin.logout')}}"><i
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="{{route('admin.user.edit_profile')}}"><i class="fa-solid fa-user-pen"></i> Edit Profile</a><a class="dropdown-item" href="{{route('admin.logout')}}"><i
                             class="me-50" data-feather="power"></i> Logout</a>
+
                 </div>
             </li>
         </ul>

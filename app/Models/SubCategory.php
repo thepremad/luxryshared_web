@@ -20,5 +20,12 @@ class SubCategory extends Model
     public function cateogry(){
         return $this->BelongsTo(Category::class,'category_id');
     }
+    public function subCateogryFilter($searched){
+        return $this->when($searched, function ($query, $name) {
+            $query->where('name', 'like', '%' . $name . '%');
+        })->when($searched, function ($query, $cateogry) {
+            $query->where('category_id','like','%'. $cateogry.'%' );
+        });
+    }
     
 }
