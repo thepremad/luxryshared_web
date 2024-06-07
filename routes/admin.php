@@ -38,6 +38,7 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('user',UserController::class);
     Route::resource('brands',BrandController::class);
     Route::resource('menus',MenuController::class);
+    Route::resource('colors',ColorController::class);
 
 Route::controller(TermsAndConditionsController::class)->group(function () {
     Route::get('/delivery', 'delivry')->name('deliveries.delivry');

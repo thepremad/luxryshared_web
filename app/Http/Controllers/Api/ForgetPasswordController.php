@@ -29,7 +29,7 @@ class ForgetPasswordController extends Controller
                return response()->json(['error' => ['error' => "The entered email is not registered. Please register first"]], 422);
             }
         } catch (\Throwable $th) {
-            Log::error('admin login post : exception');
+            Log::error('api forgotPassword post : exception');
             Log::error($th);
             return response()->json(['error'=> "Something went wrong. Please try again later."],500);
         }
@@ -43,7 +43,7 @@ class ForgetPasswordController extends Controller
                return response()->json(['error' => ['otp' => "Incorrect Verification Code"]], 422);
             }
         } catch (\Throwable $th) {
-            Log::error('admin login post : exception');
+            Log::error('api verifyOtp post : exception');
             Log::error($th);
             return response()->json(['error'=> "Something went wrong. Please try again later."],500);
         }
@@ -55,7 +55,7 @@ class ForgetPasswordController extends Controller
             $user->save();
             return response()->json(['message' => "New Password created successfully"], 200);
         }  catch (\Throwable $th) {
-            Log::error('admin login post : exception');
+            Log::error('api createPassword post : exception');
             Log::error($th);
             return response()->json(['error'=> "Something went wrong. Please try again later."],500);
         }
