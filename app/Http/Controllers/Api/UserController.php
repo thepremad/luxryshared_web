@@ -20,10 +20,9 @@ class UserController extends Controller
             if ($user) {
                 $data = new GetProfileResource($user);
                 return response()->json([$data], 200);
-
             }
         } catch (\Throwable $th) {
-            Log::error('admin login post : exception');
+            Log::error('api profile get : exception');
             Log::error($th);
             return response()->json(['error' => "Something went wrong. Please try again later."], 500);
         }
@@ -46,9 +45,19 @@ class UserController extends Controller
             }
             $user->save();
             return response()->json(["message" => "Profile Update Successfully."], 200);
-
         } catch (\Throwable $th) {
-            Log::error('admin login post : exception');
+            Log::error('api updateProfile post : exception');
+            Log::error($th);
+            return response()->json(['error' => "Something went wrong. Please try again later."], 500);
+        }
+    }
+    public function deleteAccount(){
+        try {
+            $user = User::findOrFail(auth()->user()->id);
+            $user->delete();
+            return response()->json(["message" => "Delete Account Successfully"], 200);
+        } catch (\Throwable $th) {
+            Log::error('api deleteAccount get : exception');
             Log::error($th);
             return response()->json(['error' => "Something went wrong. Please try again later."], 500);
         }

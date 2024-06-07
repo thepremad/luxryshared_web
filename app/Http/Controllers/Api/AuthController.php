@@ -27,7 +27,7 @@ class AuthController extends Controller
            $user->save();
            return response()->json(['message' => 'Successfully Registered'], 200);
         } catch (\Throwable $th) {
-            Log::error('admin login post : exception');
+            Log::error('api signup post : exception');
             Log::error($th);
             return response()->json(['error'=> "Something went wrong. Please try again later."],500);
         }
@@ -46,7 +46,7 @@ class AuthController extends Controller
                   return response()->json(['error'=>['email' => "User does not exist! Please Register"]], 422);
               }
           } catch (\Throwable $th) {
-            Log::error('admin login post : exception');
+            Log::error('api login post : exception');
             Log::error($th);
             return response()->json(['error'=> "Something went wrong. Please try again later."],500);
           }
