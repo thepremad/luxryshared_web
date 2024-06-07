@@ -103,7 +103,7 @@
                 </ul>
             </li>
 
-           <li
+           <!-- <li
                 class=" nav-item {{ Request::routeIs('admin.images.index', 'admin.images.create', 'admin.images.show', 'admin.images.edit','admin.sizes.index', 'admin.sizes.create', 'admin.sizes.show', 'admin.sizes.edit','admin.countries.index', 'admin.countries.create', 'admin.countries.show', 'admin.countries.edit','admin.cities.index', 'admin.cities.create', 'admin.cities.show', 'admin.cities.edit', 'admin.privacy_policies.get_policies', 'admin.terms_condetion.get_terms', 'admin.deliveries.delivry', 'admin.menus.create', 'admin.menus.index', 'admin.menus.edit', 'admin.colors.create', 'admin.colors.index', 'admin.colors.edit') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-gear"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Settings</span></a>
@@ -275,7 +275,7 @@
                     </li>
 
                 </ul>
-            </li> 
+            </li>  -->
 
 
         </ul>
