@@ -18,7 +18,7 @@
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
 
             </li>
-             <!-- <li
+             <li
                 class=" nav-item {{ Request::routeIs('admin.categories.index', 'admin.categories.create', 'admin.categories.show', 'admin.categories.edit', 'admin.categories.appraisals', 'admin.categories.loans', 'admin.categories.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Category Master</span></a>
@@ -62,7 +62,7 @@
             </li> 
              <li
                 class=" nav-item {{ Request::routeIs('admin.brands.index', 'admin.brands.create', 'admin.brands.show', 'admin.brands.edit', 'admin.brands.appraisals', 'admin.brands.loans', 'admin.brands.salaries') ? 'has-sub open' : '' }} ">
-                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-table-list"></i><span
+                <a class="d-flex align-items-center" href="#"><i class="fa-regular fa-copyright"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Brand Master</span></a>
                 <ul class="menu-content">
                     <li>
@@ -80,7 +80,7 @@
 
 
                 </ul>
-            </li> -->
+            </li>
             <li
                 class=" nav-item {{ Request::routeIs('admin.user.register_request', 'admin.user.index', 'admin.user.edit') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-user-injured"></i><span
@@ -100,6 +100,34 @@
                     </li>
 
 
+                </ul>
+            </li>
+            <li
+                class=" nav-item {{ Request::routeIs('admin.products.register_request', 'admin.products.index', 'admin.products.edit') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-brands fa-product-hunt"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Product Listing</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.products.index') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.products.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> Listing</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li
+                class=" nav-item {{ Request::routeIs('admin.products.request') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-helicopter-symbol"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Lending  Request</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.products.request') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.products.request') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> Listing</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 

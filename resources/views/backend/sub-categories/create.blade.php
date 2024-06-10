@@ -63,8 +63,6 @@
                                         {!! Form::label('category_id', 'Category') !!}
                                         {!! Form::select('category_id', $categories->pluck('name','id'),$sub_categories->category_id, ['class' => 'form-select
                                          ','id' => 'category_id', 'placeholder' => 'Category']) !!}
-
-
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-1">

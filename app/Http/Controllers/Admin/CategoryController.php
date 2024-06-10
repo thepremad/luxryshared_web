@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
+use App\Models\Item;
 use App\Traits\FileUploadTrait;
 use Carbon\Carbon;
 use DataTables;
@@ -107,6 +108,20 @@ class CategoryController extends Controller
             Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
         }
-
+    }
+    public function items(Request $request,$id){
+      try {
+        $query_search = $request->input('search');
+        $items =Item::with('color')->where('category_id',$id)->when($query_search, function ($query) use ($query_search) {
+            $query->where('item_title', 'like', '%' . $query_search . '%');
+        })->latest()->paginate(10);
+        if ($request->ajax()) {
+            return view('backend.categories.pagination', compact('items'))->render();
+        }
+        return view('backend.categories.items',compact('items'));
+    } catch (\Throwable $th) {
+        \Log::error('Admin login error: ' . $th->getMessage());
+        return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
+    }
     }
 }
