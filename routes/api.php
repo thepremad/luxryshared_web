@@ -42,5 +42,8 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/color', 'color');
         Route::post('/suggestedDayPrice', 'suggestedDayPrice');
     });
+    Route::controller(ItemController::class)->group(function () {
+        Route::post('/addListItem', 'addListItem');
+    });
 });
 

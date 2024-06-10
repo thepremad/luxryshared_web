@@ -15,4 +15,5 @@ class Category extends Model
     ];
     static $active = 1;
     static $in_active = 0;
+    
 }
