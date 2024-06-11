@@ -22,10 +22,16 @@ class StoreSizeRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name'=>'required',
+        $rules = [
+            'name' => 'required',
         ];
+        if(!$this->id){
+            $rules['name'] = 'required|unique:sizes,name';
+
+        }
+        return $rules;
     }
+    
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json(['status' => 422, 'message' => $validator->getMessageBag()]));

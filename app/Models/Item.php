@@ -40,8 +40,11 @@ class Item extends Model
 
      }
      public function size(){
-      return $this->hasOne(Brand::class,'id','size_id');
+      return $this->hasOne(Size::class,'id','size_id');
 
+     }
+     public function itemImage(){
+      return $this->hasMany(ItemImage::class,'item_id');
      }
      static $active = 1;
      static $inActive = 2;

@@ -28,7 +28,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{  route('admin.dashboard') }}">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.menus.index') }}">Categories</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.menus.index') }}">menus</a>
                                     </li>
                                     <li class="breadcrumb-item active">List
                                     </li>

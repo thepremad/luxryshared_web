@@ -73,7 +73,7 @@
                                                
                                                 <td><img src="{{ url('public/uploads/item/'.$item->mainImag)}}" alt="Toolbar svg" width="50px" /></td>
 
-                                                <td ><a href="#">{{$item->category->name ?? ''}}</a></td>
+                                                <td ><a href="{{route('admin.products.show',$item->id)}}">{{$item->category->name ?? ''}}</a></td>
                                                 <td >{{$item->subCategory->name ?? ''}}</td>
                                                 <td >{{$item->rrp_price}}</td>
                                                 <td>

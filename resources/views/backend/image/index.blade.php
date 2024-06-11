@@ -29,7 +29,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{  route('admin.dashboard') }}">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.images.index') }}">Images</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.images.index') }}">Banners</a>
                                     </li>
                                     <li class="breadcrumb-item active">List
                                     </li>
