@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\ItemImage;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
@@ -22,7 +23,9 @@ class StoreEditProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $count = ItemImage::where('item_id',$this->id)->count();
+        // dd($count);
+        $rules =  [
             'category_id' => 'required',
             'sub_category_id' => 'required',
             'color_id' => 'required',
@@ -32,7 +35,20 @@ class StoreEditProductRequest extends FormRequest
             'image_description' => 'required',
             'buy_price' => 'required',
         ];
+
+        if ($count < 4) {
+            $maxImages = 4 - $count;
+            $rules['image'] = 'required|max:' . $maxImages;
+        }
+         else {
+            $rules['image'] = 'max:0';
+        }
+        return $rules;
+        
     }
+  
+ 
+    
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json(['status' => 422, 'message' => $validator->getMessageBag()]));

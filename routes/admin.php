@@ -45,6 +45,7 @@ Route::middleware(['admin'])->group(function () {
         Route::get('products-request', 'productRequest')->name('products.request');
         Route::get('products-approve/{id}', 'productApprove')->name('products.approve');
         Route::get('products-reject/{id}', 'productReject')->name('products.reject');
+        Route::get('remove-image/{id}', 'removeImage')->name('products.remove_image');
     });
     Route::controller(CategoryController::class)->group(function () {
         Route::get('categories-items/{id}', 'items')->name('categories.item');

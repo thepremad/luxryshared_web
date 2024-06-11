@@ -40,7 +40,6 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                {{-- <h4 class="card-title">Create</h4> --}}
                             </div>
                             <div class="card-body">
                             {{ Form::model($sub_categories, ['route' => ['admin.subcategories.store'], 'role' => 'form',
@@ -63,6 +62,8 @@
                                         {!! Form::label('category_id', 'Category') !!}
                                         {!! Form::select('category_id', $categories->pluck('name','id'),$sub_categories->category_id, ['class' => 'form-select
                                          ','id' => 'category_id', 'placeholder' => 'Category']) !!}
+                                                    <span class="text-danger validation-class" id="category_id-error"></span>
+
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-1">

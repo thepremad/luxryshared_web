@@ -120,17 +120,20 @@ p {
                                                      {!! Form::label('image', 'Image') !!}
                                                         {!! Form::file('image[]', ['class' => 'form-control', 'multiple','id' => 'image']) !!}
                                                 <span class="text-danger validation-class" id="image-error"></span>
+                                                <div class=""></div>
                                                 @if($products)
+                                                <div style="display:absolute">
                                                 @foreach ($item_images as $key => $val )
                                                 <img width="100px" class="mt-1" src="{{url('public/uploads/item/'.$val->image)}}" alt="">
-                                                
+                                                <i style="    position: relative;top: -31px;" onclick="removeImage({{$val->id}})" class="fa-solid fa-xmark"></i>
                                                 @endforeach
+                                                </div>
                                                 @endif
                                             </div>
                                         </div>
 
                                         <div class="col-md-12 col-12">
-                                            <div class="mb-1">
+                                          div class="mb-1">
                                                       {!! Form::label('image_description', 'Description') !!}
 
                                                       {!! Form::textarea('image_description', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Buy Price', 'id' =>
@@ -215,6 +218,23 @@ ClassicEditor.create( document.querySelector( '#content' ) )
     .catch( error => {
         console.error( error );
     } );
+
+    function removeImage(id){
+        if (confirm('Are you sure you want to remove image ?')) {
+                $.ajax({
+                    url: "{{ url('admin/remove-image') }}/" + id, // Use the url() function
+                    type: 'GET',
+                    success: function (res) {
+                        if (res.status === 200) {
+                            window.location.reload();
+                        }
+                    },
+                    error: function (xhr) {
+                        toastr.error('Oops... Something went wrong. Please try again.');
+                    }
+                });
+            }
+    }
 </script>
 
 @endsection

@@ -27,6 +27,7 @@ class StoreCountryRequest extends FormRequest
         ];
         if(!$this->id){
             $rules['status'] = 'required';
+            $rules['name'] = 'required|unique:countries,name';
 
         }
         return $rules;

@@ -27,6 +27,7 @@ class StoreCityRequest extends FormRequest
         ];
         if(!$this->id){
             $rules['status'] = 'required';
+            $rules['name'] = 'required|unique:cities,name';
 
         }
         return $rules;

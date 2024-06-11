@@ -23,10 +23,15 @@ class StoreColorRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'name' => 'required',
             'code' => 'required',
         ];
+        if(!$this->id){
+            $rules['name'] = 'required|unique:colors,name';
+
+        }
+        return $rules;
     }
     protected function failedValidation(Validator $validator)
     {

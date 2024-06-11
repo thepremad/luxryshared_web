@@ -3,40 +3,27 @@
                                     <thead class="table-dark">
                                         <tr>
                                             <th scope="col" >#</th>
-                                            <th scope="col" >Category</th>
+                                            <th scope="col" >Code</th>
                                             <th scope="col" >Name</th>
-                                            <th scope="col" >Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="myTable">
                                     @php  $i = 1; @endphp
  
-                                        @foreach ($categories as $item)
+                                        @foreach ($colors as $item)
                                             
                                             <tr>
                                                 <td>{{$i }}</td>
-                                                <td>
-                                                <img src="{{ url('public/uploads/category/'.$item->image)}}" alt="Toolbar svg" width="50px" />
-                                                   
-                                                </td>
+                                                <td>{{ $item->code }}</td>
                                                 <td>{{ $item->name }}</td>
-
-                                                <td >
-                                                @if($item->status == '1') 
-                                                    <span style="color:green">Active</span> 
-                                                @else 
-                                                    <span style="color:red">Inactive</span> 
-                                                @endif
-
-                                                </td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="{{route('admin.categories.edit',$item->id)}}">
+                                                            <a class="dropdown-item" href="{{route('admin.colors.edit',$item->id)}}">
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
@@ -64,4 +51,4 @@
                                     </tbody>
                                 </table>
                                 </div>
-                            @include('backend._pagination', ['data' => $categories])
+                            @include('backend._pagination', ['data' => $colors])
