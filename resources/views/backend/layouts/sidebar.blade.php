@@ -18,7 +18,7 @@
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
 
             </li>
-             <li
+             <!-- <li
                 class=" nav-item {{ Request::routeIs('admin.categories.index', 'admin.categories.create', 'admin.categories.show', 'admin.categories.edit', 'admin.categories.appraisals', 'admin.categories.loans', 'admin.categories.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Category Master</span></a>
@@ -80,7 +80,7 @@
 
 
                 </ul>
-            </li>
+            </li> -->
             <li
                 class=" nav-item {{ Request::routeIs('admin.user.register_request', 'admin.user.index', 'admin.user.edit') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-user-injured"></i><span
@@ -102,7 +102,7 @@
 
                 </ul>
             </li>
-            <li
+            <!-- <li
                 class=" nav-item {{ Request::routeIs('admin.products.register_request', 'admin.products.index', 'admin.products.edit') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-brands fa-product-hunt"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Product Listing</span></a>
@@ -129,7 +129,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
 
            <!-- <li
                 class=" nav-item {{ Request::routeIs('admin.images.index', 'admin.images.create', 'admin.images.show', 'admin.images.edit','admin.sizes.index', 'admin.sizes.create', 'admin.sizes.show', 'admin.sizes.edit','admin.countries.index', 'admin.countries.create', 'admin.countries.show', 'admin.countries.edit','admin.cities.index', 'admin.cities.create', 'admin.cities.show', 'admin.cities.edit', 'admin.privacy_policies.get_policies', 'admin.terms_condetion.get_terms', 'admin.deliveries.delivry', 'admin.menus.create', 'admin.menus.index', 'admin.menus.edit', 'admin.colors.create', 'admin.colors.index', 'admin.colors.edit') ? 'has-sub open' : '' }} ">
