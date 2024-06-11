@@ -44,6 +44,7 @@ Route::middleware('auth:api')->group(function () {
     });
     Route::controller(ItemController::class)->group(function () {
         Route::post('/addListItem', 'addListItem');
+        Route::get('/product', 'product');
     });
 });
 
