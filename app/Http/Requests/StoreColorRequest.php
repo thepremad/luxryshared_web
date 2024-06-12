@@ -5,7 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-class StoreCountryRequest extends FormRequest
+
+class StoreColorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +25,10 @@ class StoreCountryRequest extends FormRequest
     {
         $rules = [
             'name' => 'required',
+            'code' => 'required',
         ];
         if(!$this->id){
-            $rules['status'] = 'required';
-            $rules['name'] = 'required|unique:countries,name';
+            $rules['name'] = 'required|unique:colors,name';
 
         }
         return $rules;

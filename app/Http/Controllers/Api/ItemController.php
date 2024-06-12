@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreItemRequest;
+use App\Http\Resources\GetProductResource;
+use App\Models\Item;
+use Illuminate\Support\Facades\Log;
+use App\Models\ItemImage;
+use App\Traits\FileUploadTrait;
+use Illuminate\Http\Request;
+
+class ItemController extends Controller
+{
+    use FileUploadTrait;
+    public function addListItem(StoreItemRequest $request){
+        try {
+            $item = new Item();
+            $item->fill($request->all());
+            if ($file = $request->file('mainImag')) {
+                $folder = public_path('/uploads/item');
+                $item->mainImag = $this->uploadFile($file, $folder);
+            }
+            $item->save();
+            for ($i = 1; $i <= 4; $i++) {
+                $inputName = 'image_' . $i;
+                if ($request->hasFile($inputName)) {
+                    $image = $request->file($inputName);
+                    $item_image = new ItemImage();
+                    $item_image->item_id = $item->id;
+                    $item_image->image = $this->uploadFile($image, public_path('/uploads/item'));
+                    $item_image->save();
+                }
+            }
+            return response()->json(['message' => 'Successfully Registered'], 200);
+        }catch (\Throwable $th) {
+            Log::error('api item post : exception');
+            Log::error($th);
+            return response()->json(['error'=> "Something went wrong. Please try again later."],500);
+        }
+    }
+    public function product(Request $request){
+       try {
+        if ($request->categoryId == '0') {
+            $products = Item::latest()->get();
+        }else{
+            $products = Item::where('category_id',$request->categoryId)->where('status',Item::$active)->get();
+        }
+        $data = GetProductResource::collection($products);
+        return response()->json($data, 200);
+
+       }catch (\Throwable $th) {
+        Log::error('api item post : exception');
+        Log::error($th);
+        return response()->json(['error'=> "Something went wrong. Please try again later."],500);
+    }
+    }
+}

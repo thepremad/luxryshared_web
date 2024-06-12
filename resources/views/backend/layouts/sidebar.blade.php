@@ -62,7 +62,7 @@
             </li> 
              <li
                 class=" nav-item {{ Request::routeIs('admin.brands.index', 'admin.brands.create', 'admin.brands.show', 'admin.brands.edit', 'admin.brands.appraisals', 'admin.brands.loans', 'admin.brands.salaries') ? 'has-sub open' : '' }} ">
-                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-table-list"></i><span
+                <a class="d-flex align-items-center" href="#"><i class="fa-regular fa-copyright"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Brand Master</span></a>
                 <ul class="menu-content">
                     <li>
@@ -102,9 +102,37 @@
 
                 </ul>
             </li>
+            <!-- <li
+                class=" nav-item {{ Request::routeIs('admin.products.register_request', 'admin.products.index', 'admin.products.edit') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-brands fa-product-hunt"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Product Listing</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.products.index') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.products.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> Listing</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li
+                class=" nav-item {{ Request::routeIs('admin.products.request') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-helicopter-symbol"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Lending  Request</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.products.request') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.products.request') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> Listing</span>
+                        </a>
+                    </li>
+                </ul>
+            </li> 
 
-           <!-- <li
-                class=" nav-item {{ Request::routeIs('admin.images.index', 'admin.images.create', 'admin.images.show', 'admin.images.edit','admin.sizes.index', 'admin.sizes.create', 'admin.sizes.show', 'admin.sizes.edit','admin.countries.index', 'admin.countries.create', 'admin.countries.show', 'admin.countries.edit','admin.cities.index', 'admin.cities.create', 'admin.cities.show', 'admin.cities.edit', 'admin.privacy_policies.get_policies', 'admin.terms_condetion.get_terms', 'admin.deliveries.delivry', 'admin.menus.create', 'admin.menus.index', 'admin.menus.edit') ? 'has-sub open' : '' }} ">
+            <li
+                class=" nav-item {{ Request::routeIs('admin.images.index', 'admin.images.create', 'admin.images.show', 'admin.images.edit','admin.sizes.index', 'admin.sizes.create', 'admin.sizes.show', 'admin.sizes.edit','admin.countries.index', 'admin.countries.create', 'admin.countries.show', 'admin.countries.edit','admin.cities.index', 'admin.cities.create', 'admin.cities.show', 'admin.cities.edit', 'admin.privacy_policies.get_policies', 'admin.terms_condetion.get_terms', 'admin.deliveries.delivry', 'admin.menus.create', 'admin.menus.index', 'admin.menus.edit', 'admin.colors.create', 'admin.colors.index', 'admin.colors.edit') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-gear"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Settings</span></a>
                 <ul class="menu-content">
@@ -192,6 +220,27 @@
                         </ul>
                     </li>
                     <li
+                        class=" nav-item {{ Request::routeIs('admin.colors.index', 'admin.colors.create', 'admin.colors.show', 'admin.colors.edit', 'admin.colors.appraisals', 'admin.colors.loans', 'admin.colors.salaries') ? 'has-sub open' : '' }} ">
+                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-brush"></i><span
+                                class="menu-title text-truncate" data-i18n="Invoice">Color Master</span></a>
+                        <ul class="menu-content">
+                            <li>
+                                <a class="d-flex align-items-center {{ Request::routeIs('admin.colors.index', 'admin.colors.show', 'admin.colors.edit', 'admin.colors.appraisals', 'admin.colors.loans', 'admin.colors.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                                    href="{{ route('admin.colors.index') }}">
+                                    <i data-feather="circle"></i>
+                                    <span class="menu-item text-truncate" data-i18n="Shop"> List Color</span>
+                                </a>
+                            </li>
+
+                            <li><a class="d-flex align-items-center {{ Request::routeIs('admin.colors.create') ? 'active' : '' }} "
+                                    href="{{ route('admin.colors.create') }}"><i data-feather="circle"></i><span
+                                        class="menu-item text-truncate" data-i18n="Shop"> Add Color</span></a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li
                         class=" nav-item {{ Request::routeIs('admin.cities.index', 'admin.cities.create', 'admin.cities.show', 'admin.cities.edit', 'admin.cities.appraisals', 'admin.cities.loans', 'admin.cities.salaries') ? 'has-sub open' : '' }} ">
                         <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-tree-city"></i><span
                                 class="menu-title text-truncate" data-i18n="Invoice">City Master</span></a>
@@ -251,10 +300,10 @@
                         <a class="d-flex align-items-center" href="{{route('admin.deliveries.delivry')}}"><i class="fa-solid fa-list"></i><span
                                 class="menu-title text-truncate" data-i18n="Invoice">Delivery</span></a>
 
-                    </li> -->
+                    </li>
 
                 </ul>
-            </li> 
+            </li>  -->
 
 
         </ul>

@@ -26,12 +26,25 @@ Route::controller(ForgetPasswordController::class)->group(function () {
     Route::get('unauthorized', function () {
         return response()->json(['statusCode' => 400, 'status' => 'unauthorized', 'message' => 'Unauthorized user.']);
     })->name('api.unauthorized');
-
-    Route::middleware('auth:api')->group(function () {
-        Route::controller(UserController::class)->group(function () {
-            Route::get('/profile', 'profile');
-            Route::post('/profile', 'updateProfile');
-        });
-    });
-
 });
+
+Route::middleware('auth:api')->group(function () {
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/profile', 'profile');
+        Route::post('/profile', 'updateProfile');
+        Route::get('/delete_account', 'deleteAccount');
+    });
+    Route::controller(ListController::class)->group(function () {
+        Route::get('/category', 'category');
+        Route::get('/subCategory/{id}', 'subCategory');
+        Route::get('/brand', 'brand');
+        Route::get('/size', 'size');
+        Route::get('/color', 'color');
+        Route::post('/suggestedDayPrice', 'suggestedDayPrice');
+    });
+    Route::controller(ItemController::class)->group(function () {
+        Route::post('/addListItem', 'addListItem');
+        Route::get('/product', 'product');
+    });
+});
+

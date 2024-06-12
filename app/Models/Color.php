@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Color extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
-        'status',
-        'image',
+        'code'
     ];
-    static $active = 1;
-    static $in_active = 0;
-    
 }

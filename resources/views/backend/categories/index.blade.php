@@ -88,8 +88,7 @@
                                                 <img src="{{ url('public/uploads/category/'.$item->image)}}" alt="Toolbar svg" width="50px" />
                                                    
                                                 </td>
-                                                <td>{{ $item->name }}</td>
-
+                                                <td><a href="{{route('admin.categories.item',$item->id)}}">{{ $item->name }}</a></td>
                                                 <td >
                                                 @if($item->status == '1') 
                                                     <span style="color:green">Active</span> 

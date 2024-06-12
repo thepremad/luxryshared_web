@@ -77,7 +77,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8 col-12">
+                                        <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                      {!! Form::label('image', 'Image') !!}
                                                         {!! Form::file('image', ['class' => 'form-control', 'id' => 'image']) !!}
@@ -87,7 +87,7 @@
                                                 @endif
                                             </div>
                                         </div>
-
+                                       
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary me-1">Submit</button>
                                             <button type="reset" class="btn btn-outline-secondary">Reset</button>

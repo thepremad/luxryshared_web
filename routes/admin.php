@@ -38,6 +38,18 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('user',UserController::class);
     Route::resource('brands',BrandController::class);
     Route::resource('menus',MenuController::class);
+    Route::resource('colors',ColorController::class);
+    Route::resource('products',ProductController::class);
+
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('products-request', 'productRequest')->name('products.request');
+        Route::get('products-approve/{id}', 'productApprove')->name('products.approve');
+        Route::get('products-reject/{id}', 'productReject')->name('products.reject');
+        Route::get('remove-image/{id}', 'removeImage')->name('products.remove_image');
+    });
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('categories-items/{id}', 'items')->name('categories.item');
+    });
 
 Route::controller(TermsAndConditionsController::class)->group(function () {
     Route::get('/delivery', 'delivry')->name('deliveries.delivry');

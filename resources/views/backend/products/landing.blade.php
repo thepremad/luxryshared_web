@@ -1,3 +1,4 @@
+
 @extends('backend.layouts')
 
 @section('style')
@@ -12,10 +13,8 @@
         font-weight: 900;
     }
 </style>
-@endsection
-
+        @endsection
 @section('content')
-
 <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -24,12 +23,12 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Images</h2>
+                            <h2 class="content-header-title float-start mb-0">Products</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{  route('admin.dashboard') }}">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.images.index') }}">Banners</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.products.index') }}">products</a>
                                     </li>
                                     <li class="breadcrumb-item active">List
                                     </li>
@@ -37,9 +36,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3" style="text-align: end">
-                    <a href="{{ route('admin.images.create') }}" class=" btn btn-primary btn-gradient round">Create</a>
                 </div>
             </div>
             <div class="content-body">
@@ -52,7 +48,7 @@
                             <div class="card-header">
                                 <h4 class="card-title"></h4>
                                 <div class="col-md-3" style="text-align: end">
-                                    <input type="text" id="searchInput"  class="form-control" placeholder="Search">
+                                    <input type="text" onkeyup="myFunction()" id="searchInput" class="form-control" placeholder="Search">
                                 </div>
                             </div>
                             <div class="table-responsive" id="table-responsive">
@@ -61,40 +57,49 @@
                                         <tr>
                                             <th scope="col" >#</th>
                                             <th scope="col" >Image</th>
-                                            <th scope="col" >Text</th>
+                                            <th scope="col" >Category</th>
+                                            <th scope="col" >Sub Category</th>
+                                            <th scope="col" >Brand</th>
+                                            <th scope="col" >RRR Price</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="myTable">
                                     @php  $i = 1; @endphp
  
-                                        @foreach ($images as $item)
+                                        @foreach ($products as $item)
                                             
                                             <tr>
                                                 <td>{{$i }}</td>
+                                               
+                                                <td><img src="{{ url('public/uploads/item/'.$item->mainImag)}}" alt="Toolbar svg" width="50px" /></td>
+
+                                                <td ><a href="{{route('admin.products.show',$item->id)}}">{{$item->category->name ?? ''}}</a></td>
+                                                <td >{{$item->subCategory->name ?? ''}}</td>
+                                                <td >{{$item->brand->name ?? ''}}</td>
+                                                <td >{{$item->rrp_price}}</td>
                                                 <td>
-                                                <img src="{{ url('public/uploads/image/'.$item->image)}}" alt="Toolbar svg" width="50px" />
-                                                   
-                                                </td>
-                                                <td>{{ $item->text }}</td>
-                                                <td>
+                                                    @if ($item->status == '1')
+                                                    <a href="#" class="btn btn-success">Approved</a>
+                                                    @elseif ($item->status == '2')
+                                                    <a href="#" class="btn btn-danger">Rejected</a>
+                                                    @else
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="{{route('admin.images.edit',$item->id)}}">
+                                                            <a class="dropdown-item delete-record" data-id="{{$item->id}}" href="#">
                                                                 <i data-feather="edit-2" class="me-50"></i>
-                                                                <span>Edit</span>
+                                                                <span>Approve</span>
                                                             </a>
-                                                            <a class="dropdown-item delete-record" data-id="{{$item->id}}" href="#" >
+                                                            <a class="dropdown-item reject-request" data-id="{{$item->id}}"  href="#" >
                                                                 <i data-feather="trash" class="me-50"></i>
-                                                                <span>Delete</span>
+                                                                <span>Reject</span>
                                                             </a>
                                                         </div>
                                                     </div>
-
-                                                    
+                                                    @endif
                                                 </td>
                                             </tr>
                                             @php
@@ -104,8 +109,9 @@
                                         
                                     </tbody>
                                 </table>
-                            @include('backend._pagination', ['data' => $images])
+                            @include('backend._pagination', ['data' => $products])
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -122,28 +128,43 @@
 @section('script')
 
 <script>
-
     $(document).on('click', '.delete-record', function () {
-            var associateId =  $(this).data('id');            
-            if (confirm('Are you sure you want to delete this images ?')) {
-                $.ajax({
-                    url: "{{ url('admin/images') }}/" + associateId, // Use the url() function
-                    type: 'DELETE',
-                    data: {
-                        '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
-                    },
-                    success: function (res) {
-                        if (res.status === 200) {
-                            toastr.success(res.message);
-                            window.location.href =
-                                "{{ route('admin.images.index') }}";
-                        }
-                    },
-                    error: function (xhr) {
-                        toastr.error('Oops... Something went wrong. Please try again.');
+        var associateId =  $(this).data('id');            
+        if (confirm('Are you sure you want to Approve this products ?')) {
+            $.ajax({
+                url: "{{ url('admin/products-approve') }}/" + associateId, // Use the url() function
+                type: 'GET',
+                success: function (res) {
+                    if (res.status === 200) {
+                        toastr.success(res.message);
+                        window.location.href =
+                            "{{ route('admin.products.request') }}";
                     }
-                });
-            }
+                },
+                error: function (xhr) {
+                    toastr.error('Oops... Something went wrong. Please try again.');
+                }
+            });
+        }
+        });
+        $(document).on('click', '.reject-request', function () {
+        var associateId =  $(this).data('id');            
+        if (confirm('Are you sure you want to Reject this products ?')) {
+            $.ajax({
+                url: "{{ url('admin/products-reject') }}/" + associateId, // Use the url() function
+                type: 'GET',
+                success: function (res) {
+                    if (res.status === 200) {
+                        toastr.success(res.message);
+                        window.location.href =
+                            "{{ route('admin.products.request') }}";
+                    }
+                },
+                error: function (xhr) {
+                    toastr.error('Oops... Something went wrong. Please try again.');
+                }
+            });
+        }
         });
 </script>
 <script>
@@ -153,7 +174,7 @@
         });
         function fetch_data(query = '') {
             $.ajax({
-                url: "{{ route('admin.images.index') }}",
+                url: "{{ route('admin.cities.index') }}",
                 method: 'GET',
                 data: { search: query },
                 dataType: 'html',
@@ -164,5 +185,4 @@
         }
     });
 </script>
-
 @endsection

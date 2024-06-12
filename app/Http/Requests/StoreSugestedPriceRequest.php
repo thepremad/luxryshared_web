@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-class StoreCountryRequest extends FormRequest
+class StoreSugestedPriceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +22,23 @@ class StoreCountryRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'name' => 'required',
+        return [
+            'price' => 'required'
         ];
-        if(!$this->id){
-            $rules['status'] = 'required';
-            $rules['name'] = 'required|unique:countries,name';
-
-        }
-        return $rules;
     }
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json(['status' => 422, 'message' => $validator->getMessageBag()]));
+        $errors = $validator->errors()->messages();
+        $errorObject = [];
+    
+        foreach ($errors as $field => $messages) {
+            $errorObject[$field] = $messages[0];  // Take the first error message for each field
+        }
+    
+        throw new HttpResponseException(
+            response()->json([
+                'error' => $errorObject
+            ], 422)
+        );
     }
 }
