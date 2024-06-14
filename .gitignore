@@ -2,7 +2,8 @@
 /node_modules
 /public/build
 /public/uploads/category
-/public/uploads/subcategory
+/public/uploads/subcategory  
+/public/uploads/occasion  
 /public/uploads/item
 /public/uploads/brand
 /public/uploads/image

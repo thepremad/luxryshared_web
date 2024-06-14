@@ -86,17 +86,38 @@
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-user-injured"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">User Listing</span></a>
                 <ul class="menu-content">
-                    <li>
+                    <!-- <li>
                         <a class="d-flex align-items-center {{ Request::routeIs('admin.user.register_request') && !request()->input('archive') ? 'active' : '' }}"
                             href="{{ route('admin.user.register_request') }}">
                             <i data-feather="circle"></i>
                             <span class="menu-item text-truncate" data-i18n="Shop"> Register Request</span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li><a class="d-flex align-items-center {{ Request::routeIs('admin.user.index') ? 'active' : '' }} "
                             href="{{ route('admin.user.index') }}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="Shop"> List Users</span></a>
+                    </li>
+
+
+                </ul>
+            </li>
+            <li
+                class=" nav-item {{ Request::routeIs('admin.occasions.index', 'admin.occasions.create', 'admin.occasions.show', 'admin.occasions.edit', 'admin.occasions.appraisals', 'admin.occasions.loans', 'admin.occasions.salaries') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-regular fa-copyright"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Occasion Master</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.occasions.index', 'admin.occasions.show', 'admin.occasions.edit', 'admin.occasions.appraisals', 'admin.occasions.loans', 'admin.occasions.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.occasions.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> List Occasion</span>
+                        </a>
+                    </li>
+
+                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.occasions.create') ? 'active' : '' }} "
+                            href="{{ route('admin.occasions.create') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Shop"> Add Occasion</span></a>
                     </li>
 
 

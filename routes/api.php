@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(AuthController::class)->group(function () {
     Route::post('/signup', 'signup');
     Route::post('/login', 'login');
+    Route::post('/signup-verification', 'signupVerification');
 });
 
 Route::controller(ForgetPasswordController::class)->group(function () {
@@ -40,6 +41,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/brand', 'brand');
         Route::get('/size', 'size');
         Route::get('/color', 'color');
+        Route::get('/occasion', 'occasion');
         Route::post('/suggestedDayPrice', 'suggestedDayPrice');
     });
     Route::controller(ItemController::class)->group(function () {

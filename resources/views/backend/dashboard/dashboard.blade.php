@@ -73,25 +73,21 @@
 
                                                     <td>{{ $item->number }}</td>
                                                     <td>
-                                                        <div class="dropdown">
-                                                            <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0"
-                                                                data-bs-toggle="dropdown">
-                                                                <i data-feather="more-vertical"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item delete-record" data-id="{{$item->id}}" href='#'>
-                                                                    <i data-feather="edit-2" class="me-50"></i>
-                                                                    <span>Approve</span>
-                                                                </a>
-                                                                <a class="dropdown-item "
-                                                                    onclick="rejectConformation({{$item->id}})" href="#">
-                                                                    <i data-feather="trash" class="me-50"></i>
-                                                                    <span>Disapprove</span>
-                                                                </a>
-                                                            </div>
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
+                                                            <i data-feather="more-vertical"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item" href='{{route('admin.user.edit',$item->id)}}'>
+                                                                <i data-feather="edit-2" class="me-50"></i>
+                                                                <span>Edit</span>
+                                                            </a>
+                                                            <a class="dropdown-item delete-record" data-id="{{$item->id}}"  href="#" >
+                                                                <i data-feather="trash" class="me-50"></i>
+                                                                <span>Delete</span>
+                                                            </a>
                                                         </div>
-
-
+                                                    </div>
                                                     </td>
                                                 </tr>
                                                 @php
@@ -129,28 +125,28 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-
     $(document).on('click', '.delete-record', function () {
-        var associateId = $(this).data('id');
-        if (confirm('Are you sure you want to approve request ?')) {
-            $.ajax({
-                url: "{{ url('admin/approve-request') }}/" + associateId, // Use the url() function
-                type: 'GET',
-                data: {
-                    '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
-                },
-                success: function (res) {
-                    if (res.status === 200) {
-                        toastr.success(res.message);
-                        window.location.reload();
+            var associateId =  $(this).data('id');            
+            if (confirm('Are you sure you want to delete this user ?')) {
+                $.ajax({
+                    url: "{{ url('admin/user') }}/" + associateId, // Use the url() function
+                    type: 'DELETE',
+                    data: {
+                        '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
+                    },
+                    success: function (res) {
+                        if (res.status === 200) {
+                            toastr.success(res.message);
+                            window.location.href =
+                                "{{ route('admin.user.index') }}";
+                        }
+                    },
+                    error: function (xhr) {
+                        toastr.error('Oops... Something went wrong. Please try again.');
                     }
-                },
-                error: function (xhr) {
-                    toastr.error('Oops... Something went wrong. Please try again.');
-                }
-            });
-        }
-    });
+                });
+            }
+        });
 </script>
 @endsection
 
