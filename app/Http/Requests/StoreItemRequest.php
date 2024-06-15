@@ -26,6 +26,7 @@ class StoreItemRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'sub_category_id' => 'required|exists:sub_categories,id',
             'brand_id' => 'required|exists:brands,id',
+            'occasion_id' => 'required|exists:occasions,id',
             'item_title' => 'required',
             'color_id' => 'required|exists:colors,id',
             'size_id' => 'required|exists:sizes,id',
