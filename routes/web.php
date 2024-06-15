@@ -13,8 +13,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Route::get('/home', function () {
+//     return view('frontend.index');
+// });
+Route::get('/login', function () {
+    return view('frontend.login');
+});
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.register');
+});
+Route::get('/forgotpw', function () {
+    return view('frontend.forgotpw');
+});
+Route::get('/list-itemone', function () {
+    return view('frontend.list-itemone');
+});
+Route::get('/list-itemtwo', function () {
+    return view('frontend.list-itemtwo');
+});
+Route::get('/list-itemsucc', function () {
+    return view('frontend.list-itemsucc');
+});
+Route::get('/code-verify/{id}', function ($id) {
+    return view('frontend.code-verify', compact('id'));
+});
+Route::get('/change-pw/{id}', function ($id) {
+    return view('frontend.change-pw', compact('id'));
+});
+Route::get('/pwchanged-succ', function () {
+    return view('frontend.pwchanged-succ');
 });
 Route::get('/run-migrations', function () {
     try {

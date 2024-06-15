@@ -22,7 +22,7 @@ class StoreItemRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'category_id' => 'required|exists:categories,id',
             'sub_category_id' => 'required|exists:sub_categories,id',
             'brand_id' => 'required|exists:brands,id',
@@ -36,8 +36,11 @@ class StoreItemRequest extends FormRequest
             'image_4' => 'required',
             'image_description' => 'required',
             'rrp_price' => 'required',
-            'buy_price' => 'required',
         ];
+        if ($this->buy == 'true') {
+            $rules['buy_price'] = 'required';
+        }
+        return $rules;
     }
     protected function failedValidation(Validator $validator)
     {
