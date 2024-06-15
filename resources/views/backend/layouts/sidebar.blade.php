@@ -16,7 +16,6 @@
                         data-feather="home"></i><span class="menu-title text-truncate"
                         data-i18n="Dashboards">Dashboard</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
-
             </li>
              <li
                 class=" nav-item {{ Request::routeIs('admin.categories.index', 'admin.categories.create', 'admin.categories.show', 'admin.categories.edit', 'admin.categories.appraisals', 'admin.categories.loans', 'admin.categories.salaries') ? 'has-sub open' : '' }} ">
@@ -35,8 +34,6 @@
                             href="{{ route('admin.categories.create') }}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="Shop"> Add Category</span></a>
                     </li>
-
-
                 </ul>
             </li>
             <li
@@ -56,8 +53,6 @@
                             href="{{ route('admin.subcategories.create') }}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="Shop"> Add SubCategory</span></a>
                     </li>
-
-
                 </ul>
             </li> 
              <li
@@ -77,8 +72,6 @@
                             href="{{ route('admin.brands.create') }}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="Shop"> Add Brand</span></a>
                     </li>
-
-
                 </ul>
             </li>
             <li
@@ -86,20 +79,10 @@
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-user-injured"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">User Listing</span></a>
                 <ul class="menu-content">
-                    <!-- <li>
-                        <a class="d-flex align-items-center {{ Request::routeIs('admin.user.register_request') && !request()->input('archive') ? 'active' : '' }}"
-                            href="{{ route('admin.user.register_request') }}">
-                            <i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Shop"> Register Request</span>
-                        </a>
-                    </li> -->
-
                     <li><a class="d-flex align-items-center {{ Request::routeIs('admin.user.index') ? 'active' : '' }} "
                             href="{{ route('admin.user.index') }}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="Shop"> List Users</span></a>
                     </li>
-
-
                 </ul>
             </li>
             <li
@@ -119,8 +102,6 @@
                             href="{{ route('admin.occasions.create') }}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="Shop"> Add Occasion</span></a>
                     </li>
-
-
                 </ul>
             </li>
             <li
@@ -174,8 +155,6 @@
                                     href="{{ route('admin.menus.create') }}"><i data-feather="circle"></i><span
                                         class="menu-item text-truncate" data-i18n="Shop"> Add Menu</span></a>
                             </li>
-
-
                         </ul>
                     </li>
 
@@ -196,8 +175,6 @@
                                     href="{{ route('admin.images.create') }}"><i data-feather="circle"></i><span
                                         class="menu-item text-truncate" data-i18n="Shop"> Add Banner</span></a>
                             </li>
-
-
                         </ul>
                     </li>
                     <li
@@ -236,8 +213,6 @@
                                     href="{{ route('admin.countries.create') }}"><i data-feather="circle"></i><span
                                         class="menu-item text-truncate" data-i18n="Shop"> Add Country</span></a>
                             </li>
-
-
                         </ul>
                     </li>
                     <li
@@ -257,8 +232,6 @@
                                     href="{{ route('admin.colors.create') }}"><i data-feather="circle"></i><span
                                         class="menu-item text-truncate" data-i18n="Shop"> Add Color</span></a>
                             </li>
-
-
                         </ul>
                     </li>
                     <li
@@ -278,8 +251,6 @@
                                     href="{{ route('admin.cities.create') }}"><i data-feather="circle"></i><span
                                         class="menu-item text-truncate" data-i18n="Shop"> Add City</span></a>
                             </li>
-
-
                         </ul>
                     </li>
                     <li
@@ -300,8 +271,6 @@
                                     href="{{ route('admin.faq.create') }}"><i data-feather="circle"></i><span
                                         class="menu-item text-truncate" data-i18n="Shop"> Listing</span></a>
                             </li>
-
-
                         </ul>
                     </li>
                     <li
@@ -324,9 +293,7 @@
                     </li>
 
                 </ul>
-            </li> 
-
-
+            </li>
         </ul>
     </div>
 
