@@ -12,6 +12,7 @@ class Item extends Model
         'category_id',
         'sub_category_id',
         'brand_id',
+        'occasion_id',
         'item_title',
         'color_id',
         'size_id',
