@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         try {
             $query_search = $request->input('search');
-            $user = User::where('email', '!=', 'admin@gmail.com')->where('status',User::$approved)
+            $user = User::where('email', '!=', 'admin@gmail.com')
             ->when($query_search, function ($query) use ($query_search) {
                 $query->where('first_name', 'like', '%' . $query_search . '%')
                     ->orWhere('email', 'like', '%' . $query_search . '%')

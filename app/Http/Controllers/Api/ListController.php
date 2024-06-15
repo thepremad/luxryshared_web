@@ -7,12 +7,14 @@ use App\Http\Requests\StoreSugestedPriceRequest;
 use App\Http\Resources\BrandResource;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ColorResource;
+use App\Http\Resources\OccasionResource;
 use App\Http\Resources\SizeResource;
 use App\Http\Resources\SubCategoryResource;
 use App\Http\Resources\SugestedDayPrice;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Color;
+use App\Models\Occasion;
 use App\Models\Size;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -79,6 +81,17 @@ class ListController extends Controller
         try {
            $data = new SugestedDayPrice($request->price);
            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            Log::error('api brand get : exception');
+            Log::error($th);
+            return response()->json(['error'=> "Something went wrong. Please try again later."],500);
+        }
+    }
+    public function occasion(){
+        try {
+            $occasion = Occasion::latest()->get();
+            $data = OccasionResource::collection($occasion);
+            return response()->json($data, 200);
         } catch (\Throwable $th) {
             Log::error('api brand get : exception');
             Log::error($th);

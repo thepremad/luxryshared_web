@@ -40,6 +40,7 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('menus',MenuController::class);
     Route::resource('colors',ColorController::class);
     Route::resource('products',ProductController::class);
+    Route::resource('occasions',OccasionController::class);
 
     Route::controller(ProductController::class)->group(function () {
         Route::get('products-request', 'productRequest')->name('products.request');
