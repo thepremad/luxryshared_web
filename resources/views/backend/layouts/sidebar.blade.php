@@ -17,7 +17,7 @@
                         data-i18n="Dashboards">Dashboard</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
             </li>
-             <li
+             <!-- <li
                 class=" nav-item {{ Request::routeIs('admin.categories.index', 'admin.categories.create', 'admin.categories.show', 'admin.categories.edit', 'admin.categories.appraisals', 'admin.categories.loans', 'admin.categories.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Category Master</span></a>
@@ -73,7 +73,7 @@
                                 class="menu-item text-truncate" data-i18n="Shop"> Add Brand</span></a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
             <li
                 class=" nav-item {{ Request::routeIs('admin.user.register_request', 'admin.user.index', 'admin.user.edit') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-user-injured"></i><span
@@ -85,9 +85,9 @@
                     </li>
                 </ul>
             </li>
-             <li
+             <!-- <li
                 class=" nav-item {{ Request::routeIs('admin.occasions.index', 'admin.occasions.create', 'admin.occasions.show', 'admin.occasions.edit', 'admin.occasions.appraisals', 'admin.occasions.loans', 'admin.occasions.salaries') ? 'has-sub open' : '' }} ">
-                <a class="d-flex align-items-center" href="#"><i class="fa-regular fa-copyright"></i><span
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-location-arrow"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Occasion Master</span></a>
                 <ul class="menu-content">
                     <li>
@@ -101,6 +101,77 @@
                     <li><a class="d-flex align-items-center {{ Request::routeIs('admin.occasions.create') ? 'active' : '' }} "
                             href="{{ route('admin.occasions.create') }}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="Shop"> Add Occasion</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li
+                class=" nav-item {{ Request::routeIs('admin.comunities.index', 'admin.comunities.create', 'admin.comunities.show', 'admin.comunities.edit', 'admin.comunities.appraisals', 'admin.comunities.loans', 'admin.comunities.salaries') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-regular fa-copyright"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Comunity Master</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.comunities.index', 'admin.comunities.show', 'admin.comunities.edit', 'admin.comunities.appraisals', 'admin.comunities.loans', 'admin.comunities.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.comunities.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> List Comunity</span>
+                        </a>
+                    </li>
+
+                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.comunities.create') ? 'active' : '' }} "
+                            href="{{ route('admin.comunities.create') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Shop"> Add Comunity</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li
+                class=" nav-item {{ Request::routeIs('admin.blogs.index', 'admin.blogs.create', 'admin.blogs.show', 'admin.blogs.edit', 'admin.blogs.appraisals', 'admin.blogs.loans', 'admin.blogs.salaries') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-blog"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Blog Master</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.blogs.index', 'admin.blogs.show', 'admin.blogs.edit', 'admin.blogs.appraisals', 'admin.blogs.loans', 'admin.blogs.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.blogs.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> List Blog</span>
+                        </a>
+                    </li>
+
+                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.blogs.create') ? 'active' : '' }} "
+                            href="{{ route('admin.blogs.create') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Shop"> Add Blog</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li
+                class=" nav-item {{ Request::routeIs('admin.presses.index', 'admin.presses.create', 'admin.presses.show', 'admin.presses.edit', 'admin.presses.appraisals', 'admin.presses.loans', 'admin.presses.salaries') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-regular fa-newspaper"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Press </span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.presses.index', 'admin.presses.show', 'admin.presses.edit', 'admin.presses.appraisals', 'admin.presses.loans', 'admin.presses.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.presses.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> List Press</span>
+                        </a>
+                    </li>
+
+                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.presses.create') ? 'active' : '' }} "
+                            href="{{ route('admin.presses.create') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Shop"> Add Press</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li
+                class=" nav-item {{ Request::routeIs('admin.inquiries.index', 'admin.inquiries.create', 'admin.inquiries.show', 'admin.inquiries.edit', 'admin.inquiries.appraisals', 'admin.inquiries.loans', 'admin.inquiries.salaries') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-regular fa-copyright"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Inquiry </span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.inquiries.index', 'admin.inquiries.show', 'admin.inquiries.edit', 'admin.inquiries.appraisals', 'admin.inquiries.loans', 'admin.inquiries.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.inquiries.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> List Inquiry</span>
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -293,7 +364,7 @@
                     </li>
 
                 </ul>
-            </li> 
+            </li>  -->
         </ul>
     </div>
 

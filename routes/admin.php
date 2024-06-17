@@ -41,6 +41,10 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('colors',ColorController::class);
     Route::resource('products',ProductController::class);
     Route::resource('occasions',OccasionController::class);
+    Route::resource('comunities',ComunityController::class);
+    Route::resource('inquiries',InquiryController::class);
+    Route::resource('blogs',BlogController::class);
+    Route::resource('presses',PressController::class);
 
     Route::controller(ProductController::class)->group(function () {
         Route::get('products-request', 'productRequest')->name('products.request');
