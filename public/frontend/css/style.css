@@ -1070,3 +1070,29 @@ ul.uploadimg-onelistitem li {
 #chackShow {
     display: none;
 }
+
+/*  */
+.congratulations-sec {
+    background: rgba(249, 249, 249, 0.5);
+    padding: 90px 40px;
+    margin: 0 12%;
+}
+.congratulations-sec h2 {
+    font-weight: 600;
+}
+.congratulations-sec p {
+    color: rgba(132, 62, 113, 1);
+    font-weight: 500;
+}
+.congratulations-sec button {
+    background: rgba(0, 0, 0, 1);
+    color: #fff;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.congratulations-sec span {
+    color: rgba(88, 97, 102, 1);
+    font-size: 14px;
+}

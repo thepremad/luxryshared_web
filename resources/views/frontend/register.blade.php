@@ -157,7 +157,7 @@
                             <input id="emaIl" name="email" type="hidden">
                             <input id="addRess" name="address" type="hidden">
                             <input id="id_Image" name="id_image" type="hidden">
-                            <input id="passWord" itemid="password" type="hidden">
+                            <input id="passWord" name="password" type="hidden">
                             <input id="numBer" name="number" type="hidden">
                             <input id="referCode" type="hidden">
                             <input id="otpCode" name="otp" type="hidden">
@@ -316,6 +316,7 @@
                     },
                     success: function (res) {
                         toastr.success(res.message);
+                    window.location.href = "{{url('register-success')}}";
                        
                     },
                     error: function (xhr) {
