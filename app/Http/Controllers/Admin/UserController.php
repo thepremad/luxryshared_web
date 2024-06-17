@@ -49,7 +49,12 @@ class UserController extends Controller
     {
         try {
             $user = User::findOrFail($request->id);
-            $user->fill($request->all())->save();
+            $user->fill($request->all());
+            if ($file = $request->file('id_image')) {
+                $folder = public_path('/uploads/image');
+                $user->id_image = $this->uploadFile($file, $folder);
+            }
+            $user->save();
             return response()->json(['status' => 200, 'message' => ' User Update Successfully ']);
 
         } catch (\Throwable $th) {

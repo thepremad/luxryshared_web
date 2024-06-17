@@ -23,6 +23,9 @@ Route::get('/login', function () {
 Route::get('/', function () {
     return view('frontend.register');
 });
+Route::get('/register', function () {
+    return view('frontend.register');
+});
 Route::get('/forgotpw', function () {
     return view('frontend.forgotpw');
 });
@@ -44,6 +47,10 @@ Route::get('/change-pw/{id}', function ($id) {
 Route::get('/pwchanged-succ', function () {
     return view('frontend.pwchanged-succ');
 });
+Route::get('/register-success', function () {
+    return view('frontend.cong-screen');
+});
+
 Route::get('/run-migrations', function () {
     try {
         Artisan::call('migrate');
@@ -56,6 +63,14 @@ Route::get('/route-cache', function () {
     try {
         Artisan::call('route:cache');
         return ' routes cached successfully';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+Route::get('/optimize-clear', function () {
+    try {
+        Artisan::call('optimize:clear');
+        return ' optimize clear successfully';
     } catch (\Exception $e) {
         return 'Error: ' . $e->getMessage();
     }
