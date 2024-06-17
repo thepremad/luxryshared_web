@@ -17,6 +17,17 @@
                         data-i18n="Dashboards">Dashboard</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
             </li>
+            <li
+                class=" nav-item {{ Request::routeIs('admin.user.register_request', 'admin.user.index', 'admin.user.edit') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-user-injured"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">User Listing</span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.user.index') ? 'active' : '' }} "
+                            href="{{ route('admin.user.index') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Shop"> List Users</span></a>
+                    </li>
+                </ul>
+            </li>
              <!-- <li
                 class=" nav-item {{ Request::routeIs('admin.categories.index', 'admin.categories.create', 'admin.categories.show', 'admin.categories.edit', 'admin.categories.appraisals', 'admin.categories.loans', 'admin.categories.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
@@ -73,19 +84,9 @@
                                 class="menu-item text-truncate" data-i18n="Shop"> Add Brand</span></a>
                     </li>
                 </ul>
-            </li> -->
-            <li
-                class=" nav-item {{ Request::routeIs('admin.user.register_request', 'admin.user.index', 'admin.user.edit') ? 'has-sub open' : '' }} ">
-                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-user-injured"></i><span
-                        class="menu-title text-truncate" data-i18n="Invoice">User Listing</span></a>
-                <ul class="menu-content">
-                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.user.index') ? 'active' : '' }} "
-                            href="{{ route('admin.user.index') }}"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate" data-i18n="Shop"> List Users</span></a>
-                    </li>
-                </ul>
             </li>
-             <!-- <li
+          
+             <li
                 class=" nav-item {{ Request::routeIs('admin.occasions.index', 'admin.occasions.create', 'admin.occasions.show', 'admin.occasions.edit', 'admin.occasions.appraisals', 'admin.occasions.loans', 'admin.occasions.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-location-arrow"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Occasion Master</span></a>

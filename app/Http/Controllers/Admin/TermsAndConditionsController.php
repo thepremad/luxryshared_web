@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use App\Models\Delivery;
+use App\Models\PrivacyPolicy;
 use App\Models\TermsAndConditions;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,15 @@ class TermsAndConditionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $terms_and_condetions = TermsAndConditions::firstOrNew(['id' => $request->id]);
+            $terms_and_condetions->fill($request->all());
+            $terms_and_condetions->save();
+            return response()->json(['status' => 200, 'message' => ' Terms And Condetions Create Successfully ']);
+        } catch (\Exception $exception) {
+            \Log::error('Admin login error: ' . $exception->getMessage());
+            return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
+        }
     }
 
     /**
@@ -45,9 +54,10 @@ class TermsAndConditionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit( $id)
     {
-        //
+        $terms_and_condetions = TermsAndConditions::findOrFail($id);
+        return view('backend.terms-condetions.create',compact('terms_and_condetions'));
     }
 
     /**
@@ -73,14 +83,25 @@ class TermsAndConditionsController extends Controller
 
     }
     public function termsAndConditions(){
-        $terms_conditions = new TermsAndConditions();
-        return view('backend.terms-condetions.create',compact('terms_conditions'));
+        $terms_and_condetions = TermsAndConditions::first();
+        return view('backend.terms-condetions.create',compact('terms_and_condetions'));
     }
     public function saveTermsAndCondetions(){
 
     }
     public function privacyPolicies(){
-        $privacy_policies = new TermsAndConditions();
+        $privacy_policies =  PrivacyPolicy::first();
         return view('backend.privicy-policies.create',compact('privacy_policies'));
+    }
+    public function savePrivacty(Request $request){
+        try {
+            $terms_and_condetions = PrivacyPolicy::firstOrNew(['id' => $request->id]);
+            $terms_and_condetions->fill($request->all());
+            $terms_and_condetions->save();
+            return response()->json(['status' => 200, 'message' => ' Privacy Policy Create Successfully ']);
+        } catch (\Exception $exception) {
+            \Log::error('Admin login error: ' . $exception->getMessage());
+            return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
+        }
     }
 }

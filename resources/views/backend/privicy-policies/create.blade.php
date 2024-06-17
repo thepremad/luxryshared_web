@@ -1,6 +1,6 @@
-@extends('backend.layouts.app')
+@extends('backend.layouts')
 
-@section('content')
+@section('style')
 
 <style>
     .error {
@@ -10,10 +10,17 @@
     .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred {
     height: 200px !important;
 }
+p{
+    height: 200px !important
+}
     /* input {
         text-transform: uppercase;
     } */
 </style>
+@endsection
+@section('content')
+
+
 
 <!-- BEGIN: Content-->
 <div class="app-content content ">
@@ -46,19 +53,22 @@
                                 {{-- <h4 class="card-title">Create</h4> --}}
                             </div>
                             <div class="card-body">
-                                <form class="form" id="frmLogin" action="{{ route('admin.deliveries.store') }}" method="post"
-                                    enctype="multipart/form-data">
+                            {{ Form::model($privacy_policies, ['route' => ['admin.privacy_policies.save_policies'], 'role' => 'form',
+                              'id'=>'frmLogin', 'autocomplete'=>"off", 'method'=>'post','files' => true]) }}
+                                    @csrf
+                                    @if($privacy_policies != null)
+                                      {!! Form::hidden('id', $privacy_policies->id) !!}
+                                    @endif
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-8 col-12">
                                             <div class="mb-1">
-                                                <label class="form-label" for="first-name-column">Privacy Policy <span
-                                                        class="error"></span></label>
-                                                        <textarea  name="message" style="height:200px" id="content" class="form-control " placeholder="Message"   rows="5"></textarea>
-
-                                                    
-                                                    <span class="text-danger validation-class" id="name-error"></span>
+                                            {!! Form::label('Terms And Conditions', 'Terms And Conditions') !!}
+                                                        {!! Form::textarea('data', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Text', 'id' =>
+                                                          'content']) !!}
                                                 </div>
+                                                <span class="text-danger validation-class" id="data-error"></span>
+
                                         </div>
 
                                        
@@ -69,7 +79,7 @@
                                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
                                         </div>
                                     </div>
-                                </form>
+                                    {!! Form::close() !!}
                             </div>
                         </div>
                     </div>
@@ -81,6 +91,8 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
 
 <script>
         $(document).ready(function () {
