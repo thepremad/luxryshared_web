@@ -24,7 +24,7 @@
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
                             <h2 class="content-header-title float-start mb-0">Occasion</h2>
-                            <div class="breadcrumb-wrapper">
+                            <div class="breadcrumb-wrapper"> 
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{  route('admin.dashboard') }}">Home</a>
                                     </li>
@@ -135,7 +135,7 @@
   
     $(document).on('click', '.delete-record', function () {
             var associateId =  $(this).data('id');            
-            if (confirm('Are you sure you want to delete this brand ?')) {
+            if (confirm('Are you sure you want to delete this occasion ?')) {
                 $.ajax({
                     url: "{{ url('admin/occasions') }}/" + associateId, // Use the url() function
                     type: 'DELETE',
