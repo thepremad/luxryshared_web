@@ -41,6 +41,11 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('colors',ColorController::class);
     Route::resource('products',ProductController::class);
     Route::resource('occasions',OccasionController::class);
+    Route::resource('comunities',ComunityController::class);
+    Route::resource('inquiries',InquiryController::class);
+    Route::resource('blogs',BlogController::class);
+    Route::resource('presses',PressController::class);
+    Route::resource('terms_and_condetions',TermsAndConditionsController::class);
 
     Route::controller(ProductController::class)->group(function () {
         Route::get('products-request', 'productRequest')->name('products.request');
@@ -58,6 +63,6 @@ Route::controller(TermsAndConditionsController::class)->group(function () {
     Route::get('/terms-and-condetions', 'termsAndConditions')->name('terms_condetion.get_terms');
     Route::post('/save-terms-and-condetions', 'saveTermsAndCondetions')->name('terms_condetion.save_terms');
     Route::get('/privacy-policy', 'privacyPolicies')->name('privacy_policies.get_policies');
-    Route::post('/save-privicy-policy', 'saveDelivry')->name('privacy_policies.save_policies');
+    Route::post('/save-privicy-policy', 'savePrivacty')->name('privacy_policies.save_policies');
 }); 
 });

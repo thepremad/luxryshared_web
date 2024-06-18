@@ -7,21 +7,10 @@
         color: #a93c3d !important;
         font-weight: 500;
     }
-    .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred {
-    height: 200px !important;
-}
-p{
-    height: 200px !important
-}
-    /* input {
-        text-transform: uppercase;
-    } */
 </style>
+
 @endsection
 @section('content')
-
-
-
 <!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-overlay"></div>
@@ -31,10 +20,13 @@ p{
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Privacy Policy</h2>
+                        <h2 class="content-header-title float-start mb-0">Comunity</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item"><a
+                                        href="{{ route('admin.comunities.index') }}">comunities</a>
                                 </li>
                                 <li class="breadcrumb-item active">Create
                                 </li>
@@ -53,26 +45,45 @@ p{
                                 {{-- <h4 class="card-title">Create</h4> --}}
                             </div>
                             <div class="card-body">
-                            {{ Form::model($privacy_policies, ['route' => ['admin.privacy_policies.save_policies'], 'role' => 'form',
+                            {{ Form::model($comunities, ['route' => ['admin.comunities.store'], 'role' => 'form',
                               'id'=>'frmLogin', 'autocomplete'=>"off", 'method'=>'post','files' => true]) }}
                                     @csrf
-                                    @if($privacy_policies != null)
-                                      {!! Form::hidden('id', $privacy_policies->id) !!}
+                                    @if($comunities->id)
+                                      {!! Form::hidden('id', $comunities->id) !!}
                                     @endif
-                                    @csrf
                                     <div class="row">
                                         <div class="col-md-8 col-12">
                                             <div class="mb-1">
-                                            {!! Form::label('Terms And Conditions', 'Terms And Conditions') !!}
-                                                        {!! Form::textarea('data', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Text', 'id' =>
-                                                          'content']) !!}
+                                                      {!! Form::label('text', 'Text') !!}
+                                                        {!! Form::text('text', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Name', 'id' =>
+                                                          'name']) !!}
+                                                    
+                                                    <span class="text-danger validation-class" id="text-error"></span>
                                                 </div>
-                                                <span class="text-danger validation-class" id="data-error"></span>
-
                                         </div>
 
-                                       
-            
+                                        <div class="col-md-4 col-12">
+                                            <div class="mb-1">
+                                                <div class="d-flex flex-column">
+                                                    <label class="form-check-label mb-50"
+                                                     for="customSwitch3">Status</label>
+                                                    <div class="form-check form-check-primary form-switch">
+                                                    {!! Form::checkbox('status', '1', $comunities->status == '1', ['class' => 'form-check-input', 'id' => 'customSwitch3']) !!}
+                                                        </div>
+                                                        <span class="text-danger validation-class"
+                                                            id="status-error"></span>
+                                                </div>
+                                            </div>
+                                        </div>      <div class="col-md-6 col-12">
+                                            <div class="mb-1">
+                                                     {!! Form::label('image', 'Image') !!}
+                                                        {!! Form::file('image', ['class' => 'form-control', 'id' => 'image']) !!}
+                                                <span class="text-danger validation-class" id="image-error"></span>
+                                                @if($comunities)
+                                                <img width="100px" class="mt-1" src="{{url('public/uploads/comunities/'.$comunities->image)}}" alt="">
+                                                @endif
+                                            </div>
+                                        </div>
 
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary me-1">Submit</button>
@@ -80,6 +91,7 @@ p{
                                         </div>
                                     </div>
                                     {!! Form::close() !!}
+
                             </div>
                         </div>
                     </div>
@@ -92,7 +104,10 @@ p{
     </div>
 </div>
 @endsection
+
 @section('script')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
         $(document).ready(function () {
@@ -115,7 +130,7 @@ p{
                 $('.spinner-loader').css('display', 'none');
                   if (res.status === 200) {
                       toastr.success(res.message);
-                      window.location.reload(); 
+                      window.location.href = "{{ route('admin.comunities.index') }}"; 
                   } else if(res.status === 422) {
                     $.each(res.message, function (key, value) {
                             $("#" + key + "-error").text(value[0]);
@@ -132,14 +147,5 @@ p{
           });
       });
   });
-  </script>
-  <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
-
-            <script>
-            ClassicEditor.create( document.querySelector( '#content' ) )
-                .catch( error => {
-                    console.error( error );
-                } );
-        </script>
-
+    </script>
 @endsection
