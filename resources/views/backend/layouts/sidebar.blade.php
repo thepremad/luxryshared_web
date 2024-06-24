@@ -28,7 +28,7 @@
                     </li>
                 </ul>
             </li>
-             <!-- <li
+             <li
                 class=" nav-item {{ Request::routeIs('admin.categories.index', 'admin.categories.create', 'admin.categories.show', 'admin.categories.edit', 'admin.categories.appraisals', 'admin.categories.loans', 'admin.categories.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-list"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Category Master</span></a>
@@ -326,22 +326,42 @@
                         </ul>
                     </li>
                     <li
-                        class=" nav-item {{ Request::routeIs('admin.faq.index', 'admin.faq.create', 'admin.faq.show', 'admin.faq.edit', 'admin.faq.appraisals', 'admin.faq.loans', 'admin.faq.salaries') ? 'has-sub open' : '' }} ">
+                        class=" nav-item {{ Request::routeIs('admin.faqs.index', 'admin.faqs.create', 'admin.faqs.show', 'admin.faqs.edit', 'admin.faqs.appraisals', 'admin.faqs.loans', 'admin.faqs.salaries') ? 'has-sub open' : '' }} ">
                         <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-circle-question"></i><span
-                                class="menu-title text-truncate" data-i18n="Invoice">Faq</span></a>
+                                class="menu-title text-truncate" data-i18n="Invoice">Faqs</span></a>
                         <ul class="menu-content">
                             <li>
-                                <a class="d-flex align-items-center {{ Request::routeIs('admin.faq.index', 'admin.faq.show', 'admin.faq.edit', 'admin.faq.appraisals', 'admin.faq.loans', 'admin.faq.salaries') && !request()->input('archive') ? 'active' : '' }}"
-                                    href="{{ route('admin.faq.index') }}">
+                                <a class="d-flex align-items-center {{ Request::routeIs('admin.faqs.index', 'admin.faqs.show', 'admin.faqs.edit', 'admin.faqs.appraisals', 'admin.faqs.loans', 'admin.faqs.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                                    href="{{ route('admin.faqs.index') }}">
                                     <i data-feather="circle"></i>
-                                    <span class="menu-item text-truncate" data-i18n="Shop"> Category
+                                    <span class="menu-item text-truncate" data-i18n="Shop">List Faq
                                     </span>
                                 </a>
                             </li>
 
-                            <li><a class="d-flex align-items-center {{ Request::routeIs('admin.faq.create') ? 'active' : '' }} "
-                                    href="{{ route('admin.faq.create') }}"><i data-feather="circle"></i><span
-                                        class="menu-item text-truncate" data-i18n="Shop"> Listing</span></a>
+                            <li><a class="d-flex align-items-center {{ Request::routeIs('admin.faqs.create') ? 'active' : '' }} "
+                                    href="{{ route('admin.faqs.create') }}"><i data-feather="circle"></i><span
+                                        class="menu-item text-truncate" data-i18n="Shop"> Add Faq</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li
+                        class=" nav-item {{ Request::routeIs('admin.helps.index', 'admin.helps.create', 'admin.helps.show', 'admin.helps.edit', 'admin.helps.appraisals', 'admin.helps.loans', 'admin.helps.salaries') ? 'has-sub open' : '' }} ">
+                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-circle-question"></i><span
+                                class="menu-title text-truncate" data-i18n="Invoice">Helps</span></a>
+                        <ul class="menu-content">
+                            <li>
+                                <a class="d-flex align-items-center {{ Request::routeIs('admin.helps.index', 'admin.helps.show', 'admin.helps.edit', 'admin.helps.appraisals', 'admin.helps.loans', 'admin.helps.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                                    href="{{ route('admin.helps.index') }}">
+                                    <i data-feather="circle"></i>
+                                    <span class="menu-item text-truncate" data-i18n="Shop">List Help
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li><a class="d-flex align-items-center {{ Request::routeIs('admin.helps.create') ? 'active' : '' }} "
+                                    href="{{ route('admin.helps.create') }}"><i data-feather="circle"></i><span
+                                        class="menu-item text-truncate" data-i18n="Shop"> Add Help</span></a>
                             </li>
                         </ul>
                     </li>
@@ -365,7 +385,7 @@
                     </li>
 
                 </ul>
-            </li>  -->
+            </li> 
         </ul>
     </div>
 

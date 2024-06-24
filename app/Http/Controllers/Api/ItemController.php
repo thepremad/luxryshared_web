@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDayPriceRequests;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Resources\GetProductResource;
 use App\Models\Item;
@@ -55,5 +56,15 @@ class ItemController extends Controller
         Log::error($th);
         return response()->json(['error'=> "Something went wrong. Please try again later."],500);
     }
-    }
+}
+public function dayPrice(StoreDayPriceRequests $request){
+  $day_price = Item::where('rrp_price',$request->price)->sum('suggested_day_price');
+  $count = Item::where('rrp_price',$request->price)->count();
+  if ($count <= '1') {
+      $dayPrice = ($request->price*3)/100;
+  }else{
+      $dayPrice = $day_price/$count;
+  }
+  return response()->json(['day_price' => $dayPrice], 200);
+}
 }
