@@ -34,7 +34,7 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('sizes',SizeController::class);
     Route::resource('countries',CountryController::class);
     Route::resource('cities',CityController::class);
-    Route::resource('faq',FaqController::class);
+    Route::resource('faqs',FaqController::class);
     Route::resource('user',UserController::class);
     Route::resource('brands',BrandController::class);
     Route::resource('menus',MenuController::class);
@@ -45,6 +45,7 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('inquiries',InquiryController::class);
     Route::resource('blogs',BlogController::class);
     Route::resource('presses',PressController::class);
+    Route::resource('helps',HelpController::class);
     Route::resource('terms_and_condetions',TermsAndConditionsController::class);
 
     Route::controller(ProductController::class)->group(function () {

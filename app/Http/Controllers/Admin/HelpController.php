@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
-use App\Http\Requests\StoreFaqRequest;
+use App\Http\Requests\StoreHelpRequest;
 use App\Models\Category;
-use App\Models\Faq;
+use App\Models\Help;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class FaqController extends Controller
+class HelpController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,19 +18,19 @@ class FaqController extends Controller
     {
         try {
             $query_search = $request->input('search');
-            $faqs = Faq::with('category')->when($query_search, function ($query) use ($query_search) {
+            $helps = Help::with('category')->when($query_search, function ($query) use ($query_search) {
                 $query->where('title', 'like', '%' . $query_search . '%');
             })
             ->latest()->paginate(10);
-            $faqs->getCollection()->transform(function ($item) {
+            $helps->getCollection()->transform(function ($item) {
                 $item->newDate = Carbon::parse($item->date)->format('d-m-Y');
                 return $item;
             });
 
             if ($request->ajax()) {
-                return view('backend.faqs.pagination', compact('faqs'))->render();
+                return view('backend.helps.pagination', compact('helps'))->render();
             }
-            return view('backend.faqs.index',compact('faqs'));
+            return view('backend.helps.index',compact('helps'));
         } catch (\Throwable $th) {
             \Log::error('Admin login error: ' . $th->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
@@ -43,21 +42,21 @@ class FaqController extends Controller
      */
     public function create()
     {
-        $faqs = new Faq();
+        $helps = new Help();
         $categories = Category::get();
-        return view('backend.faqs.create',compact('faqs','categories'));
+        return view('backend.helps.create',compact('helps','categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFaqRequest $request)
+    public function store(StoreHelpRequest $request)
     {
         try {
-            $faqs = Faq::firstOrNew(['id' => $request->id]);
-            $faqs->fill($request->all());
-            $faqs->save();
-            return response()->json(['status' => 200, 'message' => ' Faq Create Successfully ']);
+            $helps = Help::firstOrNew(['id' => $request->id]);
+            $helps->fill($request->all());
+            $helps->save();
+            return response()->json(['status' => 200, 'message' => ' Help Create Successfully ']);
         } catch (\Exception $exception) {
             \Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
@@ -78,8 +77,8 @@ class FaqController extends Controller
     public function edit(string $id)
     {
         $categories = Category::get();
-        $faqs = Faq::findOrFail($id);
-        return view('backend.faqs.create',compact('faqs','categories'));
+        $helps = Help::findOrFail($id);
+        return view('backend.helps.create',compact('helps','categories'));
     }
 
     /**
@@ -96,8 +95,8 @@ class FaqController extends Controller
     public function destroy(string $id)
     {
         try {
-            $faqs = Faq::findOrFail($id)->delete();
-            return response()->json(['status' => 200, 'message' => 'Delete Faq Successfully login!']);
+            $helps = Help::findOrFail($id)->delete();
+            return response()->json(['status' => 200, 'message' => 'Delete Help Successfully login!']);
         } catch (\Exception $exception) {
             \Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);

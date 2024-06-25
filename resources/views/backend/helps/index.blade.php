@@ -23,13 +23,13 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Sub Category</h2>
+                        <h2 class="content-header-title float-start mb-0">Help</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{  route('admin.dashboard') }}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item"><a
-                                        href="{{ route('admin.subcategories.index') }}">SubCategories</a>
+                                        href="{{ route('admin.helps.index') }}">Faq</a>
                                 </li>
                                 <li class="breadcrumb-item active">List
                                 </li>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="col-md-3" style="text-align: end">
-                <a href="{{ route('admin.subcategories.create') }}"
+                <a href="{{ route('admin.helps.create') }}"
                     class=" btn btn-primary btn-gradient round">Create</a>
             </div>
         </div>
@@ -62,34 +62,21 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Category</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Cateogry Name</th>
-                                            <th scope="col">Status</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Text</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="myTable">
                                         @php  $i = 1; @endphp
 
-                                        @foreach ($sub_categories as $item)
+                                        @foreach ($helps as $item)
 
                                             <tr>
                                                 <td>{{$i }}</td>
-                                                <td>
-                                                    <img src="{{ url('public/uploads/subcategory/' . $item->image)}}"
-                                                        alt="Toolbar svg" width="50px" />
-
-                                                </td>
-                                                <td>{{ $item->name }}</td>
-                                                <td>{{ $item->cateogry->name ?? '' }}</td>
-
-                                                <td>
-                                                @if($item->status == '1') 
-                                                    <span style="color:green">Active</span> 
-                                                @else 
-                                                    <span style="color:red">Inactive</span> 
-                                                @endif
-                                                </td>
+                                                <td>{{ $item->category->name }} </td>
+                                                <td>{{ $item->title }}</td>
+                                                <td>{!! $item->text !!}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button"
@@ -99,7 +86,7 @@
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
                                                             <a class="dropdown-item"
-                                                                href="{{route('admin.subcategories.edit', $item->id)}}">
+                                                                href="{{route('admin.helps.edit', $item->id)}}">
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
@@ -121,7 +108,7 @@
 
                                     </tbody>
                                 </table>
-                                @include('backend._pagination', ['data' => $sub_categories])
+                                @include('backend._pagination', ['data' => $helps])
                             </div>
 
                         </div>
@@ -142,9 +129,9 @@
 <script>
     $(document).on('click', '.delete-record', function () {
         var associateId = $(this).data('id');
-        if (confirm('Are you sure you want to delete this Subcategories ?')) {
+        if (confirm('Are you sure you want to delete this Help ?')) {
             $.ajax({
-                url: "{{ url('admin/subcategories') }}/" + associateId, // Use the url() function
+                url: "{{ url('admin/helps') }}/" + associateId, // Use the url() function
                 type: 'DELETE',
                 data: {
                     '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
@@ -153,7 +140,7 @@
                     if (res.status === 200) {
                         toastr.success(res.message);
                         window.location.href =
-                            "{{ route('admin.subcategories.index') }}";
+                            "{{ route('admin.helps.index') }}";
                     }
                 },
                 error: function (xhr) {
@@ -170,7 +157,7 @@
         });
         function fetch_data(query = '') {
             $.ajax({
-                url: "{{ route('admin.subcategories.index') }}",
+                url: "{{ route('admin.helps.index') }}",
                 method: 'GET',
                 data: { search: query },
                 dataType: 'html',
