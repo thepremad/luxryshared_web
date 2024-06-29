@@ -107,7 +107,7 @@
             </li>
             <li
                 class=" nav-item {{ Request::routeIs('admin.comunities.index', 'admin.comunities.create', 'admin.comunities.show', 'admin.comunities.edit', 'admin.comunities.appraisals', 'admin.comunities.loans', 'admin.comunities.salaries') ? 'has-sub open' : '' }} ">
-                <a class="d-flex align-items-center" href="#"><i class="fa-regular fa-copyright"></i><span
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-group-arrows-rotate"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Comunity Master</span></a>
                 <ul class="menu-content">
                     <li>
@@ -164,7 +164,7 @@
             </li>
             <li
                 class=" nav-item {{ Request::routeIs('admin.inquiries.index', 'admin.inquiries.create', 'admin.inquiries.show', 'admin.inquiries.edit', 'admin.inquiries.appraisals', 'admin.inquiries.loans', 'admin.inquiries.salaries') ? 'has-sub open' : '' }} ">
-                <a class="d-flex align-items-center" href="#"><i class="fa-regular fa-copyright"></i><span
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-book-open-reader"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Inquiry </span></a>
                 <ul class="menu-content">
                     <li>
@@ -379,7 +379,7 @@
                     </li>
                     <li
                     class="d-flex align-items-center {{ Request::routeIs('admin.deliveries.delivry') && !request()->input('archive') ? 'active' : '' }} ">
-                        <a class="d-flex align-items-center" href="{{route('admin.deliveries.delivry')}}"><i class="fa-solid fa-list"></i><span
+                        <a class="d-flex align-items-center" href="{{route('admin.deliveries.delivry')}}"><i class="fa-solid fa-truck" ></i><span
                                 class="menu-title text-truncate" data-i18n="Invoice">Delivery</span></a>
 
                     </li>
