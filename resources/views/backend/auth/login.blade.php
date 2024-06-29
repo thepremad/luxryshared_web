@@ -84,12 +84,12 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary w-100" tabindex="5">Login</button>
-                                    {!! Form::close() !!}
-
+                                    
+                                </div>
                             </div>
+                            <!-- /Register basic -->
                         </div>
-                        <!-- /Register basic -->
-                    </div>
+                        {!! Form::close() !!}
                 </div>
 
             </div>
