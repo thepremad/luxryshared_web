@@ -18,7 +18,9 @@
                                 <input type="number" class="otp__digit" id="otp_2" maxlength="1" required>
                                 <input type="number" class="otp__digit" id="otp_3" maxlength="1" required>
                                 <input type="number" class="otp__digit" id="otp_4" maxlength="1" required>
-                            </div>                            
+                            </div>  
+                            <span class="mt-2 text-danger validation-class" id="otp-error"></span>
+                         
                         </div>
                         <br>
                         <br>
@@ -101,8 +103,8 @@
                         }
                         displayErrors(errors);
                     } else {
-                        toastr.error(xhr.message);
-                        $('#error').show().html(xhr.message);
+                        toastr.error(xhr.otp);
+                        $('#error').show().html(xhr.otp);
                     }
                 }
             });

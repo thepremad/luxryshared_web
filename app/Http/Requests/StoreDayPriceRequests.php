@@ -23,7 +23,7 @@ class StoreDayPriceRequests extends FormRequest
     public function rules(): array
     {
         return [
-            'price' => 'required'
+            'price' => 'required|numeric|min:500'
         ];
     }
     protected function failedValidation(Validator $validator)
