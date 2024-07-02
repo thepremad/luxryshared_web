@@ -57,7 +57,6 @@
     </div>
 
 </section>
-
 <script>
     function passwordShow() {
     var passwordInput = document.getElementById('password-input');

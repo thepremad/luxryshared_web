@@ -21,10 +21,10 @@ class SugestedDayPrice extends JsonResource
         $monthPrice = $dayPrice*30;
         $discountedPrice30 = $monthPrice * (1 - 0.60);
         return [
-            'price' => $dayPrice,
-            'fourDaysPrice' => $fourDayPrice,
-            'sevenToTwentyNineDayPrice' => round($discountedPrice,2),
-            'thirtyPlusDayPrice' => round($discountedPrice30,2),
+            'price' =>  number_format($dayPrice, 2),
+            'fourDaysPrice' => number_format($fourDayPrice, 2),
+            'sevenToTwentyNineDayPrice' => number_format($discountedPrice, 2),
+            'thirtyPlusDayPrice' => number_format($discountedPrice30, 2),
         ];
     }
 }
