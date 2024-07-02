@@ -33,7 +33,7 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_SECRET_KEY'),
-        'redirect' => 'http://localhost/luxury-shared/callback',
+        'redirect' => 'https://testing.13198102.com/lxryshared/callback',
     ],
 
 ];
