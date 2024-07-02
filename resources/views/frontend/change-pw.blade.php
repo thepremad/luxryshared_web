@@ -74,14 +74,16 @@
 </script>
 <script>
     $(document).ready(function () {
-        
-
         $('#forgetPassword').on('submit', function (e) {
             e.preventDefault();
             var $form = $(this);
             var url = "{{ url('api/create_password') }}";
             var formData = new FormData($form[0]);
             $('.validation-class').html('');
+            let newPass = $('#new-password').val();
+            let confPass = $('#confirm-password').val();
+             if (newPass == confPass) {
+                
             $.ajax({
                 url: url,
                 type: 'POST',
@@ -116,6 +118,11 @@
                     }
                 }
             });
+        }else{
+            toastr.error('Password and conform password not match');
+
+        }
+
         });
     });
 </script>
