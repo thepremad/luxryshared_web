@@ -655,6 +655,7 @@ button.submitbtn-login {
     color: #fff;
     border: none;
     font-weight: 500;
+    padding: 20px 16px;
 }
 
 /* rigester style */
@@ -676,7 +677,7 @@ button.submitbtn-login {
 .rigester-sec a {
     text-decoration: none;
     color: rgba(88, 97, 102, 1);
-    font-size: 24px;
+    font-size: 16px;
 }
 .rigester-con span {
     color: red;

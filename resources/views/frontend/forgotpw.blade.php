@@ -41,5 +41,51 @@
         validIcon.style.display = re.test(email) ? 'block' : 'none';
     });
 </script>
+<script>
 
+        $('#forgetPassword').on('submit', function (e) {
+            e.preventDefault();
+            var $form = $(this);
+            var url = "{{ url('api/forgot_password') }}";
+            var formData = new FormData($form[0]);
+            $('.validation-class').html('');
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    $('.spinner-loader').css('display', 'block');
+                },
+                success: function (res) {
+                    let userId = res.user_id;
+                    toastr.success(res.message);
+                    window.location.href = "{{url('code-verify')}}" + '/' + userId;
+                },
+                error: function (xhr) {
+    $('.spinner-loader').css('display', 'none');
+    if (xhr.status === 422) {
+        $('.validation-class').text('');
+        var errors = xhr.responseJSON.error || xhr.responseJSON.errors || {};
+
+        function displayErrors(errors, prefix = '') {
+            $.each(errors, function (key, value) {
+                if (typeof value === 'object' && value !== null) {
+                    displayErrors(value, prefix + key + '.');
+                } else {
+                    $("#" + prefix + key + "-error").text(Array.isArray(value) ? value.join(', ') : value);
+                }
+            });
+        }
+        displayErrors(errors);
+    } else {
+        toastr.error(xhr.responseJSON.error || xhr.message);
+        $('#error').show().html(xhr.responseJSON.error || xhr.message);
+    }
+}
+            });
+        });
+    
+</script>
 @endsection
