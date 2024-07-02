@@ -44,7 +44,7 @@ class ItemController extends Controller
     public function product(Request $request){
        try {
         if ($request->categoryId == '0') {
-            $products = Item::latest()->get();
+            $products = Item::where('status',Item::$active)->latest()->get();
         }else{
             $products = Item::where('category_id',$request->categoryId)->where('status',Item::$active)->get();
         }
@@ -65,6 +65,7 @@ public function dayPrice(StoreDayPriceRequests $request){
   }else{
       $dayPrice = $day_price/$count;
   }
-  return response()->json(['day_price' => $dayPrice], 200);
+   $data =  number_format($dayPrice, 2);
+  return response()->json(['day_price' => $data], 200);
 }
 }

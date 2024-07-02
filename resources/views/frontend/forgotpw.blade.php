@@ -65,25 +65,26 @@
                     window.location.href = "{{url('code-verify')}}" + '/' + userId;
                 },
                 error: function (xhr) {
-                    $('.spinner-loader').css('display', 'none');
-                    if (xhr.status === 422) {
-                        $('.validation-class').text('');
-                        var errors = xhr.responseJSON.error;
-                        function displayErrors(errors, prefix = '') {
-                            $.each(errors, function (key, value) {
-                                if (typeof value === 'object' && value !== null) {
-                                    displayErrors(value, prefix + key + '.');
-                                } else {
-                                    $("#" + prefix + key + "-error").text(Array.isArray(value) ? value.join(', ') : value);
-                                }
-                            });
-                        }
-                        displayErrors(errors);
-                    } else {
-                        toastr.error(xhr.message);
-                        $('#error').show().html(xhr.message);
-                    }
+    $('.spinner-loader').css('display', 'none');
+    if (xhr.status === 422) {
+        $('.validation-class').text('');
+        var errors = xhr.responseJSON.error || xhr.responseJSON.errors || {};
+
+        function displayErrors(errors, prefix = '') {
+            $.each(errors, function (key, value) {
+                if (typeof value === 'object' && value !== null) {
+                    displayErrors(value, prefix + key + '.');
+                } else {
+                    $("#" + prefix + key + "-error").text(Array.isArray(value) ? value.join(', ') : value);
                 }
+            });
+        }
+        displayErrors(errors);
+    } else {
+        toastr.error(xhr.responseJSON.error || xhr.message);
+        $('#error').show().html(xhr.responseJSON.error || xhr.message);
+    }
+}
             });
         });
     });
