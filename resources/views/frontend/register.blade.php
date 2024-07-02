@@ -24,7 +24,7 @@
                         <div class="mb-3">
                             <label for="basic-url" class="form-label">Email Address</label> <span>*</span>
                             <div class="input-group">
-                                <input type="email" name="email" placeholder="Enter your Email" class="form-control" id="basic-url"
+                                <input type="email" name="email" value="{{$user->email}}" placeholder="Enter your Email" class="form-control" id="basic-url"
                                     aria-describedby="basic-addon3 basic-addon4">
                             </div>
                             <span class="text-danger validation-class" id="email-error"></span>
@@ -33,7 +33,7 @@
                         <div class="mb-3">
                             <label for="basic-url" class="form-label">First Name</label> <span>*</span>
                             <div class="input-group">
-                                <input type="text" name="first_name" placeholder="First Name" class="form-control"
+                                <input type="text" name="first_name" value="{{$firstName}}" placeholder="First Name" class="form-control"
                                     id="basic-url" aria-describedby="basic-addon3 basic-addon4">
                             </div>
                             <span class="text-danger validation-class" id="first_name-error"></span>
@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <label for="basic-url" class="form-label">Last Name</label> <span>*</span>
                             <div class="input-group">
-                                <input type="text" placeholder="Last Name" name="last_name" class="form-control"
+                                <input type="text" placeholder="Last Name" value="{{$lastName}}" name="last_name" class="form-control"
                                     id="basic-url" aria-describedby="basic-addon3 basic-addon4">
                             </div>
                             <span class="text-danger validation-class" id="last_name-error"></span>
@@ -77,7 +77,7 @@
                         <div class="mb-3">
                             <label for="basic-url" class="form-label">Address</label> <span>*</span>
                             <div class="input-group">
-                                <input type="text" name="address" placeholder="Mobile Number" class="form-control"
+                                <input type="text" name="address" placeholder="Address" class="form-control"
                                     id="basic-url" aria-describedby="basic-addon3 basic-addon4">
                             </div>
                             <span class="text-danger validation-class" id="address-error"></span>
@@ -107,13 +107,13 @@
                         </div>
                         <div class="chackbox-rigester">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <input required class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     I AGREE TO THE TERMS OF SERVICES AND PRIVACY POLICY.
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input required class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
                                 <label class="form-check-label" for="flexCheckChecked">
                                     I AGREE TO RECEIVE MARKETING EMAILS FROM LXRY.
                                 </label>
@@ -123,18 +123,18 @@
                             <button type="submit">REGISTER</button>
                             <p>OR REGISTER USING</p>
                         </div>
-                        <div class="rigester-btnfacegoog">
-                            <button>
-                                <img src="{{ asset('frontend/images/google-logo.png') }}" alt="">
-                                <span>Google</span>
-                            </button>
-                            <button>
-                                <img src="{{ asset('frontend/images/facebookicon.png') }}" alt="">
-                                <span2>Facebook</span2>
-                            </button>
-                        </div>
                     </div>
                 </form>
+                <div class="rigester-btnfacegoog">
+                <a href="{{route('google_register')}}"><button>
+                        <img src="{{ asset('frontend/images/google-logo.png') }}" alt="">
+                        <span>Google</span>
+                    </button></a>
+                    <button>
+                        <img src="{{ asset('frontend/images/facebookicon.png') }}" alt="">
+                        <span2>Facebook</span2>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

@@ -46,11 +46,11 @@
                             <a href="{{url('forgotpw')}}">Forgot Password</a>    
                         </div>
                         <button class="submitbtn-login" style="submit">Sign in</button><br>
-                        <button>
-                            <img src="{{ asset('frontend/images/google-logo.png') }}" alt="">
-                            Google
-                        </button>                                         
                     </form>
+                    <a href="{{route('google_login')}}"><button>
+                        <img src="{{ asset('frontend/images/google-logo.png') }}" alt="">
+                        Google
+                    </button>  </a>                                       
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                 },
                 success: function (res) {
                     $('.spinner-loader').css('display', 'none');
-                    toastr.success('Lgin Successfully !');
+                    toastr.success('Login Successfully !');
                     
                 },
                 error: function (xhr) {
@@ -123,6 +123,9 @@
                             });
                         }
                         displayErrors(errors);
+                    }else if(xhr.status === 500){
+                    toastr.warning('Admin unable to login!');
+
                     } else {
                         toastr.error(xhr.message);
                         $('#error').show().html(xhr.message);
