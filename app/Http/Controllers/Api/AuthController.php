@@ -44,13 +44,18 @@ class AuthController extends Controller
                 'password' => $request->password
             ];
             $user = User::where('email', $request->email)->first();
-            if (auth()->attempt($credentials)) {
-                $token = auth()->user()->createToken('Token')->accessToken;
-                return response()->json(['access_token' => $token], 200);
-            } elseif ($user) {
-                return response()->json(['error' => ['password' => "Incorrect password entered. Please try again."]], 422);
-            } else {
-                return response()->json(['error' => ['email' => "User does not exist! Please Register"]], 422);
+            if ($request->email != 'admin@gmail.com') {
+                if (auth()->attempt($credentials)) {
+                    $token = auth()->user()->createToken('Token')->accessToken;
+                    return response()->json(['access_token' => $token], 200);
+                } elseif ($user) {
+                    return response()->json(['error' => ['password' => "Incorrect password entered. Please try again."]], 422);
+                } else {
+                    return response()->json(['error' => ['email' => "User does not exist! Please Register"]], 422);
+                }
+            }else{
+                return response()->json(['message' => 'admin unable to login'],500);
+
             }
         } catch (\Throwable $th) {
             Log::error('api login post : exception');

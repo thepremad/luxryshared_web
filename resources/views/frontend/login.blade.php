@@ -105,7 +105,7 @@
                 },
                 success: function (res) {
                     $('.spinner-loader').css('display', 'none');
-                    toastr.success('Lgin Successfully !');
+                    toastr.success('Login Successfully !');
                     
                 },
                 error: function (xhr) {
@@ -123,6 +123,9 @@
                             });
                         }
                         displayErrors(errors);
+                    }else if(xhr.status === 500){
+                    toastr.warning('Admin unable to login!');
+
                     } else {
                         toastr.error(xhr.message);
                         $('#error').show().html(xhr.message);
