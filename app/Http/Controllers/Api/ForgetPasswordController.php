@@ -26,7 +26,7 @@ class ForgetPasswordController extends Controller
                 $user->save();
                return response()->json(['message' => "OTP sent successfully to your email",'user_id' =>  $user->id], 200);
             }else{
-               return response()->json(['error' => ['error' => "The entered email is not registered. Please register first"]], 422);
+               return response()->json(['error' => ['email' => "The entered email is not registered"]], 422);
             }
         } catch (\Throwable $th) {
             Log::error('api forgotPassword post : exception');
