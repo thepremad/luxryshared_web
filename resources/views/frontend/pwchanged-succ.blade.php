@@ -17,7 +17,7 @@
                         <strong>Your Password Has Changed Successfully!</strong>
                     </div>
                     <div class="changepw-inputs">
-                        <button><a href="{{url('login')}}" style="color:white">BACK TO LOGIN</a></button>
+                        <button>bACK TO LOGIN</button>
                     </div>
                 </div>
             </div>

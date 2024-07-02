@@ -1,16 +1,6 @@
 /.phpunit.cache
 /node_modules
 /public/build
-/public/uploads/category
-/public/uploads/subcategory  
-/public/uploads/occasion  
-/public/uploads/comunities  
-/public/uploads/blogs  
-/public/uploads/presses  
-/public/uploads/item
-/public/uploads/brand
-/public/uploads/image
-/public/uploads/profile
 /public/hot
 /public/storage
 /storage/*.key
@@ -18,6 +8,8 @@
 .env
 .env.backup
 .env.production
+.phpactor.json
+.phpunit.result.cache
 Homestead.json
 Homestead.yaml
 auth.json

@@ -2,26 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-
-// Route::get('/home', function () {
-//     return view('frontend.index');
-// });
+Route::get('/', function () {
+    return view('frontend.index');
+});
 Route::get('/login', function () {
     return view('frontend.login');
-});
-Route::get('/', function () {
-    return view('frontend.register');
 });
 Route::get('/register', function () {
     return view('frontend.register');
@@ -38,40 +23,59 @@ Route::get('/list-itemtwo', function () {
 Route::get('/list-itemsucc', function () {
     return view('frontend.list-itemsucc');
 });
-Route::get('/code-verify/{id}', function ($id) {
-    return view('frontend.code-verify', compact('id'));
+Route::get('/cong-screen', function () {
+    return view('frontend.cong-screen');
 });
-Route::get('/change-pw/{id}', function ($id) {
-    return view('frontend.change-pw', compact('id'));
+Route::get('/editprofile-dashboard', function () {
+    return view('frontend.editprofile-dashboard');
+});
+Route::get('/editptwo-dashbord', function () {
+    return view('frontend.editptwo-dashbord');
+});
+Route::get('/dashbord-wishlist', function () {
+    return view('frontend.dashbord-wishlist');
+});
+Route::get('/lending', function () {
+    return view('frontend.lending');
+});
+Route::get('/renting', function () {
+    return view('frontend.renting');
+});
+Route::get('/category', function () {
+    return view('frontend.category-page');
+});
+Route::get('/product-detail', function () {
+    return view('frontend.product-det');
+});
+Route::get('/cartpage', function () {
+    return view('frontend.cartpage');
+});
+Route::get('/order-confirmed', function () {
+    return view('frontend.order-confirmed');
+});
+Route::get('/checkout', function () {
+    return view('frontend.checkout');
+});
+Route::get('/empty-cart', function () {
+    return view('frontend.empty-cart');
+});
+Route::get('/about', function () {
+    return view('frontend.about');
+});
+Route::get('/wishlist-page', function () {
+    return view('frontend.wishlist-page');
+});
+Route::get('/wishlist-empty', function () {
+    return view('frontend.wishlist-empty');
+});
+// wishlist-empty
+
+Route::get('/code-verify', function () {
+    return view('frontend.code-verify');
+});
+Route::get('/change-pw', function () {
+    return view('frontend.change-pw');
 });
 Route::get('/pwchanged-succ', function () {
     return view('frontend.pwchanged-succ');
-});
-Route::get('/register-success', function () {
-    return view('frontend.cong-screen');
-});
-
-Route::get('/run-migrations', function () {
-    try {
-        Artisan::call('migrate');
-        return 'Migrations executed successfully';
-    } catch (\Exception $e) {
-        return 'Error: ' . $e->getMessage();
-    }
-});
-Route::get('/route-cache', function () {
-    try {
-        Artisan::call('route:cache');
-        return ' routes cached successfully';
-    } catch (\Exception $e) {
-        return 'Error: ' . $e->getMessage();
-    }
-});
-Route::get('/optimize-clear', function () {
-    try {
-        Artisan::call('optimize:clear');
-        return ' optimize clear successfully';
-    } catch (\Exception $e) {
-        return 'Error: ' . $e->getMessage();
-    }
 });

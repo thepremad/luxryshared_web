@@ -37,16 +37,16 @@
                             <input type="text" class="form-control" placeholder="AED" aria-label="Server">
                         </div>
                         <div class="col-md-6 mb-5">
-                            <label for="basic-url" class="form-label">Day Price</label><br>
-                            <input type="text" class="form-control" placeholder="AED" aria-label="Server">
+                            <label for="basic-url" class="form-label">Suggested Day Price</label><br>
+                            <input type="text" class="form-control" placeholder="Suggested Day Price" aria-label="Server">
                         </div>
-                        <div class="col-md-6 mb-5">
+                        {{-- <div class="col-md-6 mb-5">
                             <div class="question-bg question-bgtwo">
                                 <label for="basic-url" class="form-label">Suggested Price</label><br>
                                 <input type="text" class="form-control" placeholder="AED" aria-label="Server">
                                 <img src="{{ asset('frontend/images/question-icon.png') }}" alt="">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6 mb-5">
                             <div class="question-bg question-bgtwo">
                                 <label for="basic-url" class="form-label">Security Deposit (optional)</label><br>

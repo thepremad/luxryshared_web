@@ -6,11 +6,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,18 +20,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'first_name',
-        'last_name',
-        'number',
-        'refer_code',
-        'address',
-        'id_image',
-        'otp',
-        'profile',
-        'facebook',
-        'instagram',
-        'twitter',
-        'tiktok',
     ];
 
     /**
@@ -46,14 +33,15 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * Get the attributes that should be cast.
      *
-     * @var array<string, string>
+     * @return array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-    static $pending = 0;
-    static $approved = 1;
-    static $rejected = 2;
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
 }

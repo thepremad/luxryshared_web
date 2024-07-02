@@ -14,14 +14,13 @@
                 
                 <div class="login-con forgotpw-con">
                     <strong>Forgot Password</strong>
-                    <form action="" id="forgetPassword">
+                    <form action="">
                         <div class="mb-3">
                             <label for="basic-url" class="form-label">Your email</label>
                             <div class="input-group emailcont-bg">
-                                <input type="email" name="email" class="form-control" placeholder="Enter your Email" aria-label="Enter your email" aria-describedby="basic-addon1"  id="emailInput">
-                                
-                                </div>
-                            <span class="text-danger validation-class" id="email-error"></span>
+                                <input type="email" class="form-control" placeholder="Enter your Email" aria-label="Enter your email" aria-describedby="basic-addon1" required id="emailInput">
+                                <span class="icon-right" id="validIcon">&#10003;</span>
+                            </div>
                         </div>
                         <button type="submit">
                             SEND CODE
@@ -31,7 +30,9 @@
             </div>
         </div>
     </div>
+
 </section>
+
 <script>
     document.getElementById('emailInput').addEventListener('input', function() {
         const email = this.value;
@@ -40,52 +41,5 @@
         validIcon.style.display = re.test(email) ? 'block' : 'none';
     });
 </script>
-<script>
-    $(document).ready(function () {
-        
 
-        $('#forgetPassword').on('submit', function (e) {
-            e.preventDefault();
-            var $form = $(this);
-            var url = "{{ url('api/forgot_password') }}";
-            var formData = new FormData($form[0]);
-            $('.validation-class').html('');
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                beforeSend: function () {
-                    $('.spinner-loader').css('display', 'block');
-                },
-                success: function (res) {
-                    let userId = res.user_id;
-                    toastr.success(res.message);
-                    window.location.href = "{{url('code-verify')}}" + '/' + userId;
-                },
-                error: function (xhr) {
-                    $('.spinner-loader').css('display', 'none');
-                    if (xhr.status === 422) {
-                        $('.validation-class').text('');
-                        var errors = xhr.responseJSON.error;
-                        function displayErrors(errors, prefix = '') {
-                            $.each(errors, function (key, value) {
-                                if (typeof value === 'object' && value !== null) {
-                                    displayErrors(value, prefix + key + '.');
-                                } else {
-                                    $("#" + prefix + key + "-error").text(Array.isArray(value) ? value.join(', ') : value);
-                                }
-                            });
-                        }
-                        displayErrors(errors);
-                    } else {
-                        toastr.error(xhr.message);
-                        $('#error').show().html(xhr.message);
-                    }
-                }
-            });
-        });
-    });
-</script>
 @endsection

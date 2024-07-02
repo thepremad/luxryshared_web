@@ -5,7 +5,7 @@
         <div class="container">
             <div class="footer-sec">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-lg-3 col-md-6">
                         <div class="footer-one">
                             <h6>Sign up to our newsletter</h6>
                             <p>Sign up to our newsletter and receive 
@@ -18,7 +18,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-lg-2 col-md-3">
                         <div class="footer-two">
                             <h6>Your Community</h6>
                             <ul>
@@ -67,7 +67,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-lg-2 col-md-3">
                         <div class="footer-two footer-three">
                             <h6>Customer Service</h6>
                             <ul>
@@ -89,7 +89,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-lg-2 col-md-6">
                         <div class="footer-two footer-four">
                             <h6>Legal</h6>
                             <ul>
@@ -106,7 +106,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-lg-2 col-md-6">
                         <div class="footer-five">
                             <h6>Keep Sharing</h6>
                             <ul>
