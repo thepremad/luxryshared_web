@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +23,16 @@ Route::get('/login', function () {
     return view('frontend.login');
 });
 Route::get('/', function () {
-    return view('frontend.register');
+    $user = new User();
+    $firstName = '';
+    $lastName = '';
+    return view('frontend.register', compact('user', 'firstName', 'lastName'));
 });
 Route::get('/register', function () {
-    return view('frontend.register');
+    $user = new User();
+    $firstName = '';
+    $lastName = '';
+    return view('frontend.register', compact('user', 'firstName', 'lastName'));
 });
 Route::get('/forgotpw', function () {
     return view('frontend.forgotpw');
@@ -47,6 +55,28 @@ Route::get('/change-pw/{id}', function ($id) {
 Route::get('/pwchanged-succ', function () {
     return view('frontend.pwchanged-succ');
 });
+
+Route::get('/google-login', function () {
+    return Socialite::driver('google')->redirect();
+})->name('google_login');
+
+Route::get('/google-register', function () {
+    return Socialite::driver('google')->redirect();
+})->name('google_register');
+
+Route::get('/callback', function () {
+    $user = Socialite::driver('google')->user();
+    $nameParts = explode(' ', $user->name);
+    $firstName = $nameParts[0];
+    $lastName = isset($nameParts[1]) ? $nameParts[1] : '';
+    $check_user = User::where('email', $user->email)->first();
+    if ($check_user) {
+        return view('frontend.cong-screen');
+    } else {
+        return view('frontend.register', compact('user', 'firstName', 'lastName'));
+    }
+})->name('google_register_callback');
+
 Route::get('/register-success', function () {
     return view('frontend.cong-screen');
 });

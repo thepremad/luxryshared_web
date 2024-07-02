@@ -36,7 +36,7 @@ class StoreItemRequest extends FormRequest
             'image_3' => 'required',
             'image_4' => 'required',
             'image_description' => 'required',
-            'rrp_price' => 'required',
+            'rrp_price' => 'required|numeric|min:500',
         ];
         if ($this->buy == 'true') {
             $rules['buy_price'] = 'required';

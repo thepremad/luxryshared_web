@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('items', function (Blueprint $table) {
             $table->double('buy_price')->nullable()->change();
+            $table->double('sucurity_deposit')->nullable()->change();
             
         });
     }
@@ -23,7 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('items', function (Blueprint $table) {
-            $table->double('buy_price')->change();
+            $table->double('buy_price')->nullable()->change();
+            $table->double('sucurity_deposit')->nullable()->change();
+
         });
     }
 };
