@@ -5,9 +5,21 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
+<<<<<<< HEAD
         "php": "^8.2",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9"
+=======
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^10.0",
+        "laravel/passport": "^11.8",
+        "laravel/sanctum": "^3.2",
+        "laravel/socialite": "^5.15",
+        "laravel/tinker": "^2.8",
+        "laravelcollective/html": "^6.4",
+        "yajra/laravel-datatables-oracle": "*"
+>>>>>>> 95cc8584f547a763a5ded03d7ea32612d4da8b19
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

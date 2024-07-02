@@ -44,11 +44,11 @@
                             <a href="#">Forgot Password</a>    
                         </div>
                         <button class="submitbtn-login" style="submit">Sign in</button><br>
-                        <button>
-                            <img src="{{ asset('frontend/images/google-logo.png') }}" alt="">
-                            Google
-                        </button>                                         
                     </form>
+                    <a href="{{route('google_login')}}"><button>
+                        <img src="{{ asset('frontend/images/google-logo.png') }}" alt="">
+                        Google
+                    </button>  </a>                                       
                 </div>
             </div>
         </div>
@@ -82,7 +82,56 @@
         validIcon.style.display = re.test(email) ? 'block' : 'none';
     });
 </script>
+<script>
 
+        $('#frmLogin').on('submit', function (e) {
+            e.preventDefault();
+            var $form = $(this);
+            var url = "{{ url('api/login') }}";
+            var formData = new FormData($form[0]);
+            $('.validation-class').html('');
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    $('.spinner-loader').css('display', 'block');
+                },
+                success: function (res) {
+                    $('.spinner-loader').css('display', 'none');
+                    toastr.success('Login Successfully !');
+                    
+                },
+                error: function (xhr) {
+                    $('.spinner-loader').css('display', 'none');
+                    if (xhr.status === 422) {
+                        $('.validation-class').text('');
+                        var errors = xhr.responseJSON.error;
+                        function displayErrors(errors, prefix = '') {
+                            $.each(errors, function (key, value) {
+                                if (typeof value === 'object' && value !== null) {
+                                    displayErrors(value, prefix + key + '.');
+                                } else {
+                                    $("#" + prefix + key + "-error").text(Array.isArray(value) ? value.join(', ') : value);
+                                }
+                            });
+                        }
+                        displayErrors(errors);
+                    }else if(xhr.status === 500){
+                    toastr.warning('Admin unable to login!');
+
+                    } else {
+                        toastr.error(xhr.message);
+                        $('#error').show().html(xhr.message);
+                    }
+                }
+            });
+        });
+    
+    
+</script>
 
 
 @endsection
