@@ -29,13 +29,13 @@
         <div class="header-twosec">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 leftbtn-header">
                         <div class="header-twobtns">
                             <button>AED</button>
                             <button class="howbtn-header">HOW IT WORKS</button>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 righticon-header">
                         <div class="header-twoicons">
                             <ul>
                                 <li>
