@@ -278,6 +278,16 @@
      }
  }
  @media only screen and (max-width: 768px){
+    .header-twobtns button {
+        font-size: 12px;
+    }
+    .header-threewp .d-flex {
+        display: flex!important;
+        justify-content: flex-end;
+    }
+    .header-threewp form {
+        top: 0px;
+    }
      .about-sec p {
          text-align: justify;
      }
@@ -470,8 +480,15 @@
      div#lendingDetailsOne .accordion-body {
          padding: 20px 0;
      }
+     .form-check .form-check-input {
+        float: left;
+        margin-left: -3em;
+    }
  }
  @media only screen and (max-width: 600px){  
+    .header-threewp .d-flex {
+        margin-right: 10px;
+    }
      .item-successfullysec {
          padding: 80px 30px;
      }  
@@ -577,8 +594,11 @@
          padding-left: 12px;
      }
      button.howbtn-header {
-         padding: 6px 10px;
+         padding: 4px 10px;
      }
+     .header-onecenter {
+        margin-bottom: 0px;
+    }
      .dashbord-menus li {
          font-size: 16px;
      }
@@ -671,24 +691,39 @@
      .cartproduct-searchinputb input {
          width: 80%;
      }
-     .header-twosec .col-md-6.col-sm-8 {
+     /* .header-twosec .col-md-6.col-sm-8 {
          width: 65%;
      }
      .header-twosec .col-md-6 {
          width: 35%;
-     }
+     } */
+     .header-twobtns button {
+        padding: 4px 10px;
+    }
      .header-twoicons img {
          margin-left: 0px;
          margin-right: 8px;
      }
  }
  @media only screen and (max-width: 390px){
+    button.howbtn-header {
+        font-size: 10px;
+    }
+    .header-twobtns button {
+        font-size: 10px;
+    }
      .rigester-con {
          padding: 0 7%;
      }
      .cartproduct-searchinputb input {
          width: 79%;
      }
+     .col-md-6.leftbtn-header {
+        width: 65% !important;
+    }
+    .header-twosec .col-md-6.righticon-header {
+        width: 35% !important;
+    }
  }
  @media only screen and (max-width: 380px){
      .dashbord-menus {
@@ -696,6 +731,9 @@
      }
  }
  @media only screen and (max-width: 368px){
+    .chackbox-rigester .form-check .form-check-input {
+        margin-left: -2em;
+    }
      .login-sec {
          margin: 30px 0% 190%;
      }
