@@ -655,6 +655,7 @@ a.hidebtn-two {
     border-radius: 10px;
     padding: 12px 16px;
     margin: 0px 0 15px 11%;
+    font-size: 16px;
     border: 1.5px solid rgba(92, 89, 141, 1);
 }
 button.submitbtn-login {
@@ -767,6 +768,7 @@ button.submitbtn-login {
     padding: 10px 36px;
     background: #fff;
     width: 200px;
+    font-size: 16px !important;
 }
 .rigester-btnfacegoog {
     text-align: center;

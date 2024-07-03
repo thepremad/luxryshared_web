@@ -70,7 +70,8 @@ class AuthController extends Controller
             $user->fill($request->all());
             $user->password = \Hash::make($request->password);
             $user->save();
-            return response()->json(['message' => 'Successfully Registered'], 200);
+             $token = $user->createToken($user->name)->accessToken;
+            return response()->json(['message' => 'Successfully Registered','token'=> $token], 200);
         } catch (\Throwable $th) {
             Log::error('api signupVerification post : exception');
             Log::error($th);
