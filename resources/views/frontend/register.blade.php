@@ -107,13 +107,13 @@
                         </div>
                         <div class="chackbox-rigester">
                             <div class="form-check">
-                                <input required class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <input required class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="border-radius: 0 !important">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     I AGREE TO THE TERMS OF SERVICES AND PRIVACY POLICY.
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input required class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input required class="form-check-input" type="checkbox" value="" id="flexCheckChecked" style="border-radius: 0 !important">
                                 <label class="form-check-label" for="flexCheckChecked">
                                     I AGREE TO RECEIVE MARKETING EMAILS FROM LXRY.
                                 </label>
@@ -130,10 +130,10 @@
                         <img src="{{ asset('frontend/images/google-logo.png') }}" alt="">
                         <span>Google</span>
                     </button></a>
-                    <button>
+                    {{-- <button>
                         <img src="{{ asset('frontend/images/facebookicon.png') }}" alt="">
                         <span2>Facebook</span2>
-                    </button>
+                    </button> --}}
                 </div>
             </div>
         </div>
