@@ -105,3 +105,54 @@ Route::get('/optimize-clear', function () {
         return 'Error: ' . $e->getMessage();
     }
 });
+
+// lending
+
+Route::get('/about', function () {
+    return view('frontend.about');
+});
+Route::get('/cartpage', function () {
+    return view('frontend.cartpage');
+});
+Route::get('/about', function () {
+    return view('frontend.about');
+});
+Route::get('/category-page', function () {
+    return view('frontend.category-page');
+});
+Route::get('/checkout', function () {
+    return view('frontend.checkout');
+});
+Route::get('/dashbord-wishlist', function () {
+    return view('frontend.dashbord-wishlist');
+});
+Route::get('/editprofile-dashboard', function () {
+    return view('frontend.editprofile-dashboard');
+});
+Route::get('/editptwo-dashbord', function () {
+    return view('frontend.editptwo-dashbord');
+});
+Route::get('/empty-cart', function () {
+    return view('frontend.empty-cart');
+});
+Route::get('/lending', function () {
+    return view('frontend.lending');
+});
+Route::get('/order-confirmed', function () {
+    return view('frontend.order-confirmed');
+});
+Route::get('/order-confirmed', function () {
+    return view('frontend.order-confirmed');
+});
+Route::get('/product-det', function () {
+    return view('frontend.product-det');
+});
+Route::get('/renting', function () {
+    return view('frontend.renting');
+});
+Route::get('/wishlist-empty', function () {
+    return view('frontend.wishlist-empty');
+});
+Route::get('/wishlist-page', function () {
+    return view('frontend.wishlist-page');
+});
