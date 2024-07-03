@@ -66,7 +66,11 @@ Route::get('/google-register', function () {
 
 Route::get('/callback', function () {
    
-    $user = Socialite::driver('google')->user();
+     try {
+        $user = Socialite::driver('google')->user();
+    } catch (Exception $e) {
+        return redirect()->back()->with('error', 'Session expired, please try again.');
+    }
     $nameParts = explode(' ', $user->name);
     $firstName = $nameParts[0];
     $lastName = isset($nameParts[1]) ? $nameParts[1] : '';
@@ -74,11 +78,6 @@ Route::get('/callback', function () {
     if ($check_user) {
         return view('frontend.cong-screen');
     } else {
-        session([
-            'google_user' => $user,
-            'firstName' => $firstName,
-            'lastName' => $lastName
-        ]);
         return view('frontend.register', compact('user', 'firstName', 'lastName'));
     }
 })->name('google_register_callback');
