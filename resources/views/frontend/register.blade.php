@@ -52,7 +52,7 @@
                             <label for="basic-url" class="form-label">Password</label>
                             <div class="input-group">
                                 <input type="password" name="password" placeholder="Creat Password" class="form-control"
-                                    id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                                    id="mainPass" aria-describedby="basic-addon3 basic-addon4">
                             </div>
                             <span class="text-danger validation-class" id="password-error"></span>
 
@@ -61,7 +61,7 @@
                             <label for="basic-url" class="form-label">Confirm Password</label>
                             <div class="input-group">
                                 <input type="password" placeholder="Confirm Password" class="form-control"
-                                    id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                                    id="confPass" aria-describedby="basic-addon3 basic-addon4">
                             </div>
 
                         </div>
@@ -235,10 +235,14 @@
 
         $('#frmLogin').on('submit', function (e) {
             e.preventDefault();
+   
             var $form = $(this);
             var url = "{{ url('api/signup') }}";
             var formData = new FormData($form[0]);
             $('.validation-class').html('');
+            let password = document.getElementById('mainPass').value;
+            let confirmPassword = document.getElementById('confPass').value;
+            if (password === confirmPassword) {
             $.ajax({
                 url: url,
                 type: 'POST',
@@ -288,6 +292,10 @@
                     }
                 }
             });
+            } else {
+                toastr.error('password and conform password not match');
+                
+            }
         });
     });
 </script>
