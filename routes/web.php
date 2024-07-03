@@ -74,6 +74,11 @@ Route::get('/callback', function () {
     if ($check_user) {
         return view('frontend.cong-screen');
     } else {
+        session([
+            'google_user' => $user,
+            'firstName' => $firstName,
+            'lastName' => $lastName
+        ]);
         return view('frontend.register', compact('user', 'firstName', 'lastName'));
     }
 })->name('google_register_callback');
