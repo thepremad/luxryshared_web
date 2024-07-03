@@ -65,6 +65,7 @@ Route::get('/google-register', function () {
 })->name('google_register');
 
 Route::get('/callback', function () {
+    if(Socialite::driver('google')){
     $user = Socialite::driver('google')->user();
     $nameParts = explode(' ', $user->name);
     $firstName = $nameParts[0];
@@ -74,6 +75,12 @@ Route::get('/callback', function () {
         return view('frontend.cong-screen');
     } else {
         return view('frontend.register', compact('user', 'firstName', 'lastName'));
+    }
+    }else{
+        $user = new User();
+    $firstName = '';
+    $lastName = '';
+    return view('frontend.register', compact('user', 'firstName', 'lastName'));
     }
 })->name('google_register_callback');
 
