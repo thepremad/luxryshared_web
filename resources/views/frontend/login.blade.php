@@ -27,10 +27,10 @@
                         <div class="mb-3">
                             <label for="basic-url" class="form-label">Your email</label>
                             <div class="input-group emailcont-bg">
-                                <input type="email" name="email" class="form-control" placeholder="Enter your Email" aria-label="Enter your email" aria-describedby="basic-addon1"  id="emailInput" style="border-radius: 10px 0 0 10px !important">
-                                <span class="input-group-text" id="basic-addon1">
+                                <input type="email" name="email" class="form-control" placeholder="Enter your Email" aria-label="Enter your email" aria-describedby="basic-addon1"  id="emailInput" >
+<!--                                 <span class="input-group-text" id="basic-addon1">
                                     <i class="fa-solid fa-check"></i>
-                                </span>
+                                </span> -->
                                 <span class="icon-right" id="validIcon">&#10003;</span>
                             </div>
                             <span class="text-danger validation-class" id="email-error"></span>
