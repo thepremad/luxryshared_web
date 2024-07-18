@@ -14,7 +14,7 @@ class SugestedDayPrice extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $dayPrice = ($request->price*3)/100;
+        $dayPrice = $request->price;
         $fourDayPrice = $dayPrice*4 ;
         $weekPrice = $dayPrice * 7;
         $discountedPrice = $weekPrice * (1 - 0.35);

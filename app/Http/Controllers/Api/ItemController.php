@@ -18,6 +18,7 @@ class ItemController extends Controller
     public function addListItem(StoreItemRequest $request){
         try {
             $item = new Item();
+            $item->user_id = auth()->user()->id;
             $item->fill($request->all());
             if ($file = $request->file('mainImag')) {
                 $folder = public_path('/uploads/item');

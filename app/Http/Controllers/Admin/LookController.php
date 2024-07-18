@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreComunityRequest;
-use App\Models\Comunity;
-use App\Models\ComunityImages;
+use App\Http\Requests\StoreLookRequest;
+use App\Models\Item;
+use App\Models\Look;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
 
-class ComunityController extends Controller
+class LookController extends Controller
 {
     use FileUploadTrait;
     /**
@@ -19,14 +19,14 @@ class ComunityController extends Controller
     {
         try {
             $query_search = $request->input('search');
-            $comunities = Comunity::with('comunity_image')->when($query_search, function ($query) use ($query_search) {
-                $query->where('text', 'like', '%' . $query_search . '%');
+            $looks =Look::with('product')->when($query_search, function ($query) use ($query_search) {
+                $query->where('name', 'like', '%' . $query_search . '%');
             })
-                ->latest()->paginate(10);
+            ->latest()->paginate(10);
             if ($request->ajax()) {
-                return view('backend.comunities.pagination', compact('comunities'))->render();
+                return view('backend.looks.pagination', compact('looks'))->render();
             }
-            return view('backend.comunities.index', compact('comunities'));
+            return view('backend.looks.index',compact('looks'));
         } catch (\Throwable $th) {
             \Log::error('Admin login error: ' . $th->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
@@ -38,34 +38,30 @@ class ComunityController extends Controller
      */
     public function create()
     {
-        $comunities = new Comunity();
-        return view('backend.comunities.create', compact('comunities'));
+        $looks = new Look();
+        $product = Item::get();
+        return view('backend.looks.create',compact('looks','product'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreComunityRequest $request)
+    public function store(StoreLookRequest $request)
     {
         try {
-            $comunities = Comunity::firstOrNew(['id' => $request->id]);
-            $comunities->fill($request->all());
-            $comunities->image = 'null';
-            if ($request->status == '1') {
-                $comunities->status = Comunity::$active;
-            } else {
-                $comunities->status = Comunity::$in_active;
+            $looks = Look::firstOrNew(['id' => $request->id]);
+            $looksCount = Look::count();
+            if ($looksCount >= 6) {
+            return response()->json(['status' => 420, 'message' => ' You Can Add Only 6 get and look']);
+                
             }
-            $comunities->save();
-            $files = $request->file('image');
-            foreach ($files as $key => $value) {
-                $images = new ComunityImages();
-                $folder = public_path('/uploads/comunities');
-                $images->image = $this->uploadFile($value, $folder);
-                $images->comunity_id = $comunities->id;
-                $images->save();
+            $looks->fill($request->all());
+            if ($file = $request->file('image')) {
+                $folder = public_path('/uploads/looks');
+                $looks->image = $this->uploadFile($file, $folder);
             }
-            return response()->json(['status' => 200, 'message' => ' Comunity Create Successfully ']);
+            $looks->save();
+            return response()->json(['status' => 200, 'message' => ' look Create Successfully ']);
         } catch (\Exception $exception) {
             \Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
@@ -85,8 +81,9 @@ class ComunityController extends Controller
      */
     public function edit($id)
     {
-        $comunities = Comunity::findOrFail($id);
-        return view('backend.comunities.create', compact('comunities'));
+        $looks = Look::findOrFail($id);
+        $product = Item::get();
+        return view('backend.looks.create',compact('looks','product'));
     }
 
     /**
@@ -103,12 +100,12 @@ class ComunityController extends Controller
     public function destroy($id)
     {
         try {
-            $comunities = Comunity::findOrFail($id)->delete();
-            return response()->json(['status' => 200, 'message' => 'Delete Comunity Successfully login!']);
+            $looks = Look::findOrFail($id)->delete();
+            return response()->json(['status' => 200, 'message' => 'Delete Category Successfully ']);
         } catch (\Exception $exception) {
             \Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
         }
-
     }
+  
 }

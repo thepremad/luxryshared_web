@@ -47,6 +47,12 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('presses',PressController::class);
     Route::resource('helps',HelpController::class);
     Route::resource('terms_and_condetions',TermsAndConditionsController::class);
+    Route::resource('discounts',DiscountController::class);
+    Route::resource('looks',LookController::class);
+
+    Route::controller(DiscountController::class)->group(function () {
+        Route::post('get-products', 'getProducts')->name('disounts.get_product');
+    });
 
     Route::controller(ProductController::class)->group(function () {
         Route::get('products-request', 'productRequest')->name('products.request');

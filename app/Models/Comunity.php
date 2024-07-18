@@ -15,4 +15,8 @@ class Comunity extends Model
     ];
     static $active = 1;
     static $in_active = 0;
+
+    public function comunity_image(){
+        return $this->hasOne(ComunityImages::class,'comunity_id');
+    }
 }

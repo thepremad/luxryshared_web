@@ -49,6 +49,20 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+
+        {!! HTML::style(asset('/backend/vendors/css/forms/select/select2.min.css'))!!}
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    {!! HTML::style(asset('/backend/css/themes/dark-layout.css'))!!}
+
+    <!-- BEGIN: Page CSS-->
+    {!! HTML::style(asset('/backend/css/core/menu/menu-types/vertical-menu.css'))!!}
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    {!! HTML::style(asset('/backend/assets/css/style.css'))!!}
+
     <style>
         p.clearfix.mb-0 {
             float: right !important;

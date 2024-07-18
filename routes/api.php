@@ -49,5 +49,13 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/product', 'product');
         Route::post('/day-price', 'dayPrice');
     });
+    Route::controller(GeoLocationController::class)->group(function () {
+        Route::get('/near-me-products', 'nearMeProducts');
+
+    });
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('/home', 'home');
+
+    });
 });
 
