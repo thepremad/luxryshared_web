@@ -33,6 +33,8 @@ class User extends Authenticatable
         'instagram',
         'twitter',
         'tiktok',
+        'latitude',
+        'longitude',
     ];
 
     /**
@@ -56,4 +58,8 @@ class User extends Authenticatable
     static $pending = 0;
     static $approved = 1;
     static $rejected = 2;
+
+    public function products(){
+        return $this->hasMany(Item::class,'user_id');
+    }
 }

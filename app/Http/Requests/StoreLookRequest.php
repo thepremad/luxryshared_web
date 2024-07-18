@@ -5,7 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-class StoreComunityRequest extends FormRequest
+
+class StoreLookRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +23,17 @@ class StoreComunityRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'text' => 'required',
+        $rule = [
+            'product_id' => 'required',
         ];
-        if(!$this->id){
-            $rules['image'] = 'required|max:2048';
-            $rules['status'] = 'required';
-
+        if (!$this->id) {
+            $rule['image'] = 'required';
         }
-        return $rules;
+        return $rule;
     }
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json(['status' => 422, 'message' => $validator->getMessageBag()]));
     }
 }
+
