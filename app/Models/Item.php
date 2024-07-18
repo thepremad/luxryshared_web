@@ -26,6 +26,7 @@ class Item extends Model
         'thirtyPlusDayPrice',
         'buy',
         'buy_price',
+        'user_id',
     ];
     public function color(){
        return $this->hasOne(Color::class,'id','color_id');

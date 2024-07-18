@@ -163,4 +163,7 @@ class ProductController extends Controller
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
         }
     }
+    public function getProducts(Request $request){
+        
+    }
 }

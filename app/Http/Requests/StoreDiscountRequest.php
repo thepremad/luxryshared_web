@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-class StoreComunityRequest extends FormRequest
+class StoreDiscountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,18 @@ class StoreComunityRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'text' => 'required',
+        $rule = [
+            'code' => 'required',
+            'exp_date' => 'required',
+            'offer_type' => 'required',
+            'product_id' => 'required',
+            'limit' => 'required',
         ];
-        if(!$this->id){
-            $rules['image'] = 'required|max:2048';
-            $rules['status'] = 'required';
-
-        }
-        return $rules;
+        if ($this->offer_type == 1) {
+            $rule['fix_amount'] = 'required';
+        }elseif($this->offer_type == 2)
+        $rule['in_per'] = 'required';
+        return $rule;
     }
     protected function failedValidation(Validator $validator)
     {

@@ -35,6 +35,8 @@ class StoreSignupRequest extends FormRequest
                 'regex:/^[0-9]+$/'
             ],
             'id_image' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
         ];
     }
     protected function failedValidation(Validator $validator)

@@ -108,19 +108,19 @@
             <li
                 class=" nav-item {{ Request::routeIs('admin.comunities.index', 'admin.comunities.create', 'admin.comunities.show', 'admin.comunities.edit', 'admin.comunities.appraisals', 'admin.comunities.loans', 'admin.comunities.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-group-arrows-rotate"></i><span
-                        class="menu-title text-truncate" data-i18n="Invoice">Comunity Master</span></a>
+                        class="menu-title text-truncate" data-i18n="Invoice">Community Master</span></a>
                 <ul class="menu-content">
                     <li>
                         <a class="d-flex align-items-center {{ Request::routeIs('admin.comunities.index', 'admin.comunities.show', 'admin.comunities.edit', 'admin.comunities.appraisals', 'admin.comunities.loans', 'admin.comunities.salaries') && !request()->input('archive') ? 'active' : '' }}"
                             href="{{ route('admin.comunities.index') }}">
                             <i data-feather="circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Shop"> List Comunity</span>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> List Community</span>
                         </a>
                     </li>
 
                     <li><a class="d-flex align-items-center {{ Request::routeIs('admin.comunities.create') ? 'active' : '' }} "
                             href="{{ route('admin.comunities.create') }}"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate" data-i18n="Shop"> Add Comunity</span></a>
+                                class="menu-item text-truncate" data-i18n="Shop"> Add Community</span></a>
                     </li>
                 </ul>
             </li>
@@ -159,6 +159,44 @@
                     <li><a class="d-flex align-items-center {{ Request::routeIs('admin.presses.create') ? 'active' : '' }} "
                             href="{{ route('admin.presses.create') }}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="Shop"> Add Press</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li
+                class=" nav-item {{ Request::routeIs('admin.discounts.index', 'admin.discounts.create', 'admin.discounts.show', 'admin.discounts.edit', 'admin.discounts.appraisals', 'admin.discounts.loans', 'admin.discounts.salaries') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-ticket"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Discount master </span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.discounts.index', 'admin.discounts.show', 'admin.discounts.edit', 'admin.discounts.appraisals', 'admin.discounts.loans', 'admin.discounts.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.discounts.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> List Discount</span>
+                        </a>
+                    </li>
+
+                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.discounts.create') ? 'active' : '' }} "
+                            href="{{ route('admin.discounts.create') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Shop"> Add Discount</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li
+                class=" nav-item {{ Request::routeIs('admin.looks.index', 'admin.looks.create', 'admin.looks.show', 'admin.looks.edit', 'admin.looks.appraisals', 'admin.looks.loans', 'admin.looks.salaries') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-ticket"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Look master </span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.looks.index', 'admin.looks.show', 'admin.looks.edit', 'admin.looks.appraisals', 'admin.looks.loans', 'admin.looks.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.looks.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> List Look</span>
+                        </a>
+                    </li>
+
+                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.looks.create') ? 'active' : '' }} "
+                            href="{{ route('admin.looks.create') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Shop"> Add Look</span></a>
                     </li>
                 </ul>
             </li>

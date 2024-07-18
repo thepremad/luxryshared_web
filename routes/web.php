@@ -65,7 +65,12 @@ Route::get('/google-register', function () {
 })->name('google_register');
 
 Route::get('/callback', function () {
-    $user = Socialite::driver('google')->user();
+   
+     try {
+        $user = Socialite::driver('google')->user();
+    } catch (Exception $e) {
+        return redirect()->back()->with('error', 'Session expired, please try again.');
+    }
     $nameParts = explode(' ', $user->name);
     $firstName = $nameParts[0];
     $lastName = isset($nameParts[1]) ? $nameParts[1] : '';

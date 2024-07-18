@@ -21,12 +21,12 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Communities</h2>
+                            <h2 class="content-header-title float-start mb-0">Discounts</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{  route('admin.dashboard') }}">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.comunities.index') }}">comunities</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.discounts.index') }}">discounts</a>
                                     </li>
                                     <li class="breadcrumb-item active">List
                                     </li>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="col-md-3" style="text-align: end">
-                    <a href="{{ route('admin.comunities.create') }}" class=" btn btn-primary btn-gradient round">Create</a>
+                    <a href="{{ route('admin.discounts.create') }}" class=" btn btn-primary btn-gradient round">Create</a>
                 </div>
             </div>
             <div class="content-body">
@@ -57,44 +57,33 @@
                                     <thead class="table-dark">
                                         <tr>
                                             <th scope="col" >#</th>
-                                            <th scope="col" >Image</th>
-                                            <th scope="col" >Name</th>
-                                            <th scope="col" >Status</th>
+                                            <th scope="col" >Code</th>
+                                            <th scope="col" >Offer</th>
+                                            <th scope="col" >User Limit</th>
+                                            <th scope="col" >Amount</th>
+                                            <th scope="col" >Expire Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="myTable">
                                     @php  $i = 1; @endphp
  
-                                        @foreach ($comunities as $item)
+                                        @foreach ($discounts as $item)
                                             
                                             <tr>
                                                 <td>{{$i }}</td>
-                                                <td>
-                                                @if ($item->comunity_image && $item->comunity_image->image)
-    <img src="{{ url('public/uploads/comunities/'.$item->comunity_image->image)}}" alt="Toolbar svg" width="50px" />
-@else
-    <img src="{{ url('path/to/default/image.png') }}" alt="Default Image" width="50px" />
-@endif
-
-                                                   
-                                                </td>
-                                                <td>{{ $item->text }}</td>
-
-                                                <td >
-                                                @if($item->status == '1') 
-                                                    <span style="color:green">Active</span> 
-                                                @else 
-                                                    <span style="color:red">Inactive</span> 
-                                                @endif
-                                                </td>
+                                                <td>{{$item->code}}</td>
+                                                <td>{{config("constants.OFFER.$item->offer_type") }}</td>
+                                                <td>{{$item->limit}} </td>
+                                                <td>{{$item->offer_type == 2 ? $item->in_per : $item->fix_amount}}{{$item->offer_type == 2 ? '%' : 'Rs'}} </td>
+                                                <td >{{$item->exp_date}}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="{{route('admin.comunities.edit',$item->id)}}">
+                                                            <a class="dropdown-item" href="{{route('admin.discounts.edit',$item->id)}}">
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
@@ -115,7 +104,7 @@
                                         
                                     </tbody>
                                 </table>
-                            @include('backend._pagination', ['data' => $comunities])
+                            @include('backend._pagination', ['data' => $discounts])
                             </div>
 
                         </div>
@@ -138,9 +127,9 @@
 <script>
     $(document).on('click', '.delete-record', function () {
             var associateId =  $(this).data('id');            
-            if (confirm('Are you sure you want to delete this comunities ?')) {
+            if (confirm('Are you sure you want to delete this discounts ?')) {
                 $.ajax({
-                    url: "{{ url('admin/comunities') }}/" + associateId, // Use the url() function
+                    url: "{{ url('admin/discounts') }}/" + associateId, // Use the url() function
                     type: 'DELETE',
                     data: {
                         '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
@@ -149,7 +138,7 @@
                         if (res.status === 200) {
                             toastr.success(res.message);
                             window.location.href =
-                                "{{ route('admin.comunities.index') }}";
+                                "{{ route('admin.discounts.index') }}";
                         }
                     },
                     error: function (xhr) {
@@ -166,7 +155,7 @@
         });
         function fetch_data(query = '') {
             $.ajax({
-                url: "{{ route('admin.comunities.index') }}",
+                url: "{{ route('admin.discounts.index') }}",
                 method: 'GET',
                 data: { search: query },
                 dataType: 'html',
