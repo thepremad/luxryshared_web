@@ -200,6 +200,27 @@
                     </li>
                 </ul>
             </li>
+               
+            <li
+                class=" nav-item {{ Request::routeIs('admin.commissions.index', 'admin.commissions.create', 'admin.commissions.show', 'admin.commissions.edit', 'admin.commissions.appraisals', 'admin.commissions.loans', 'admin.commissions.salaries') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-ticket"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Commission  </span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.commissions.index', 'admin.commissions.show', 'admin.commissions.edit', 'admin.commissions.appraisals', 'admin.commissions.loans', 'admin.commissions.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.commissions.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> List Commission</span>
+                        </a>
+                    </li>
+
+                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.commissions.create') ? 'active' : '' }} "
+                            href="{{ route('admin.commissions.create') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Shop"> Add Commission</span></a>
+                    </li>
+                </ul>
+            </li>
+            
             <li
                 class=" nav-item {{ Request::routeIs('admin.inquiries.index', 'admin.inquiries.create', 'admin.inquiries.show', 'admin.inquiries.edit', 'admin.inquiries.appraisals', 'admin.inquiries.loans', 'admin.inquiries.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-book-open-reader"></i><span

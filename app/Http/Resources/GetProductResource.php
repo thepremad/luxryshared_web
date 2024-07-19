@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ItemImage;
 use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -17,9 +18,12 @@ class GetProductResource extends JsonResource
     {
         $size = Size::latest()->get();
         $data = SizeResource::collection($size);
+        $productImage = ItemImage::where('item_id',$this->id)->get();
+        $productImageResource = ProductImageresource::collection($productImage);
         return [
             'id' => $this->id ?? '',
             'image' => $this->mainImag ? url('public/uploads/item/'.$this->mainImag) : null,
+            'product_image' =>  $productImageResource,
             'name' => $this->item_title ?? '',
             'rating' => '5 star',
             'price' => $this->rrp_price ?? '',

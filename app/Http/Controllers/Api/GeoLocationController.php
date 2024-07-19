@@ -17,7 +17,7 @@ class GeoLocationController extends Controller
             $user = User::findOrFail(auth()->user()->id);
             $lan = $user->latitude;
             $lon = $user->longitude;
-            $distance = 10;
+            $distance = 25;
 
             $userData = User::with('products')
                 ->where('id', '!=', auth()->user()->id)
