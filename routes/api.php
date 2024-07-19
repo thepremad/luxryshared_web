@@ -55,7 +55,18 @@ Route::middleware('auth:api')->group(function () {
     });
     Route::controller(HomeController::class)->group(function () {
         Route::get('/home', 'home');
-
+        Route::get('/brand-product', 'brandProduct');
+        Route::get('/occasion-product', 'occasionProduct');
+    });
+    Route::controller(ProductFilterController::class)->group(function () {
+        Route::post('/filter-home', 'filterHome');
+        Route::post('/add-to-cart', 'addTocart');
+        Route::get('/shopping-bag', 'shoppingBag');
+    });
+    Route::controller(CheckoutController::class)->group(function () {
+        Route::post('/checkout', 'checkout');
+        Route::post('/wishlist', 'wishlist');
+        Route::get('/get-wishlist', 'getWishlist');
     });
 });
 
