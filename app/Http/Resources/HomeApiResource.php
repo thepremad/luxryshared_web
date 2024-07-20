@@ -23,9 +23,6 @@ class HomeApiResource extends JsonResource
     public function toArray(Request $request): array
     {
         $sizes = Size::latest()->get();
-        $item = Item::latest()->take(6)->get();
-        $look = GetTheLookResource::collection(Look::latest()->get());
-        $brand = Brand::latest()->take(6)->get();
         $productImage = ItemImage::where('item_id', $this->id)->get();
         $productImageResource = ProductImageresource::collection($productImage);
         $commission = Commission::first();
@@ -75,30 +72,8 @@ class HomeApiResource extends JsonResource
                     'buy' => $product->buy
                 ];
             }),
-            'just_landed' => $item->map(function ($product) use ($sizes, $productImageResource, $calculateCommission) {
-                return [
-                    'id' => $product->id ?? '',
-                    'image' => $product->mainImag ? url('public/uploads/item/' . $product->mainImag) : null,
-                    'product_image' => $productImageResource,
-                    'name' => $product->item_title ?? '',
-                    'rating' => '5 star',
-                    'price' => $product->rrp_price ?? '',
-                    'comment' => '',
-                    'size' => SizeResource::collection($sizes),
-                    'rentalPeriodPrice' => [
-                        'forDaysPrice' => $product->fourDaysPrice,
-                        'eightDaysPrice' => $product->sevenToTwentyNineDayPrice,
-                        'fiftyDaysPrice' => $product->thirtyPlusDayPrice
-                    ],
-                    'commission' => $calculateCommission($product),
-                    'byNowPrice' => $product->buy_price,
-                    'retailsPrice' => $product->rrp_price,
-                    'product_description' => $product->image_description,
-                    'buy' => $product->buy
-                ];
-            }),
-            'get_the_look' => $look,
-            'brands' => BrandResource::collection($brand),
+            
+            
         ];
     }
 }
