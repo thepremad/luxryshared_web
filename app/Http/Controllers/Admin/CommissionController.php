@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Commission;
 use Illuminate\Http\Request;
 
 class CommissionController extends Controller
@@ -10,9 +11,22 @@ class CommissionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        try {
+            $query_search = $request->input('search');
+            $commissions = Commission::when($query_search, function ($query) use ($query_search) {
+                $query->where('commission', 'like', '%' . $query_search . '%');
+            })
+            ->latest()->paginate(10);
+            if ($request->ajax()) {
+                return view('backend.commissions.pagination', compact('commissions'))->render();
+            }
+            return view('backend.commissions.index',compact('commissions'));
+        } catch (\Throwable $th) {
+            \Log::error('Admin login error: ' . $th->getMessage());
+            return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
+        }
     }
 
     /**
@@ -20,7 +34,8 @@ class CommissionController extends Controller
      */
     public function create()
     {
-        //
+        $commissions = Commission::first();
+        return view('backend.commissions.create',compact('commissions'));
     }
 
     /**
@@ -28,7 +43,15 @@ class CommissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $commission = Commission::firstOrNew(['id' => $request->id]);
+            $commission->fill($request->all());
+            $commission->save();
+            return response()->json(['status' => 200, 'message' => ' commission Create Successfully ']);
+        } catch (\Exception $exception) {
+            \Log::error('Admin login error: ' . $exception->getMessage());
+            return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
+        }
     }
 
     /**
@@ -42,9 +65,10 @@ class CommissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $commissions = Commission::findOrFail($id);
+        return view('backend.commissions.create',compact('commissions'));
     }
 
     /**
@@ -58,8 +82,14 @@ class CommissionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        try {
+            $colors = Color::findOrFail($id)->delete();
+            return response()->json(['status' => 200, 'message' => 'Delete Color Successfully login!']);
+        } catch (\Exception $exception) {
+            \Log::error('Admin login error: ' . $exception->getMessage());
+            return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
+        }
     }
 }

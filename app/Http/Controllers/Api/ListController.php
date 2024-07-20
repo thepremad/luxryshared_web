@@ -98,12 +98,9 @@ class ListController extends Controller
     public function occasion(Request $request)
     {
         try {
-            if ($request->occasionId == '0') {
-                $products = Item::where('status',Item::$active)->latest()->get();
-            }else{
-                $products = Item::where('occasion_id',$request->occasionId)->where('status',Item::$active)->get();
-            }
-            $data = GetProductResource::collection($products);
+                $products = Occasion::where('status',Occasion::$active)->latest()->get();
+           
+            $data =  OccasionResource::collection($products);
             return response()->json($data, 200);
            }catch (\Throwable $th) {
             Log::error('api item post : exception');
