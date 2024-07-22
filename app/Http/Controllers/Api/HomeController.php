@@ -27,7 +27,7 @@ class HomeController extends Controller
         $categorydata = CategoryResource::collection($cateegory);
         $occasions = Occasion::latest()->take(6)->get();
         $occassionData = OccasionResource::collection($occasions);
-        $item = Item::latest()->take(6)->get();
+        $item = Item::where('status',Item::$active)->latest()->take(6)->get();
         $productJustLanded = GetProductResource::collection($item);
         $look = GetTheLookResource::collection(Look::latest()->get());
         $brand = Brand::latest()->take(6)->get();
