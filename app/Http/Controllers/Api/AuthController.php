@@ -68,6 +68,11 @@ class AuthController extends Controller
         try {
             $user = new User();
             $user->fill($request->all());
+            $referalCode = 'LXRY'. random_int(1000, 9999);
+            $checkRefer = User::where('referal_code',$referalCode)->first();
+            if (!$checkRefer) {
+                $user->referal_code = $referalCode;
+            }
             $user->password = \Hash::make($request->password);
             $user->save();
              $token = $user->createToken($user->name)->accessToken;
