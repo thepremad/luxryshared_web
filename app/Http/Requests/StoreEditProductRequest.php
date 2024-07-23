@@ -33,7 +33,7 @@ class StoreEditProductRequest extends FormRequest
             'brand_id' => 'required',
             'item_title' => 'required',
             'image_description' => 'required',
-            'buy_price' => 'required',
+            // 'buy_price' => 'required',
         ];
 
         if ($count < 4) {
