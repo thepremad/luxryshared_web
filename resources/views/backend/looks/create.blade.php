@@ -59,7 +59,7 @@
                                                         {!! Form::file('image', ['class' => 'form-control', 'id' => 'image']) !!}
                                                 <span class="text-danger validation-class" id="image-error"></span>
                                                 @if($looks)
-                                                <img width="100px" class="mt-1" src="{{url('public/uploads/category/'.$looks->image)}}" alt="">
+                                                <img width="100px" class="mt-1" src="{{url('public/uploads/looks/'.$looks->image)}}" alt="">
                                                 @endif
                                             </div>
                                         </div>
