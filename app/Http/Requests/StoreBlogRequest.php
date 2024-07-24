@@ -22,15 +22,11 @@ class StoreBlogRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
+        return  [
             'text' => 'required',
+            'description' => 'required',
+            'category_id' => 'required|exists:categories,id',
         ];
-        if(!$this->id){
-            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
-            $rules['status'] = 'required';
-
-        }
-        return $rules;
     }
     protected function failedValidation(Validator $validator)
     {

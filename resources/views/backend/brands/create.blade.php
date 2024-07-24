@@ -80,7 +80,9 @@
                                                      {!! Form::label('image', 'Image') !!}
                                                         {!! Form::file('image', ['class' => 'form-control', 'id' => 'image']) !!}
                                                 <span class="text-danger validation-class" id="image-error"></span>
-
+                                                @if($brand)
+                                                <img width="100px" class="mt-1" src="{{url('public/uploads/brand/'.$brand->image)}}" alt="">
+                                                @endif
 
                                             </div>
                                         </div>

@@ -70,19 +70,9 @@
                                             
                                             <tr>
                                                 <td>{{$i }}</td>
-                                                <td>
-                                                <img src="{{ url('public/uploads/blogs/'.$item->image)}}" alt="Toolbar svg" width="50px" />
-                                                   
-                                                </td>
                                                 <td>{{ $item->text }}</td>
+                                                <td>{!! substr($item->description,4,40) !!}</td>
 
-                                                <td >
-                                                @if($item->status == '1') 
-                                                    <span style="color:green">Active</span> 
-                                                @else 
-                                                    <span style="color:red">Inactive</span> 
-                                                @endif
-                                                </td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">

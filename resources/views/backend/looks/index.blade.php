@@ -84,7 +84,7 @@
                                             <tr>
                                                 <td>{{$i }}</td>
                                                 <td>
-                                                <img src="{{ url('public/uploads/looks/'.$item->image)}}" alt="Toolbar svg" width="50px" />
+                                                <img src="{{ url('public/uploads/looks/'.$item->image)}}" alt="Toolbar svg" height="50px" width="50px" />
                                                    
                                                 </td>
                                                 <td>{{$item->product->item_title ?? ''}}</td>

@@ -74,7 +74,7 @@
                                             <tr>
                                                 <td>{{$i }}</td>
                                                 <td>
-                                                <img src="{{ url('public/uploads/occasion/'.$item->image)}}" alt="Toolbar svg" width="50px" />
+                                                <img src="{{ url('public/uploads/occasion/'.$item->image)}}" alt="Toolbar svg" height="50px" width="50px" />
                                                    
                                                 </td>
                                                 <td>{{ $item->name }}</td>

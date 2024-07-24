@@ -12,7 +12,7 @@ class Blog extends Model
     static $in_active = 0;
     protected $fillable = [
         'text',
-        'image',
-        'status'
+        'description',
+        'category_id'
     ];
 }
