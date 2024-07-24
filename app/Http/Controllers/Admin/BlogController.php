@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBlogRequest;
 use App\Models\Blog;
+use App\Models\Category;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,8 @@ class BlogController extends Controller
     public function create()
     {
         $blogs = new Blog();
-        return view('backend.blogs.create',compact('blogs'));
+        $categories = Category::latest()->get();
+        return view('backend.blogs.create',compact('blogs','categories'));
     }
 
     /**
@@ -49,15 +51,6 @@ class BlogController extends Controller
         try {
             $blogs = Blog::firstOrNew(['id' => $request->id]);
             $blogs->fill($request->all());
-            if ($request->status == '1') {
-                $blogs->status = Blog::$active;
-            } else {
-                $blogs->status = Blog::$in_active;
-            }
-            if ($file = $request->file('image')) {
-                $folder = public_path('/uploads/blogs');
-                $blogs->image = $this->uploadFile($file, $folder);
-            }
             $blogs->save();
             return response()->json(['status' => 200, 'message' => ' Blog Create Successfully ']);
         } catch (\Exception $exception) {
@@ -80,7 +73,8 @@ class BlogController extends Controller
     public function edit($id)
     {
         $blogs = Blog::findOrFail($id);
-        return view('backend.blogs.create',compact('blogs'));
+        $categories = Category::latest()->get();
+        return view('backend.blogs.create',compact('blogs','categories'));
     }
 
     /**

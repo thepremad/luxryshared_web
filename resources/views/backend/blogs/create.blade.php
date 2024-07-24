@@ -52,7 +52,7 @@
                                       {!! Form::hidden('id', $blogs->id) !!}
                                     @endif
                                     <div class="row">
-                                        <div class="col-md-8 col-12">
+                                        <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                       {!! Form::label('text', 'Text') !!}
                                                         {!! Form::text('text', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Text', 'id' =>
@@ -62,28 +62,25 @@
                                                 </div>
                                         </div>
 
-                                        <div class="col-md-4 col-12">
+                                        <div class="col-md-6 ">
+                                        {!! Form::label('category_id', 'Category') !!}
+                                        {!! Form::select('category_id', $categories->pluck('name','id'),$blogs->category_id, ['class' => 'form-select
+                                         ','id' => 'category_id', 'placeholder' => 'Category']) !!}
+                                                    <span class="text-danger validation-class" id="category_id-error"></span>
+
+                                            </div>
+
+                                        <div class="col-md-8 col-12">
                                             <div class="mb-1">
-                                                <div class="d-flex flex-column">
-                                                    <label class="form-check-label mb-50"
-                                                     for="customSwitch3">Status</label>
-                                                    <div class="form-check form-check-primary form-switch">
-                                                    {!! Form::checkbox('status', '1', $blogs->status == '1', ['class' => 'form-check-input', 'id' => 'customSwitch3']) !!}
-                                                        </div>
-                                                        <span class="text-danger validation-class"
-                                                            id="status-error"></span>
+                                            {!! Form::label('description', 'Description') !!}
+                                                        {!! Form::textarea('description', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Description', 'id' =>
+                                                          'content']) !!}
                                                 </div>
-                                            </div>
-                                        </div>      <div class="col-md-6 col-12">
-                                            <div class="mb-1">
-                                                     {!! Form::label('image', 'Image') !!}
-                                                        {!! Form::file('image', ['class' => 'form-control', 'id' => 'image']) !!}
-                                                <span class="text-danger validation-class" id="image-error"></span>
-                                                @if($blogs)
-                                                <img width="100px" class="mt-1" src="{{url('public/uploads/blogs/'.$blogs->image)}}" alt="">
-                                                @endif
-                                            </div>
+                                                <span class="text-danger validation-class" id="description-error"></span>
+
                                         </div>
+
+               
 
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary me-1">Submit</button>
@@ -148,4 +145,12 @@
       });
   });
     </script>
+     <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
+
+<script>
+ClassicEditor.create( document.querySelector( '#content' ) )
+    .catch( error => {
+        console.error( error );
+    } );
+</script>
 @endsection

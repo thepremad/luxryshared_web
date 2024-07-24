@@ -75,7 +75,7 @@
                                                         {!! Form::file('profile', ['class' => 'form-control', 'id' => 'image']) !!}
                                                 <span class="text-danger validation-class" id="profile-error"></span>
                                                 @if ($user->profile)
-                                                <img class="mt-1" src="{{url('public/uploads/profile/'.$user->profile)}}" width="100px" alt="">
+                                                <img class="mt-1" src="{{url('public/uploads/profile/'.$user->profile)}}" width="100px" height="100px" alt="">
                                                 
                                                 @endif
 

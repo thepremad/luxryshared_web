@@ -63,15 +63,21 @@ class AuthController extends Controller
             return response()->json(['error' => "Something went wrong. Please try again later."], 500);
         }
     }
-    public function signupVerification(Request $request)
+    public function signupVerification(StoreSignupRequest $request)
     {
         try {
             $user = new User();
             $user->fill($request->all());
-            $referalCode = 'LXRY'. random_int(1000, 9999);
-            $checkRefer = User::where('referal_code',$referalCode)->first();
-            if (!$checkRefer) {
-                $user->referal_code = $referalCode;
+            $x = 0;
+            while($x < 1){
+                $refer_codee = 'LXRY'.mt_rand(1000, 9999);
+                $match_refer = User::where('refer_code',$refer_codee)->first();
+                if (!$match_refer) {
+                    $user->refer_code = $refer_codee;
+                    $x++;
+                }else{
+                    $x = 0;
+                }  
             }
             $user->password = \Hash::make($request->password);
             $user->save();

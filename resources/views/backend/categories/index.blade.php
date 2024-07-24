@@ -85,7 +85,7 @@
                                             <tr>
                                                 <td>{{$i }}</td>
                                                 <td>
-                                                <img src="{{ url('public/uploads/category/'.$item->image)}}" alt="Toolbar svg" width="50px" />
+                                                <img src="{{ url('public/uploads/category/'.$item->image)}}" height="50px" alt="Toolbar svg" width="50px" />
                                                    
                                                 </td>
                                                 <td><a href="{{route('admin.categories.item',$item->id)}}">{{ $item->name }}</a></td>

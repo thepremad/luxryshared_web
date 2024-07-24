@@ -72,9 +72,9 @@
                                                 <td>{{$i }}</td>
                                                 <td>
                                                 @if ($item->comunity_image && $item->comunity_image->image)
-    <img src="{{ url('public/uploads/comunities/'.$item->comunity_image->image)}}" alt="Toolbar svg" width="50px" />
+    <img src="{{ url('public/uploads/comunities/'.$item->comunity_image->image)}}" alt="Toolbar svg" height="50px" width="50px" />
 @else
-    <img src="{{ url('path/to/default/image.png') }}" alt="Default Image" width="50px" />
+    <img src="{{ url('path/to/default/image.png') }}" alt="Default Image" width="50px" height="50px" />
 @endif
 
                                                    
