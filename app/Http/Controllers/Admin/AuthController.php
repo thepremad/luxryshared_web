@@ -84,4 +84,9 @@ public function updateAdminProfile(StoreAdminUpdateProfile $request){
         return response()->json(['error'=> "Something went wrong. Please try again later."],500);
     }
 }
+    public function log(){
+        $logContent = file_get_contents(storage_path('logs/laravel.log'));
+        return $logContent;
+    }
+
 }
