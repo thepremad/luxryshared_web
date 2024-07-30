@@ -53,8 +53,8 @@ class AuthController extends Controller
                 } else {
                     return response()->json(['error' => ['email' => "User does not exist! Please Register"]], 422);
                 }
-            }else{
-                return response()->json(['message' => 'admin unable to login'],500);
+            } else {
+                return response()->json(['message' => 'admin unable to login'], 500);
 
             }
         } catch (\Throwable $th) {
@@ -69,20 +69,28 @@ class AuthController extends Controller
             $user = new User();
             $user->fill($request->all());
             $x = 0;
-            while($x < 1){
-                $refer_codee = 'LXRY'.mt_rand(1000, 9999);
-                $match_refer = User::where('refer_code',$refer_codee)->first();
+            while ($x < 1) {
+                $refer_codee = 'LXRY' . mt_rand(1000, 9999);
+                $match_refer = User::where('refer_code', $refer_codee)->first();
                 if (!$match_refer) {
                     $user->refer_code = $refer_codee;
                     $x++;
-                }else{
+                } else {
                     $x = 0;
-                }  
+                }
+            }
+            if ($request->from_refer) {
+                $fromReferCode = User::where('refer_code', $request->from_refer)->first();
+                if ($fromReferCode) {
+                    $user->from_refer = $request->from_refer;
+                } else {
+                    return response()->json(['from_refer' => 'refer code not valid'], 422);
+                }
             }
             $user->password = \Hash::make($request->password);
             $user->save();
-             $token = $user->createToken($user->name)->accessToken;
-            return response()->json(['message' => 'Successfully Registered','token'=> $token], 200);
+            $token = $user->createToken($user->name)->accessToken;
+            return response()->json(['message' => 'Successfully Registered', 'token' => $token], 200);
         } catch (\Throwable $th) {
             Log::error('api signupVerification post : exception');
             Log::error($th);

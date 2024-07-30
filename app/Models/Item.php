@@ -48,6 +48,10 @@ class Item extends Model
      public function itemImage(){
       return $this->hasMany(ItemImage::class,'item_id');
      }
+
+     public function users(){
+      return $this->hasOne(User::class,'id','user_id');
+     }
      static $active = 1;
      static $inActive = 2;
 }
