@@ -15,11 +15,11 @@ class GetCartResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->products->item_title,
+            'id' => $this->id ?? '',
+            'name' => $this->products->item_title ?? '',
             'icon' => $this->products->mainImag ? url('public/uploads/item/'.$this->products->mainImag) : null,
-            'price' => $this->products->rrp_price,
-            'size' => $this->products->size->name,
+            'price' => $this->products->rrp_price ?? '',
+            'size' => $this->products->size->name ?? '',
         ];
     }
 }
