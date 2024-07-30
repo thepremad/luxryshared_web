@@ -67,6 +67,9 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/checkout', 'checkout');
         Route::post('/wishlist', 'wishlist');
         Route::get('/get-wishlist', 'getWishlist');
+        Route::get('/remove-wishlist', 'removeWishlist');
+        Route::get('/buy', 'buy');
+        Route::get('/rent', 'rent');
     });
 });
 
