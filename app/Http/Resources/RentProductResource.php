@@ -30,6 +30,6 @@ class RentProductResource extends JsonResource
                     : 'N/A',
                 'quantity_of_product' => 1,
                 'rentalEmail' => auth()->user()->email ?? 'N/A'
-            ]
+            ];
     }
 }
