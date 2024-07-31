@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLoginRequest;
 use App\Http\Requests\StoreSignupRequest;
 use App\Mail\UserVerificationMail;
+use App\Models\Transaction;
 use App\Models\User;
 use App\Traits\ApiResponse;
 use App\Traits\FileUploadTrait;
@@ -66,6 +67,7 @@ class AuthController extends Controller
     public function signupVerification(StoreSignupRequest $request)
     {
         try {
+            \DB::beginTransaction();
             $user = new User();
             $user->fill($request->all());
             $x = 0;
@@ -79,22 +81,46 @@ class AuthController extends Controller
                     $x = 0;
                 }
             }
-            if ($request->from_refer) {
-                $fromReferCode = User::where('refer_code', $request->from_refer)->first();
+            if ($request->refer_code) {
+                $fromReferCode = User::where('refer_code', $request->refer_code)->first();
                 if ($fromReferCode) {
-                    $user->from_refer = $request->from_refer;
+                    $user->from_refer = $request->refer_code;
+                    $this->transactionRefer($fromReferCode->id);
                 } else {
                     return response()->json(['from_refer' => 'refer code not valid'], 422);
                 }
             }
             $user->password = \Hash::make($request->password);
             $user->save();
+            $this->transactionReferSend($user->id);
             $token = $user->createToken($user->name)->accessToken;
+            \DB::commit();
             return response()->json(['message' => 'Successfully Registered', 'token' => $token], 200);
         } catch (\Throwable $th) {
             Log::error('api signupVerification post : exception');
             Log::error($th);
+            \DB::rollBack();
             return response()->json(['error' => "Something went wrong. Please try again later."], 500);
         }
+    }
+    protected function transactionRefer($id)
+    {
+        $transaction = new Transaction();
+        $transaction->user_id = $id;
+        $transaction->transcation_status = 'cr';
+        $transaction->amount = 10;
+        $transaction->transcation_type = 'refer amount';
+        $transaction->save();
+
+    }
+    protected function transactionReferSend($id)
+    {
+        $transaction = new Transaction();
+        $transaction->user_id = $id;
+        $transaction->transcation_status = 'cr';
+        $transaction->amount = 10;
+        $transaction->transcation_type = 'bonus amount';
+        $transaction->save();
+
     }
 }
