@@ -70,6 +70,12 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/remove-wishlist', 'removeWishlist');
         Route::get('/buy', 'buy');
         Route::get('/rent', 'rent');
+        Route::get('/menu', 'menu');
+    });
+    Route::controller(SellingController::class)->group(function () {
+        Route::get('/selling', 'selling');
+        Route::get('/lending', 'lending');
+
     });
 });
 
