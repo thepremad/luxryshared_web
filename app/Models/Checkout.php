@@ -29,10 +29,17 @@ class Checkout extends Model
         'cvv',
         'exp_date',
         'card_holder_name',
+        'booking_date',
 
     ];
 
     public function products(){
         return $this->belongsTo(Item::class,'id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+    public function bookingdate(){
+        return $this->hasMany(BookingDate::class,'checkout_id','id');
     }
 }

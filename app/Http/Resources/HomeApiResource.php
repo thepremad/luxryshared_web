@@ -69,7 +69,8 @@ class HomeApiResource extends JsonResource
                     'byNowPrice' => $product->buy_price,
                     'retailsPrice' => $product->rrp_price,
                     'product_description' => $product->image_description,
-                    'buy' => $product->buy
+                    'buy' => $product->buy,
+                    'rental_period' => $product->bookingDate->pluck('date','id')
                 ];
             }),
             

@@ -45,7 +45,8 @@ class GetProductResource extends JsonResource
             'commission' =>['forDayCommission' => $final_fourDay ,"eightDaysCommissionPrice" =>$final_savenDay ,"fiftyDaysCommissionPrice" => $final_tennDay] ,
             'byNowPrice' => $this->buy_price,
             'retailsPrice' => $this->rrp_price,
-            'product_description' => $this->image_description
+            'product_description' => $this->image_description,
+            'rental_period' => $this->bookingDate->pluck('date','id')
         ];
     }
 }
