@@ -30,7 +30,8 @@ class LendingProductApiResource extends JsonResource
             'quantity_of_product' => 1,
             'rentalEmail' => $this->user->email,
             'final_amount' => $this->products->rrp_price ?? '',
-            'status' => 'Pending/Paid'
+            'status' => 'Pending/Paid',
+            'rental_period' => $this->bookingdate->pluck('date','id'),
 
         ];
     }

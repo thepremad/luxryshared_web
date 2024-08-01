@@ -14,7 +14,7 @@ class SellingController extends Controller
 {
     public function selling(){
         try {
-            $item = Checkout::with('products','products.users')->where('seler_id',auth()->user()->id)->where('status','1')->get();
+            $item = Checkout::with('products','products.users')->where('seller_id',auth()->user()->id)->get();
             $data = SellingResource::collection($item);
             return response()->json($data,200);
         } catch (\Throwable $th) {
@@ -25,7 +25,13 @@ class SellingController extends Controller
     }
     public function lending(){
         try {
-            $item = Checkout::with('products','products.users','user')->where('seler_id',auth()->user()->id)->where('status','0')->get();
+            $date = date('d-m-Y');
+
+            $item = Checkout::with(['products', 'products.users', 'user', 'bookingdate'])
+                ->where('seller_id', auth()->user()->id)
+                ->whereHas('bookingdate', function ($query) use ($date) {
+                    $query->where('date', '=', $date); // Ensure 'date' is the correct column in the 'bookingdate' relation
+                })->get();
             $data = LendingProductApiResource::collection($item);
             return response()->json($data,200);
         } catch (\Throwable $th) {

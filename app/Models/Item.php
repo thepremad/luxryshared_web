@@ -55,6 +55,13 @@ class Item extends Model
      public function checkouts(){
       return $this->hasMany(Checkout::class,'item_id');
      }
+
+     public function bookingDate(){
+      return $this->hasMany(BookingDate::class,'item_id');
+     }
+   //   public function bookingDatee(){
+   //    return $this->hasMany(BookingDate::class,'item_id');
+   //   }
      static $active = 1;
      static $inActive = 2;
 }

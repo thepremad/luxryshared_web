@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,6 +13,7 @@ return new class extends Migration
         Schema::table('checkouts', function (Blueprint $table) {
             $table->string('seller_id');
             $table->string('booking_date');
+            $table->string('withdrawl_request')->default(0);
         });
     }
 
@@ -22,7 +22,8 @@ return new class extends Migration
         Schema::table('checkouts', function (Blueprint $table) {
             $table->dropColumn('seller_id');
             $table->dropColumn('booking_date');
-            
+            $table->dropColumn('withdrawl_request');
+
         });
     }
 };

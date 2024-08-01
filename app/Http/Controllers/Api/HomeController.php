@@ -21,17 +21,16 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function home(){
-         $categories = Category::with('products')->latest()->get();
+         $categories = Category::with('products','products.bookingDate')->latest()->get();
          $data = HomeApiResource::collection($categories);
          $cateegory = Category::latest()->get();
         $categorydata = CategoryResource::collection($cateegory);
         $occasions = Occasion::latest()->take(6)->get();
         $occassionData = OccasionResource::collection($occasions);
-        $item = Item::where('status',Item::$active)->latest()->take(6)->get();
+        $item = Item::with('bookingDate')->where('status',Item::$active)->latest()->take(6)->get();
         $productJustLanded = GetProductResource::collection($item);
         $look = GetTheLookResource::collection(Look::latest()->get());
         $brand = Brand::latest()->take(6)->get();
-        
          return response()->json(['category' => $categorydata, 'occassion' => $occassionData,"just_landed" => $productJustLanded,'get_the_look' => $look,'brands' => BrandResource::collection($brand),'category_product' => $data],200);
     }
     public function brandProduct(StoreBrandproductrequest $request){
