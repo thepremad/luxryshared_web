@@ -3,39 +3,57 @@
                                     <thead class="table-dark">
                                         <tr>
                                             <th scope="col" >#</th>
-                                            <th scope="col" >Image</th>
-                                            <th scope="col" >Text</th>
-                                            <th scope="col" >Description</th>
+                                            <th scope="col" >Category</th>
+                                            <th scope="col" >Name</th>
+                                            <th scope="col" >Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="myTable">
                                     @php  $i = 1; @endphp
  
-                                        @foreach ($blogs as $item)
+                                        @foreach ($categories as $item)
                                             
                                             <tr>
                                                 <td>{{$i }}</td>
-                                                <td><img src="{{ url('public/uploads/blogs/'.$item->image)}}" height="50px" alt="Toolbar svg" width="50px" /></td>
-                                                <td>{{$item->text ?? ''}}</td>
-                                                <td>{!! substr($item->description,4,40) !!}</td>
+                                                <td>
+                                                <img src="{{ url('public/uploads/category/'.$item->image)}}" alt="Toolbar svg" width="50px" />
+                                                   
+                                                </td>
+                                                <td>{{ $item->name }}</td>
 
+                                                <td >
+                                                @if($item->status == '1') 
+                                                    <span style="color:green">Active</span> 
+                                                @else 
+                                                    <span style="color:red">Inactive</span> 
+                                                @endif
+
+                                                </td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="{{route('admin.blogs.edit',$item->id)}}">
+                                                            <a class="dropdown-item" href="{{route('admin.categories.edit',$item->id)}}">
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
+                                                          
+                                                            
+                                                            {{-- <a class="dropdown-item" href="{{route('categories.show',$item->id)}}">
+                                                                <i data-feather="eye" class="me-50"></i>
+                                                                <span>View</span>
+                                                            </a> --}}
                                                             <a class="dropdown-item delete-record" data-id="{{$item->id}}" href="#" >
                                                                 <i data-feather="trash" class="me-50"></i>
                                                                 <span>Delete</span>
                                                             </a>
                                                         </div>
                                                     </div>
+
+                                                    
                                                 </td>
                                             </tr>
                                             @php
@@ -45,5 +63,5 @@
                                         
                                     </tbody>
                                 </table>
-                            </div>
-                            @include('backend._pagination', ['data' => $blogs])
+                                </div>
+                            @include('backend._pagination', ['data' => $categories])

@@ -55,6 +55,11 @@ Route::middleware(['admin'])->group(function () {
         Route::post('get-products', 'getProducts')->name('disounts.get_product');
     });
 
+    Route::controller(WithdrawlRequest::class)->group(function () {
+        Route::get('withdrawl-requests', 'withdrawlRequest')->name('withdral_request');
+        Route::get('withdrawl-approve/{id}', 'withdrawlRequestApprove')->name('withdral_approve');
+    });
+
     Route::controller(ProductController::class)->group(function () {
         Route::get('products-request', 'productRequest')->name('products.request');
         Route::get('products-approve/{id}', 'productApprove')->name('products.approve');
