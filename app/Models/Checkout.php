@@ -42,4 +42,11 @@ class Checkout extends Model
     public function bookingdate(){
         return $this->hasMany(BookingDate::class,'checkout_id','id');
     }
+
+    public function city(){
+      return $this->belongsTo(City::class,'city','id');
+    }
+    static $requested = 1;
+    static $approved = 2;
+    static $pending = 0;
 }

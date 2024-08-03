@@ -25,7 +25,7 @@ class StoreBlogRequest extends FormRequest
         return  [
             'text' => 'required',
             'description' => 'required',
-            'category_id' => 'required|exists:categories,id',
+            'category' => 'required',
         ];
     }
     protected function failedValidation(Validator $validator)

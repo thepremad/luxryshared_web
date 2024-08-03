@@ -125,6 +125,12 @@
                 </ul>
             </li>
             <li
+                class=" nav-item {{ Request::routeIs('admin.withdral_request', 'admin.withdral_request.create', 'admin.withdral_request.show', 'admin.withdral_request.edit', 'admin.withdral_request.appraisals', 'admin.withdral_request.loans', 'admin.withdral_request.salaries') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="{{route('admin.withdral_request')}}"><i class="fa-solid fa-money-bill-transfer"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Withdrawl Request</span></a>
+              
+            </li>
+            <li
                 class=" nav-item {{ Request::routeIs('admin.blogs.index', 'admin.blogs.create', 'admin.blogs.show', 'admin.blogs.edit', 'admin.blogs.appraisals', 'admin.blogs.loans', 'admin.blogs.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-blog"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Blog Master</span></a>
@@ -183,7 +189,7 @@
             </li>
             <li
                 class=" nav-item {{ Request::routeIs('admin.looks.index', 'admin.looks.create', 'admin.looks.show', 'admin.looks.edit', 'admin.looks.appraisals', 'admin.looks.loans', 'admin.looks.salaries') ? 'has-sub open' : '' }} ">
-                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-ticket"></i><span
+                <a class="d-flex align-items-center" href="#"><i class="fa-regular fa-id-card"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Look master </span></a>
                 <ul class="menu-content">
                     <li>
@@ -203,7 +209,7 @@
                
             <li
                 class=" nav-item {{ Request::routeIs('admin.commissions.index', 'admin.commissions.create', 'admin.commissions.show', 'admin.commissions.edit', 'admin.commissions.appraisals', 'admin.commissions.loans', 'admin.commissions.salaries') ? 'has-sub open' : '' }} ">
-                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-ticket"></i><span
+                <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-hand-holding-dollar"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Commission  </span></a>
                 <ul class="menu-content">
                     <!-- <li>

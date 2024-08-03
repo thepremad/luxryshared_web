@@ -51,6 +51,10 @@ class BlogController extends Controller
         try {
             $blogs = Blog::firstOrNew(['id' => $request->id]);
             $blogs->fill($request->all());
+            if ($file = $request->file('image')) {
+                $folder = public_path('/uploads/blogs');
+                $blogs->image = $this->uploadFile($file, $folder);
+            }
             $blogs->save();
             return response()->json(['status' => 200, 'message' => ' Blog Create Successfully ']);
         } catch (\Exception $exception) {
