@@ -103,6 +103,14 @@ Route::get('/route-cache', function () {
         return 'Error: ' . $e->getMessage();
     }
 });
+Route::get('/rollback', function () {
+    try {
+        Artisan::call('migrate:rollback');
+        return 'table rollback successfully';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
 Route::get('/optimize-clear', function () {
     try {
         Artisan::call('optimize:clear');

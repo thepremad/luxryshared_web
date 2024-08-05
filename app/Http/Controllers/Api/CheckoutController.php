@@ -75,6 +75,7 @@ class CheckoutController extends Controller
     {
         try {
             $cart = Checkout::with('products', 'products.users')->where('user_id', auth()->user()->id)->where('checkout_status', 0)->get();
+            // dd($cart);
             $data = RentProductResource::collection($cart);
             return response()->json($data, 200);
         } catch (\Throwable $th) {
