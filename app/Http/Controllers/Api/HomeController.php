@@ -11,6 +11,8 @@ use App\Http\Resources\GetProductResource;
 use App\Http\Resources\GetTheLookResource;
 use App\Http\Resources\HomeApiResource;
 use App\Http\Resources\OccasionResource;
+use App\Http\Resources\StoreBlogResourceApi;
+use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Item;
@@ -31,7 +33,9 @@ class HomeController extends Controller
         $productJustLanded = GetProductResource::collection($item);
         $look = GetTheLookResource::collection(Look::latest()->get());
         $brand = Brand::latest()->take(6)->get();
-         return response()->json(['category' => $categorydata, 'occassion' => $occassionData,"just_landed" => $productJustLanded,'get_the_look' => $look,'brands' => BrandResource::collection($brand),'category_product' => $data],200);
+        $privacyPolicy = Blog::latest()->take(6)->get();
+        $blogData = StoreBlogResourceApi::collection($privacyPolicy);
+         return response()->json(['category' => $categorydata, 'occassion' => $occassionData,"just_landed" => $productJustLanded,'get_the_look' => $look,'brands' => BrandResource::collection($brand),'category_product' => $data,'comunity' =>$blogData],200);
     }
     public function brandProduct(StoreBrandproductrequest $request){
      $item = Item::where('brand_id',$request->id)->get();

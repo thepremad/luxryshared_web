@@ -75,7 +75,12 @@ Route::middleware('auth:api')->group(function () {
     Route::controller(SellingController::class)->group(function () {
         Route::get('/selling', 'selling');
         Route::get('/lending', 'lending');
-
+        Route::post('/discount-code', 'discountCode');
+        Route::get('/privacy-policy', 'privacyPolicy');
+        Route::get('/comunity', 'comunity');
+        Route::get('/city', 'city');
+        Route::get('/country', 'country');
+        Route::get('/shopping-bag-payment', 'shoppingBagPayment');
     });
 });
 
