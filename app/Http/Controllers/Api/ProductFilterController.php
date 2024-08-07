@@ -82,6 +82,7 @@ class ProductFilterController extends Controller
     try {
         $cart = new Cart();
         $cart->item_id = $request->item_id;
+        $cart->days = $request->days;
         $cart->user_id = auth()->user()->id;
         $cart->save();
         return response()->json(['message' => 'Item Add Successfully'], 200);

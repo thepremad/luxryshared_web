@@ -34,7 +34,6 @@ class SellingController extends Controller
     public function lending(){
         try {
             $date = date('d-m-Y');
-
             $item = Checkout::with(['products', 'products.users', 'user', 'bookingdate'])
                 ->where('seller_id', auth()->user()->id)
                 ->whereHas('bookingdate', function ($query) use ($date) {
@@ -51,11 +50,12 @@ class SellingController extends Controller
     public function discountCode(Request $request){
       try {
         $discounts = Discount::where('code', $request->discount_code)->first();
-
         if ($discounts) {
-            $totalRrpPrice = Cart::where('user_id', auth()->user()->id)->with('products')->get()->sum(function ($cart) {
-                    return $cart->products->sum('rrp_price');
-                });
+            $totalRrpPrice = Cart::with('products')->where('user_id', auth()->user()->id)->whereHas('products', function ($query) use ($discounts){
+                $query->where('category_id',$discounts->category_id);
+                })->get();
+
+                $data =  $this->daysPrice($totalRrpPrice,$discounts);
             return response()->json(['totalPayment' =>$totalRrpPrice],200);
         }else{
             return response()->json(['message' => 'discount code not match'],200);
@@ -71,7 +71,7 @@ class SellingController extends Controller
         try {
             $privacyPolicy = PrivacyPolicy::first();
             $termsAndCondition = TermsAndConditions::first();
-            return response()->json(['privacy_policy' => $privacyPolicy, 'terms_and-conditions' => $termsAndCondition],200);
+            return response()->json(['privacy_policy' => $privacyPolicy, 'terms_and_conditions' => $termsAndCondition],200);
         } catch (\Throwable $th) {
             \Log::error('api item post : exception');
             \Log::error($th);
@@ -109,7 +109,6 @@ class SellingController extends Controller
             \Log::error($th);
             return response()->json(['error' => "Something went wrong. Please try again later."], 500);
         } 
-    
 }
 public function shoppingBagPayment(Request $request){
      try {
@@ -120,10 +119,37 @@ public function shoppingBagPayment(Request $request){
             $item->coupan_code = $request->discount_code;
             $item->save();
         });
+        return response()->json(['message' => 'success'],200);
      } catch (\Throwable $th) {
         \Log::error('api item post : exception');
         \Log::error($th);
         return response()->json(['error' => "Something went wrong. Please try again later."], 500);
     } 
+}
+protected function daysPrice($data, $discount)
+{
+    $allProductPrice = 0;
+    foreach ($data as $value) {
+        $price = 0;
+        if ($value->days >= 4 && $value->days <= 6) {
+            $price = $value->products->fourDaysPrice;
+        } elseif ($value->days >= 7 && $value->days <= 29) {
+            $price = $value->products->sevenToTwentyNineDayPrice;
+        } elseif ($value->days >= 30) {
+            $price = $value->products->thirtyPlusDayPrice;
+        } else {
+            $price = $value->days * $value->products->suggested_day_price;
+        }
+
+        if ($discount->offer_type == '2') {
+            $finalPrice = ($price * $discount->in_per) / 100;
+            $amount = $price - $finalPrice;
+            $allProductPrice += $amount;
+        } elseif ($discount->offer_type == '1') {
+            $amount = $price - $discount->fix_amount;
+            $allProductPrice += $amount;
+        }
+    }
+    return $allProductPrice;
 }
 }
