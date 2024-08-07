@@ -80,7 +80,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/comunity', 'comunity');
         Route::get('/city', 'city');
         Route::get('/country', 'country');
-        Route::get('/shopping-bag-payment', 'shoppingBagPayment');
+        Route::post('/shopping-bag-payment', 'shoppingBagPayment');
     });
 });
 
