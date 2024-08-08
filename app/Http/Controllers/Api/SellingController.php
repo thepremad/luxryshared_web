@@ -56,7 +56,7 @@ class SellingController extends Controller
                 })->get();
 
                 $data =  $this->daysPrice($totalRrpPrice,$discounts);
-            return response()->json(['totalPayment' =>$totalRrpPrice],200);
+            return response()->json(['totalPayment' =>$data],200);
         }else{
             return response()->json(['message' => 'discount code not match'],200);
         }
@@ -128,9 +128,12 @@ public function shoppingBagPayment(Request $request){
 }
 protected function daysPrice($data, $discount)
 {
-    $allProductPrice = 0;
+    $allProductPrices = []; 
+    $totalPrice = 0;
+    
     foreach ($data as $value) {
         $price = 0;
+    
         if ($value->days >= 4 && $value->days <= 6) {
             $price = $value->products->fourDaysPrice;
         } elseif ($value->days >= 7 && $value->days <= 29) {
@@ -138,18 +141,25 @@ protected function daysPrice($data, $discount)
         } elseif ($value->days >= 30) {
             $price = $value->products->thirtyPlusDayPrice;
         } else {
-            $price = $value->days * $value->products->suggested_day_price;
+            $price = (float)$value->days * (float)$value->products->suggested_day_price;
         }
-
+    
         if ($discount->offer_type == '2') {
             $finalPrice = ($price * $discount->in_per) / 100;
             $amount = $price - $finalPrice;
-            $allProductPrice += $amount;
         } elseif ($discount->offer_type == '1') {
             $amount = $price - $discount->fix_amount;
-            $allProductPrice += $amount;
         }
+        $allProductPrices[] = [
+            'item_id' => $value->products->id,
+            'amount' => $amount,
+        ];
+        $totalPrice += $amount;
     }
-    return $allProductPrice;
+    return[
+        'total_price' => $totalPrice,
+        'product_prices' => $allProductPrices,
+    ];
 }
+    
 }
