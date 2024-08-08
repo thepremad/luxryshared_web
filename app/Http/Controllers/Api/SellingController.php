@@ -146,8 +146,8 @@ protected function daysPrice($data, $discount)
             $amount = $price - $finalPrice;
             $allProductPrice += $amount;
         } elseif ($discount->offer_type == '1') {
-            $amount = $price - (float)$discount->fix_amount;
-            $allProductPrice += (float)$amount;
+            $amount = $price - $discount->fix_amount;
+            $allProductPrice += $amount;
         }
     }
     return $allProductPrice;
