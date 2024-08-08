@@ -128,9 +128,12 @@ public function shoppingBagPayment(Request $request){
 }
 protected function daysPrice($data, $discount)
 {
-    $allProductPrice = 0;
+    $allProductPrices = []; 
+    $totalPrice = 0;
+    
     foreach ($data as $value) {
         $price = 0;
+    
         if ($value->days >= 4 && $value->days <= 6) {
             $price = $value->products->fourDaysPrice;
         } elseif ($value->days >= 7 && $value->days <= 29) {
@@ -140,16 +143,23 @@ protected function daysPrice($data, $discount)
         } else {
             $price = (float)$value->days * (float)$value->products->suggested_day_price;
         }
-
+    
         if ($discount->offer_type == '2') {
-            $finalPrice = ((float)$price * $discount->in_per) / 100;
-            $amount = (float)$price - (float)$finalPrice;
-            $allProductPrice += (float)$amount;
+            $finalPrice = ($price * $discount->in_per) / 100;
+            $amount = $price - $finalPrice;
         } elseif ($discount->offer_type == '1') {
-            $amount = (float)$price - (float)$discount->fix_amount;
-            $allProductPrice += (float)$amount;
+            $amount = $price - $discount->fix_amount;
         }
+        $allProductPrices[] = [
+            'item_id' => $value->products->id,
+            'amount' => $amount,
+        ];
+        $totalPrice += $amount;
     }
-    return $allProductPrice;
+    return[
+        'total_price' => $totalPrice,
+        'product_prices' => $allProductPrices,
+    ];
 }
+    
 }

@@ -23,19 +23,19 @@ class StoreCheckoutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'item_id' => 'required|exists:items,id',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'country' => 'required',
-            'street_address' => 'required',
-            'arp_suit_unit' => 'required',
-            'city' => 'required|exists:cities,id',
-            'mobile_number' => 'required',
-            'checkout_status' => 'required',
-            'size' => 'required|exists:sizes,id',
-            'product_price' => 'required',
-            'shipping_address' => 'required',
-            'payment_method' => 'required',
+            '*.item_id' => 'required|exists:items,id',
+            '*.first_name' => 'required',
+            '*.last_name' => 'required',
+            '*.country' => 'required',
+            '*.street_address' => 'required',
+            '*.arp_suit_unit' => 'required',
+            '*.city' => 'required|exists:cities,id',
+            '*.mobile_number' => 'required',
+            '*.checkout_status' => 'required',
+            '*.size' => 'required|exists:sizes,id',
+            '*.product_price' => 'required',
+            '*.shipping_address' => 'required',
+            '*.payment_method' => 'required',
         ];
     }
     protected function failedValidation(Validator $validator)
