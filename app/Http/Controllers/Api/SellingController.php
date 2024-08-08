@@ -138,7 +138,7 @@ protected function daysPrice($data, $discount)
         } elseif ($value->days >= 30) {
             $price = $value->products->thirtyPlusDayPrice;
         } else {
-            $price = $value->days * $value->products->suggested_day_price;
+            $price = $value->days * (float)$value->products->suggested_day_price;
         }
 
         if ($discount->offer_type == '2') {
@@ -146,8 +146,8 @@ protected function daysPrice($data, $discount)
             $amount = $price - $finalPrice;
             $allProductPrice += $amount;
         } elseif ($discount->offer_type == '1') {
-            $amount = $price - $discount->fix_amount;
-            $allProductPrice += $amount;
+            $amount = $price - (float)$discount->fix_amount;
+            $allProductPrice += (float)$amount;
         }
     }
     return $allProductPrice;
