@@ -22,22 +22,31 @@ class CheckoutController extends Controller
     {
         try {
             DB::beginTransaction();
-            foreach ($request->rental_period as $key => $value) {
-                $bookingDates = BookingDate::where('item_id', $request->item_id)->where('date', $value)->first();
-                if ($bookingDates) {
-                    DB::rollBack();
-                    return response()->json(['date' => 'item already booked on this date'], 200);
+            foreach ($request->all() as $val) {
+                foreach ($val['rental_period'] as $value) {
+                    $bookingDates = BookingDate::where('item_id', $val['item_id'])->where('date', $value)->first();
+                    
+                    if ($bookingDates) {
+                        DB::rollBack();
+                        return response()->json(['date' => 'Item already booked on this date'], 200);
+                    }
                 }
+                $checkout = new Checkout();
+                $products = Item::where('id', $val['item_id'])->first();
+                if (!$products) {
+                    DB::rollBack();
+                    return response()->json(['error' => 'Item not found'], 404);
+                }
+                $checkout->fill($val);
+                $checkout->user_id = auth()->user()->id;
+                $checkout->seller_id = $products->user_id;
+                $checkout->save();
+        
+                $this->checkoutDates($val['rental_period'], $products->user_id, auth()->user()->id, $checkout->id, $val['item_id']);
             }
-            $checkout = new Checkout();
-            $products = Item::where('id', $request->item_id)->first();
-            $checkout->fill($request->all());
-            $checkout->user_id = auth()->user()->id;
-            $checkout->seller_id = $products->user_id;
-            $checkout->save();
-            $this->checkoutDates($request->rental_period, $products->user_id, auth()->user()->id, $checkout->id, $request->item_id);
-            DB::commit();
-            return response()->json($checkout, 200);
+        DB::commit();
+
+            return response()->json(['message' => 'checkout products successfully'], 200);
         } catch (\Throwable $th) {
             \Log::error('api item post : exception');
             \Log::error($th);

@@ -25,12 +25,12 @@ class LendingProductApiResource extends JsonResource
             'rentorName' => $this->user->first_name,
             'RentorMobNumber' => $this->user->number,
             'paymentDetails' => $this->products->rrp_price ?? '',
-            'bookingDate' => '14 May 2024',
-            'rentalPeriod' => '14 May 2024 Till 18 May 2024',
+            'bookingDate' => date_format($this->created_at,'d-m-Y') ?? '',
+            'rentalPeriod' => $this->bookingdate->date ?? '',
             'quantity_of_product' => 1,
             'rentalEmail' => $this->user->email,
             'final_amount' => $this->products->rrp_price ?? '',
-            'status' => 'Pending/Paid',
+            'status' => $this->withdrawl_request,
             'rental_period' => $this->bookingdate->pluck('date','id'),
 
         ];
