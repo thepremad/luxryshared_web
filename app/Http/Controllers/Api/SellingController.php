@@ -138,16 +138,16 @@ protected function daysPrice($data, $discount)
         } elseif ($value->days >= 30) {
             $price = $value->products->thirtyPlusDayPrice;
         } else {
-            $price = $value->days * (float)$value->products->suggested_day_price;
+            $price = (float)$value->days * (float)$value->products->suggested_day_price;
         }
 
         if ($discount->offer_type == '2') {
-            $finalPrice = ($price * $discount->in_per) / 100;
-            $amount = $price - $finalPrice;
-            $allProductPrice += $amount;
+            $finalPrice = ((float)$price * $discount->in_per) / 100;
+            $amount = (float)$price - (float)$finalPrice;
+            $allProductPrice += (float)$amount;
         } elseif ($discount->offer_type == '1') {
-            $amount = $price - $discount->fix_amount;
-            $allProductPrice += $amount;
+            $amount = (float)$price - (float)$discount->fix_amount;
+            $allProductPrice += (float)$amount;
         }
     }
     return $allProductPrice;
