@@ -56,7 +56,7 @@ class SellingController extends Controller
                 })->get();
 
                 $data =  $this->daysPrice($totalRrpPrice,$discounts);
-            return response()->json(['totalPayment' =>$totalRrpPrice],200);
+            return response()->json(['totalPayment' =>$data],200);
         }else{
             return response()->json(['message' => 'discount code not match'],200);
         }
