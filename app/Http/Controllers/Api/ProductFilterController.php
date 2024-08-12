@@ -80,6 +80,10 @@ class ProductFilterController extends Controller
     }
     public function addTocart(StoreAddProductRequest $request){
     try {
+        $checkCartItems = Cart::where('item_id',$request->item_id)->where('user_id',auth()->user()->id)->first();
+        if ($checkCartItems) {
+        return response()->json(['message' => 'Item Already Addes In Cart'], 200);
+        }
         $cart = new Cart();
         $cart->item_id = $request->item_id;
         $cart->days = $request->days;
