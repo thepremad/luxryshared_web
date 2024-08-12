@@ -46,6 +46,9 @@ class Checkout extends Model
     public function city(){
       return $this->belongsTo(City::class,'city','id');
     }
+    public function saler(){
+        return $this->belongsTo(User::class,'seller_id','id');
+    }
     static $requested = 1;
     static $approved = 2;
     static $pending = 0;

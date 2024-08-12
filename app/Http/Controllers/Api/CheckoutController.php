@@ -83,7 +83,7 @@ class CheckoutController extends Controller
     public function rent()
     {
         try {
-            $cart = Checkout::with('products', 'products.users')->where('user_id', auth()->user()->id)->where('checkout_status', 0)->get();
+            $cart = Checkout::with('products', 'products.users','saler')->where('user_id', auth()->user()->id)->where('checkout_status', 0)->get();
             // dd($cart);
             $data = RentProductResource::collection($cart);
             return response()->json($data, 200);
