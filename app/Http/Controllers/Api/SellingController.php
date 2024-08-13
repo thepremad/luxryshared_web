@@ -161,5 +161,17 @@ protected function daysPrice($data, $discount)
         'product_prices' => $allProductPrices,
     ];
 }
+public function withdrawlRequest(Request $request){
+    try {
+        $checkout = Checkout::where('user-id',auth()->user()->id)->where('item_id',$request->item_id)->first();
+        $checkout->withdrawl_request = Checkout::$requested;
+        $checkout->save();
+        return response()->json(['message' => 'withdrawl request send successfully'],200);
+    }  catch (\Throwable $th) {
+        \Log::error('api item post : exception');
+        \Log::error($th);
+        return response()->json(['error' => "Something went wrong. Please try again later."], 500);
+    } 
+}
     
 }
