@@ -31,7 +31,7 @@ class HomeController extends Controller
         $occassionData = OccasionResource::collection($occasions);
         $item = Item::with('bookingDate')->where('status',Item::$active)->latest()->take(6)->get();
         $productJustLanded = GetProductResource::collection($item);
-        $look = GetTheLookResource::collection(Look::latest()->get());
+        $look = GetTheLookResource::collection(Look::with('products','products.bookingDate')->latest()->get());
         $brand = Brand::latest()->take(6)->get();
         $privacyPolicy = Blog::latest()->take(6)->get();
         $blogData = StoreBlogResourceApi::collection($privacyPolicy);
