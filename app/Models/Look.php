@@ -12,7 +12,7 @@ class Look extends Model
         'image',
         'product_id'
     ];
-    public function product(){
-        return $this->belongsTo(Item::class,'id');
+    public function products(){
+        return $this->hasMany(Item::class,'id','item_id')->where('status',Item::$active);
     }
 }

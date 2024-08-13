@@ -98,7 +98,7 @@ class ProductFilterController extends Controller
     }
     public function shoppingBag(){
         try {
-            $cart = Cart::with('products')->where('user_id',auth()->user()->id)->get();
+            $cart = Cart::with('products')->where('user_id',auth()->user()->id)->latest()->get();
             $data = GetCartResource::collection($cart);
             return response()->json($data,200);
         }catch (\Throwable $th) {
