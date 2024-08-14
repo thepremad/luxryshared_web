@@ -17,7 +17,7 @@ class Category extends Model
     static $in_active = 0;
     
     public function products(){
-        return $this->hasMany(Item::class,'category_id')->where('status',Item::$active);
+        return $this->hasMany(Item::class,'category_id')->where('status',Item::$active)->where('checkout_status','0');
     }
    
 }

@@ -29,7 +29,7 @@ class HomeController extends Controller
         $categorydata = CategoryResource::collection($cateegory);
         $occasions = Occasion::latest()->take(6)->get();
         $occassionData = OccasionResource::collection($occasions);
-        $item = Item::with('bookingDate')->where('status',Item::$active)->latest()->take(6)->get();
+        $item = Item::with('bookingDate')->where('status',Item::$active)->where('checkout_status','0')->latest()->take(6)->get();
         $productJustLanded = GetProductResource::collection($item);
         $look = GetTheLookResource::collection(Look::with('products','products.bookingDate')->latest()->get());
         $brand = Brand::latest()->take(6)->get();
