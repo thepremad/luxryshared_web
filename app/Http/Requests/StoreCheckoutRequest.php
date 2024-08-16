@@ -28,7 +28,6 @@ class StoreCheckoutRequest extends FormRequest
             '*.last_name' => 'required',
             '*.country' => 'required',
             '*.street_address' => 'required',
-            '*.arp_suit_unit' => 'required',
             '*.city' => 'required|exists:cities,id',
             '*.mobile_number' => 'required',
             '*.checkout_status' => 'required',
