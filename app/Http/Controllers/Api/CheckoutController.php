@@ -33,6 +33,10 @@ class CheckoutController extends Controller
                 }
                 $checkout = new Checkout();
                 $products = Item::where('id', $val['item_id'])->first();
+                if ($val['checkout_status'] == 1) {
+                    $products->checkout_status = '1';
+                    $products->save();
+                }
                 if (!$products) {
                     DB::rollBack();
                     return response()->json(['error' => 'Item not found'], 404);

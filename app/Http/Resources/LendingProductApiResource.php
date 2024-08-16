@@ -32,7 +32,6 @@ class LendingProductApiResource extends JsonResource
             'final_amount' => $this->products->rrp_price ?? '',
             'status' => $this->withdrawl_request,
             'rental_period' => $this->bookingdate->pluck('date','id'),
-
         ];
     }
 }

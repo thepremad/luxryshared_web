@@ -164,9 +164,13 @@ protected function daysPrice($data, $discount)
 public function withdrawlRequest(Request $request){
     try {
         $checkout = Checkout::where('seller_id',auth()->user()->id)->where('item_id',$request->item_id)->first();
-        $checkout->withdrawl_request = Checkout::$requested;
-        $checkout->save();
-        return response()->json(['message' => 'withdrawl request send successfully'],200);
+        if ($checkout) {
+            $checkout->withdrawl_request = Checkout::$requested;
+            $checkout->save();
+            return response()->json(['message' => 'withdrawl request send successfully'],200);
+        }else{
+            return response()->json(['message' => 'Id not match with records'],200);
+        }
     }  catch (\Throwable $th) {
         \Log::error('api item post : exception');
         \Log::error($th);

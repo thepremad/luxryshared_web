@@ -45,9 +45,9 @@ class ItemController extends Controller
     public function product(Request $request){
        try {
         if ($request->categoryId == '0') {
-            $products = Item::where('status',Item::$active)->latest()->get();
+            $products = Item::where('status',Item::$active)->where('checkout_status','0')->latest()->get();
         }else{
-            $products = Item::where('category_id',$request->categoryId)->where('status',Item::$active)->get();
+            $products = Item::where('category_id',$request->categoryId)->where('status',Item::$active)->where('checkout_status','0')->get();
         }
         $data = GetProductResource::collection($products);
         return response()->json($data, 200);
