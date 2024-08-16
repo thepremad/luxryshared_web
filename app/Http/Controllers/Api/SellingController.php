@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContuctUsRequest;
 use App\Http\Resources\LendingProductApiResource;
 use App\Http\Resources\SellingResource;
 use App\Http\Resources\StoreBlogResourceApi;
@@ -10,6 +11,7 @@ use App\Models\Blog;
 use App\Models\Cart;
 use App\Models\Checkout;
 use App\Models\City;
+use App\Models\ContuctUs;
 use App\Models\Country;
 use App\Models\Discount;
 use App\Models\Item;
@@ -172,6 +174,18 @@ public function withdrawlRequest(Request $request){
             return response()->json(['message' => 'Id not match with records'],200);
         }
     }  catch (\Throwable $th) {
+        \Log::error('api item post : exception');
+        \Log::error($th);
+        return response()->json(['error' => "Something went wrong. Please try again later."], 500);
+    } 
+}
+public function contuctUs(ContuctUsRequest $request){
+    try {
+        $contuctUs = new ContuctUs();
+        $contuctUs->fill($request->all());
+        $contuctUs->save();
+        return response()->json(['message' => 'form submit successfully'],200);
+    } catch (\Throwable $th) {
         \Log::error('api item post : exception');
         \Log::error($th);
         return response()->json(['error' => "Something went wrong. Please try again later."], 500);

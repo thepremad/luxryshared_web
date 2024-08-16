@@ -43,10 +43,14 @@ class CheckoutController extends Controller
                 }
                 $checkout->fill($val);
                 $checkout->user_id = auth()->user()->id;
-                $checkout->seller_id = $products->user_id;
-                $checkout->save();
+                if ($products->user_id) {
+                    $checkout->seller_id = $products->user_id;
+                    $checkout->save();
+                    $this->checkoutDates($val['rental_period'], $products->user_id, auth()->user()->id, $checkout->id, $val['item_id']);
+                }else{
+                    return response()->json(['error' => 'userid not found'], 404);
+                }
         
-                $this->checkoutDates($val['rental_period'], $products->user_id, auth()->user()->id, $checkout->id, $val['item_id']);
             }
         DB::commit();
 
@@ -132,18 +136,6 @@ class CheckoutController extends Controller
             \Log::error($th);
             return response()->json(['error' => "Something went wrong. Please try again later."], 500);
         }
-        // $emptyArr = [];
-        // $newarr = [];
-        // $arr = [1,2,3,4,5,6,7,10,23,12,3,19];
-        // $chunkData = array_chunk($arr,10);
-        //  $emptyArr[] = $chunkData[1];
-        //  $emptyArr[] = $chunkData[0];
-        //  foreach ($emptyArr as $key => $value) {
-        //     foreach ($value as $val) {
-        //         $newarr[] = $val;
-        //     }
-        //  }
-        //  dd($newarr);
     }
     protected function checkoutDates($dates, $sellerId, $userId, $id, $itemId)
     {
