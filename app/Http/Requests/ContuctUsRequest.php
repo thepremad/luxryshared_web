@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-class StoreItemRequest extends FormRequest
+class ContuctUsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,25 +22,13 @@ class StoreItemRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'category_id' => 'required|exists:categories,id',
-            'sub_category_id' => 'required|exists:sub_categories,id',
-            'brand_id' => 'required|exists:brands,id',
-            'item_title' => 'required',
-            'color_id' => 'required|exists:colors,id',
-            'size_id' => 'required|exists:sizes,id',
-            'mainImag' => 'required',
-            'image_1' => 'required',
-            'image_2' => 'required',
-            'image_3' => 'required',
-            'image_4' => 'required',
-            'image_description' => 'required',
-            'rrp_price' => 'required|numeric|min:500',
+        return [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'mobile_number' => 'required',
+            'message' => 'required',
         ];
-        if ($this->buy == 'true') {
-            $rules['buy_price'] = 'required';
-        }
-        return $rules;
     }
     protected function failedValidation(Validator $validator)
     {

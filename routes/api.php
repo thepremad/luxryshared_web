@@ -82,6 +82,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/country', 'country');
         Route::post('/shopping-bag-payment', 'shoppingBagPayment');
         Route::post('/withdrawl-request', 'withdrawlRequest');
+        Route::post('/contuct-us', 'contuctUs');
     });
 });
 
