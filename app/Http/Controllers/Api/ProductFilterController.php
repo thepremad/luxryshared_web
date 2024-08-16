@@ -16,7 +16,7 @@ class ProductFilterController extends Controller
     public function filterHome(Request $request)
     {
         try {
-            $query = Item::query();
+            $query = Item::where('checkout_status','0')->query();
     
             $filters = [
                 'sub_category_id' => 'sub_category_id',
