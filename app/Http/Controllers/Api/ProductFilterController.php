@@ -16,7 +16,8 @@ class ProductFilterController extends Controller
     public function filterHome(Request $request)
     {
         try {
-            $query = Item::where('checkout_status','0')->query();
+            $query = Item::query();
+            $query->where('checkout_status','0');
     
             $filters = [
                 'sub_category_id' => 'sub_category_id',
@@ -25,7 +26,6 @@ class ProductFilterController extends Controller
                 'occasion' => 'occasion_id',
                 'Brand' => 'Brand_id'
             ];
-    
             foreach ($filters as $requestKey => $columnName) {
                 if ($request->filled($requestKey)) {
                     $query->where($columnName, $request->$requestKey);
