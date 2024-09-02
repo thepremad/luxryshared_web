@@ -99,7 +99,7 @@ $offer = config('constants.OFFER');
                                             <div class="mb-1">
                                                       {!! Form::label('fix_amount', 'Fix Amount') !!}
                                                         {!! Form::number('fix_amount', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Fix Amount', 'id' =>
-                                                          'name']) !!}
+                                                          'name','oninput' => 'filterAlphabets(this)']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="fix_amount-error"></span>
                                                 </div>
@@ -116,7 +116,7 @@ $offer = config('constants.OFFER');
                                         <div class="col-md-6 col-12">
                                             <div class="mb-1">
                                                       {!! Form::label('limit', 'Limit') !!}
-                                                        {!! Form::number('limit', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Code', 'id' =>
+                                                        {!! Form::number('limit', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Limit', 'id' =>
                                                           'name']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="limit-error"></span>
@@ -225,5 +225,8 @@ $('#category_id').on('change', function() {
             }
         });
 });
+function filterAlphabets(inputField) {
+      inputField.value = inputField.value.replace(/[^0-9]/g, '');
+    }
 </script>
 @endsection

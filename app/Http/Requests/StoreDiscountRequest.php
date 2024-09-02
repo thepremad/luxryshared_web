@@ -32,7 +32,7 @@ class StoreDiscountRequest extends FormRequest
         if ($this->offer_type == 1) {
             $rule['fix_amount'] = 'required';
         }elseif($this->offer_type == 2)
-        $rule['in_per'] = 'required';
+        $rule['in_per'] = 'required|integer|between:1,100';
         return $rule;
     }
     protected function failedValidation(Validator $validator)
