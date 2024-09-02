@@ -35,6 +35,7 @@ class StoreCheckoutRequest extends FormRequest
             '*.product_price' => 'required',
             '*.shipping_address' => 'required',
             '*.payment_method' => 'required',
+            '*.is_cart' => 'required',
         ];
     }
     protected function failedValidation(Validator $validator)

@@ -9,6 +9,7 @@ use App\Http\Resources\GetCartResource;
 use App\Http\Resources\GetMenuApiresource;
 use App\Http\Resources\RentProductResource;
 use App\Models\BookingDate;
+use App\Models\Cart;
 use App\Models\Checkout;
 use App\Models\Item;
 use App\Models\Menu;
@@ -31,6 +32,7 @@ class CheckoutController extends Controller
                         return response()->json(['date' => 'Item already booked on this date'], 200);
                     }
                 }
+
                 $checkout = new Checkout();
                 $products = Item::where('id', $val['item_id'])->first();
                 if ($val['checkout_status'] == 1) {
@@ -45,10 +47,14 @@ class CheckoutController extends Controller
                 $checkout->user_id = auth()->user()->id;
                 if ($products->user_id) {
                     $checkout->seller_id = $products->user_id;
+                    $checkout->discount_code = $val['discount_code'];
                     $checkout->save();
                     $this->checkoutDates($val['rental_period'], $products->user_id, auth()->user()->id, $checkout->id, $val['item_id']);
                 }else{
                     return response()->json(['error' => 'userid not found'], 404);
+                }
+                if ($val['is_cart'] == true) {
+                    Cart::where('user_id',auth()->user()->id)->delete();
                 }
         
             }

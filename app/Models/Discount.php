@@ -18,4 +18,7 @@ class Discount extends Model
         'limit',
         'category_id'
     ];
+    public function discountProduct(){
+        return $this->hasMany(DiscountProduct::class,'discounts_id');
+    }
 }

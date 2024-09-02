@@ -75,7 +75,7 @@
                                                 <td>{{$item->code}}</td>
                                                 <td>{{config("constants.OFFER.$item->offer_type") }}</td>
                                                 <td>{{$item->limit}} </td>
-                                                <td>{{$item->offer_type == 2 ? $item->in_per : $item->fix_amount}}{{$item->offer_type == 2 ? '%' : 'Rs'}} </td>
+                                                <td>{{$item->offer_type == 2 ? $item->in_per : $item->fix_amount}}{{$item->offer_type == 2 ? '%' : ' Dirham'}} </td>
                                                 <td >{{$item->exp_date}}</td>
                                                 <td>
                                                     <div class="dropdown">

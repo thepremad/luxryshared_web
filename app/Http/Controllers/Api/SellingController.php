@@ -51,10 +51,11 @@ class SellingController extends Controller
     }
     public function discountCode(Request $request){
       try {
-        $discounts = Discount::where('code', $request->discount_code)->first();
+        $discounts = Discount::with('discountProduct')->where('code', $request->discount_code)->first();
         if ($discounts) {
-            $totalRrpPrice = Cart::with('products')->where('user_id', auth()->user()->id)->whereHas('products', function ($query) use ($discounts){
-                $query->where('category_id',$discounts->category_id);
+            $discountProductIds = $discounts->discountProduct->pluck('product_id')->toArray();
+            $totalRrpPrice = Cart::with('products')->where('user_id', auth()->user()->id)->whereHas('products', function ($query) use ($discounts,$discountProductIds){
+                $query->where('category_id',$discounts->category_id)->whereIn('id',$discountProductIds);
                 })->get();
 
                 $data =  $this->daysPrice($totalRrpPrice,$discounts);
@@ -152,6 +153,9 @@ protected function daysPrice($data, $discount)
         } elseif ($discount->offer_type == '1') {
             $amount = $price - $discount->fix_amount;
         }
+
+        $amount = $amount < 0 ? 0 : $amount;
+        
         $allProductPrices[] = [
             'item_id' => $value->products->id,
             'amount' => $amount,
