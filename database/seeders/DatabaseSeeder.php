@@ -24,5 +24,8 @@ class DatabaseSeeder extends Seeder
             'role' => '1',
             'password' => \Hash::make('Admin@123'),
         ]);
+        \App\Models\Commission::create([
+            'commission' => 10
+        ]);
     }
 }

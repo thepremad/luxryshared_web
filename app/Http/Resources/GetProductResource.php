@@ -46,6 +46,7 @@ class GetProductResource extends JsonResource
             'byNowPrice' => $this->buy_price,
             'retailsPrice' => $this->rrp_price,
             'product_description' => $this->image_description,
+            'buy' => $this->buy,
             'rental_period' => $this->bookingDate->pluck('date','id')
         ];
     }
