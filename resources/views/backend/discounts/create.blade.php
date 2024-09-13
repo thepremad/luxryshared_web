@@ -75,31 +75,31 @@ $offer = config('constants.OFFER');
                                               {!! Form::label('category_id', 'Offer') !!}
                                               {!! Form::select('offer_type', $offer,null, ['class' => 'form-select
                                               ','id' => 'offer_type']) !!}
-                                                    <span class="text-danger validation-class" id="category_id-error"></span>
+                                                    <span class="text-danger validation-class" id="offer_type-error"></span>
 
                                         </div>
                                         <div class="col-md-6 ">
-                                              {!! Form::label('category_id', 'Categoy ') !!}
+                                              {!! Form::label('category_id', 'Categoy') !!}
                                               {!! Form::select('category_id', $category->pluck('name','id'),null, ['class' => 'form-select 
-                                              ','id' => 'category_id']) !!}
+                                              ','id' => 'category_id','placeholder' => '']) !!}
                                                     <span class="text-danger validation-class" id="category_id-error"></span>
 
                                         </div>
-                                        <div class="col-md-6 col-12 d-none" id="inPer">
+                                        <div class=" @if($discounts == null)  col-md-6 col-12 d-none @elseif($discounts->in_per != null) col-md-6 col-12 @else col-md-6 col-12 d-none @endif"   id="inPer">
                                             <div class="mb-1">
                                                       {!! Form::label('text', 'In Percent') !!}
                                                         {!! Form::text('in_per', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'In Percent', 'id' =>
-                                                          'name']) !!}
+                                                          'in__per']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="in_per-error"></span>
                                                 </div>
                                         </div>
                                       
-                                        <div class="col-md-6 col-12 d-none" id="fix_amountt">
+                                        <div class="@if($discounts == null)  col-md-6 col-12 d-none @elseif($discounts->fix_amount != null) col-md-6 col-12 @else col-md-6 col-12 d-none @endif" id="fix_amountt">
                                             <div class="mb-1">
                                                       {!! Form::label('fix_amount', 'Fix Amount') !!}
                                                         {!! Form::number('fix_amount', null,  ['class' => 'form-control', 'autocomplete'=>"off", 'placeholder' => 'Fix Amount', 'id' =>
-                                                          'name','oninput' => 'filterAlphabets(this)']) !!}
+                                                          'in__fix','oninput' => 'filterAlphabets(this)']) !!}
                                                     
                                                     <span class="text-danger validation-class" id="fix_amount-error"></span>
                                                 </div>
@@ -194,7 +194,7 @@ $offer = config('constants.OFFER');
 $('#offer_type').on('change', function() {
     var selectedValue = $(this).val();
     if (selectedValue == 1) {
-        $('#fix_amountt').removeClass('d-none');
+     $('#fix_amountt').removeClass('d-none');
         $('#inPer').addClass('d-none');
     } else if (selectedValue == 2) {
         $('#inPer').removeClass('d-none');
@@ -214,7 +214,6 @@ $('#category_id').on('change', function() {
             success: function (response) {
                 $('#products_data').empty();
                 response.data.forEach(function (item) {
-                    console.log(item);
                     var newRow = '<option value="' + item.id + '">' + item.item_title + '</option>';
                     $('#products_data').append(newRow);
                 });

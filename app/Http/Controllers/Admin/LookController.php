@@ -19,7 +19,7 @@ class LookController extends Controller
     {
         try {
             $query_search = $request->input('search');
-            $looks =Look::with('product')->when($query_search, function ($query) use ($query_search) {
+            $looks = Look::with('products')->when($query_search, function ($query) use ($query_search) {
                 $query->where('name', 'like', '%' . $query_search . '%');
             })
             ->latest()->paginate(10);

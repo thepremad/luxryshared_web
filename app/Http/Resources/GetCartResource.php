@@ -17,9 +17,9 @@ class GetCartResource extends JsonResource
         return [
             'id' => $this->id ?? '',
             'name' => $this->products->item_title ?? '',
-            'icon' => $this->products?->mainImag 
-             ? url('public/uploads/item/'.$this->products?->mainImag) 
-             : null,
+            'icon' => $this->products?->mainImag
+                ? url('public/uploads/item/' . $this->products?->mainImag)
+                : null,
             'price' => $this->products->rrp_price ?? '',
             'size' => $this->products->size->name ?? '',
         ];
