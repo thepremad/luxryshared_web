@@ -23,7 +23,8 @@
                             </a>
                         </li>
                     </ul>
-                    <form action="" id="frmLogin" >
+                    <form action="{{route('login')}}" id="frmLogin" method="POST"  >
+                        @csrf
                         <div class="mb-3">
                             <label for="basic-url" class="form-label">Your email</label>
                             <div class="input-group emailcont-bg">
@@ -87,55 +88,43 @@
     });
 </script>
 <script>
-    $(document).ready(function () {
-        
-
-        $('#frmLogin').on('submit', function (e) {
-            e.preventDefault();
-            var $form = $(this);
-            var url = "{{ url('api/login') }}";
-            var formData = new FormData($form[0]);
-            $('.validation-class').html('');
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                beforeSend: function () {
-                    $('.spinner-loader').css('display', 'block');
+      $(document).ready(function () {
+      $('#frmLogin').on('submit', function (e) {
+          e.preventDefault();
+          var $form = $(this);
+          var url = $form.attr('action');
+          var formData = new FormData($form[0]);
+          $('.validation-class').html('');
+          $.ajax({
+              url: url,
+              type: 'POST',
+              data: formData,
+              processData: false,
+              contentType: false,
+              beforeSend: function() {
+                $('.spinner-loader').css('display', 'block');
                 },
-                success: function (res) {
-                    $('.spinner-loader').css('display', 'none');
-                    toastr.success('Login Successfully !');
-                    
-                },
-                error: function (xhr) {
-                    $('.spinner-loader').css('display', 'none');
-                    if (xhr.status === 422) {
-                        $('.validation-class').text('');
-                        var errors = xhr.responseJSON.error;
-                        function displayErrors(errors, prefix = '') {
-                            $.each(errors, function (key, value) {
-                                if (typeof value === 'object' && value !== null) {
-                                    displayErrors(value, prefix + key + '.');
-                                } else {
-                                    $("#" + prefix + key + "-error").text(Array.isArray(value) ? value.join(', ') : value);
-                                }
-                            });
-                        }
-                        displayErrors(errors);
-                    }else if(xhr.status === 500){
-                    toastr.warning('Admin unable to login!');
-
-                    } else {
-                        toastr.error(xhr.message);
-                        $('#error').show().html(xhr.message);
-                    }
-                }
-            });
-        });
-    });
+              success: function (res) {
+                $('.spinner-loader').css('display', 'none');
+                  if (res.status === 200) {
+                      toastr.success(res.message);
+                      window.location.href = "{{ route('home') }}"; 
+                  } else if(res.status === 422) {
+                    $.each(res.message, function (key, value) {
+                            $("#" + key + "-error").text(value[0]);
+                        });
+                  } else {
+                      toastr.error(res.message);
+                      $('#error').show().html(res.message);
+                  }
+              },
+              error: function () {     
+                $('.spinner-loader').css('display', 'none');
+                  toastr.error('Oops... Something went wrong. Please try again.');
+              }
+          });
+      });
+  });
 </script>
 
 
