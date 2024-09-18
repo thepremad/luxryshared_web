@@ -1,0 +1,2717 @@
+.listingProduct .col-lg-10 {
+  padding: 70px 100px;
+  background-color: #f9f9f9;
+  flex: 0 0 82.678%;
+  max-width: 82.678%;
+  margin: 100px 0 70px;
+}
+
+.listingProduct #multiStepForm .step h2 {
+  font-family: "poppins", sans-serif;
+  font-size: 36px;
+  line-height: 54px;
+  text-align: center;
+  color: #383838;
+  margin-bottom: 20px;
+}
+
+.listingProduct #multiStepForm .step h4 {
+  font-family: "poppins", sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  color: #383838;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.listingProduct #multiStepForm .step h4::after {
+  content: "";
+  position: absolute;
+  background-color: #38383861;
+  height: 1px;
+  width: 169px;
+  top: 50%;
+  left: 16.8%;
+}
+
+.listingProduct #multiStepForm .step h4::before {
+  content: "";
+  position: absolute;
+  background-color: #38383861;
+  height: 1px;
+  width: 169px;
+  top: 50%;
+  right: 16.8%;
+}
+
+.listingProduct #multiStepForm .step label {
+  font-family: "poppins", sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: left;
+  color: #586166;
+  margin-bottom: 7px;
+}
+
+.listingProduct #multiStepForm .step label span {
+  color: #ff0000;
+}
+
+.listingProduct #multiStepForm .step .row {
+  gap: 0 16%;
+}
+
+.listingProduct #multiStepForm .step .form-group.col-md-6 {
+  margin-bottom: 20px;
+  flex: 0 0 42.612%;
+  max-width: 42.612%;
+}
+
+.listingProduct #multiStepForm .step input,
+.listingProduct #multiStepForm .step select {
+  font-family: "poppins", sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: left;
+  color: #8d9396;
+  background-color: #fff;
+  height: 56px;
+  padding: 16px 32px;
+  border: unset;
+  border-color: unset;
+}
+
+.listingProduct #multiStepForm .step textarea {
+  font-family: "poppins", sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: left;
+  color: #8d9396;
+  background-color: #fff;
+  padding: 16px 32px;
+  border: unset;
+  border-color: unset;
+  min-height: 166.88px;
+  margin-bottom: 30px;
+}
+
+.listingProduct #multiStepForm .step button.btn {
+  font-family: "poppins", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #ffffff;
+  width: 206px;
+  height: 48px;
+  padding: 12px 24px;
+  background-color: #000000;
+  border-radius: 8px;
+  float: right;
+}
+
+.listingProduct #multiStepForm .step button.btn-previous {
+  font-family: "poppins", sans-serif;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #57110c;
+  width: 160px;
+  height: unset;
+  padding: unset;
+  padding-top: 15px;
+  background-color: unset;
+  border-radius: unset;
+  border: unset;
+  text-decoration: underline;
+}
+
+.listingProduct .step {
+  display: none;
+}
+
+.listingProduct .step.active {
+  display: block;
+}
+
+.listingProduct .color-box {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+.listingProduct .upload-box {
+  width: 114px;
+  height: 106.64px;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 15px;
+  float: left;
+}
+
+.listingProduct .upload-box .upload-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background-color: #7474744d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.listingProduct .upload-box input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.listingProduct .tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.listingProduct .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.listingProduct .tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.listingProduct .img-suggestion {
+  font-family: "poppins", sans-serif;
+  font-size: 13px !important;
+  line-height: 22px;
+  font-weight: 500;
+  text-align: center;
+  color: #383838 !important;
+  display: inline-block;
+  margin-left: 35px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  margin-top: 80px;
+}
+
+.listingProduct #additionalDetails {
+  display: none;
+}
+
+.listingProduct #suggestedPriceContainer {
+  display: none;
+}
+
+.listingProduct .form-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.listingProduct .form-header h4 {
+  font-size: 1.5rem;
+  color: #6c757d;
+}
+
+.listingProduct .form-content {
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 0.25rem;
+}
+
+.listingProduct .btn-group .btn {
+  margin: 0;
+}
+
+.listingProduct .btn-group .btn.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.listingProduct .btn-group .btn input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+.listingProduct .img-suggestion {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.listingProduct .upload-box img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.listingProduct.fade-transition {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.listingProduct .fade-transition.show {
+  opacity: 1;
+}
+
+.listingProduct #multiStepForm .form-group h5 {
+  margin-bottom: 30px;
+}
+
+.listingProduct #multiStepForm .form-group h5 a {
+  font-family: "poppins", sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  text-align: left;
+  color: #586166;
+  text-decoration: underline;
+}
+
+.listingProduct #multiStepForm .form-group p {
+  font-family: "poppins", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  text-align: left;
+  color: #586166;
+}
+
+.listingProduct #multiStepForm .form-group.rent-plan label {
+  font-family: "poppins", sans-serif;
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 500;
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.listingProduct #multiStepForm .form-group.rent-plan .btn-group {
+  justify-content: space-evenly;
+  gap: 131px;
+}
+
+.listingProduct #multiStepForm .form-group.rent-plan .btn-group .d-flex {
+  display: -ms-flexbox !important;
+  display: flex !important;
+  justify-content: space-evenly;
+  gap: 131px;
+}
+
+.listingProduct
+  #multiStepForm
+  .form-group.rent-plan
+  .btn-group
+  .btn-outline-primary {
+  background-color: #fff !important;
+  width: 180px;
+  height: 79.68px;
+  font-family: "poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.listingProduct #multiStepForm .form-group.rent-plan .btn-group .price-text {
+  font-family: "poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
+}
+
+.listingProduct #multiStepForm .form-group.rent-plan .btn-group .currency-text {
+  font-family: "poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
+}
+
+.listingProduct #multiStepForm .form-group.check-buyNow {
+  position: relative;
+}
+
+.listingProduct #multiStepForm .form-group.check-buyNow .form-check-label {
+  font-family: "poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+  color: #586166;
+  position: relative;
+  width: 74px;
+  height: 33px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.listingProduct
+  #multiStepForm
+  .form-group.check-buyNow
+  .form-check-label
+  #buyNow {
+  width: auto;
+  height: auto !important;
+  opacity: 0;
+  position: relative;
+  z-index: 1;
+  appearance: none;
+}
+
+.listingProduct #multiStepForm .form-group.check-buyNow span {
+  font-family: "poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: #586166;
+  margin-left: 5px;
+  position: absolute;
+  top: 14%;
+  left: 95px;
+}
+
+.listingProduct
+  #multiStepForm
+  .form-group.check-buyNow
+  .form-check-label
+  span#checkBox-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 80px;
+  transition: 0.5s;
+}
+
+label span#checkBox-btn i {
+  position: absolute;
+  top: 0px;
+  left: 1px;
+  width: 33px;
+  height: 33px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+label input:checked ~ span#checkBox-btn i {
+  left: 40px;
+}
+
+.listingProduct #multiStepForm .form-group.check-buyNow p {
+  font-family: "poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: #454545;
+  margin-top: 15px;
+}
+
+.listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 {
+  display: inline-block;
+  margin-right: 30px;
+}
+
+.listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 a {
+  font-family: "poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: left;
+  color: #586166;
+  text-decoration: underline;
+}
+
+.listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p {
+  display: inline-block;
+  margin-right: 30px;
+  font-family: "poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: #8d9396;
+}
+
+.listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p a {
+  font-family: "poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: left;
+  color: #586166;
+}
+
+.listingProduct #multiStepForm #step3 img {
+  width: 88px;
+  max-width: 100%;
+  height: 100%;
+  padding: 15px;
+  border: 2px solid #d1d3d4;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 70px;
+}
+
+.listingProduct #multiStepForm #step3 h2 {
+  font-family: "poppins", sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 40.03px;
+  text-align: center;
+  color: #3c4242;
+  text-transform: capitalize;
+  max-width: 50%;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.listingProduct #multiStepForm #step3 h3 {
+  font-family: "poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 26.69px;
+  text-align: center;
+  color: #3c4242;
+  margin-bottom: 50px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  max-width: 35%;
+}
+
+.listingProduct #multiStepForm #step3 a.btn {
+  font-family: "poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: center;
+  color: #ffffff;
+  width: 139px;
+  padding: 16px 0px;
+  border-radius: 8px;
+  text-transform: capitalize;
+  height: 53px;
+}
+
+/* For screens between 1366px and 1024px */
+@media (max-width: 1366px) and (min-width: 1024px) {
+  .listingProduct .col-lg-10 {
+    padding: 50px 80px;
+    margin: 80px 0 50px;
+  }
+
+  .listingProduct #multiStepForm .step h2 {
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  .listingProduct #multiStepForm .step h4 {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .listingProduct #multiStepForm .step .row {
+    gap: 0 14%;
+  }
+
+  .listingProduct #multiStepForm .step .form-group.col-md-6 {
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+
+  .listingProduct #multiStepForm .step button.btn-previous {
+    font-size: 14px;
+    width: 180px;
+  }
+
+  .listingProduct .color-box {
+    width: 24px;
+    height: 24px;
+  }
+
+  .listingProduct .upload-box {
+    width: 130px;
+    height: 120px;
+  }
+
+  .listingProduct .upload-box .upload-icon {
+    width: 90px;
+    height: 90px;
+  }
+
+  .listingProduct .img-suggestion {
+    font-size: 0.9375rem; /* 15px */
+    margin-left: 40px;
+    margin-top: 70px;
+  }
+
+  .listingProduct .form-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .listingProduct .form-header h4 {
+    font-size: 1.75rem;
+  }
+
+  .listingProduct .form-content {
+    padding: 2rem;
+  }
+
+  .listingProduct .btn-group .btn.active {
+    background-color: #0056b3;
+  }
+
+  .listingProduct .img-suggestion {
+    color: #0056b3;
+  }
+
+  .listingProduct .upload-box img {
+    max-width: 90%;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 {
+    margin-bottom: 40px;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 a {
+    font-size: 20px;
+  }
+
+  .listingProduct #multiStepForm .form-group p {
+    font-size: 18px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group {
+    gap: 100px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-outline-primary {
+    width: 200px;
+    height: 90px;
+    font-size: 14px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group .price-text {
+    font-size: 14px;
+  }
+
+  .listingProduct
+    #multiStepForm
+    .form-group.rent-plan
+    .btn-group
+    .currency-text {
+    font-size: 14px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow .form-check-label {
+    font-size: 14px;
+    width: 80px;
+    height: 36px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow span {
+    left: 100px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow p {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 {
+    margin-right: 40px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 a {
+    font-size: 16px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p {
+    font-size: 14px;
+    margin-right: 40px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p a {
+    font-size: 16px;
+  }
+
+  .listingProduct #multiStepForm #step3 img {
+    width: 100px;
+    margin-bottom: 60px;
+  }
+
+  .listingProduct #multiStepForm #step3 h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .listingProduct #multiStepForm #step3 h3 {
+    font-size: 22px;
+    margin-bottom: 40px;
+  }
+
+  .listingProduct #multiStepForm #step3 a.btn {
+    font-size: 14px;
+    width: 150px;
+    padding: 14px 0;
+  }
+}
+
+/* For screens between 1024px and 992px */
+@media (max-width: 1024px) and (min-width: 992px) {
+  .listingProduct .col-lg-10 {
+    padding: 40px 60px;
+    margin: 70px 0 40px;
+  }
+
+  .listingProduct #multiStepForm .step h2 {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  .listingProduct #multiStepForm .step h4 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .listingProduct #multiStepForm .step .row {
+    gap: 0 12%;
+  }
+
+  .listingProduct #multiStepForm .step .form-group.col-md-6 {
+    flex: 0 0 48%;
+    max-width: 48%;
+  }
+
+  .listingProduct #multiStepForm .step button.btn-previous {
+    font-size: 13px;
+    width: 170px;
+  }
+
+  .listingProduct .color-box {
+    width: 22px;
+    height: 22px;
+  }
+
+  .listingProduct .upload-box {
+    width: 120px;
+    height: 110px;
+  }
+
+  .listingProduct .upload-box .upload-icon {
+    width: 85px;
+    height: 85px;
+  }
+
+  .listingProduct .img-suggestion {
+    font-size: 0.875rem; /* 14px */
+    margin-left: 30px;
+    margin-top: 60px;
+  }
+
+  .listingProduct .form-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .listingProduct .form-header h4 {
+    font-size: 1.6rem;
+  }
+
+  .listingProduct .form-content {
+    padding: 1.8rem;
+  }
+
+  .listingProduct .btn-group .btn.active {
+    background-color: #0056b3;
+  }
+
+  .listingProduct .img-suggestion {
+    color: #0056b3;
+  }
+
+  .listingProduct .upload-box img {
+    max-width: 95%;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 {
+    margin-bottom: 35px;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 a {
+    font-size: 18px;
+  }
+
+  .listingProduct #multiStepForm .form-group p {
+    font-size: 17px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group {
+    gap: 90px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-outline-primary {
+    width: 190px;
+    height: 85px;
+    font-size: 13px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group .price-text {
+    font-size: 13px;
+  }
+
+  .listingProduct
+    #multiStepForm
+    .form-group.rent-plan
+    .btn-group
+    .currency-text {
+    font-size: 13px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow .form-check-label {
+    font-size: 13px;
+    width: 76px;
+    height: 34px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow span {
+    left: 90px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow p {
+    font-size: 13px;
+    margin-top: 18px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 {
+    margin-right: 35px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 a {
+    font-size: 15px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p {
+    font-size: 13px;
+    margin-right: 35px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p a {
+    font-size: 15px;
+  }
+
+  .listingProduct #multiStepForm #step3 img {
+    width: 95px;
+    margin-bottom: 50px;
+  }
+
+  .listingProduct #multiStepForm #step3 h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+
+  .listingProduct #multiStepForm #step3 h3 {
+    font-size: 20px;
+    margin-bottom: 35px;
+  }
+
+  .listingProduct #multiStepForm #step3 a.btn {
+    font-size: 13px;
+    width: 140px;
+    padding: 12px 0;
+  }
+}
+
+/* For screens between 991px and 768px */
+@media (max-width: 991px) and (min-width: 768px) {
+  .listingProduct .col-lg-10 {
+    padding: 30px 40px;
+    margin: 60px 0 30px;
+  }
+
+  .listingProduct #multiStepForm .step h2 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .listingProduct #multiStepForm .step h4 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .listingProduct #multiStepForm .step .row {
+    gap: 0 10%;
+  }
+
+  .listingProduct #multiStepForm .step .form-group.col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .listingProduct #multiStepForm .step button.btn-previous {
+    font-size: 12px;
+    width: 160px;
+  }
+
+  .listingProduct .color-box {
+    width: 20px;
+    height: 20px;
+  }
+
+  .listingProduct .upload-box {
+    width: 110px;
+    height: 100px;
+  }
+
+  .listingProduct .upload-box .upload-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .listingProduct .img-suggestion {
+    font-size: 0.8125rem; /* 13px */
+    margin-left: 25px;
+    margin-top: 50px;
+  }
+
+  .listingProduct .form-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .listingProduct .form-header h4 {
+    font-size: 1.4rem;
+  }
+
+  .listingProduct .form-content {
+    padding: 1.5rem;
+  }
+
+  .listingProduct .btn-group .btn.active {
+    background-color: #0056b3;
+  }
+
+  .listingProduct .img-suggestion {
+    color: #0056b3;
+  }
+
+  .listingProduct .upload-box img {
+    max-width: 100%;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 {
+    margin-bottom: 30px;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 a {
+    font-size: 16px;
+  }
+
+  .listingProduct #multiStepForm .form-group p {
+    font-size: 16px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group {
+    gap: 70px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-outline-primary {
+    width: 160px;
+    height: 75px;
+    font-size: 12px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group .price-text {
+    font-size: 12px;
+  }
+
+  .listingProduct
+    #multiStepForm
+    .form-group.rent-plan
+    .btn-group
+    .currency-text {
+    font-size: 12px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow .form-check-label {
+    font-size: 12px;
+    width: 70px;
+    height: 30px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow span {
+    left: 85px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow p {
+    font-size: 12px;
+    margin-top: 15px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 {
+    margin-right: 30px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 a {
+    font-size: 14px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p {
+    font-size: 12px;
+    margin-right: 30px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p a {
+    font-size: 14px;
+  }
+
+  .listingProduct #multiStepForm #step3 img {
+    width: 85px;
+    margin-bottom: 40px;
+  }
+
+  .listingProduct #multiStepForm #step3 h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+
+  .listingProduct #multiStepForm #step3 h3 {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  .listingProduct #multiStepForm #step3 a.btn {
+    font-size: 12px;
+    width: 130px;
+    padding: 10px 0;
+  }
+}
+
+/* For screens between 767px and 576px */
+@media (max-width: 767px) and (min-width: 576px) {
+  .listingProduct .col-lg-10 {
+    padding: 20px 20px;
+    margin: 50px 0 20px;
+  }
+
+  .listingProduct #multiStepForm .step h2 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .listingProduct #multiStepForm .step h4 {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .listingProduct #multiStepForm .step .row {
+    gap: 0 8%;
+  }
+
+  .listingProduct #multiStepForm .step .form-group.col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .listingProduct #multiStepForm .step button.btn {
+    width: 180px;
+    height: 40px;
+    padding: 10px 20px;
+  }
+
+  .listingProduct #multiStepForm .step button.btn-previous {
+    font-size: 11px;
+    width: 140px;
+  }
+
+  .listingProduct .color-box {
+    width: 18px;
+    height: 18px;
+  }
+
+  .listingProduct .upload-box {
+    width: 100px;
+    height: 90px;
+  }
+
+  .listingProduct .upload-box .upload-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .listingProduct .img-suggestion {
+    font-size: 0.75rem; /* 12px */
+    margin-left: 20px;
+    margin-top: 40px;
+  }
+
+  .listingProduct .form-header {
+    margin-bottom: 1rem;
+  }
+
+  .listingProduct .form-header h4 {
+    font-size: 1.2rem;
+  }
+
+  .listingProduct .form-content {
+    padding: 1.25rem;
+  }
+
+  .listingProduct .btn-group .btn.active {
+    background-color: #0056b3;
+  }
+
+  .listingProduct .img-suggestion {
+    color: #0056b3;
+  }
+
+  .listingProduct .upload-box img {
+    max-width: 100%;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 {
+    margin-bottom: 25px;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 a {
+    font-size: 14px;
+  }
+
+  .listingProduct #multiStepForm .form-group p {
+    font-size: 15px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group {
+    gap: 50px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-outline-primary {
+    width: 140px;
+    height: 65px;
+    font-size: 11px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group .price-text {
+    font-size: 11px;
+  }
+
+  .listingProduct
+    #multiStepForm
+    .form-group.rent-plan
+    .btn-group
+    .currency-text {
+    font-size: 11px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow .form-check-label {
+    font-size: 11px;
+    width: 65px;
+    height: 28px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow span {
+    left: 75px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow p {
+    font-size: 11px;
+    margin-top: 10px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 {
+    margin-right: 25px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 a {
+    font-size: 13px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p {
+    font-size: 11px;
+    margin-right: 25px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p a {
+    font-size: 13px;
+  }
+
+  .listingProduct #multiStepForm #step3 img {
+    width: 75px;
+    margin-bottom: 30px;
+  }
+
+  .listingProduct #multiStepForm #step3 h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .listingProduct #multiStepForm #step3 h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .listingProduct #multiStepForm #step3 a.btn {
+    font-size: 11px;
+    width: 120px;
+    padding: 8px 0;
+  }
+}
+
+/* For screens between 576px and 481px */
+@media (max-width: 576px) and (min-width: 481px) {
+  .listingProduct .col-lg-10 {
+    padding: 15px 15px;
+    margin: 40px 0 15px;
+  }
+
+  .listingProduct #multiStepForm .step h2 {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .listingProduct #multiStepForm .step h4 {
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .listingProduct #multiStepForm .step .row {
+    gap: 0 6%;
+  }
+
+  .listingProduct #multiStepForm .step .form-group.col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .listingProduct #multiStepForm .step button.btn {
+    width: 160px;
+    height: 36px;
+    padding: 8px 16px;
+  }
+
+  .listingProduct #multiStepForm .step button.btn-previous {
+    font-size: 10px;
+    width: 120px;
+  }
+
+  .listingProduct .color-box {
+    width: 16px;
+    height: 16px;
+  }
+
+  .listingProduct .upload-box {
+    width: 90px;
+    height: 80px;
+  }
+
+  .listingProduct .upload-box .upload-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .listingProduct .img-suggestion {
+    font-size: 0.6875rem; /* 11px */
+    margin-left: 15px;
+    margin-top: 30px;
+  }
+
+  .listingProduct .form-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .listingProduct .form-header h4 {
+    font-size: 1rem;
+  }
+
+  .listingProduct .form-content {
+    padding: 1rem;
+  }
+
+  .listingProduct .btn-group .btn.active {
+    background-color: #0056b3;
+  }
+
+  .listingProduct .img-suggestion {
+    color: #0056b3;
+  }
+
+  .listingProduct .upload-box img {
+    max-width: 100%;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 {
+    margin-bottom: 20px;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 a {
+    font-size: 12px;
+  }
+
+  .listingProduct #multiStepForm .form-group p {
+    font-size: 14px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group {
+    gap: 30px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-outline-primary {
+    width: 120px;
+    height: 55px;
+    font-size: 10px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group .price-text {
+    font-size: 10px;
+  }
+
+  .listingProduct
+    #multiStepForm
+    .form-group.rent-plan
+    .btn-group
+    .currency-text {
+    font-size: 10px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow .form-check-label {
+    font-size: 10px;
+    width: 60px;
+    height: 26px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow span {
+    left: 70px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow p {
+    font-size: 10px;
+    margin-top: 8px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 {
+    margin-right: 20px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 a {
+    font-size: 12px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p {
+    font-size: 10px;
+    margin-right: 20px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p a {
+    font-size: 12px;
+  }
+
+  .listingProduct #multiStepForm #step3 img {
+    width: 70px;
+    margin-bottom: 20px;
+  }
+
+  .listingProduct #multiStepForm #step3 h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .listingProduct #multiStepForm #step3 h3 {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  .listingProduct #multiStepForm #step3 a.btn {
+    font-size: 10px;
+    width: 110px;
+    padding: 6px 0;
+  }
+}
+
+/* For screens below 480px */
+@media (max-width: 480px) {
+  .listingProduct .col-lg-10 {
+    padding: 10px;
+    margin: 30px 0 10px;
+  }
+
+  .listingProduct #multiStepForm .step h2 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .listingProduct #multiStepForm .step h4 {
+    font-size: 8px;
+    line-height: 14px;
+  }
+
+  .listingProduct #multiStepForm .step .row {
+    gap: 0 4%;
+  }
+
+  .listingProduct #multiStepForm .step .form-group.col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .listingProduct #multiStepForm .step button.btn {
+    width: 140px;
+    height: 32px;
+    padding: 6px 12px;
+  }
+
+  .listingProduct #multiStepForm .step button.btn-previous {
+    font-size: 9px;
+    width: 100px;
+  }
+
+  .listingProduct .color-box {
+    width: 14px;
+    height: 14px;
+  }
+
+  .listingProduct .upload-box {
+    width: 80px;
+    height: 70px;
+  }
+
+  .listingProduct .upload-box .upload-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .listingProduct .img-suggestion {
+    font-size: 0.625rem; /* 10px */
+    margin-left: 10px;
+    margin-top: 20px;
+  }
+
+  .listingProduct .form-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .listingProduct .form-header h4 {
+    font-size: 0.875rem;
+  }
+
+  .listingProduct .form-content {
+    padding: 0.75rem;
+  }
+
+  .listingProduct .btn-group .btn.active {
+    background-color: #0056b3;
+  }
+
+  .listingProduct .img-suggestion {
+    color: #0056b3;
+  }
+
+  .listingProduct .upload-box img {
+    max-width: 100%;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 {
+    margin-bottom: 15px;
+  }
+
+  .listingProduct #multiStepForm .form-group h5 a {
+    font-size: 10px;
+  }
+
+  .listingProduct #multiStepForm .form-group p {
+    font-size: 12px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group {
+    gap: 20px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-outline-primary {
+    width: 100px;
+    height: 45px;
+    font-size: 9px;
+  }
+
+  .listingProduct #multiStepForm .form-group.rent-plan .btn-group .price-text {
+    font-size: 9px;
+  }
+
+  .listingProduct
+    #multiStepForm
+    .form-group.rent-plan
+    .btn-group
+    .currency-text {
+    font-size: 9px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow .form-check-label {
+    font-size: 9px;
+    width: 55px;
+    height: 24px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow span {
+    left: 65px;
+  }
+
+  .listingProduct #multiStepForm .form-group.check-buyNow p {
+    font-size: 9px;
+    margin-top: 6px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 {
+    margin-right: 15px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalHeading h6 a {
+    font-size: 11px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p {
+    font-size: 9px;
+    margin-right: 15px;
+  }
+
+  .listingProduct #multiStepForm #additionalDetails .buyAdditionalTxt p a {
+    font-size: 11px;
+  }
+
+  .listingProduct #multiStepForm #step3 img {
+    width: 60px;
+    margin-bottom: 10px;
+  }
+
+  .listingProduct #multiStepForm #step3 h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .listingProduct #multiStepForm #step3 h3 {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .listingProduct #multiStepForm #step3 a.btn {
+    font-size: 9px;
+    width: 100px;
+    padding: 4px 0;
+  }
+}
+
+
+/* ------------------------
+---------Start About Us------
+--------------------------- */
+#page-content.aboutUs .container{
+  padding-right: 0;
+  padding-bottom: 150px;
+}
+
+#page-content.aboutUs .aboutUs-Heading{
+  padding: 30px 0;
+}
+
+#page-content.aboutUs .aboutUs-Heading h4{
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.022em;
+  color: #000000;
+  position: relative;
+  margin-left: 40px;
+}
+
+#page-content.aboutUs .aboutUs-Heading h4::before{
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 28px;
+  background-color: #3775A1;
+  top: -5px;
+  left: -40px;
+}
+
+#page-content.aboutUs .aboutUs-Heading h6{
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 24.36px;
+  text-align: center;
+  color: #000000;
+}
+
+#page-content.aboutUs .aboutUs-Heading h6 span{
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24.36px;
+  text-align: center;
+  color: #3CBA79;
+}
+
+#page-content.aboutUs .row.aboutUS-contant{
+  justify-content: flex-start;
+}
+
+#page-content.aboutUs .row.aboutUS-contant .col-lg-6 P{
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.2;
+  text-align: left;
+  margin-bottom: 30px;
+  color: #3C4242;
+}
+
+@media only screen and (max-width: 1366px) and (min-width: 1024px) {
+  #page-content.aboutUs .container {
+    padding-right: 0;
+    padding-bottom: 120px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h4 {
+    font-size: 18px;
+    margin-left: 35px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h6 {
+    font-size: 18px;
+  }
+  
+  #page-content.aboutUs .row.aboutUS-contant .col-lg-6 p {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 992px) {
+  #page-content.aboutUs .container {
+    padding-bottom: 100px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h4 {
+    font-size: 17px;
+    margin-left: 30px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h6 {
+    font-size: 17px;
+  }
+  
+  #page-content.aboutUs .row.aboutUS-contant .col-lg-6 p {
+    font-size: 13px;
+    line-height: 1.2;
+  }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  #page-content.aboutUs .container {
+    padding-bottom: 90px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h4 {
+    font-size: 16px;
+    margin-left: 25px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h6 {
+    font-size: 16px;
+  }
+  
+  #page-content.aboutUs .row.aboutUS-contant .col-lg-6 p {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 576px) {
+  #page-content.aboutUs .container {
+    padding-bottom: 80px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h4 {
+    font-size: 15px;
+    margin-left: 20px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h6 {
+    font-size: 15px;
+  }
+  
+  #page-content.aboutUs .row.aboutUS-contant .col-lg-6 p {
+    font-size: 11px;
+    line-height: 1.1;
+  }
+}
+
+@media only screen and (max-width: 575px) and (min-width: 481px) {
+  #page-content.aboutUs .container {
+    padding-bottom: 70px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h4 {
+    font-size: 14px;
+    margin-left: 15px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h6 {
+    font-size: 14px;
+  }
+  
+  #page-content.aboutUs .row.aboutUS-contant .col-lg-6 p {
+    font-size: 10px;
+    line-height: 1.1;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #page-content.aboutUs .container {
+    padding-bottom: 60px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h4 {
+    font-size: 13px;
+    margin-left: 10px;
+  }
+  
+  #page-content.aboutUs .aboutUs-Heading h6 {
+    font-size: 13px;
+  }
+  
+  #page-content.aboutUs .row.aboutUS-contant .col-lg-6 p {
+    font-size: 9px;
+    line-height: 1.0;
+  }
+}
+/* ------------------------
+---------End About Us------
+--------------------------- */
+
+
+/* ------------------------
+---------Start FAQ -----
+--------------------------- */
+.aboutUs.faq .aboutUs-Heading h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 17.07px;
+  color: #000000;
+  margin-bottom: 50px;
+  margin-top: 40px;
+}
+
+.aboutUs.faq .faq-container {
+  width: 1172px;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.aboutUs.faq .faq-container .row.faq-contant {
+  padding: 50px 0;
+  border: 1px solid #D9D9D9;
+  width: auto;
+  max-width: 100%;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0px 52px;
+  margin-bottom: 350px;
+  display: flex; /* Add for older browsers */
+  flex-wrap: wrap; /* Ensure responsiveness */
+}
+
+.faq-contant a {
+  width: 30.3%;
+  max-width: 100%;
+  display: block; /* Ensure it's clickable across browsers */
+}
+
+.aboutUs.faq .faq-container .row.faq-contant .faqCard {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  max-width: 100%;
+}
+
+.aboutUs.faq .faq-container .row.faq-contant .faqCard h4 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: #000000;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.aboutUs.faq .faq-container .row.faq-contant .faqCard h4.faq-headingBefore::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  right: 0;
+  height: 130px;
+  width: 1px;
+  background: #cccccc;
+}
+
+.aboutUs.faq .faq-container .row.faq-contant .faqCard p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.022em;
+  text-align: left;
+  color: #3C4242;
+  max-width: 70%;
+  position: relative;
+}
+
+.aboutUs.faq .faq-container .row.faq-contant .faqCard p.faq-txtBefore::before {
+  content: '';
+  position: absolute;
+  top: 140px;
+  left: 0px;
+  height: 1px;
+  width: 223px;
+  background: #cccccc;
+}
+
+@media (max-width: 1366px) and (min-width: 1024px) {
+  .aboutUs.faq .faq-container {
+      width: 1000px;
+      margin-top: 80px;
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant {
+      padding: 40px 0;
+      margin-bottom: 200px;
+  }
+
+  .faq-contant a {
+      width: 32%; 
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
+      height: 220px; 
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
+      max-width: 75%; 
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 992px) {
+  .aboutUs.faq .faq-container {
+      width: 900px;
+  }
+
+  .faq-contant a {
+      width: 48%; 
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
+      height: 200px;
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
+      max-width: 80%;
+  }
+}
+
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .aboutUs.faq .faq-container {
+      width: 700px;
+  }
+
+  .faq-contant a {
+      width: 48%; 
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
+      height: 180px;
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
+      max-width: 85%;
+  }
+}
+
+
+@media (max-width: 767px) and (min-width: 576px) {
+  .aboutUs.faq .faq-container {
+      width: 100%;
+  }
+
+  .faq-contant a {
+      width: 100%; 
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
+      height: 160px;
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
+      max-width: 90%;
+  }
+}
+
+
+@media (max-width: 575px) and (min-width: 481px) {
+  .aboutUs.faq .faq-container {
+      width: 100%;
+  }
+
+  .faq-contant a {
+      width: 100%; 
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
+      height: 140px;
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard h4 {
+      font-size: 12px;
+      margin-bottom: 20px;
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
+      max-width: 95%;
+  }
+}
+
+@media (max-width: 480px) and (min-width: 280px) {
+  .aboutUs.faq .faq-container {
+      width: 100%;
+  }
+
+  .faq-contant a {
+      width: 100%; 
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
+      height: 120px;
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard h4 {
+      font-size: 11px;
+      margin-bottom: 15px;
+  }
+
+  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
+      font-size: 10px;
+      line-height: 16px;
+      max-width: 100%;
+  }
+}
+
+
+
+
+
+
+
+/* ------------------------
+-----Start Trems and Condition
+-------------------------- */
+#page-content.aboutUs.trems .container{
+  padding-bottom: 0 !important;
+}
+
+#page-content.aboutUs.trems .container.terms-container{
+  margin-bottom: 500px;
+}
+
+.row.terms-conditions{
+  margin: 0 auto;
+}
+
+.row.terms-conditions{
+  padding: 50px 30px 150px;
+  border: 1px solid #d9d9d9
+}
+
+.row.terms-conditions h6{
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.row.terms-conditions p{
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.aboutUs.faq.trems .terms-container {
+  padding-bottom: 200px !important;
+  padding-left: 0;
+
+}
+
+.aboutUs.faq.trems h5{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 24.38px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 1366px) and (min-width: 1024px) {
+  #page-content.aboutUs.trems .container.terms-container {
+      margin-bottom: 400px;
+  }
+
+  .row.terms-conditions {
+      padding: 40px 20px 100px;
+  }
+
+  .row.terms-conditions h6, .row.terms-conditions p {
+      font-size: 13px;
+      line-height: 22px;
+  }
+
+  .aboutUs.faq.trems h5 {
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 20px;
+  }
+}
+
+/* For screens between 1023px and 992px */
+@media (max-width: 1023px) and (min-width: 992px) {
+  #page-content.aboutUs.trems .container.terms-container {
+      margin-bottom: 300px;
+  }
+
+  .row.terms-conditions {
+      padding: 30px 20px 80px;
+  }
+
+  .row.terms-conditions h6, .row.terms-conditions p {
+      font-size: 12px;
+      line-height: 20px;
+  }
+
+  .aboutUs.faq.trems h5 {
+      font-size: 16px;
+      line-height: 20px;
+      margin-bottom: 20px;
+  }
+}
+
+/* For screens between 991px and 768px */
+@media (max-width: 991px) and (min-width: 768px) {
+  #page-content.aboutUs.trems .container.terms-container {
+      margin-bottom: 250px;
+  }
+
+  .row.terms-conditions {
+      padding: 30px 20px 70px;
+  }
+
+  .row.terms-conditions h6, .row.terms-conditions p {
+      font-size: 12px;
+      line-height: 20px;
+  }
+
+  .aboutUs.faq.trems h5 {
+      font-size: 16px;
+      line-height: 20px;
+  }
+}
+
+/* For screens between 767px and 576px */
+@media (max-width: 767px) and (min-width: 576px) {
+  #page-content.aboutUs.trems .container.terms-container {
+      margin-bottom: 200px;
+  }
+
+  .row.terms-conditions {
+      padding: 20px 15px 60px;
+  }
+
+  .row.terms-conditions h6, .row.terms-conditions p {
+      font-size: 11px;
+      line-height: 18px;
+  }
+
+  .aboutUs.faq.trems h5 {
+      font-size: 14px;
+      line-height: 18px;
+      margin-bottom: 15px;
+  }
+}
+
+/* For screens between 575px and 481px */
+@media (max-width: 575px) and (min-width: 481px) {
+  #page-content.aboutUs.trems .container.terms-container {
+      margin-bottom: 150px;
+  }
+
+  .row.terms-conditions {
+      padding: 15px 10px 50px;
+  }
+
+  .row.terms-conditions h6, .row.terms-conditions p {
+      font-size: 11px;
+      line-height: 18px;
+  }
+
+  .aboutUs.faq.trems h5 {
+      font-size: 13px;
+      line-height: 17px;
+  }
+}
+
+/* For screens between 480px and 280px */
+@media (max-width: 480px) and (min-width: 280px) {
+  #page-content.aboutUs.trems .container.terms-container {
+      margin-bottom: 100px;
+  }
+
+  .row.terms-conditions {
+      padding: 10px 10px 40px;
+  }
+
+  .row.terms-conditions h6, .row.terms-conditions p {
+      font-size: 10px;
+      line-height: 16px;
+  }
+
+  .aboutUs.faq.trems h5 {
+      font-size: 12px;
+      line-height: 16px;
+      margin-bottom: 10px;
+  }
+}
+
+/* -------------------------
+----------Edit Profile------
+---------------------------- */
+#page-content.edit-profile .container {
+  background: #F6F6F680;
+  border-radius: 15px;
+  border: 1px solid #807D7E12;
+  padding-left: 0;
+}
+
+.edit-profile .row.banner-section{
+  padding: 0;
+}
+
+.edit-profile .row.banner-section .col-xl-2{
+  padding-left: 0;
+}
+
+.edit-profile .row.banner-section .col-xl-2 img{
+  border-radius: 15px;
+  width: 235px;
+  height: 194px;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.edit-profile .row.banner-section .col-xl-2{
+  flex: 0 0 17.866667%;
+  max-width: 17.866667%;
+}
+
+.edit-profile .row.banner-section .col-xl-10{
+  flex: 0 0 82.133333%;
+  max-width: 82.133333%;
+}
+
+.edit-profile .row.banner-section .col-xl-10 .row h2{
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 34.1px;
+  color: #000000;
+}
+
+.edit-profile .row.banner-section .col-xl-10 .row .star-rating{
+  font-size: 30px;
+  line-height: 43px;
+  color: #ffcc00;
+}
+
+.edit-profile .row.banner-section .col-xl-10 .row span{
+  
+}
+
+.edit-profile .sidebar-nav {
+  list-style: none;
+  padding: 0;
+}
+
+.edit-profile .sidebar-nav li {
+  margin: 0;
+}
+
+.edit-profile .sidebar-nav a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.edit-profile .sidebar-nav a:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.edit-profile .sidebar-nav li.active a {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.edit-profile .content-section {
+  display: none; 
+}
+
+.edit-profile .content-section.active {
+  display: block;
+}
+
+.edit-profile .banner-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+
+@media (max-width: 768px) {
+  .edit-profile .sidebar-nav {
+      margin-bottom: 20px;
+  }
+
+  .edit-profile .banner-section {
+      text-align: center;
+  }
+
+  .edit-profile .banner-img {
+      max-width: 80px;
+  }
+}
+
+
+/* *************************
+******** LIST OF ITEMS *****
+**************************** */
+.listItem-section .row.justify-content-center {
+  padding: 150px 0 100px;
+}
+
+.listItem-section .row .col-lg-9.col-md-9{
+  padding: 50px 119px 100px;
+  background-color: #F9F9F9;
+}
+
+.listItem-section .row .step-form h2{
+  font-family: 'poppins', sans-serif;
+  font-size: 38px;
+  line-height: 1.3;
+  color: #383838;
+  margin-bottom: 30px;
+}
+
+.listItem-section .row .step-form h4{
+  font-family: 'poppins', sans-serif;
+  font-size: 20px;
+  line-height: 1.3;
+  color: #383838;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.listItem-section .row .step-form h4::before{
+  content: '';
+  position: absolute;
+  width: 170px;
+  height: 1px;
+  background-color: #383838;
+  left: 108px;
+  top: 10px;
+}
+
+.listItem-section .row .step-form h4::after{
+  content: '';
+  position: absolute;
+  width: 170px;
+  height: 1px;
+  background-color: #383838;
+  right: 108px;
+  top: 10px;
+}
+
+.listItem-section .row .step-form .form-group.row{
+  margin: 20px 0 30px;
+}
+
+.listItem-section .row .step-form label{
+  font-family: 'poppins', sans-serif;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #383838;
+  margin-bottom: 8px;
+}
+
+.listItem-section .row .step-form label span{
+  color: #ee0f0f;
+}
+
+.listItem-section .row .step-form input, .listItem-section .row .step-form select{
+  font-family: 'poppins', sans-serif;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #8D9396;
+  height: 56px;
+  border-radius: 8px;
+  border: unset;  
+}
+
+.listItem-section .row .step-form .col-md-6.row-half-width div{
+  width: 100%;
+}
+
+.listItem-section .row .step-form .custom-file-upload {
+  position: relative;
+  width: 114px;
+  height: 106px;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  background: #ffffff;
+}
+
+.listItem-section .row .step-form .custom-file-upload .upload-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 84px;
+  height: 84px;
+  line-height: 84px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: #555;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.listItem-section .row .step-form .custom-file-upload .upload-button i {
+  margin: 0;
+}
+
+.listItem-section .row .step-form .custom-file-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.listItem-section .row .step-form .button-container {
+  justify-content: end;
+}
+
+.listItem-section .row .step-form .button-container button.btn{
+  width: 206px;
+  height: 48px;
+  border-radius: 8px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.listItem-section .row .step-form a.d-block{
+  font-family: 'poppins', sans-serif;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #383838;
+  margin-bottom: 8px;
+}
+
+.listItem-section .row .step-form p{
+  font-family: 'poppins', sans-serif;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #383838;
+  margin-bottom: 30px;
+}
+
+.listItem-section .row .step-form label.label-rent{
+  font-family: 'poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #383838;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.listItem-section .row .step-form .plan-row{
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.listItem-section .row .step-form .plan-row button.btn{
+  width: 180px;
+  height: 80px;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  transition: 0.3s ease-in;
+}
+
+.listItem-section .row .step-form .plan-row .plan-heading h5{
+  font-family: 'poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #383838;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.listItem-section .row .step-form .plan-row .plan-heading p{
+  font-family: 'poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #383838;
+  margin-bottom: 0;
+}
+
+/* ***************
+*** Start Cart Page CSS*****
+**************** */
+.shopping-cart #cartHeading-row{
+  background: #3C4242;
+  color: #ffffff;
+  padding: 35.5px 0;
+} 
+
+.shopping-cart .spaced-table tr#cartHeading-row th{
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #ffffff;
+  font-weight: 500;
+  text-transform: uppercase;
+  height: 63px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.shopping-cart .spaced-table th#cartHeading-1{
+  padding-left: 50px !important;
+}
+
+.shopping-cart .spaced-table #cartHeading-row tr th{
+  font-family: 'Proxima Nova' sans-serif;
+  font-size: 12px;
+  line-height: 1.3;
+  border-top: unset;
+}
+
+.shopping-cart .spaced-table tbody tr td:nth-child(1){
+  width: 33%;
+}
+
+.shopping-cart .spaced-table tbody tr td:nth-child(2) {
+  width: 12%;
+}
+
+.shopping-cart .spaced-table tbody tr td:nth-child(3) {
+  width: 15%;
+}
+
+.shopping-cart .spaced-table tbody tr td:nth-child(4) {
+  width: 16%;
+}
+
+.shopping-cart .spaced-table tbody tr td:nth-child(5) {
+  width: 10%;
+}
+
+.shopping-cart .spaced-table tbody tr td:nth-child(6) {
+  width: 14%;
+  text-align: center;
+}
+
+.shopping-cart .spaced-table tbody tr td{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  margin-bottom: 20px !important;
+  color: #3C4242;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.shopping-cart .spaced-table tbody tr td div.d-flex{
+  gap: 0 30px;
+}
+
+.shopping-cart .spaced-table tbody tr td div.d-flex img{
+  width: 105px;
+  height: 120px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.shopping-cart .spaced-table tbody tr td div.d-flex h5{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  margin-bottom: 20px !important;
+  color: #3C4242;
+}
+
+.shopping-cart .spaced-table tbody tr td div.d-flex p{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #807D7E;
+}
+
+.shopping-cart .spaced-table tbody tr td button.btn{
+  background: transparent !important;
+  padding: 0;
+}
+
+.shopping-cart .referralCode .referralCode-input{
+  font-family: 'proxima nova', sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  height: 50px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  border-right: 0;
+  padding-right: 70px;
+}
+
+.shopping-cart .referralCode a{
+  border: 1px solid #000000;
+  border-left: unset;
+  text-transform: uppercase;
+  color: #000000;
+  font-size: 14px;
+  font-weight: bold;
+  height: 50px;
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 25px;
+}
+
+.shopping-cart button.theme-btn{
+  height: 46px;
+  margin-right: 80px;
+  text-transform: capitalize;
+  width: 250px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.shopping-cart .couponCode-section{
+  margin-bottom: 250px;
+}
+
+@media (max-width: 1366px) and (min-width: 1024px) {
+  .shopping-cart .spaced-table tr#cartHeading-row th {
+    font-size: 13px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td {
+    font-size: 13px;
+    padding-bottom: 40px;
+    padding-top: 40px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td div.d-flex img {
+    width: 90px;
+    height: 105px;
+  }
+
+  .shopping-cart button.theme-btn {
+    width: 220px;
+    font-size: 15px;
+  }
+
+  .shopping-cart .couponCode-section {
+    margin-bottom: 200px;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 992px) {
+  .shopping-cart .spaced-table tr#cartHeading-row th {
+    font-size: 12px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td {
+    font-size: 12px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td div.d-flex img {
+    width: 80px;
+    height: 95px;
+  }
+
+  .shopping-cart button.theme-btn {
+    width: 200px;
+    font-size: 14px;
+  }
+
+  .shopping-cart .couponCode-section {
+    margin-bottom: 150px;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .shopping-cart .spaced-table tr#cartHeading-row th {
+    font-size: 11px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td {
+    font-size: 11px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td div.d-flex img {
+    width: 70px;
+    height: 85px;
+  }
+
+  .shopping-cart button.theme-btn {
+    width: 180px;
+    font-size: 13px;
+  }
+
+  .shopping-cart .couponCode-section {
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 576px) {
+  .shopping-cart .spaced-table tr#cartHeading-row th {
+    font-size: 10px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td {
+    font-size: 10px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td div.d-flex img {
+    width: 60px;
+    height: 75px;
+  }
+
+  .shopping-cart button.theme-btn {
+    width: 160px;
+    font-size: 12px;
+  }
+
+  .shopping-cart .couponCode-section {
+    margin-bottom: 80px;
+  }
+}
+
+@media (max-width: 575px) and (min-width: 481px) {
+  .shopping-cart .spaced-table tr#cartHeading-row th {
+    font-size: 9px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td {
+    font-size: 9px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td div.d-flex img {
+    width: 50px;
+    height: 60px;
+  }
+
+  .shopping-cart button.theme-btn {
+    width: 140px;
+    font-size: 11px;
+  }
+
+  .shopping-cart .couponCode-section {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) and (min-width: 280px) {
+  .shopping-cart .spaced-table tr#cartHeading-row th {
+    font-size: 8px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td {
+    font-size: 8px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+
+  .shopping-cart .spaced-table tbody tr td div.d-flex img {
+    width: 40px;
+    height: 50px;
+  }
+
+  .shopping-cart button.theme-btn {
+    width: 120px;
+    font-size: 10px;
+  }
+
+  .shopping-cart .couponCode-section {
+    margin-bottom: 40px;
+  }
+}

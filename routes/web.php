@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -17,9 +18,9 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 
-// Route::get('/home', function () {
-//     return view('frontend.index');
-// });
+Route::get('/home', function () {
+    return view('frontend.index');
+});
 Route::get('/login', function () {
     return view('frontend.login');
 });
@@ -119,16 +120,16 @@ Route::get('/optimize-clear', function () {
         return 'Error: ' . $e->getMessage();
     }
 });
-Route::get('/log-delete', function () {
-    $logFilePath = storage_path('logs/laravel.log');
+// Route::get('/log-delete', function () {
+//     $logFilePath = storage_path('logs/laravel.log');
 
-    if (File::exists($logFilePath)) {
-        File::delete($logFilePath);
-        return 'Log file deleted successfully!';
-    } else {
-        return 'Log file not found.';
-    }
-});
+//     if (File::exists($logFilePath)) {
+//         File::delete($logFilePath);
+//         return 'Log file deleted successfully!';
+//     } else {
+//         return 'Log file not found.';
+//     }
+// });
 
 // lending
 Route::get('/log', [AuthController::class, 'log']);
