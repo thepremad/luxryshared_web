@@ -18,7 +18,13 @@ use Laravel\Socialite\Facades\Socialite;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/', function () {
+    // return view('frontend.about-us');
+    // return view('frontend.forget-password');
+    //return view('frontend.cart');
+    // return view('frontend.checkout');
+    return view('frontend.listing-product');
+});
 
 Route::get('/home', function () {
     return view('frontend.index');
@@ -26,12 +32,12 @@ Route::get('/home', function () {
 Route::get('/login', function () {
     return view('frontend.login');
 });
-Route::get('/', function () {
-    $user = new User();
-    $firstName = '';
-    $lastName = '';
-    return view('frontend.register', compact('user', 'firstName', 'lastName'));
-});
+// Route::get('/', function () {
+//     $user = new User();
+//     $firstName = '';
+//     $lastName = '';
+//     return view('frontend.register', compact('user', 'firstName', 'lastName'));
+// });
 Route::get('/register', function () {
     $user = new User();
     $firstName = '';

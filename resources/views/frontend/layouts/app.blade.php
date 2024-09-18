@@ -18,6 +18,7 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style2.css') }}">
     
     <!-- Slider Link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.css">
@@ -103,13 +104,13 @@
         </div>
         <!--End Search Form Drawer-->
 
-    @include('frontend.layouts.header')
+        @include('frontend.layouts.header')
 
-    @yield('content')
+        @yield('content')
 
-    @include('frontend.layouts.footer')
-
-    @yield('js')
+        @include('frontend.layouts.footer')
+    </div>
+        @yield('js')
 {{-- {!! HTML::script(asset('/backend/vendors/js/extensions/toastr.min.js')) !!}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -122,9 +123,6 @@
     </script> --}}
     {{-- @include('backend.layouts.js') --}}
 
-           
-            
-    </div>
 </body>
 
 <!-- Mirrored from annimexweb.com/items/belle/home8-jewellery.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 22 Jun 2023 11:21:41 GMT -->
