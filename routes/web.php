@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\LoginContriller;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -19,46 +20,45 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 
-
-
-Route::get('/',[HomeController::class,'home'])->name('home');
-// Route::post('login-save',[LoginContriller::class,'login'])->name('login');
-// Route::get('/login', function () {
-//     return view('frontend.login');
-// });
-// Route::get('/', function () {
-//     $user = new User();
-//     $firstName = '';
-//     $lastName = '';
-//     return view('frontend.register', compact('user', 'firstName', 'lastName'));
-// });
-// Route::get('/register', function () {
-//     $user = new User();
-//     $firstName = '';
-//     $lastName = '';
-//     return view('frontend.register', compact('user', 'firstName', 'lastName'));
-// });
-// Route::get('/forgotpw', function () {
-//     return view('frontend.forgotpw');
-// });
-// Route::get('/list-itemone', function () {
-//     return view('frontend.list-itemone');
-// });
-// Route::get('/list-itemtwo', function () {
-//     return view('frontend.list-itemtwo');
-// });
-// Route::get('/list-itemsucc', function () {
-//     return view('frontend.list-itemsucc');
-// });
-// Route::get('/code-verify/{id}', function ($id) {
-//     return view('frontend.code-verify', compact('id'));
-// });
-// Route::get('/change-pw/{id}', function ($id) {
-//     return view('frontend.change-pw', compact('id'));
-// });
-// Route::get('/pwchanged-succ', function () {
-//     return view('frontend.pwchanged-succ');
-// });
+Route::get('/home', function () {
+    return view('frontend.index');
+});
+Route::get('/login', function () {
+    return view('frontend.login');
+});
+Route::get('/', function () {
+    $user = new User();
+    $firstName = '';
+    $lastName = '';
+    return view('frontend.register', compact('user', 'firstName', 'lastName'));
+});
+Route::get('/register', function () {
+    $user = new User();
+    $firstName = '';
+    $lastName = '';
+    return view('frontend.register', compact('user', 'firstName', 'lastName'));
+});
+Route::get('/forgotpw', function () {
+    return view('frontend.forgotpw');
+});
+Route::get('/list-itemone', function () {
+    return view('frontend.list-itemone');
+});
+Route::get('/list-itemtwo', function () {
+    return view('frontend.list-itemtwo');
+});
+Route::get('/list-itemsucc', function () {
+    return view('frontend.list-itemsucc');
+});
+Route::get('/code-verify/{id}', function ($id) {
+    return view('frontend.code-verify', compact('id'));
+});
+Route::get('/change-pw/{id}', function ($id) {
+    return view('frontend.change-pw', compact('id'));
+});
+Route::get('/pwchanged-succ', function () {
+    return view('frontend.pwchanged-succ');
+});
 
 // Route::get('/google-login', function () {
 //     return Socialite::driver('google')->redirect();
@@ -122,16 +122,16 @@ Route::get('/optimize-clear', function () {
         return 'Error: ' . $e->getMessage();
     }
 });
-Route::get('/log-delete', function () {
-    $logFilePath = storage_path('logs/laravel.log');
+// Route::get('/log-delete', function () {
+//     $logFilePath = storage_path('logs/laravel.log');
 
-    if (File::exists($logFilePath)) {
-        File::delete($logFilePath);
-        return 'Log file deleted successfully!';
-    } else {
-        return 'Log file not found.';
-    }
-});
+//     if (File::exists($logFilePath)) {
+//         File::delete($logFilePath);
+//         return 'Log file deleted successfully!';
+//     } else {
+//         return 'Log file not found.';
+//     }
+// });
 
 // // lending
 // Route::get('/log', [AuthController::class, 'log']);
