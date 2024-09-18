@@ -23,7 +23,15 @@ Route::get('/', function () {
     // return view('frontend.forget-password');
     //return view('frontend.cart');
     // return view('frontend.checkout');
-    return view('frontend.listing-product');
+    // return view('frontend.listing-product');
+    // return view('frontend.disclaimer');
+    //return view('frontend.faq');
+    // return view('frontend.legal-policy');
+    // return view('frontend.privacy-policy');
+    // return view('frontend.tandcs');
+    // return view('frontend.list-item');
+    // return view('frontend.submit-otp');
+    // return view('frontend.submitted-otp');
 });
 
 Route::get('/home', function () {
