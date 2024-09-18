@@ -63,38 +63,14 @@
                                 <img src="{{ asset('assets/img/Group 18399.png')}}" alt="" title="" />
                                 <h4 class="logo-bar__heading">All</h4>
                             </div>
+                            @foreach ($allData['category'] as $val)
+                            
                             <div class="logo-bar__item text-center">
-                                <img src="{{ asset('assets/img/Ellipse 152.png')}}" alt="" title="" />
-                                <h4 class="logo-bar__heading">T-Shirts</h4>
+                                <img src="{{ asset('/uploads/category/'.$val->image)}}" alt="" title="" />
+                                <h4 class="logo-bar__heading">{{$val->name}}</h4>
                             </div>
-                            <div class="logo-bar__item text-center">
-                                <img src="{{ asset('assets/img/Ellipse 153.png')}}" alt="" title="" />
-                                <h4 class="logo-bar__heading">Jeans</h4>
-                            </div>
-                            <div class="logo-bar__item text-center">
-                                <img src="{{ asset('assets/img/Ellipse 154.png')}}" alt="" title="" />
-                                <h4 class="logo-bar__heading">Shorts</h4>
-                            </div>
-                            <div class="logo-bar__item text-center">
-                                <img src="{{ asset('assets/img/Ellipse 156.png')}}" alt="" title="" />
-                                <h4 class="logo-bar__heading">Jackets</h4>
-                            </div>
-                            <div class="logo-bar__item text-center">
-                                <img src="{{ asset('assets/img/Ellipse 157.png')}}" alt="" title="" />
-                                <h4 class="logo-bar__heading">Dresses</h4>
-                            </div>
-                            <div class="logo-bar__item text-center">
-                                <img src="{{ asset('assets/img/Ellipse 159.png')}}" alt="" title="" />
-                                <h4 class="logo-bar__heading">Modest</h4>
-                            </div>
-                            <div class="logo-bar__item text-center">
-                                <img src="{{ asset('assets/img/Ellipse 155.png')}}" alt="" title="" />
-                                <h4 class="logo-bar__heading">Skirts</h4>
-                            </div>
-                            <div class="logo-bar__item text-center">
-                                <img src="{{ asset('assets/img/Ellipse 158.png')}}" alt="" title="" />
-                                <h4 class="logo-bar__heading">Tops</h4>
-                            </div>
+                            @endforeach
+                           
 
                         </div>
                     </div>
@@ -147,42 +123,19 @@
 
             <div class="container-fluid">
                 <div class="row">
+                    @foreach ($allData['occassion'] as $val)
+                    
                     <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                         <div class="collection-grid-item text-center">
                             <a href="collection-page.html" class="collection-grid-item__link">
-                                <img data-src="{{ asset('assets/img/Rectangle 26.png')}}" src="{{ asset('assets/img/Rectangle 26.png')}}"
-                                    alt="Hot" class="blur-up lazyload" />
-                                <h3 class="mt-4">PARTY WEAR</h3>
+                                <img data-src="{{ asset('uploads/occasion/'.$val->image)}}" src="{{ asset('assets/img/Rectangle 26.png')}}"
+                                alt="Hot" class="blur-up lazyload" />
+                                <h3 class="mt-4">{{$val->name}}</h3>
                             </a>
                         </div>
                     </div>
-                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-                        <div class="collection-grid-item text-center">
-                            <a href="collection-page.html" class="collection-grid-item__link">
-                                <img data-src="{{ asset('assets/img/Rectangle 26.png')}}" src="{{ asset('assets/img/Rectangle 26.png')}}"
-                                    alt="Denim" class="blur-up lazyload blur-active" />
-                                <h3 class="mt-4">EVENING WEAR</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-                        <div class="collection-grid-item text-center">
-                            <a href="collection-page.html" class="collection-grid-item__link">
-                                <img data-src="{{ asset('assets/img/Rectangle 26.png')}}" src="{{ asset('assets/img/Rectangle 26.png')}}"
-                                    alt="Summer" class="blur-up lazyload" />
-                                <h3 class="mt-4">BUSINESS</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-                        <div class="collection-grid-item text-center">
-                            <a href="collection-page.html" class="collection-grid-item__link">
-                                <img data-src="{{ asset('assets/img/Rectangle 26.png')}}" src="{{ asset('assets/img/Rectangle 26.png')}}"
-                                    alt="Summer" class="blur-up lazyload" />
-                                <h3 class="mt-4">BIRTHDAY</h3>
-                            </a>
-                        </div>
-                    </div>
+                    @endforeach
+                    
                 </div>
             </div>
         </div>
@@ -206,95 +159,21 @@
                 </div>
             </div>
             <div class="productSlider-style2 grid-products">
+                @foreach ($allData['just_landed'] as $val)
+                
                 <div class="col-12 item">
                     <!-- start product image -->
                     <div class="product-image">
                         <!-- start product image -->
                         <a href="product-layout-1.html" class="grid-view-item__link">
                             <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 27.png')}}"
-                                src="{{ asset('assets/img/Rectangle 27.png')}}" alt="image" title="product">
-                            <!-- End image -->
-                            <!-- Hover image -->
-                            <img class="hover blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 27.png')}}"
-                                src="{{ asset('assets/img/Rectangle 27.png')}}" alt="image" title="product">
-                            <!-- End hover image -->
-                        </a>
-                        <!-- end product image -->
-                        <!-- Start product button -->
-                        <form class="variants add" action="#" method="post">
-                            <div class="d-flex btn-background" style="">
-                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
-                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
-                            </div>
-                        </form>
-                        <div class="button-set">
-                            <!-- <a href="javascript:void(0)"
-                                    title="Quick View"
-                                    class="quick-view-popup quick-view"
-                                    data-toggle="modal"
-                                    data-target="#content_quickview">
-                                    <i
-                                        class="icon anm anm-search-plus-r"></i>
-                                </a> -->
-                            <div class="wishlist-btn">
-                                <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                    <i class="icon anm anm-heart-l"></i>
-                                </a>
-                            </div>
-                            <!-- <div class="compare-btn">
-                                    <a class="compare add-to-compare"
-                                        href="compare.html"
-                                        title="Add to Compare">
-                                        <i
-                                            class="icon anm anm-random-r"></i>
-                                    </a>
-                                </div> -->
-                        </div>
-                        <!-- end product button -->
-                    </div>
-                    <!-- end product image -->
-                    <!--start product details -->
-                    <div class="product-details text-center">
-                        <!-- product name -->
-                        <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
-                        </div>
-                        <!-- End product name -->
-                        <div class="star text-center">
-                            <ul class="list-unstyled" style="display: inline-flex;">
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                            </ul>
-                        </div>
-                        <!-- product price -->
-                        <div class="product-price">
-                            <span class="price">AED 250</span>
-                        </div>
-                        <!-- End product price -->
-                        <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
-                        <!-- End Product Link -->
-                    </div>
-                    <!-- End product details -->
-                </div>
-                <div class="col-12 item">
-                    <!-- start product image -->
-                    <div class="product-image">
-                        <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
-                            <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 28.png')}}"
-                                src="{{ asset('assets/img/Rectangle 28.png')}}" alt="image" title="product">
+                            <img class="primary blur-up lazyload" data-src="{{ asset('/uploads/item/'.$val->mainImag)}}"
+                                src="{{ asset('/uploads/item/'.$val->mainImag)}}" alt="image" title="product">
                             <!-- End image -->
                             <!-- Hover image -->
                             <img class="hover blur-up lazyload"
-                                data-src="{{ asset('assets/images/jewellery-products/jewellery-products2-1.jpg')}}"
-                                src="{{ asset('assets/images/jewellery-products/jewellery-products2-1.jpg')}}" alt="image"
+                                data-src="{{ asset('/uploads/item/'.$val->mainImag)}}"
+                                src="{{ asset('/uploads/item/'.$val->mainImag)}}" alt="image"
                                 title="product">
                             <!-- End hover image -->
                         </a>
@@ -362,166 +241,9 @@
                     </div>
                     <!-- End product details -->
                 </div>
-                <div class="col-12 item">
-                    <!-- start product image -->
-                    <div class="product-image">
-                        <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
-                            <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 29.png')}}"
-                                src="{{ asset('assets/img/Rectangle 29.png')}}" alt="image" title="product">
-                            <!-- End image -->
-                            <!-- Hover image -->
-                            <img class="hover blur-up lazyload"
-                                data-src="{{ asset('assets/images/jewellery-products/jewellery-products3-1.jpg')}}"
-                                src="{{ asset('assets/images/jewellery-products/jewellery-products3-1.jpg')}}" alt="image"
-                                title="product">
-                            <!-- End hover image -->
-                        </a>
-                        <!-- end product image -->
+                
+                @endforeach
 
-                        <!-- Start product button -->
-                        <form class="variants add" action="#" method="post">
-                            <div class="d-flex btn-background" style="">
-                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
-                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
-                            </div>
-                        </form>
-                        <div class="button-set">
-                            <!-- <a href="javascript:void(0)"
-                                    title="Quick View"
-                                    class="quick-view-popup quick-view"
-                                    data-toggle="modal"
-                                    data-target="#content_quickview">
-                                    <i
-                                        class="icon anm anm-search-plus-r"></i>
-                                </a> -->
-                            <div class="wishlist-btn">
-                                <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                    <i class="icon anm anm-heart-l"></i>
-                                </a>
-                            </div>
-                            <!-- <div class="compare-btn">
-                                    <a class="compare add-to-compare"
-                                        href="compare.html"
-                                        title="Add to Compare">
-                                        <i
-                                            class="icon anm anm-random-r"></i>
-                                    </a>
-                                </div> -->
-                        </div>
-                        <!-- end product button -->
-                    </div>
-                    <!-- end product image -->
-
-                    <!--start product details -->
-                    <div class="product-details text-center">
-                        <!-- product name -->
-                        <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
-                        </div>
-                        <!-- End product name -->
-                        <div class="star text-center">
-                            <ul class="list-unstyled" style="display: inline-flex;">
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                            </ul>
-                        </div>
-                        <!-- product price -->
-                        <div class="product-price">
-                            <span class="price">AED 250</span>
-                        </div>
-                        <!-- End product price -->
-                        <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
-                        <!-- End Product Link -->
-                    </div>
-                    <!-- End product details -->
-                </div>
-                <div class="col-12 item">
-                    <!-- start product image -->
-                    <div class="product-image">
-                        <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
-                            <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 27.png')}}"
-                                src="{{ asset('assets/img/Rectangle 27.png')}}" alt="image" title="product" />
-                            <!-- End image -->
-                            <!-- Hover image -->
-                            <img class="hover blur-up lazyload"
-                                data-src="{{ asset('assets/images/jewellery-products/jewellery-products4-1.jpg')}}"
-                                src="{{ asset('assets/images/jewellery-products/jewellery-products4-1.jpg')}}" alt="image"
-                                title="product" />
-                            <!-- End hover image -->
-                        </a>
-                        <!-- end product image -->
-
-                        <!-- Start product button -->
-                        <form class="variants add" action="#" method="post">
-                            <div class="d-flex btn-background" style="">
-                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
-                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
-                            </div>
-                        </form>
-                        <div class="button-set">
-                            <!-- <a href="javascript:void(0)"
-                                    title="Quick View"
-                                    class="quick-view-popup quick-view"
-                                    data-toggle="modal"
-                                    data-target="#content_quickview">
-                                    <i
-                                        class="icon anm anm-search-plus-r"></i>
-                                </a> -->
-                            <div class="wishlist-btn">
-                                <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                    <i class="icon anm anm-heart-l"></i>
-                                </a>
-                            </div>
-                            <!-- <div class="compare-btn">
-                                    <a class="compare add-to-compare"
-                                        href="compare.html"
-                                        title="Add to Compare">
-                                        <i
-                                            class="icon anm anm-random-r"></i>
-                                    </a>
-                                </div> -->
-                        </div>
-                        <!-- end product button -->
-                    </div>
-                    <!-- end product image -->
-
-                    <!--start product details -->
-                    <div class="product-details text-center">
-                        <!-- product name -->
-                        <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
-                        </div>
-                        <!-- End product name -->
-                        <div class="star text-center">
-                            <ul class="list-unstyled" style="display: inline-flex;">
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                            </ul>
-                        </div>
-                        <!-- product price -->
-                        <div class="product-price">
-                            <span class="price">AED 250</span>
-                        </div>
-                        <!-- End product price -->
-                        <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
-                        <!-- End Product Link -->
-                    </div>
-                    <!-- End product details -->
-                </div>
 
             </div>
         </div>
@@ -540,15 +262,14 @@
                 </div>
             </div>
         </div>
-        <!-- End Divider button -->
-
-        <!--Hot picks-->
+        @foreach ($allData['category_product'] as $val)
+        
         <div class="section hot-picks">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="section-header">
-                            <h2 class="h2 heading-font">RESALE</h2>
+                            <h2 class="h2 heading-font">{{$val->name}}</h2>
 
                         </div>
                     </div>
@@ -559,18 +280,20 @@
                 </div>
             </div>
             <div class="productSlider-style2 grid-products">
+                @foreach ($val->products as $product)
+                
                 <div class="col-12 item">
                     <!-- start product image -->
                     <div class="product-image">
                         <!-- start product image -->
                         <a href="product-layout-1.html" class="grid-view-item__link">
                             <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 27.png')}}"
-                                src="{{ asset('assets/img/Rectangle 27.png')}}" alt="image" title="product">
+                            <img class="primary blur-up lazyload" data-src="{{ asset('uploads/item/'.$product->mainImag)}}"
+                                src="{{ asset('uploads/item/'.$product->mainImag)}}" alt="image" title="product">
                             <!-- End image -->
                             <!-- Hover image -->
-                            <img class="hover blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 27.png')}}"
-                                src="{{ asset('assets/img/Rectangle 27.png')}}" alt="image" title="product">
+                            <img class="hover blur-up lazyload" data-src="{{ asset('uploads/item/'.$product->mainImag)}}"
+                                src="{{ asset('uploads/item/'.$product->mainImag)}}" alt="image" title="product">
                             <!-- End hover image -->
                         </a>
                         <!-- end product image -->
@@ -635,587 +358,12 @@
                     </div>
                     <!-- End product details -->
                 </div>
-                <div class="col-12 item">
-                    <!-- start product image -->
-                    <div class="product-image">
-                        <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
-                            <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 28.png')}}"
-                                src="{{ asset('assets/img/Rectangle 28.png')}}" alt="image" title="product">
-                            <!-- End image -->
-                            <!-- Hover image -->
-                            <img class="hover blur-up lazyload"
-                                data-src="{{ asset('assets/images/jewellery-products/jewellery-products2-1.jpg')}}"
-                                src="{{ asset('assets/images/jewellery-products/jewellery-products2-1.jpg')}}" alt="image"
-                                title="product">
-                            <!-- End hover image -->
-                        </a>
-                        <!-- end product image -->
-
-                        <!-- Start product button -->
-                        <form class="variants add" action="#" method="post">
-                            <div class="d-flex btn-background" style="">
-                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
-                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
-                            </div>
-                        </form>
-                        <div class="button-set">
-                            <!-- <a href="javascript:void(0)"
-                                    title="Quick View"
-                                    class="quick-view-popup quick-view"
-                                    data-toggle="modal"
-                                    data-target="#content_quickview">
-                                    <i
-                                        class="icon anm anm-search-plus-r"></i>
-                                </a> -->
-                            <div class="wishlist-btn">
-                                <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                    <i class="icon anm anm-heart-l"></i>
-                                </a>
-                            </div>
-                            <!-- <div class="compare-btn">
-                                    <a class="compare add-to-compare"
-                                        href="compare.html"
-                                        title="Add to Compare">
-                                        <i
-                                            class="icon anm anm-random-r"></i>
-                                    </a>
-                                </div> -->
-                        </div>
-                        <!-- end product button -->
-                    </div>
-                    <!-- end product image -->
-
-                    <!--start product details -->
-                    <div class="product-details text-center">
-                        <!-- product name -->
-                        <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
-                        </div>
-                        <!-- End product name -->
-                        <div class="star text-center">
-                            <ul class="list-unstyled" style="display: inline-flex;">
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                            </ul>
-                        </div>
-                        <!-- product price -->
-                        <div class="product-price">
-                            <span class="price">AED 250</span>
-                        </div>
-                        <!-- End product price -->
-                        <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
-                        <!-- End Product Link -->
-                    </div>
-                    <!-- End product details -->
-                </div>
-                <div class="col-12 item">
-                    <!-- start product image -->
-                    <div class="product-image">
-                        <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
-                            <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 29.png')}}"
-                                src="{{ asset('assets/img/Rectangle 29.png')}}" alt="image" title="product">
-                            <!-- End image -->
-                            <!-- Hover image -->
-                            <img class="hover blur-up lazyload"
-                                data-src="{{ asset('assets/images/jewellery-products/jewellery-products3-1.jpg')}}"
-                                src="{{ asset('assets/images/jewellery-products/jewellery-products3-1.jpg')}}" alt="image"
-                                title="product">
-                            <!-- End hover image -->
-                        </a>
-                        <!-- end product image -->
-
-                        <!-- Start product button -->
-                        <form class="variants add" action="#" method="post">
-                            <div class="d-flex btn-background" style="">
-                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
-                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
-                            </div>
-                        </form>
-                        <div class="button-set">
-                            <!-- <a href="javascript:void(0)"
-                                    title="Quick View"
-                                    class="quick-view-popup quick-view"
-                                    data-toggle="modal"
-                                    data-target="#content_quickview">
-                                    <i
-                                        class="icon anm anm-search-plus-r"></i>
-                                </a> -->
-                            <div class="wishlist-btn">
-                                <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                    <i class="icon anm anm-heart-l"></i>
-                                </a>
-                            </div>
-                            <!-- <div class="compare-btn">
-                                    <a class="compare add-to-compare"
-                                        href="compare.html"
-                                        title="Add to Compare">
-                                        <i
-                                            class="icon anm anm-random-r"></i>
-                                    </a>
-                                </div> -->
-                        </div>
-                        <!-- end product button -->
-                    </div>
-                    <!-- end product image -->
-
-                    <!--start product details -->
-                    <div class="product-details text-center">
-                        <!-- product name -->
-                        <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
-                        </div>
-                        <!-- End product name -->
-                        <div class="star text-center">
-                            <ul class="list-unstyled" style="display: inline-flex;">
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                            </ul>
-                        </div>
-                        <!-- product price -->
-                        <div class="product-price">
-                            <span class="price">AED 250</span>
-                        </div>
-                        <!-- End product price -->
-                        <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
-                        <!-- End Product Link -->
-                    </div>
-                    <!-- End product details -->
-                </div>
-                <div class="col-12 item">
-                    <!-- start product image -->
-                    <div class="product-image">
-                        <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
-                            <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 27.png')}}"
-                                src="{{ asset('assets/img/Rectangle 27.png')}}" alt="image" title="product" />
-                            <!-- End image -->
-                            <!-- Hover image -->
-                            <img class="hover blur-up lazyload"
-                                data-src="{{ asset('assets/images/jewellery-products/jewellery-products4-1.jpg')}}"
-                                src="{{ asset('assets/images/jewellery-products/jewellery-products4-1.jpg')}}" alt="image"
-                                title="product" />
-                            <!-- End hover image -->
-                        </a>
-                        <!-- end product image -->
-
-                        <!-- Start product button -->
-                        <form class="variants add" action="#" method="post">
-                            <div class="d-flex btn-background" style="">
-                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
-                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
-                            </div>
-                        </form>
-                        <div class="button-set">
-                            <!-- <a href="javascript:void(0)"
-                                    title="Quick View"
-                                    class="quick-view-popup quick-view"
-                                    data-toggle="modal"
-                                    data-target="#content_quickview">
-                                    <i
-                                        class="icon anm anm-search-plus-r"></i>
-                                </a> -->
-                            <div class="wishlist-btn">
-                                <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                    <i class="icon anm anm-heart-l"></i>
-                                </a>
-                            </div>
-                            <!-- <div class="compare-btn">
-                                    <a class="compare add-to-compare"
-                                        href="compare.html"
-                                        title="Add to Compare">
-                                        <i
-                                            class="icon anm anm-random-r"></i>
-                                    </a>
-                                </div> -->
-                        </div>
-                        <!-- end product button -->
-                    </div>
-                    <!-- end product image -->
-
-                    <!--start product details -->
-                    <div class="product-details text-center">
-                        <!-- product name -->
-                        <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
-                        </div>
-                        <!-- End product name -->
-                        <div class="star text-center">
-                            <ul class="list-unstyled" style="display: inline-flex;">
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                            </ul>
-                        </div>
-                        <!-- product price -->
-                        <div class="product-price">
-                            <span class="price">AED 250</span>
-                        </div>
-                        <!-- End product price -->
-                        <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
-                        <!-- End Product Link -->
-                    </div>
-                    <!-- End product details -->
-                </div>
+                @endforeach
 
             </div>
         </div>
-        <!--End Hot picks-->
+        @endforeach
 
-        <!--Hot picks-->
-        <div class="section hot-picks">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                        <div class="section-header">
-                            <h2 class="h2 heading-font">EDITORS PICK</h2>
-
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        <button>View All</button>
-                    </div>
-                </div>
-            </div>
-            <div class="productSlider-style2 grid-products">
-                <div class="col-12 item">
-                    <!-- start product image -->
-                    <div class="product-image">
-                        <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
-                            <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 27.png')}}"
-                                src="{{ asset('assets/img/Rectangle 27.png')}}" alt="image" title="product">
-                            <!-- End image -->
-                            <!-- Hover image -->
-                            <img class="hover blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 27.png')}}"
-                                src="{{ asset('assets/img/Rectangle 27.png')}}" alt="image" title="product">
-                            <!-- End hover image -->
-                        </a>
-                        <!-- end product image -->
-                        <!-- Start product button -->
-                        <form class="variants add" action="#" method="post">
-                            <div class="d-flex btn-background" style="">
-                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
-                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
-                            </div>
-                        </form>
-                        <div class="button-set">
-                            <!-- <a href="javascript:void(0)"
-                                    title="Quick View"
-                                    class="quick-view-popup quick-view"
-                                    data-toggle="modal"
-                                    data-target="#content_quickview">
-                                    <i
-                                        class="icon anm anm-search-plus-r"></i>
-                                </a> -->
-                            <div class="wishlist-btn">
-                                <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                    <i class="icon anm anm-heart-l"></i>
-                                </a>
-                            </div>
-                            <!-- <div class="compare-btn">
-                                    <a class="compare add-to-compare"
-                                        href="compare.html"
-                                        title="Add to Compare">
-                                        <i
-                                            class="icon anm anm-random-r"></i>
-                                    </a>
-                                </div> -->
-                        </div>
-                        <!-- end product button -->
-                    </div>
-                    <!-- end product image -->
-                    <!--start product details -->
-                    <div class="product-details text-center">
-                        <!-- product name -->
-                        <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
-                        </div>
-                        <!-- End product name -->
-                        <div class="star text-center">
-                            <ul class="list-unstyled" style="display: inline-flex;">
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                            </ul>
-                        </div>
-                        <!-- product price -->
-                        <div class="product-price">
-                            <span class="price">AED 250</span>
-                        </div>
-                        <!-- End product price -->
-                        <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
-                        <!-- End Product Link -->
-                    </div>
-                    <!-- End product details -->
-                </div>
-                <div class="col-12 item">
-                    <!-- start product image -->
-                    <div class="product-image">
-                        <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
-                            <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 28.png')}}"
-                                src="{{ asset('assets/img/Rectangle 28.png')}}" alt="image" title="product">
-                            <!-- End image -->
-                            <!-- Hover image -->
-                            <img class="hover blur-up lazyload"
-                                data-src="{{ asset('assets/images/jewellery-products/jewellery-products2-1.jpg')}}"
-                                src="{{ asset('assets/images/jewellery-products/jewellery-products2-1.jpg')}}" alt="image"
-                                title="product">
-                            <!-- End hover image -->
-                        </a>
-                        <!-- end product image -->
-
-                        <!-- Start product button -->
-                        <form class="variants add" action="#" method="post">
-                            <div class="d-flex btn-background" style="">
-                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
-                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
-                            </div>
-                        </form>
-                        <div class="button-set">
-                            <!-- <a href="javascript:void(0)"
-                                    title="Quick View"
-                                    class="quick-view-popup quick-view"
-                                    data-toggle="modal"
-                                    data-target="#content_quickview">
-                                    <i
-                                        class="icon anm anm-search-plus-r"></i>
-                                </a> -->
-                            <div class="wishlist-btn">
-                                <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                    <i class="icon anm anm-heart-l"></i>
-                                </a>
-                            </div>
-                            <!-- <div class="compare-btn">
-                                    <a class="compare add-to-compare"
-                                        href="compare.html"
-                                        title="Add to Compare">
-                                        <i
-                                            class="icon anm anm-random-r"></i>
-                                    </a>
-                                </div> -->
-                        </div>
-                        <!-- end product button -->
-                    </div>
-                    <!-- end product image -->
-
-                    <!--start product details -->
-                    <div class="product-details text-center">
-                        <!-- product name -->
-                        <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
-                        </div>
-                        <!-- End product name -->
-                        <div class="star text-center">
-                            <ul class="list-unstyled" style="display: inline-flex;">
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                            </ul>
-                        </div>
-                        <!-- product price -->
-                        <div class="product-price">
-                            <span class="price">AED 250</span>
-                        </div>
-                        <!-- End product price -->
-                        <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
-                        <!-- End Product Link -->
-                    </div>
-                    <!-- End product details -->
-                </div>
-                <div class="col-12 item">
-                    <!-- start product image -->
-                    <div class="product-image">
-                        <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
-                            <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 29.png')}}"
-                                src="{{ asset('assets/img/Rectangle 29.png')}}" alt="image" title="product">
-                            <!-- End image -->
-                            <!-- Hover image -->
-                            <img class="hover blur-up lazyload"
-                                data-src="{{ asset('assets/images/jewellery-products/jewellery-products3-1.jpg')}}"
-                                src="{{ asset('assets/images/jewellery-products/jewellery-products3-1.jpg')}}" alt="image"
-                                title="product">
-                            <!-- End hover image -->
-                        </a>
-                        <!-- end product image -->
-
-                        <!-- Start product button -->
-                        <form class="variants add" action="#" method="post">
-                            <div class="d-flex btn-background" style="">
-                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
-                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
-                            </div>
-                        </form>
-                        <div class="button-set">
-                            <!-- <a href="javascript:void(0)"
-                                    title="Quick View"
-                                    class="quick-view-popup quick-view"
-                                    data-toggle="modal"
-                                    data-target="#content_quickview">
-                                    <i
-                                        class="icon anm anm-search-plus-r"></i>
-                                </a> -->
-                            <div class="wishlist-btn">
-                                <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                    <i class="icon anm anm-heart-l"></i>
-                                </a>
-                            </div>
-                            <!-- <div class="compare-btn">
-                                    <a class="compare add-to-compare"
-                                        href="compare.html"
-                                        title="Add to Compare">
-                                        <i
-                                            class="icon anm anm-random-r"></i>
-                                    </a>
-                                </div> -->
-                        </div>
-                        <!-- end product button -->
-                    </div>
-                    <!-- end product image -->
-
-                    <!--start product details -->
-                    <div class="product-details text-center">
-                        <!-- product name -->
-                        <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
-                        </div>
-                        <!-- End product name -->
-                        <div class="star text-center">
-                            <ul class="list-unstyled" style="display: inline-flex;">
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                            </ul>
-                        </div>
-                        <!-- product price -->
-                        <div class="product-price">
-                            <span class="price">AED 250</span>
-                        </div>
-                        <!-- End product price -->
-                        <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
-                        <!-- End Product Link -->
-                    </div>
-                    <!-- End product details -->
-                </div>
-                <div class="col-12 item">
-                    <!-- start product image -->
-                    <div class="product-image">
-                        <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
-                            <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('assets/img/Rectangle 27.png')}}"
-                                src="{{ asset('assets/img/Rectangle 27.png')}}" alt="image" title="product" />
-                            <!-- End image -->
-                            <!-- Hover image -->
-                            <img class="hover blur-up lazyload"
-                                data-src="{{ asset('assets/images/jewellery-products/jewellery-products4-1.jpg')}}"
-                                src="{{ asset('assets/images/jewellery-products/jewellery-products4-1.jpg')}}" alt="image"
-                                title="product" />
-                            <!-- End hover image -->
-                        </a>
-                        <!-- end product image -->
-
-                        <!-- Start product button -->
-                        <form class="variants add" action="#" method="post">
-                            <div class="d-flex btn-background" style="">
-                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
-                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
-                            </div>
-                        </form>
-                        <div class="button-set">
-                            <!-- <a href="javascript:void(0)"
-                                    title="Quick View"
-                                    class="quick-view-popup quick-view"
-                                    data-toggle="modal"
-                                    data-target="#content_quickview">
-                                    <i
-                                        class="icon anm anm-search-plus-r"></i>
-                                </a> -->
-                            <div class="wishlist-btn">
-                                <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                    <i class="icon anm anm-heart-l"></i>
-                                </a>
-                            </div>
-                            <!-- <div class="compare-btn">
-                                    <a class="compare add-to-compare"
-                                        href="compare.html"
-                                        title="Add to Compare">
-                                        <i
-                                            class="icon anm anm-random-r"></i>
-                                    </a>
-                                </div> -->
-                        </div>
-                        <!-- end product button -->
-                    </div>
-                    <!-- end product image -->
-
-                    <!--start product details -->
-                    <div class="product-details text-center">
-                        <!-- product name -->
-                        <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
-                        </div>
-                        <!-- End product name -->
-                        <div class="star text-center">
-                            <ul class="list-unstyled" style="display: inline-flex;">
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                                <li><i class="fa fa-star px-2 star"></i></li>
-                            </ul>
-                        </div>
-                        <!-- product price -->
-                        <div class="product-price">
-                            <span class="price">AED 250</span>
-                        </div>
-                        <!-- End product price -->
-                        <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
-                        <!-- End Product Link -->
-                    </div>
-                    <!-- End product details -->
-                </div>
-
-            </div>
-        </div>
         <!--End Hot picks-->
 
         <!-- Start Top Products -->
@@ -1233,46 +381,18 @@
                 </div>
                 <div class="swiper-container top-product-slider">
                     <div class="swiper-wrapper">
+                        @foreach ($allData['brands'] as $val)
+                        
                         <div class="swiper-slide top-product-slide">
                             <div class="topProduct-img">
-                                <img src="{{ asset('./assets/images/top-products/Rectangle 1443.png')}}" alt="">
+                                <img src="{{ asset('uploads/brand/'.$val->image)}}" alt="">
                             </div>
                             <div class="topProduct-name">
-                                <h4>BALENCIAGA</h4>
+                                <h4>{{$val->name}}</h4>
                             </div>
                         </div>
-                        <div class="swiper-slide top-product-slide">
-                            <div class="topProduct-img">
-                                <img src="{{ asset('./assets/images/top-products/Rectangle 1438.png')}}" alt="">
-                            </div>
-                            <div class="topProduct-name">
-                                <h4>BALENCIAGA</h4>
-                            </div>
-                        </div>
-                        <div class="swiper-slide top-product-slide">
-                            <div class="topProduct-img">
-                                <img src="{{ asset('./assets/images/top-products/Rectangle 1444.png')}}" alt="">
-                            </div>
-                            <div class="topProduct-name">
-                                <h4>BALENCIAGA</h4>
-                            </div>
-                        </div>
-                        <div class="swiper-slide top-product-slide">
-                            <div class="topProduct-img">
-                                <img src="{{ asset('./assets/images/top-products/Rectangle 1439.png')}}" alt="">
-                            </div>
-                            <div class="topProduct-name">
-                                <h4>BALENCIAGA</h4>
-                            </div>
-                        </div>
-                        <div class="swiper-slide top-product-slide">
-                            <div class="topProduct-img">
-                                <img src="{{ asset('./assets/images/top-products/Rectangle 1443.png')}}" alt="">
-                            </div>
-                            <div class="topProduct-name">
-                                <h4>BALENCIAGA</h4>
-                            </div>
-                        </div>
+                        @endforeach
+                        
                     </div>
 
                     <!-- Add Pagination -->
@@ -1310,36 +430,15 @@
                     </div>
                 </div>
                 <div class="row get-card-row">
+                    @foreach ($allData['get_the_look'] as $val)
+                    
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                         <a href="#">
-                            <img src="{{ asset('./assets/images/reza-delkhosh-iRAOJYtPHZE-unsplash 1.png')}}" alt="">
+                            <img src="{{ asset('/uploads/looks/'.$val->image)}}" alt="">
                         </a>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <a href="#">
-                            <img src="{{ asset('./assets/images/reza-delkhosh-iRAOJYtPHZE-unsplash 1.png')}}" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <a href="#">
-                            <img src="{{ asset('./assets/images/reza-delkhosh-iRAOJYtPHZE-unsplash 1.png')}}" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <a href="#">
-                            <img src="{{ asset('./assets/images/reza-delkhosh-iRAOJYtPHZE-unsplash 1.png')}}" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <a href="#">
-                            <img src="{{ asset('./assets/images/reza-delkhosh-iRAOJYtPHZE-unsplash 1.png')}}" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <a href="#">
-                            <img src="{{ asset('./assets/images/reza-delkhosh-iRAOJYtPHZE-unsplash 1.png')}}" alt="">
-                        </a>
-                    </div>
+                    @endforeach
+                    
                 </div>
             </div>
         </div>
