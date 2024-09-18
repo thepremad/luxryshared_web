@@ -1,7 +1,4 @@
 
-
-
-
         <!--Top Header-->
         <div class="top-header home8-jewellery-top">
             <div class="container-fluid">

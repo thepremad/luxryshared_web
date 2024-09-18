@@ -87,7 +87,7 @@
                                                 <img src="{{ url('public/uploads/looks/'.$item->image)}}" alt="Toolbar svg" height="50px" width="50px" />
                                                    
                                                 </td>
-                                                <td>{{$item->product->item_title ?? ''}}</td>
+                                                <td>{{$item->products->item_title ?? ''}}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">

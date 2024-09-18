@@ -122,5 +122,11 @@
     </script> --}}
     {{-- @include('backend.layouts.js') --}}
 
+           
+            
+    </div>
 </body>
+
+<!-- Mirrored from annimexweb.com/items/belle/home8-jewellery.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 22 Jun 2023 11:21:41 GMT -->
+
 </html>

@@ -21,10 +21,10 @@ class DiscountController extends Controller
             $query_search = $request->input('search');
             $discounts = Discount::when($query_search, function ($query) use ($query_search) {
                 $query->where('code', 'like', '%' . $query_search . '%')
-                      ->orWhere('in_per', 'like', '%' . $query_search . '%')
-                      ->orWhere('exp_date', 'like', '%' . $query_search . '%');
+                    ->orWhere('in_per', 'like', '%' . $query_search . '%')
+                    ->orWhere('exp_date', 'like', '%' . $query_search . '%');
             })
-            ->latest()->paginate(10);            
+                ->latest()->paginate(10);
             if ($request->ajax()) {
                 return view('backend.discounts.pagination', compact('discounts'))->render();
             }
@@ -54,13 +54,14 @@ class DiscountController extends Controller
         try {
             $discounts = Discount::firstOrNew(['id' => $request->id]);
             $discounts->fill($request->all());
+            $request->offer_type == 2 ? $discounts->fix_amount = null : $discounts->in_per = null;
             $discounts->save();
             $products = $request->product_id;
-                foreach ($products as $pro) {
-                    $disProduct = new DiscountProduct();
-                    $disProduct->product_id = $pro;
-                    $disProduct->discounts_id = $discounts->id;
-                    $disProduct->save();
+            foreach ($products as $pro) {
+                $disProduct = new DiscountProduct();
+                $disProduct->product_id = $pro;
+                $disProduct->discounts_id = $discounts->id;
+                $disProduct->save();
             }
 
             return response()->json(['status' => 200, 'message' => ' Discountg Create Successfully ']);
@@ -87,7 +88,7 @@ class DiscountController extends Controller
         $items = Item::latest()->get();
         $category = Category::latest()->get();
 
-        return view('backend.discounts.create', compact('discounts', 'items','category'));
+        return view('backend.discounts.create', compact('discounts', 'items', 'category'));
     }
 
     /**
