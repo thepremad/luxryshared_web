@@ -183,3 +183,12 @@ Route::get('/optimize-clear', function () {
 // Route::get('/wishlist-page', function () {
 //     return view('frontend.wishlist-page');
 // });
+
+
+Route::get('/',[LoginContriller::class,'login'])->name('login');
+Route::post('login',[LoginContriller::class,'loginCheck'])->name('login');
+Route::post('register',[LoginContriller::class,'register'])->name('register');
+Route::middleware(['website'])->group(function () {
+    Route::get('/home',[HomeController::class,'home'])->name('home');
+    Route::get('/logout',[HomeController::class,'logout'])->name('logout');
+});

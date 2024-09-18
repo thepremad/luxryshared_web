@@ -18,6 +18,7 @@ use App\Models\Look;
 use App\Models\Menu;
 use App\Models\Occasion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -38,5 +39,9 @@ class HomeController extends Controller
     //    dd($allData);
     $menu = Menu::latest()->get();
         return view('frontend.index',compact('allData','menu'));
+    }
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
     }
 }
