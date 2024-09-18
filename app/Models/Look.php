@@ -13,6 +13,6 @@ class Look extends Model
         'product_id'
     ];
     public function products(){
-        return $this->hasMany(Item::class,'id','item_id')->where('status',Item::$active)->where('checkout_status','0');
+        return $this->hasOne(Item::class,'id')->where('status',Item::$active)->where('checkout_status','0');
     }
 }

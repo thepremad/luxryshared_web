@@ -91,6 +91,8 @@ class AuthController extends Controller
                 }
             }
             $user->password = \Hash::make($request->password);
+            $user->first_name  = strtoupper($request->first_name);
+            $user->last_name  = strtoupper($request->last_name);
             $user->save();
             $this->transactionReferSend($user->id);
             $token = $user->createToken($user->name)->accessToken;

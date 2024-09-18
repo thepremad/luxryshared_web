@@ -1,78 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lxry Shared</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
+@include('frontend.layouts.header')
+        <!--End Desktop Menu-->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Owl Carousel CSS CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-  <!-- Owl Carousel JS CDN -->
-  <link rel="stylesheet" type="text/css"
-  href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-  
-  <style>
-        p.clearfix.mb-0 {
-            float: right !important;
-            display: none
-        }
+        @yield('content')
+        
+            @include('frontend.layouts.footer')
 
-        .alert.alert-success {
-            width: fit-content;
-            padding: 15px;
-            position: absolute;
-            top: 66px;
-            z-index: 999;
-            right: 0;
-        }
 
-        .alert.alert-warning {
-            width: fit-content;
-            padding: 15px;
-            position: absolute;
-            top: 66px;
-            z-index: 999;
-            right: 0;
-        }
-
-        .Active {
-            color: green;
-            font-weight: 900;
-        }
-
-        .Inactive {
-            color: red;
-            font-weight: 900;
-        }
-    </style>
-
-</head>
-<body>
-
-    @include('frontend.layouts.header')
-
-    @yield('content')
-
-    @include('frontend.layouts.footer')
-{!! HTML::script(asset('/backend/vendors/js/extensions/toastr.min.js')) !!}
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-    var message = localStorage.getItem('message');
-    localStorage.removeItem('message');
-    if (message) {
-        toastr.success(message);
-    }
-    </script>
-    @include('backend.layouts.js')
-
+            <script src="{{asset('frontend/assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
+            <script src="{{asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+            <script src="{{asset('frontend/assets/js/vendor/jquery.cookie.js')}}"></script>
+            <script src="{{asset('frontend/assets/js/vendor/wow.min.js')}}"></script>
+            <!-- Including Javascript -->
+            <script src="{{asset('frontend/assets/js/bootstrap.min.js')}}"></script>
+            <script src="{{asset('frontend/assets/js/plugins.js')}}"></script>
+            <script src="{{asset('frontend/assets/js/popper.min.js')}}"></script>
+            <script src="{{asset('frontend/assets/js/lazysizes.js')}}"></script>
+            <script src="{{asset('frontend/assets/js/main.js')}}"></script>
+            <!--Instagram Js-->
+            <script src="{{asset('frontend/assets/js/vendor/jquery.instagramFeed.min.js')}}"></script>
+            <!-- Swiper JS CDN -->
+            <script src="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+            @yield('js')
+            <!-- Initialize Swiper -->
+            
+        </div>
 </body>
+
+<!-- Mirrored from annimexweb.com/items/belle/home8-jewellery.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 22 Jun 2023 11:21:41 GMT -->
+
 </html>
