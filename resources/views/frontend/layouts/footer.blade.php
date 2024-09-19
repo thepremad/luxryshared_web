@@ -12,7 +12,8 @@
             <div class="col-lg-2 col-md-2 col-sm-2 col-4 footer-column" id="footer-col2">
                 <h4 class="footerLinks-heading">Your Community</h4>
                 <ul class="footer-links" id="commuityLink-1">
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="{{route('about_us')}}">About Us</a></li>
+                    <li><a href="{{route('list_item')}}">List Item</a></li>
                     <li><a href="#">Community</a></li>
                     <li><a href="#">Sustainability</a></li>
                     <li><a href="#">Blog</a></li>
@@ -28,15 +29,15 @@
                 <h4 class="footerLinks-heading">Customer Service</h4>
                 <ul class="footer-links" id="commuityLink-3">
                     <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">FAQ’s</a></li>
+                    <li><a href="{{route('faq')}}">FAQ’s</a></li>
                     <li><a href="#">Delivery & Returns</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-4 footer-column" id="footer-col4">
                 <h4 class="footerLinks-heading">Legal</h4>
                 <ul class="footer-links" id="commuityLink-4">
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="{{route('privacy_policy')}}">Privacy Policy</a></li>
+                    <li><a href="{{route('terms_and_conditions')}}">Terms of Service</a></li>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-12 footer-column" id="footer-col5">
