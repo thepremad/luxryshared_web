@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\frontend\ItemController;
 use App\Http\Controllers\Frontend\LoginContriller;
 use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
@@ -204,5 +205,11 @@ Route::post('login',[LoginContriller::class,'loginCheck'])->name('login');
 Route::post('register',[LoginContriller::class,'register'])->name('register');
 Route::middleware(['website'])->group(function () {
     Route::get('/home',[HomeController::class,'home'])->name('home');
+    Route::get('/about-us',[HomeController::class,'aboutUs'])->name('about_us');
+    Route::get('/faq',[HomeController::class,'faq'])->name('faq');
+    Route::get('/list-item',[ItemController::class,'listItem'])->name('list_item');
+    Route::get('/privacy-policy',[HomeController::class,'privacyPolicy'])->name('privacy_policy');
+    Route::get('/terms-and-conditions',[HomeController::class,'termsAndConditions'])->name('terms_and_conditions');
+    Route::post('/save-item',[HomeController::class,'saveItem'])->name('save_item');
     Route::get('/logout',[HomeController::class,'logout'])->name('logout');
 });
