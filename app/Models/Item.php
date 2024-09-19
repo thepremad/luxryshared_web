@@ -49,7 +49,7 @@ class Item extends Model
       return $this->hasMany(ItemImage::class,'item_id');
      }
 
-     public function users(){
+     public function users(){ 
       return $this->hasOne(User::class,'id','user_id');
      }
      public function checkouts(){
