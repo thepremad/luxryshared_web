@@ -19,5 +19,8 @@ class Category extends Model
     public function products(){
         return $this->hasMany(Item::class,'category_id')->where('status',Item::$active)->where('checkout_status','0');
     }
-   
+    
+    public function subCategory(){
+        return $this->hasMany(SubCategory::class,'category_id','id');
+    }
 }
