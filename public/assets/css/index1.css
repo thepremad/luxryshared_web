@@ -1,0 +1,39 @@
+ 
+
+
+ .first-font{
+        font-family: Outfit, sans-serif;
+    }
+    
+
+
+    .second-font{
+        font-family: Playfair Display, serif;;
+    }
+
+
+
+#popup-container{
+	max-width: 550px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 50%;
+    background: #173334;
+    margin: 20px auto;
+    z-index: 444;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+
+
+
+.newsletter-left h2 {
+    font-size: 20px;
+    margin: 0 0 15px 0;
+    color: white;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}

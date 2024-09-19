@@ -1,55 +1,28 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-
-<!-- Mirrored from annimexweb.com/items/belle/home8-jewellery.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 22 Jun 2023 11:20:36 GMT -->
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>LXRY</title>
-    <meta name="description" content="description">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{asset('frontend/assets/images/favicon.png')}}" />
-    <!-- Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/plugins.css')}}">
-    <!-- Bootstap CSS -->
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}">
-    <!-- Main Style CSS -->
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/responsive.css')}}">
-
-    <!-- Slider Link -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.css">
-
-
-
-</head>
-
-<body class="template-index home8-jewellery belle">
-    <div id="pre-loader">
-        <img src="{{asset('frontend/assets/images/loader.gif')}}" alt="Loading..." />
-    </div>
-    <div class="pageWrapper">
-        <!--Search Form Drawer-->
-        <div class="search">
-            <div class="search__form">
-                <form class="search-bar__form" action="#">
-                    <button class="go-btn search__button" type="submit"><i class="icon anm anm-search-l"></i></button>
-                    <input class="search__input" type="search" name="q" value placeholder="Search entire store..."
-                        aria-label="Search" autocomplete="off">
-                </form>
-                <button type="button" class="search-trigger close-btn"><i class="anm anm-times-l"></i></button>
-            </div>
-        </div>
-        <!--End Search Form Drawer-->
 
         <!--Top Header-->
         <div class="top-header home8-jewellery-top">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-10 col-sm-8 col-md-5 col-lg-4">
-                       
+                        <!-- <div class="currency-picker">
+                        <span class="selected-currency">USD</span>
+                        <ul id="currencies">
+                            <li data-currency="INR" class="">INR</li>
+                            <li data-currency="GBP" class="">GBP</li>
+                            <li data-currency="CAD" class="">CAD</li>
+                            <li data-currency="USD" class="selected">USD</li>
+                            <li data-currency="AUD" class="">AUD</li>
+                            <li data-currency="EUR" class="">EUR</li>
+                            <li data-currency="JPY" class="">JPY</li>
+                        </ul>
+                    </div>
+                    <div class="language-dropdown">
+                        <span class="language-dd">English</span>
+                        <ul id="language">
+                            <li class="">German</li>
+                            <li class="">French</li>
+                        </ul>
+                    </div> -->
                         <!-- <p class="phone-no"><i class="anm anm-phone-s"></i> +440 0(111) 044 833</p> -->
                     </div>
                     <div class="col-sm-4 col-md-4 col-lg-4 d-none d-lg-none d-md-block d-lg-block">
@@ -64,8 +37,8 @@
                                 aria-hidden="true"></i></span>
                         <ul class="customer-links list-inline">
                             <li><a href="#">Download App</a></li>
-                            <li><a href="#"><img src="{{asset('frontend/assets/img/104490_apple_icon 1.png')}}"></a></li>
-                            <li><a href="#"><img src="{{asset('frontend/assets/img/104471_android_icon 1.png')}}"></a></li>
+                            <li><a href="#"><img src="{{ asset('assets/img/104490_apple_icon 1.png') }}"></a></li>
+                            <li><a href="#"><img src="{{ asset('assets/img/104471_android_icon 1.png') }}"></a></li>
                         </ul>
                     </div>
                 </div>
@@ -107,7 +80,88 @@
                                 <span id="CartCount" class="site-header__cart-count"
                                     data-cart-render="item_count">2</span>
                             </a>
-                           
+                            <!--Minicart Popup-->
+                            <div id="header-cart" class="block block-cart">
+                                <ul class="mini-products-list">
+                                    <li class="item">
+                                        <a class="product-image" href="#">
+                                            <img src="{{ asset('assets/images/product-images/cape-dress-1.jpg') }}"
+                                                alt="3/4 Sleeve Kimono Dress" title>
+                                        </a>
+                                        <div class="product-details">
+                                            <a href="#" class="remove"><i class="anm anm-times-l"
+                                                    aria-hidden="true"></i></a>
+                                            <a href="#" class="edit-i remove"><i class="anm anm-edit"
+                                                    aria-hidden="true"></i></a>
+                                            <a class="pName" href="cart.html">Sleeve
+                                                Kimono Dress</a>
+                                            <div class="variant-cart">Black
+                                                / XL</div>
+                                            <div class="wrapQtyBtn">
+                                                <div class="qtyField">
+                                                    <span class="label">Qty:</span>
+                                                    <a class="qtyBtn minus" href="javascript:void(0);"><i
+                                                            class="fa anm anm-minus-r" aria-hidden="true"></i></a>
+                                                    <input type="text" id="Quantity" name="quantity" value="1"
+                                                        class="product-form__input qty">
+                                                    <a class="qtyBtn plus" href="javascript:void(0);"><i
+                                                            class="fa anm anm-plus-r" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="priceRow">
+                                                <div class="product-price">
+                                                    <span class="money">$59.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item">
+                                        <a class="product-image" href="#">
+                                            <img src="{{ asset('assets/images/product-images/cape-dress-2.jpg') }}"
+                                                alt="Elastic Waist Dress - Black / Small" title>
+                                        </a>
+                                        <div class="product-details">
+                                            <a href="#" class="remove"><i class="anm anm-times-l"
+                                                    aria-hidden="true"></i></a>
+                                            <a href="#" class="edit-i remove"><i class="anm anm-edit"
+                                                    aria-hidden="true"></i></a>
+                                            <a class="pName" href="cart.html">Elastic
+                                                Waist Dress</a>
+                                            <div class="variant-cart">Gray /
+                                                XXL</div>
+                                            <div class="wrapQtyBtn">
+                                                <div class="qtyField">
+                                                    <span class="label">Qty:</span>
+                                                    <a class="qtyBtn minus" href="javascript:void(0);"><i
+                                                            class="fa anm anm-minus-r" aria-hidden="true"></i></a>
+                                                    <input type="text" id="Quantity" name="quantity" value="1"
+                                                        class="product-form__input qty">
+                                                    <a class="qtyBtn plus" href="javascript:void(0);"><i
+                                                            class="fa anm anm-plus-r" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="priceRow">
+                                                <div class="product-price">
+                                                    <span class="money">$99.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="total">
+                                    <div class="total-in">
+                                        <span class="label">Cart
+                                            Subtotal:</span><span class="product-price"><span
+                                                class="money">$748.00</span></span>
+                                    </div>
+                                    <div class="buttonSet text-center">
+                                        <a href="cart.html" class="btn btn-secondary btn--small">View
+                                            Cart</a>
+                                        <a href="checkout.html" class="btn btn-secondary btn--small">Checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End Minicart Popup-->
                         </div>
                         <div class="site-header__search">
                             <span class="search-trigger"><i class="icon anm anm-heart-l"></i></span>
@@ -121,7 +175,7 @@
                     <!--Desktop Logo-->
                     <div class="logo col-3 col-sm-6 col-md-6 col-lg-6 text-center">
                         <a href="index.html">
-                            <img src="{{asset('frontend/assets/img/LXRY logo@2x 2.png')}}" alt="Belle Multipurpose Html Template"
+                            <img src="{{ asset('assets/img/LXRY logo@2x 2.png') }}" alt="Belle Multipurpose Html Template"
                                 title="Belle Multipurpose Html Template" />
                         </a>
                     </div>
@@ -130,4 +184,35 @@
             </div>
         </div>
         <!--Desktop Menu-->
-      
+        <nav class="belowlogo" id="AccessibleNav">
+            <div class="row mr-0">
+                <div class="col-md-10">
+                    <ul id="siteNav" class="site-nav medium center hidearrow">
+                        @foreach ($menu as $val)
+                        
+                        <li class="lvl1 parent megamenu"><a target="_blank" href='{{$val->link}}'>{{$val->name}} <i class="anm anm-angle-down-l"></i></a>
+                        
+                    </li>
+                    @endforeach
+                       
+                    </ul>
+                </div>
+                <div class="col-md-2"><span class="header-search"><input type="text" placeholder="Search"></span></div>
+            </div>
+
+        </nav>
+        <!--End Desktop Menu-->
+        <section class="bg-red text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="bg-red-txt">MIDDLE EAST FIRST PEER TO PEER FASHION
+                            SHARING COMMUNITY</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--End Header-->
+        <!--Mobile Menu-->
+        
+        <!--End Mobile Menu-->

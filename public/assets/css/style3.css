@@ -1,0 +1,7 @@
+@media only screen and (max-device-width: 480px) {
+  .looking-bottomwrapper table td img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+  }
+}
