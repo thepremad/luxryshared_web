@@ -73,7 +73,7 @@
                                 <div class="step" id="step4">
                                     <h2>Your Password Has Changed Successfully!</h2>
                                     <div class="form-group saveBtn">                                                
-                                        <button type="button" class="btn btn-primary">Back to login</button>
+                                        <button type="submit" class="btn btn-primary">Back to login</button>
                                     </div>
                                 </div>
                             </form>
