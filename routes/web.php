@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\frontend\ItemController;
 use App\Http\Controllers\Frontend\LoginContriller;
@@ -203,6 +204,9 @@ Route::get('/optimize-clear', function () {
 Route::get('/',[LoginContriller::class,'login'])->name('login');
 Route::post('login',[LoginContriller::class,'loginCheck'])->name('login');
 Route::post('register',[LoginContriller::class,'register'])->name('register');
+Route::get('forget-password',[ForgetPasswordController::class,'forgetPassword'])->name('forget_password');
+Route::post('forgot-password',[ForgetPasswordController::class,'forgotPassword'])->name('forgot_password');
+
 Route::middleware(['website'])->group(function () {
     Route::get('/home',[HomeController::class,'home'])->name('home');
     Route::get('/about-us',[HomeController::class,'aboutUs'])->name('about_us');
