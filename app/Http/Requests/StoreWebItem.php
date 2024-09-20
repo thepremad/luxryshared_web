@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Validator;
 
 class StoreWebItem extends FormRequest
 {
@@ -36,7 +38,7 @@ class StoreWebItem extends FormRequest
             'fourDayPrice' => 'required|numeric',
             'sevenToTwentyNineDayPrice' => 'required|numeric',
             'thirtyPluseDayPrice' => 'required|numeric',
-            
+
 
         ];
         if ($this->buy == 'true') {
@@ -44,4 +46,5 @@ class StoreWebItem extends FormRequest
         }
         return $rules;
     }
+    
 }

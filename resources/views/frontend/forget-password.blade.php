@@ -1,6 +1,7 @@
  @extends('frontend.layouts.app')
  @section('content')
  <!--Body Content-->
+
 <div id="page-content">
     <div class="container-fluid">
         <div class="loginRegister-section">
@@ -16,13 +17,13 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form id="multiStepForm">
+                            <form method="post" action="{{ route('forgot_password') }}" id="multiStepForm">
                                 <!-- Step 1 -->
                                 <div class="step active" id="step1">
                                     <h3>Forgot Password</h3>
                                     <div class="form-group">
                                         <label for="emailStep1">Your email</label>
-                                        <input type="email" class="form-control" id="emailStep1" placeholder="Enter your email">
+                                        <input type="email" name="email" class="form-control" id="emailStep1" placeholder="Enter your email">
                                     </div>
                                     <div class="form-group saveBtn">
                                         <button type="button" class="btn btn-primary nextBtn">Send Code</button>
@@ -72,7 +73,7 @@
                                 <div class="step" id="step4">
                                     <h2>Your Password Has Changed Successfully!</h2>
                                     <div class="form-group saveBtn">                                                
-                                        <button type="button" class="btn btn-primary">Back to login</button>
+                                        <button type="submit" class="btn btn-primary">Back to login</button>
                                     </div>
                                 </div>
                             </form>
