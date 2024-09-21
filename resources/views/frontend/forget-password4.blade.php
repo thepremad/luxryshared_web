@@ -1,172 +1,42 @@
 @extends('frontend.layouts.app')
-
-@section('content')
-    <div class="register">
-        <!--Body Content-->
-        <div id="page-content">
+ @section('content')
+ <!--Body Content-->
+ <div id="page-content">
             <div class="container-fluid">
                 <div class="loginRegister-section">
                     <div class="row">
                         <div class="register-banner">
-                            <div class="register-banner-img">
-                                <img src="{{ asset('./assets/images/banners/register-banner.png') }}" alt="Banner"
-                                    class="img-fluid">
+                            <div class="register-banner-img forget">
+                                <img src="{{ asset('./assets/images/banners/register-banner2.png') }}" alt="Banner" class="img-fluid">
                             </div>
                         </div>
                     </div>
-                    <div class="row formRow">
+                    <div class="row formRow update">
                         <div class="col-md-7 col-lg-7 register-tabSection">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login"
-                                        role="tab" aria-controls="login" aria-selected="true">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab"
-                                        aria-controls="register" aria-selected="false">Register</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
 
-                                <div class="tab-pane fade show active" id="login" role="tabpanel"
-                                    aria-labelledby="login-tab">
-                                    <div class="form-section login-section">
-                                        <form class="loginForm" action="{{ route('login') }}" method="post">
-                                            @csrf
-                                            <div class="form-group">
-                                                <label for="loginEmail">Your email</label>
-                                                <input type="email" required class="form-control" name="email"
-                                                    id="loginEmail" placeholder="Enter email">
-                                                <span class="invalid-feedback">{{ $errors->first('email') }}</span>
-
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="loginPassword">Password</label>
-                                                <div class="input-group">
-                                                    <input type="password" required class="form-control" name="password"
-                                                        id="loginPassword" placeholder="Password">
-                                                    <span class="invalid-feedback">{{ $errors->first('password') }}</span>
-
-                                                    <div class="input-group-append" id="togglePassword">
-                                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="{{ route('forget_password')}}" class="d-block text-right">Forgot Password?</a>
-                                        <div class="loginButton">
-                                            <button type="submit" class="btn btn-primary sign-btn">Sign In</button>
-                                            <!-- <button type="button" class="btn btn-secondary mt-3 sign-google">Google</button> -->
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                    <div class="form-section register-section">
-                                        <h3>Register With LXRY Shared</h3>
-                                        <form class="registerForm" action="{{ route('register') }}" method="post"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="form-group">
-                                                <label for="registerEmail">Email Address*</label>
-                                                <input type="email" name="email"
-                                                    class="form-control @error('email') is-invalid @enderror"
-                                                    id="registerEmail" placeholder="Enter email"
-                                                    value="{{ old('email') }}">
-                                                <span class="invalid-feedback">{{ $errors->first('email') }}</span>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="firstName">First Name*</label>
-                                                <input type="text" name="first_name"
-                                                    class="form-control @error('first_name') is-invalid @enderror"
-                                                    id="firstName" placeholder="First Name" value="{{ old('first_name') }}">
-                                                <span class="invalid-feedback">{{ $errors->first('first_name') }}</span>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="lastName">Last Name*</label>
-                                                <input type="text" name="last_name"
-                                                    class="form-control @error('last_name') is-invalid @enderror"
-                                                    id="lastName" placeholder="Last Name"
-                                                    value="{{ old('last_name') }}">
-                                                <span class="invalid-feedback">{{ $errors->first('last_name') }}</span>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="registerPassword">Password</label>
-                                                <input type="password" name="password"
-                                                    class="form-control @error('password') is-invalid @enderror"
-                                                    id="registerPassword" placeholder="Enter Password">
-                                                <span class="invalid-feedback">{{ $errors->first('password') }}</span>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="confirmPassword">Confirm Password</label>
-                                                <input type="password" name="password_confirmation"
-                                                    class="form-control @error('password_confirmation') is-invalid @enderror"
-                                                    id="confirmPassword" placeholder="Enter Your Password Again">
-                                                <span
-                                                    class="invalid-feedback">{{ $errors->first('password_confirmation') }}</span>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="mobileNumber">Mobile Number*</label>
-                                                <input type="text" name="number"
-                                                    class="form-control @error('number') is-invalid @enderror"
-                                                    id="mobileNumber" placeholder="Enter Mobile Number"
-                                                    value="{{ old('number') }}">
-                                                <span class="invalid-feedback">{{ $errors->first('number') }}</span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="mobileNumber">Address*</label>
-                                                <input type="text" name="address"
-                                                    class="form-control @error('address') is-invalid @enderror"
-                                                    id="mobileNumber" placeholder="Enter Address"
-                                                    value="{{ old('address') }}">
-                                                <span class="invalid-feedback">{{ $errors->first('addrrss') }}</span>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="idVerification">Upload Emirates ID Card or Passport*</label>
-                                                <input type="file" name="id_image"
-                                                    class="form-control-file @error('id_image') is-invalid @enderror"
-                                                    id="idVerification" accept="image/*">
-                                                <span class="invalid-feedback">{{ $errors->first('id_image') }}</span>
-                                            </div>
-
-                                            <div class="form-check">
-                                                <input type="checkbox"
-                                                    class="form-check-input @error('terms') is-invalid @enderror"
-                                                    id="terms" name="terms">
-                                                <label class="form-check-label" for="terms">I AGREE TO THE TERMS OF
-                                                    SERVICES AND
-                                                    PRIVACY POLICY.</label>
-                                                <span class="invalid-feedback">{{ $errors->first('terms') }}</span>
-                                            </div>
-
-                                            <div class="registerForm-btnSection mt-3">
-                                                <button type="submit"
-                                                    class="btn btn-primary mt-3 btn-register">Register</button>
-                                            </div>
-                                        </form>
-
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2>Your Password Has Changed Successfully!</h2>
+                                    <div class="form-group saveBtn text-center">
+                                    <a href="{{ url('/') }}">
+                                        <button type="button" class="btn btn-primary" >Back to login</button>
+                                    </a>
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--End Body Content-->
-        <!--Scoll Top-->
-        <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
+  <!--Scoll Top-->
+  <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
         <!--End Scoll Top-->
 
-        <!--Quick View popup-->
-        <div class="modal fade quick-view-popup" id="content_quickview">
+ <!--Quick View popup-->
+ <div class="modal fade quick-view-popup" id="content_quickview">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -180,7 +50,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                         <div class="product-details-img">
                                             <div class="pl-20">
-                                                <img src="assets/images/product-detail-page/camelia-reversible-big1.jpg"
+                                                <img src="{{ asset('assets/images/product-detail-page/camelia-reversible-big1.jpg')}}"
                                                     alt />
                                             </div>
                                         </div>
@@ -227,7 +97,8 @@
                                                     <div class="product-form__item">
                                                         <label class="header">Color:
                                                             <span class="slVariant">Red</span></label>
-                                                        <div data-value="Red" class="swatch-element color red available">
+                                                        <div data-value="Red"
+                                                            class="swatch-element color red available">
                                                             <input class="swatchInput" id="swatch-0-red" type="radio"
                                                                 name="option-0" value="Red">
                                                             <label class="swatchLbl color medium rectangle"
@@ -342,14 +213,14 @@
             </div>
         </div>
         <!--End Quick View popup-->
-
-        <!-- Newsletter Popup -->
-        <div class="newsletter-wrap" id="popup-container">
+ <!-- Newsletter Popup -->
+  <!-- Newsletter Popup -->
+  <div class="newsletter-wrap" id="popup-container">
             <div id="popup-window">
                 <a class="btn closepopup"><i class="icon icon anm anm-times-l"></i></a>
                 <!-- Modal content-->
                 <div class="display-table splash-bg">
-                    <div class="display-table-cell width40"><img src="assets/images/newsletter-img.jpg"
+                    <div class="display-table-cell width40"><img src="{{ asset('assets/images/newsletter-img.jpg')}}"
                             alt="Join Our Mailing List" title="Join Our Mailing List" /> </div>
                     <div class="display-table-cell width60 text-center">
                         <div class="newsletter-left">
@@ -359,8 +230,8 @@
                                 special offers</p>
                             <form action="#" method="post">
                                 <div class="input-group">
-                                    <input type="email" class="input-group__field newsletter__input" name="EMAIL"
-                                        value placeholder="Email address" required>
+                                    <input type="email" class="input-group__field newsletter__input" name="EMAIL" value
+                                        placeholder="Email address" required>
                                     <span class="input-group__btn">
                                         <button type="submit" class="btn newsletter__submit" name="commit"
                                             id="subscribeBtn">
@@ -372,14 +243,14 @@
                             <ul class="list--inline site-footer__social-icons social-icons">
                                 <li><a class="social-icons__link" href="#" title="Facebook"><i
                                             class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-                                <li><a class="social-icons__link" href="#" title="Twitter"><i
-                                            class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a class="social-icons__link" href="#" title="Pinterest"><i
-                                            class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                <li><a class="social-icons__link" href="#" title="Instagram"><i
-                                            class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a class="social-icons__link" href="#" title="YouTube"><i
-                                            class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                                <li><a class="social-icons__link" href="#" title="Twitter"><i class="fa fa-twitter"
+                                            aria-hidden="true"></i></a></li>
+                                <li><a class="social-icons__link" href="#" title="Pinterest"><i class="fa fa-pinterest"
+                                            aria-hidden="true"></i></a></li>
+                                <li><a class="social-icons__link" href="#" title="Instagram"><i class="fa fa-instagram"
+                                            aria-hidden="true"></i></a></li>
+                                <li><a class="social-icons__link" href="#" title="YouTube"><i class="fa fa-youtube"
+                                            aria-hidden="true"></i></a></li>
                                 <li><a class="social-icons__link" href="#" title="Vimeo"><i class="fa fa-vimeo"
                                             aria-hidden="true"></i></a></li>
                             </ul>
@@ -388,12 +259,11 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Newsletter Popup -->
+        <!-- End Newsletter Popup -->
 @endsection
 @section('js')
-    <!-- Including Jquery -->
-    <script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js') }}"></script>
+  <!-- Including Jquery -->
+  <script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery.cookie.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/wow.min.js') }}"></script>
@@ -405,10 +275,9 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <!--Instagram Js-->
     <script src="{{ asset('assets/js/vendor/jquery.instagramFeed.min.js') }}"></script>
-
     <script>
-        (function($) {
-            $(window).on('load', function() {
+        (function ($) {
+            $(window).on('load', function () {
                 $.instagramFeed({
                     'username': 'annimextheme',
                     'container': "#instafeed2",
@@ -427,24 +296,15 @@
     <!--End Instagram Js-->
     <!--For Newsletter Popup-->
     <script>
-        jQuery(document).ready(function() {
-            jQuery('.closepopup').on('click', function() {
+        jQuery(document).ready(function () {
+            jQuery('.closepopup').on('click', function () {
                 jQuery('#popup-container').fadeOut();
                 jQuery('#modalOverly').fadeOut();
-            });
-            $('#togglePassword').on('click', function() {
-                const passwordField = $('#loginPassword');
-                const type = passwordField.attr('type') === 'password' ? 'text' : 'password';
-                passwordField.attr('type', type);
-                $(this).toggleClass('fa-eye fa-eye-slash');
             });
 
             var visits = jQuery.cookie('visits') || 0;
             visits++;
-            jQuery.cookie('visits', visits, {
-                expires: 1,
-                path: '/'
-            });
+            jQuery.cookie('visits', visits, { expires: 1, path: '/' });
             console.debug(jQuery.cookie('visits'));
             if (jQuery.cookie('visits') > 1) {
                 jQuery('#modalOverly').hide();
@@ -455,13 +315,10 @@
                 jQuery('#modalOverly').css("height", pageHeight);
                 jQuery('#popup-container').show();
             }
-            if (jQuery.cookie('noShowWelcome')) {
-                jQuery('#popup-container').hide();
-                jQuery('#active-popup').hide();
-            }
+            if (jQuery.cookie('noShowWelcome')) { jQuery('#popup-container').hide(); jQuery('#active-popup').hide(); }
         });
 
-        jQuery(document).mouseup(function(e) {
+        jQuery(document).mouseup(function (e) {
             var container = jQuery('#popup-container');
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 container.fadeOut();
@@ -472,26 +329,67 @@
 
         /*--------------------------------------
             Promotion / Notification Cookie Bar 
-        -------------------------------------- */
+          -------------------------------------- */
         if (Cookies.get('promotion') != 'true') {
             $(".notification-bar").show();
         }
-        $(".close-announcement").on('click', function() {
+        $(".close-announcement").on('click', function () {
             $(".notification-bar").slideUp();
-            Cookies.set('promotion', 'true', {
-                expires: 1
-            });
+            Cookies.set('promotion', 'true', { expires: 1 });
             return false;
         });
     </script>
     <!--End For Newsletter Popup-->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step');
+            let currentStep = 0;
+
+            function showStep(index) {
+                steps.forEach((step, i) => {
+                    step.classList.toggle('active', i === index);
+                });
+                currentStep = index;
+            }
+
+            document.querySelectorAll('.nextBtn').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (currentStep < steps.length - 1) {
+                        showStep(currentStep + 1);
+                    }
+                });
+            });
+
+            // Password visibility toggle
+            document.querySelectorAll('.password-visibility-toggle').forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    const type = input.type === 'password' ? 'text' : 'password';
+                    input.type = type;
+                    this.querySelector('i').classList.toggle('fa-eye', type === 'password');
+                    this.querySelector('i').classList.toggle('fa-eye-slash', type === 'text');
+                });
+            });
+
+            // Auto-focus on next input when current input is filled
+            document.querySelectorAll('.verification-input').forEach((input, index, inputs) => {
+                input.addEventListener('input', function() {
+                    if (this.value.length >= this.maxLength) {
+                        const nextInput = inputs[index + 1];
+                        if (nextInput) nextInput.focus();
+                    }
+                });
+            });
+
+            showStep(currentStep);  // Initial step display
+        });
+    </script>
 
 
-
-    <!-- Register Form Validation and Fillters -->
 @endsection
-</div>

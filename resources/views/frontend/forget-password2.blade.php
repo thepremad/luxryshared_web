@@ -1,93 +1,57 @@
- @extends('frontend.layouts.app')
+@extends('frontend.layouts.app')
  @section('content')
- <!--Body Content-->
-<div id="page-content">
-    <div class="container-fluid">
-        <div class="loginRegister-section">
-            <div class="row">
-                <div class="register-banner">
-                    <div class="register-banner-img forget">
-                        <img src="{{ asset('./assets/images/banners/register-banner2.png')}}" alt="Banner" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-            <div class="row formRow update">
-                <div class="col-md-7 col-lg-7 register-tabSection">
-
-                    <div class="card">
-                        <div class="card-body">
-                            <form id="multiStepForm">
-                                <!-- Step 1 -->
-                                <div class="step active" id="step1">
-                                    <h3>Forgot Password</h3>
-                                    <div class="form-group">
-                                        <label for="emailStep1">Your email</label>
-                                        <input type="email" class="form-control" id="emailStep1" placeholder="Enter your email">
-                                    </div>
-                                    <div class="form-group saveBtn">
-                                        <button type="button" class="btn btn-primary nextBtn">Send Code</button>
-                                    </div>
-                                </div>
-            
-                                <!-- Step 2 -->
-                                <div class="step" id="step2">
-                                    <h3>Code Verification</h3>
-                                    <h4>Enter 4 digit verification code</h4>
-                                    <div class="form-group">
-                                        <div class="d-flex">
-                                            <input type="text" class="form-control verification-input" maxlength="1" pattern="[0-9]*" placeholder="-">
-                                            <input type="text" class="form-control verification-input" maxlength="1" pattern="[0-9]*" placeholder="-">
-                                            <input type="text" class="form-control verification-input" maxlength="1" pattern="[0-9]*" placeholder="-">
-                                            <input type="text" class="form-control verification-input" maxlength="1" pattern="[0-9]*" placeholder="-">
-                                        </div>
-                                    </div>
-                                    <div class="form-group saveBtn">                                                
-                                        <button type="button" class="btn btn-primary nextBtn">Verify</button>
-                                    </div>
-                                </div>
-            
-                                <!-- Step 3 -->
-                                <div class="step" id="step3">
-                                    <h3>Change Password</h3>
-                                    <div class="form-group password-wrapper">
-                                        <label for="newPassword">Create New Password</label>
-                                        <input type="password" class="form-control" id="newPassword" placeholder="Create new password">
-                                        <span class="password-visibility-toggle">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </span>
-                                    </div>
-                                    <div class="form-group password-wrapper">
-                                        <label for="confirmPassword">Confirm New Password</label>
-                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
-                                        <span class="password-visibility-toggle">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </span>
-                                    </div>
-                                    <div class="form-group saveBtn">
-                                        <button type="button" class="btn btn-primary nextBtn">Save</button>
-                                    </div>
-                                </div>
-            
-                                <!-- Step 4 -->
-                                <div class="step" id="step4">
-                                    <h2>Your Password Has Changed Successfully!</h2>
-                                    <div class="form-group saveBtn">                                                
-                                        <button type="button" class="btn btn-primary">Back to login</button>
-                                    </div>
-                                </div>
-                            </form>
+   <!--Body Content-->
+   <div id="page-content">
+            <div class="container-fluid">
+                <div class="loginRegister-section">
+                    <div class="row">
+                        <div class="register-banner">
+                            <div class="register-banner-img forget">
+                                <img src="{{ asset('./assets/images/banners/register-banner2.png') }}" alt="Banner" class="img-fluid">
+                            </div>
                         </div>
                     </div>
+                    <div class="row formRow update">
+                        <div class="col-md-7 col-lg-7 register-tabSection">
 
+                            <div class="card">
+                                <div class="card-body">
+                                    <form id="multiStepForm" method="post" action="{{ route('match_otp',$user->id) }}">
+                                     @csrf   
+                                        @if(Session::has("success-mail"))
+                                        <p class="alert alert-info">{{ Session::get('success-mail')}}</p>
+                                        @endif
+                                        
+                                        <h3>Code Verification</h3>
+                                        <h4>Enter 4 digit verification code</h4>
+                                        <div class="form-group">
+                                            <div class="d-flex justify-content-center" style="gap:20px">
+                                                <input type="hidden" value="" name="mainotp" id="main_otp">
+                                                <input type="text" id="otp1" class="form-control verification-input" maxlength="1" pattern="[0-9]*" placeholder="-">
+                                                <input type="text" id="otp2" class="form-control verification-input" maxlength="1" pattern="[0-9]*" placeholder="-">
+                                                <input type="text" id="otp3" class="form-control verification-input" maxlength="1" pattern="[0-9]*" placeholder="-">
+                                                <input type="text" id="otp4" oninput="otp(this)" class="form-control verification-input" maxlength="1" pattern="[0-9]*" placeholder="-">
+                                            </div>
+                                            @if(Session::has('incorrect-otp'))
+                                                <p class="text text-danger">{{ Session::get('incorrect-otp') }}</p>
+                                            @endif
+                                        </div>
+                                        <div class="form-group saveBtn text-center">
+                                            <button type="submit" class="btn btn-primary" >Verify</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!--End Body Content-->
- <!--Scoll Top-->
+    <!--End Body Content-->
+    <!--Scoll Top-->
  <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
- <!--End Scoll Top-->
+    <!--End Scoll Top-->
 
  <!--Quick View popup-->
  <div class="modal fade quick-view-popup" id="content_quickview">
@@ -270,179 +234,158 @@
 
  <!-- Newsletter Popup -->
  <div class="newsletter-wrap" id="popup-container">
-     <div id="popup-window">
-         <a class="btn closepopup"><i class="icon icon anm anm-times-l"></i></a>
-         <!-- Modal content-->
-         <div class="display-table splash-bg">
-             <div class="display-table-cell width40"><img src="{{ asset('assets/images/newsletter-img.jpg')}}"
-                     alt="Join Our Mailing List" title="Join Our Mailing List" /> </div>
-             <div class="display-table-cell width60 text-center">
-                 <div class="newsletter-left">
-                     <h2>Join Our Mailing List</h2>
-                     <p>Sign Up for our exclusive email list and be
-                         the first to know about new products and
-                         special offers</p>
-                     <form action="#" method="post">
-                         <div class="input-group">
-                             <input type="email" class="input-group__field newsletter__input" name="EMAIL" value
-                                 placeholder="Email address" required>
-                             <span class="input-group__btn">
-                                 <button type="submit" class="btn newsletter__submit" name="commit"
-                                     id="subscribeBtn">
-                                     <span class="newsletter__submit-text--large">Subscribe</span>
-                                 </button>
-                             </span>
-                         </div>
-                     </form>
-                     <ul class="list--inline site-footer__social-icons social-icons">
-                         <li><a class="social-icons__link" href="#" title="Facebook"><i
-                                     class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-                         <li><a class="social-icons__link" href="#" title="Twitter"><i class="fa fa-twitter"
-                                     aria-hidden="true"></i></a></li>
-                         <li><a class="social-icons__link" href="#" title="Pinterest"><i class="fa fa-pinterest"
-                                     aria-hidden="true"></i></a></li>
-                         <li><a class="social-icons__link" href="#" title="Instagram"><i class="fa fa-instagram"
-                                     aria-hidden="true"></i></a></li>
-                         <li><a class="social-icons__link" href="#" title="YouTube"><i class="fa fa-youtube"
-                                     aria-hidden="true"></i></a></li>
-                         <li><a class="social-icons__link" href="#" title="Vimeo"><i class="fa fa-vimeo"
-                                     aria-hidden="true"></i></a></li>
-                     </ul>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
- <!-- End Newsletter Popup -->
+            <div id="popup-window">
+                <a class="btn closepopup"><i class="icon icon anm anm-times-l"></i></a>
+                <!-- Modal content-->
+                <div class="display-table splash-bg">
+                    <div class="display-table-cell width40"><img src="{{ asset('assets/images/newsletter-img.jpg') }}"
+                            alt="Join Our Mailing List" title="Join Our Mailing List" /> </div>
+                    <div class="display-table-cell width60 text-center">
+                        <div class="newsletter-left">
+                            <h2>Join Our Mailing List</h2>
+                            <p>Sign Up for our exclusive email list and be
+                                the first to know about new products and
+                                special offers</p>
+                            <form action="#" method="post">
+                                <div class="input-group">
+                                    <input type="email" class="input-group__field newsletter__input" name="EMAIL" value
+                                        placeholder="Email address" required>
+                                    <span class="input-group__btn">
+                                        <button type="submit" class="btn newsletter__submit" name="commit"
+                                            id="subscribeBtn">
+                                            <span class="newsletter__submit-text--large">Subscribe</span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                            <ul class="list--inline site-footer__social-icons social-icons">
+                                <li><a class="social-icons__link" href="#" title="Facebook"><i
+                                            class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                                <li><a class="social-icons__link" href="#" title="Twitter"><i class="fa fa-twitter"
+                                            aria-hidden="true"></i></a></li>
+                                <li><a class="social-icons__link" href="#" title="Pinterest"><i class="fa fa-pinterest"
+                                            aria-hidden="true"></i></a></li>
+                                <li><a class="social-icons__link" href="#" title="Instagram"><i class="fa fa-instagram"
+                                            aria-hidden="true"></i></a></li>
+                                <li><a class="social-icons__link" href="#" title="YouTube"><i class="fa fa-youtube"
+                                            aria-hidden="true"></i></a></li>
+                                <li><a class="social-icons__link" href="#" title="Vimeo"><i class="fa fa-vimeo"
+                                            aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Newsletter Popup -->
 @endsection
 @section('js')
- <!-- Including Jquery -->
- <script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js') }}"></script>
- <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
- <script src="{{ asset('assets/js/vendor/jquery.cookie.js') }}"></script>
- <script src="{{ asset('assets/js/vendor/wow.min.js') }}"></script>
- <!-- Including Javascript -->
- <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
- <script src="{{ asset('assets/js/plugins.js') }}"></script>
- <script src="{{ asset('assets/js/popper.min.js') }}"></script>
- <script src="{{ asset('assets/js/lazysizes.js') }}"></script>
- <script src="{{ asset('assets/js/main.js') }}"></script>
- <!--Instagram Js-->
- <script src="{{ asset('assets/js/vendor/jquery.instagramFeed.min.js') }}"></script>
- <script>
-     (function ($) {
-         $(window).on('load', function () {
-             $.instagramFeed({
-                 'username': 'annimextheme',
-                 'container': "#instafeed2",
-                 'display_profile': false,
-                 'display_biography': false,
-                 'display_gallery': true,
-                 'callback': null,
-                 'styling': true,
-                 'items': 8,
-                 'items_per_row': 4,
-                 'margin': 0.50
-             });
-         });
-     })(jQuery);
- </script>
- <!--End Instagram Js-->
- <!--For Newsletter Popup-->
- <script>
-     jQuery(document).ready(function () {
-         jQuery('.closepopup').on('click', function () {
-             jQuery('#popup-container').fadeOut();
-             jQuery('#modalOverly').fadeOut();
-         });
+  <!-- Including Jquery -->
+  <script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/jquery.cookie.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/wow.min.js') }}"></script>
+    <!-- Including Javascript -->
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lazysizes.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <!--Instagram Js-->
+    <script src="{{ asset('assets/js/vendor/jquery.instagramFeed.min.js') }}"></script>
+    <script>
+        (function ($) {
+            $(window).on('load', function () {
+                $.instagramFeed({
+                    'username': 'annimextheme',
+                    'container': "#instafeed2",
+                    'display_profile': false,
+                    'display_biography': false,
+                    'display_gallery': true,
+                    'callback': null,
+                    'styling': true,
+                    'items': 8,
+                    'items_per_row': 4,
+                    'margin': 0.50
+                });
+            });
+        })(jQuery);
+    </script>
+    <!--End Instagram Js-->
+    <!--For Newsletter Popup-->
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('.closepopup').on('click', function () {
+                jQuery('#popup-container').fadeOut();
+                jQuery('#modalOverly').fadeOut();
+            });
 
-         var visits = jQuery.cookie('visits') || 0;
-         visits++;
-         jQuery.cookie('visits', visits, { expires: 1, path: '/' });
-         console.debug(jQuery.cookie('visits'));
-         if (jQuery.cookie('visits') > 1) {
-             jQuery('#modalOverly').hide();
-             jQuery('#popup-container').hide();
-         } else {
-             var pageHeight = jQuery(document).height();
-             jQuery('<div id="modalOverly"></div>').insertBefore('body');
-             jQuery('#modalOverly').css("height", pageHeight);
-             jQuery('#popup-container').show();
-         }
-         if (jQuery.cookie('noShowWelcome')) { jQuery('#popup-container').hide(); jQuery('#active-popup').hide(); }
-     });
+            var visits = jQuery.cookie('visits') || 0;
+            visits++;
+            jQuery.cookie('visits', visits, { expires: 1, path: '/' });
+            console.debug(jQuery.cookie('visits'));
+            if (jQuery.cookie('visits') > 1) {
+                jQuery('#modalOverly').hide();
+                jQuery('#popup-container').hide();
+            } else {
+                var pageHeight = jQuery(document).height();
+                jQuery('<div id="modalOverly"></div>').insertBefore('body');
+                jQuery('#modalOverly').css("height", pageHeight);
+                jQuery('#popup-container').show();
+            }
+            if (jQuery.cookie('noShowWelcome')) { jQuery('#popup-container').hide(); jQuery('#active-popup').hide(); }
+        });
 
-     jQuery(document).mouseup(function (e) {
-         var container = jQuery('#popup-container');
-         if (!container.is(e.target) && container.has(e.target).length === 0) {
-             container.fadeOut();
-             jQuery('#modalOverly').fadeIn(200);
-             jQuery('#modalOverly').hide();
-         }
-     });
+        jQuery(document).mouseup(function (e) {
+            var container = jQuery('#popup-container');
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                container.fadeOut();
+                jQuery('#modalOverly').fadeIn(200);
+                jQuery('#modalOverly').hide();
+            }
+        });
 
-     /*--------------------------------------
-         Promotion / Notification Cookie Bar 
-       -------------------------------------- */
-     if (Cookies.get('promotion') != 'true') {
-         $(".notification-bar").show();
-     }
-     $(".close-announcement").on('click', function () {
-         $(".notification-bar").slideUp();
-         Cookies.set('promotion', 'true', { expires: 1 });
-         return false;
-     });
- </script>
- <!--End For Newsletter Popup-->
+        /*--------------------------------------
+            Promotion / Notification Cookie Bar 
+          -------------------------------------- */
+        if (Cookies.get('promotion') != 'true') {
+            $(".notification-bar").show();
+        }
+        $(".close-announcement").on('click', function () {
+            $(".notification-bar").slideUp();
+            Cookies.set('promotion', 'true', { expires: 1 });
+            return false;
+        });
+    </script>
+    <!--End For Newsletter Popup-->
 
- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 
- <script>
-     document.addEventListener('DOMContentLoaded', function() {
-         const steps = document.querySelectorAll('.step');
-         let currentStep = 0;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+           
+            // Password visibility toggle
+            document.querySelectorAll('.password-visibility-toggle').forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    const type = input.type === 'password' ? 'text' : 'password';
+                    input.type = type;
+                    this.querySelector('i').classList.toggle('fa-eye', type === 'password');
+                    this.querySelector('i').classList.toggle('fa-eye-slash', type === 'text');
+                });
+            });
 
-         function showStep(index) {
-             steps.forEach((step, i) => {
-                 step.classList.toggle('active', i === index);
-             });
-             currentStep = index;
-         }
 
-         document.querySelectorAll('.nextBtn').forEach(button => {
-             button.addEventListener('click', function() {
-                 if (currentStep < steps.length - 1) {
-                     showStep(currentStep + 1);
-                 }
-             });
-         });
+        });
+        function otp(data){
+            var otp = $('#otp1').val() + $('#otp2').val() + $('#otp3').val() + $('#otp4').val();
+            $("#main_otp").val(otp);
+            
+        }
+    </script>
 
-         // Password visibility toggle
-         document.querySelectorAll('.password-visibility-toggle').forEach(toggle => {
-             toggle.addEventListener('click', function() {
-                 const input = this.previousElementSibling;
-                 const type = input.type === 'password' ? 'text' : 'password';
-                 input.type = type;
-                 this.querySelector('i').classList.toggle('fa-eye', type === 'password');
-                 this.querySelector('i').classList.toggle('fa-eye-slash', type === 'text');
-             });
-         });
-
-         // Auto-focus on next input when current input is filled
-         document.querySelectorAll('.verification-input').forEach((input, index, inputs) => {
-             input.addEventListener('input', function() {
-                 if (this.value.length >= this.maxLength) {
-                     const nextInput = inputs[index + 1];
-                     if (nextInput) nextInput.focus();
-                 }
-             });
-         });
-
-         showStep(currentStep);  // Initial step display
-     });
- </script>
 
 @endsection

@@ -15,11 +15,14 @@
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="category">Category</label>
-                                    <select name="category_id" onchange="getSubCateogry(this)" class="form-control">
+                                    <select name="category_id" id="moku" onchange="getSubCateogry(this)" class="form-control">
+                                    <option value=""></option>
                                         @foreach($category as $val)
+                                    
                                             <option value="{{$val->id}}">{{ $val->name }}</option>
                                         @endforeach
                                     </select>
+                                    <span class="text text-danger" >{{ $errors->first('category_id') }}</span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="sub-category">Sub Category</label>

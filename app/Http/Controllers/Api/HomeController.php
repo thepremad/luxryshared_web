@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function home(){
          $categories = Category::with('products','products.bookingDate')->latest()->get();
          $data = HomeApiResource::collection($categories);
-         $cateegory = Category::where(Category::$active)->latest()->get();
+         $cateegory = Category::where('status',Category::$active)->latest()->get();
         $categorydata = CategoryResource::collection($cateegory);
         $occasions = Occasion::latest()->take(6)->get();
         $occassionData = OccasionResource::collection($occasions);
