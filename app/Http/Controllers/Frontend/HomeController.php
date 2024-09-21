@@ -36,9 +36,9 @@ class HomeController extends Controller
         $categorydata = CategoryResource::collection($cateegory);
         $occasions = Occasion::latest()->take(6)->get();
         $occassionData = OccasionResource::collection($occasions);
-        $item = Item::with('bookingDate')->where('status', Item::$active)->where('checkout_status', '0')->latest()->take(6)->get();
+        $item = Item::with('category', 'bookingDate')->where('status', Item::$active)->where('checkout_status', '0')->latest()->take(4)->get();
         $productJustLanded = GetProductResource::collection($item);
-        $look = GetTheLookResource::collection(Look::with('products', 'products.bookingDate')->latest()->get());
+        $look = GetTheLookResource::collection(Look::with('products', 'products.bookingDate')->latest()->take(6)->get());
         $brand = Brand::latest()->take(6)->get();
         $privacyPolicy = Blog::latest()->take(6)->get();
         $blogData = StoreBlogResourceApi::collection($privacyPolicy);
@@ -86,7 +86,6 @@ class HomeController extends Controller
             $item->user_id = auth()->user()->id;
             $item->save();
             return redirect()->route('home');
-
         } catch (\Throwable $th) {
             throw $th;
         }
