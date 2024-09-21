@@ -1,7 +1,6 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-
 <div id="page-content">
 
     <!-- Start Home Banner -->
@@ -159,26 +158,23 @@
                 </div>
             </div>
             <div class="productSlider-style2 grid-products">
-                @foreach ($allData['just_landed'] as $val)
-                
+                @foreach($allData['just_landed'] as $val)
+
                 <div class="col-12 item">
                     <!-- start product image -->
                     <div class="product-image">
                         <!-- start product image -->
                         <a href="product-layout-1.html" class="grid-view-item__link">
                             <!-- image -->
-                            <img class="primary blur-up lazyload" data-src="{{ asset('/uploads/item/'.$val->mainImag)}}"
-                                src="{{ asset('/uploads/item/'.$val->mainImag)}}" alt="image" title="product">
+                            <img class="primary blur-up lazyload" data-src="{{asset('uploads/item/'.$val->mainImag)}}"
+                                src="{{asset('uploads/item/'.$val->mainImag)}}" alt="image" title="product">
                             <!-- End image -->
                             <!-- Hover image -->
-                            <img class="hover blur-up lazyload"
-                                data-src="{{ asset('/uploads/item/'.$val->mainImag)}}"
-                                src="{{ asset('/uploads/item/'.$val->mainImag)}}" alt="image"
-                                title="product">
+                            <img class="hover blur-up lazyload" data-src="{{asset('uploads/item/'.$val->mainImag)}}"
+                                src="{{asset('uploads/item/'.$val->mainImag)}}" alt="image" title="product">
                             <!-- End hover image -->
                         </a>
                         <!-- end product image -->
-
                         <!-- Start product button -->
                         <form class="variants add" action="#" method="post">
                             <div class="d-flex btn-background" style="">
@@ -188,37 +184,20 @@
                             </div>
                         </form>
                         <div class="button-set">
-                            <!-- <a href="javascript:void(0)"
-                                    title="Quick View"
-                                    class="quick-view-popup quick-view"
-                                    data-toggle="modal"
-                                    data-target="#content_quickview">
-                                    <i
-                                        class="icon anm anm-search-plus-r"></i>
-                                </a> -->
                             <div class="wishlist-btn">
                                 <a class="wishlist add-to-wishlist" href="wishlist.html">
                                     <i class="icon anm anm-heart-l"></i>
                                 </a>
                             </div>
-                            <!-- <div class="compare-btn">
-                                    <a class="compare add-to-compare"
-                                        href="compare.html"
-                                        title="Add to Compare">
-                                        <i
-                                            class="icon anm anm-random-r"></i>
-                                    </a>
-                                </div> -->
                         </div>
                         <!-- end product button -->
                     </div>
                     <!-- end product image -->
-
                     <!--start product details -->
                     <div class="product-details text-center">
                         <!-- product name -->
                         <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
+                            <a href="product-layout-1.html">{{$val->image_title}}</a>
                         </div>
                         <!-- End product name -->
                         <div class="star text-center">
@@ -232,18 +211,17 @@
                         </div>
                         <!-- product price -->
                         <div class="product-price">
-                            <span class="price">AED 250</span>
+                            <span class="price">AED {{$val->rrp_price}}</span>
                         </div>
                         <!-- End product price -->
                         <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
+                        <a href="#" class="product_link">{{$val->category->name ?? ''}}</a>
                         <!-- End Product Link -->
                     </div>
                     <!-- End product details -->
                 </div>
-                
                 @endforeach
-
+            
 
             </div>
         </div>
