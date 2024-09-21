@@ -55,7 +55,7 @@
                                         <a href="{{ route('forget_password')}}" class="d-block text-right">Forgot Password?</a>
                                         <div class="loginButton">
                                             <button type="submit" class="btn btn-primary sign-btn">Sign In</button>
-                                            <button type="button" class="btn btn-secondary mt-3 sign-google">Google</button>
+                                            <!-- <button type="button" class="btn btn-secondary mt-3 sign-google">Google</button> -->
                                         </div>
                                     </form>
                                 </div>

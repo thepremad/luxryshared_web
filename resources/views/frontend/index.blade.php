@@ -122,7 +122,7 @@
             </div>
 
             <div class="container-fluid">
-                <div class="row">
+                <div class="row justify-content-start align-items-start">
                     @foreach ($allData['occassion'] as $val)
                     
                     <div class="col-6 col-sm-6 col-md-3 col-lg-3">
@@ -158,7 +158,7 @@
                     </div>
                 </div>
             </div>
-            <div class="productSlider-style2 grid-products">
+            <div class="productSlider-style2 grid-products justify-content-start align-items-start">
                 @foreach ($allData['just_landed'] as $val)
                 
                 <div class="col-12 item">
@@ -429,7 +429,7 @@
                         <p>#sharingiscaring #LXRYshared</p>
                     </div>
                 </div>
-                <div class="row get-card-row">
+                <div class="row get-card-row justify-content-start align-items-start">
                     @foreach ($allData['get_the_look'] as $val)
                     
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6">

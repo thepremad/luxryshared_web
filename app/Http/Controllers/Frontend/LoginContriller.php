@@ -18,14 +18,16 @@ class LoginContriller extends Controller
     public function loginCheck(Request $request)
     {
         try {
+            //$this->validate()
             $credinals = [
                 'email' => $request->email,
                 'password' => $request->password,
+                'role'=> '2',
             ];
             if (Auth::attempt($credinals)) {
                 return redirect()->route('home');
             } else {
-                return redirect()->route('/');
+                return redirect('/');
                 
 
             }
