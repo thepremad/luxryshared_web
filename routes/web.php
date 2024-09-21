@@ -20,91 +20,7 @@ use Laravel\Socialite\Facades\Socialite;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    // return view('frontend.about-us');
-    // return view('frontend.forget-password');
-    //return view('frontend.cart');
-    // return view('frontend.checkout');
-    // return view('frontend.listing-product');
-    // return view('frontend.disclaimer');
-    //return view('frontend.faq');
-    // return view('frontend.legal-policy');
-    // return view('frontend.privacy-policy');
-    // return view('frontend.tandcs');
-    // return view('frontend.list-item');
-    // return view('frontend.submit-otp');
-    // return view('frontend.submitted-otp');
-});
 
-Route::get('/home', function () {
-    return view('frontend.index');
-});
-Route::get('/login', function () {
-    return view('frontend.login');
-});
-// Route::get('/', function () {
-//     $user = new User();
-//     $firstName = '';
-//     $lastName = '';
-//     return view('frontend.register', compact('user', 'firstName', 'lastName'));
-// });
-Route::get('/register', function () {
-    $user = new User();
-    $firstName = '';
-    $lastName = '';
-    return view('frontend.register', compact('user', 'firstName', 'lastName'));
-});
-Route::get('/forgotpw', function () {
-    return view('frontend.forgotpw');
-});
-Route::get('/list-itemone', function () {
-    return view('frontend.list-itemone');
-});
-Route::get('/list-itemtwo', function () {
-    return view('frontend.list-itemtwo');
-});
-Route::get('/list-itemsucc', function () {
-    return view('frontend.list-itemsucc');
-});
-Route::get('/code-verify/{id}', function ($id) {
-    return view('frontend.code-verify', compact('id'));
-});
-Route::get('/change-pw/{id}', function ($id) {
-    return view('frontend.change-pw', compact('id'));
-});
-Route::get('/pwchanged-succ', function () {
-    return view('frontend.pwchanged-succ');
-});
-
-// Route::get('/google-login', function () {
-//     return Socialite::driver('google')->redirect();
-// })->name('google_login');
-
-// Route::get('/google-register', function () {
-//     return Socialite::driver('google')->redirect();
-// })->name('google_register');
-
-// Route::get('/callback', function () {
-   
-//      try {
-//         $user = Socialite::driver('google')->user();
-//     } catch (Exception $e) {
-//         return redirect()->back()->with('error', 'Session expired, please try again.');
-//     }
-//     $nameParts = explode(' ', $user->name);
-//     $firstName = $nameParts[0];
-//     $lastName = isset($nameParts[1]) ? $nameParts[1] : '';
-//     $check_user = User::where('email', $user->email)->first();
-//     if ($check_user) {
-//         return view('frontend.cong-screen');
-//     } else {
-//         return view('frontend.register', compact('user', 'firstName', 'lastName'));
-//     }
-// })->name('google_register_callback');
-
-// Route::get('/register-success', function () {
-//     return view('frontend.cong-screen');
-// });
 
 Route::get('/run-migrations', function () {
     try {
@@ -206,6 +122,12 @@ Route::post('login',[LoginContriller::class,'loginCheck'])->name('login');
 Route::post('register',[LoginContriller::class,'register'])->name('register');
 Route::get('forget-password',[ForgetPasswordController::class,'forgetPassword'])->name('forget_password');
 Route::post('forgot-password',[ForgetPasswordController::class,'forgotPassword'])->name('forgot_password');
+Route::get('match-otp/{id}',[ForgetPasswordController::class,'matchotpp'])->name('match_otp');
+Route::post('match-otp/{id}',[ForgetPasswordController::class,'matchOtp'])->name('match_otp');
+Route::get('new-password/{id}',[ForgetPasswordController::class,'newPasswordd'])->name('new_password');
+Route::post('new-password/{id}',[ForgetPasswordController::class,'newPassword'])->name('new_password');
+
+
 
 Route::middleware(['website'])->group(function () {
     Route::get('/home',[HomeController::class,'home'])->name('home');
