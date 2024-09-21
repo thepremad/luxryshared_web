@@ -1,7 +1,18 @@
  @extends('frontend.layouts.app')
  @section('content')
 <!--Body Content-->
-
+@if(Session::has("fail-mail"))
+<p class="alert alert-danger" id="wakoo">{{ Session::get('fail-mail')}}</p>
+@endif
+<script>
+// Function to hide the alert after 3 seconds
+setTimeout(function() {
+    var alert = document.getElementById('wakoo');
+    if (alert) {
+        alert.style.display = 'none';
+    }
+}, 5000); // 5000 milliseconds = 5 seconds
+</script>
 <div id="page-content">
             <div class="container-fluid">
                 <div class="loginRegister-section">
@@ -24,10 +35,8 @@
                                         <div class="form-group">
                                             <label for="emailStep1">Your email</label>
                                             <input type="email" name="email" class="form-control" id="emailStep1" placeholder="Enter your email">
-                                            @if(Session::has("fail-mail"))
-                                                <p class="text text-danger">{{ Session::get('fail-mail')}}</p>
-                                            @endif
-                                            <span class="text text-danger">{{ $errors->first('email') }}</span>
+                                         
+                                            <span class="text text-danger" id="wakoo">{{ $errors->first('email') }}</span>
                                         </div>
                                         <div class="form-group saveBtn text-center">
                                             <button type="submit" class="btn btn-primary" >Send Code</button>

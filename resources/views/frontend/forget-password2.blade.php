@@ -1,6 +1,21 @@
 @extends('frontend.layouts.app')
  @section('content')
    <!--Body Content-->
+   @if(Session::has('incorrect-otp'))
+   <p class="alert alert-danger" id="wakoo">{{ Session::get('incorrect-otp') }}</p>
+@endif
+@if(Session::has("success-mail"))
+<p class="alert alert-info" id="wakoo">{{ Session::get('success-mail')}}</p>
+@endif
+<script>
+    // Function to hide the alert after 3 seconds
+    setTimeout(function() {
+        var alert = document.getElementById('wakoo');
+        if (alert) {
+            alert.style.display = 'none';
+        }
+    }, 3000); // 3000 milliseconds = 3 seconds
+</script> 
    <div id="page-content">
             <div class="container-fluid">
                 <div class="loginRegister-section">
@@ -18,9 +33,7 @@
                                 <div class="card-body">
                                     <form id="multiStepForm" method="post" action="{{ route('match_otp',$user->id) }}">
                                      @csrf   
-                                        @if(Session::has("success-mail"))
-                                        <p class="alert alert-info">{{ Session::get('success-mail')}}</p>
-                                        @endif
+                                       
                                         
                                         <h3>Code Verification</h3>
                                         <h4>Enter 4 digit verification code</h4>
@@ -32,9 +45,8 @@
                                                 <input type="text" id="otp3" class="form-control verification-input" maxlength="1" pattern="[0-9]*" placeholder="-">
                                                 <input type="text" id="otp4" oninput="otp(this)" class="form-control verification-input" maxlength="1" pattern="[0-9]*" placeholder="-">
                                             </div>
-                                            @if(Session::has('incorrect-otp'))
-                                                <p class="text text-danger">{{ Session::get('incorrect-otp') }}</p>
-                                            @endif
+                                           
+                                            
                                         </div>
                                         <div class="form-group saveBtn text-center">
                                             <button type="submit" class="btn btn-primary" >Verify</button>

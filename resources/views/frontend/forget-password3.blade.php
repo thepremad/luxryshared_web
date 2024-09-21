@@ -26,7 +26,7 @@
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                             </span>
                                         </div>
-                                        <span class="text text-danger">{{ $errors->first('password') }}</span>
+                                        <span class="text text-danger" id='wakoo'>{{ $errors->first('password') }}</span>
                                         <div class="form-group password-wrapper">
                                             <label for="confirmPassword">Confirm New Password</label>
                                             <input type="password" name="confirm-password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
@@ -34,7 +34,16 @@
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                             </span>
                                         </div>
-                                        <span class="text text-danger">{{ $errors->first('confirm-password') }}</span>
+                                        <span class="text text-danger" id='wakoo'>{{ $errors->first('confirm-password') }}</span>
+                                        <script>
+                                            // Function to hide the alert after 3 seconds
+                                            setTimeout(function() {
+                                                var alert = document.getElementById('wakoo');
+                                                if (alert) {
+                                                    alert.style.display = 'none';
+                                                }
+                                            }, 5000); // 3000 milliseconds = 3 seconds
+                                        </script> 
                                         <div class="form-group saveBtn text-center">
                                             <button type="submit" class="btn btn-primary" >Save</button>
                                         </div>

@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Mail\ForgetPasswordMail;
 use App\Models\Menu;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session as FacadesSession;
+
 use Session;
+use Symfony\Component\HttpFoundation\Session\Session as HttpFoundationSessionSession;
 
 class ForgetPasswordController extends Controller
 {
