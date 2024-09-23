@@ -34,10 +34,14 @@
                                         <form class="loginForm" action="{{ route('login') }}" method="post">
                                             @csrf
                                             <div class="form-group">
+                                                @if(Session::has("email-password"))
+                                                <p class="alert alert-danger" id="wakoo">{{ Session::get('email-password')}}</p>
+                                                @endif
+                                                
                                                 <label for="loginEmail">Your email</label>
                                                 <input type="email" required class="form-control" name="email"
                                                     id="loginEmail" placeholder="Enter email">
-                                                <span class="invalid-feedback">{{ $errors->first('email') }}</span>
+                                                <span class="invalid-feedback" id="wakoo">{{ $errors->first('email') }}</span>
 
                                             </div>
                                             <div class="form-group">
@@ -45,7 +49,7 @@
                                                 <div class="input-group">
                                                     <input type="password" required class="form-control" name="password"
                                                         id="loginPassword" placeholder="Password">
-                                                    <span class="invalid-feedback">{{ $errors->first('password') }}</span>
+                                                    <span class="invalid-feedback" id="wakoo">{{ $errors->first('password') }}</span>
 
                                                     <div class="input-group-append" id="togglePassword">
                                                         <i class="fa fa-eye" aria-hidden="true"></i>
@@ -53,6 +57,15 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <script>
+                                            // Function to hide the alert after 3 seconds
+                                            setTimeout(function() {
+                                                var alert = document.getElementById('wakoo');
+                                                if (alert) {
+                                                    alert.style.display = 'none';
+                                                }
+                                            }, 5000); // 3000 milliseconds = 3 seconds
+                                        </script> 
                                         <a href="{{ route('forget_password')}}" class="d-block text-right">Forgot Password?</a>
                                         <div class="loginButton">
                                             <button type="submit" class="btn btn-primary sign-btn">Sign In</button>

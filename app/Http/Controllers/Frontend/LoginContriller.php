@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Traits\FileUploadTrait;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Session;
 
 class LoginContriller extends Controller
 {
@@ -18,7 +20,10 @@ class LoginContriller extends Controller
     public function loginCheck(Request $request)
     {
         try {
-            //$this->validate()
+            $this->validate($request,[
+                'email' => 'required|Email',
+                'password' =>  'required',
+            ]);
             $credinals = [
                 'email' => $request->email,
                 'password' => $request->password,
@@ -27,6 +32,7 @@ class LoginContriller extends Controller
             if (Auth::attempt($credinals)) {
                 return redirect()->route('home');
             } else {
+                Session::flash('email-password','your Email and Password did not match');
                 return redirect('/');
                 
 
@@ -38,6 +44,9 @@ class LoginContriller extends Controller
     }
     public function login()
     {
+        if(auth()->user()){
+            return redirect()->route('home');
+        }
         $menu = Menu::latest()->get();
         return view('frontend.register', compact('menu'));
     }
