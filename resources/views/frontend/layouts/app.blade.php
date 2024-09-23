@@ -84,6 +84,28 @@
             font-weight: 900;
         }
     </style> --}}
+    <style>
+        .alert-info {
+    color: #ffffff;
+    background-color: #51ca51;
+    border-color: #bee5eb;
+    width: 20%;
+    position: absolute;
+    top: 14px;
+    border-radius: 9px;
+    right: 14px;
+}
+     .alert-danger{
+    color: #ffffff;
+    background-color: #ca7751;
+    border-color: #bee5eb;
+    width: 20%;
+    position: absolute;
+    top: 14px;
+    border-radius: 9px;
+    right: 14px;
+}
+    </style>
 
 </head>
 <body class="template-index home8-jewellery belle">

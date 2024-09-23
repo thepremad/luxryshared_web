@@ -93,7 +93,7 @@
                                                     aria-hidden="true"></i></a>
                                             <a href="#" class="edit-i remove"><i class="anm anm-edit"
                                                     aria-hidden="true"></i></a>
-                                            <a class="pName" href="cart.html">Sleeve
+                                            <a class="pName" href="#">Sleeve
                                                 Kimono Dress</a>
                                             <div class="variant-cart">Black
                                                 / XL</div>
@@ -125,7 +125,7 @@
                                                     aria-hidden="true"></i></a>
                                             <a href="#" class="edit-i remove"><i class="anm anm-edit"
                                                     aria-hidden="true"></i></a>
-                                            <a class="pName" href="cart.html">Elastic
+                                            <a class="pName" href="#">Elastic
                                                 Waist Dress</a>
                                             <div class="variant-cart">Gray /
                                                 XXL</div>
@@ -155,9 +155,9 @@
                                                 class="money">$748.00</span></span>
                                     </div>
                                     <div class="buttonSet text-center">
-                                        <a href="cart.html" class="btn btn-secondary btn--small">View
+                                        <a href="#" class="btn btn-secondary btn--small">View
                                             Cart</a>
-                                        <a href="checkout.html" class="btn btn-secondary btn--small">Checkout</a>
+                                        <a href="#" class="btn btn-secondary btn--small">Checkout</a>
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@
                 <div class="row align-items-center justify-content-center   ">
                     <!--Desktop Logo-->
                     <div class="logo col-3 col-sm-6 col-md-6 col-lg-6 text-center">
-                        <a href="index.html">
+                        <a href="{{route('home')}}">
                             <img src="{{ asset('assets/img/LXRY logo@2x 2.png') }}" alt="Belle Multipurpose Html Template"
                                 title="Belle Multipurpose Html Template" />
                         </a>
