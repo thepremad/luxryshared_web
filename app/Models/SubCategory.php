@@ -28,4 +28,10 @@ class SubCategory extends Model
         });
     }
     
+    // static $active = 1;
+    // static $in_active = 0;
+    
+    public function item(){
+        return $this->hasMany(Item::class,'category_id')->where('status',Item::$active)->where('checkout_status','0');
+    }
 }

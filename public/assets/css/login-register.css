@@ -233,9 +233,9 @@
   position: relative;
 }
 
-/* .register .loginRegister-section .register-section .registerForm #idVerification {
+.register .loginRegister-section .register-section .registerForm #idVerification {
   display: none;
-} */
+}
 
 .register .loginRegister-section .register-section .registerForm .custom-file-upload {
   display: inline-block;

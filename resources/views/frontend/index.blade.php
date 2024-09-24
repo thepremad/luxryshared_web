@@ -51,23 +51,26 @@
                                 </div>
                                 <div class="col-6 col-sm-6 col-md-12 col-lg-6">
                                     <h4 class="text-end">
-                                        <a href="" class="text-decoration-none">View All</a>
+                                        <a href="{{route('product_list_categories',0)}}" class="text-decoration-none">View All</a>
                                     </h4>
                                 </div>
                             </div>
                             <h2 class="h2"></h2>
                         </div>
                         <div class="logo-bar">
-                            <div class="logo-bar__item text-center">
-                                <img src="{{ asset('assets/img/Group 18399.png')}}" alt="" title="" />
-                                <h4 class="logo-bar__heading">All</h4>
-                            </div>
+                            <a href="{{ route('product_list_categories',0)}}" class="collection-grid-item__link">
+                                <div class="logo-bar__item text-center">
+                                    <img src="{{ asset('assets/img/Group 18399.png')}}" alt="" title="" />
+                                    <h4 class="logo-bar__heading">All</h4>
+                                </div>
+                            </a>
                             @foreach ($allData['category'] as $val)
-                            
-                            <div class="logo-bar__item text-center">
-                                <img src="{{ asset('/uploads/category/'.$val->image)}}" alt="" title="" />
-                                <h4 class="logo-bar__heading">{{$val->name}}</h4>
-                            </div>
+                            <a href="{{ route('product_list_categories',$val->id)}}" class="collection-grid-item__link">
+                                <div class="logo-bar__item text-center">
+                                    <img src="{{ asset('/uploads/category/'.$val->image)}}" alt="" title="" />
+                                    <h4 class="logo-bar__heading">{{$val->name}}</h4>
+                                </div>
+                            </a>
                             @endforeach
                            
 
@@ -115,7 +118,7 @@
                         </div>
                     </div>
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        <a href="">View All</a>
+                        <a href="{{route('product_list_occasions',0)}}">View All</a>
                     </div>
                 </div>
             </div>
@@ -126,7 +129,7 @@
                     
                     <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                         <div class="collection-grid-item text-center">
-                            <a href="collection-page.html" class="collection-grid-item__link">
+                            <a href="{{ route('product_list_occasions',$val->id)}}" class="collection-grid-item__link">
                                 <img data-src="{{ asset('uploads/occasion/'.$val->image)}}" src="{{ asset('assets/img/Rectangle 26.png')}}"
                                 alt="Hot" class="blur-up lazyload" />
                                 <h3 class="mt-4">{{$val->name}}</h3>
@@ -251,10 +254,13 @@
 
                         </div>
                     </div>
-
+                    
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        <button>View All</button>
+                        <a href="{{ route('product_list_category',$val->id) }}">
+                            <button>View All</button>
+                        </a>
                     </div>
+                    
                 </div>
             </div>
             <div class="productSlider-style2 grid-products">
@@ -354,7 +360,7 @@
                         </div>
                     </div>
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        <button class="topBrands-btn">View All</button>
+                        <a href="{{route('product_list_topbrand',0)}}" class="topBrands-btn">View All</a>
                     </div>
                 </div>
                 <div class="swiper-container top-product-slider">
@@ -366,9 +372,12 @@
                                 <img src="{{ asset('uploads/brand/'.$val->image)}}" alt="">
                             </div>
                             <div class="topProduct-name">
+                                <a href="{{ route('product_list_topbrand',$val->id) }}">
                                 <h4>{{$val->name}}</h4>
+                                </a>
                             </div>
                         </div>
+                        
                         @endforeach
                         
                     </div>
