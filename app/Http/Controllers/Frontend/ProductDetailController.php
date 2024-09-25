@@ -3,9 +3,114 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreWebCheckoutStore;
+use App\Models\Cart;
+use App\Models\Checkout;
+use App\Models\Discount;
+use App\Models\Item;
+use App\Models\Menu;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller
 {
-    //
+    public function cart()
+    {
+        $menu = Menu::latest()->get();
+        $cart = Cart::with('products', 'products.color', 'products.size', 'products.users')->where('user_id', auth()->user()->id)->latest()->get();
+        return view('frontend.cart', compact('menu', 'cart'));
+    }
+    public function applyDiscount($coupan)
+    {
+        $discounts = Discount::with('discountProduct')->where('code', $coupan->id)->first();
+        if ($discounts) {
+            $discountProductIds = $discounts->discountProduct->pluck('product_id')->toArray();
+            $totalRrpPrice = Cart::with('products')->where('user_id', auth()->user()->id)->whereHas('products', function ($query) use ($discounts, $discountProductIds) {
+                $query->where('category_id', $discounts->category_id)->whereIn('id', $discountProductIds);
+            })->get();
+            $data = $this->daysPrice($totalRrpPrice, $discounts);
+
+        } else {
+            return redirect()->back();
+        }
+    }
+    protected function daysPrice($data, $discount)
+    {
+        $allProductPrices = [];
+        $totalPrice = 0;
+
+        foreach ($data as $value) {
+            $price = 0;
+
+            if ($value->days >= 4 && $value->days <= 6) {
+                $price = $value->products->fourDaysPrice;
+            } elseif ($value->days >= 7 && $value->days <= 29) {
+                $price = $value->products->sevenToTwentyNineDayPrice;
+            } elseif ($value->days >= 30) {
+                $price = $value->products->thirtyPlusDayPrice;
+            } else {
+                $price = (float) $value->days * (float) $value->products->suggested_day_price;
+            }
+
+            if ($discount->offer_type == '2') {
+                $finalPrice = ($price * $discount->in_per) / 100;
+                $amount = $price - $finalPrice;
+            } elseif ($discount->offer_type == '1') {
+                $amount = $price - $discount->fix_amount;
+            }
+
+            $amount = $amount < 0 ? 0 : $amount;
+
+            $allProductPrices[] = [
+                'item_id' => $value->products->id,
+                'amount' => $amount,
+            ];
+            $totalPrice += $amount;
+        }
+        return [
+            'total_price' => $totalPrice,
+            'product_prices' => $allProductPrices,
+        ];
+    }
+    public function checkout()
+    {
+        $menu = Menu::latest()->get();
+        return view('frontend.checkout', compact('menu'));
+    }
+    public function removeItem($id)
+    {
+        $item = Cart::find($id)->delete();
+        return redirect()->back();
+    }
+    public function saveCheckout(StoreWebCheckoutStore $request)
+    {
+        try {
+            $checkout = new Checkout();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public function wishlist()
+    {
+        $menu = Menu::latest()->get();
+        $wishlist = Wishlist::with('products')->where('user_id', auth()->user()->id)->latest()->get();
+        return view('frontend.wishlist', compact('menu', 'wishlist'));
+    }
+    public function addToCart($id)
+    {
+        $cart = new Cart();
+        $match = Cart::where('item_id',$id)->first();
+        if ($match) {
+            return redirect()->back();
+        }
+        $cart->item_id = $id;
+        $cart->user_id = auth()->user()->id;
+        $cart->save();
+        return redirect()->back();
+    }
+    public function removeWishlist($id){
+        $wishlist = Wishlist::findOrFail($id);
+        $wishlist->delete();
+        return redirect()->back();
+    }
 }

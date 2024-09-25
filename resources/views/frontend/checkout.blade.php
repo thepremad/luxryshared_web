@@ -11,41 +11,55 @@
                     <h4>Check Out</h4>
                     <h6>Billing Details</h6>
                 </div>
-                <form>
+                <form action="{{route('save_checkout')}}" method="post">
+                    @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="firstName">First Name*</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                            <input type="text" name="first_name" class="form-control" id="firstName" placeholder="First Name">
+                            <span class="text text-danger" id="wakoo">{{ $errors->first('first_name') }}</span>
+
                         </div>
                         <div class="form-group col-md-6">
                             <label for="lastName">Last Name*</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                            <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Last Name">
+                            <span class="text text-danger" id="wakoo">{{ $errors->first('last_name') }}</span>
+
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="country">Country / Region*</label>
-                            <input type="text" class="form-control" id="country" placeholder="Country / Region">
+                            <input type="text" name="country" class="form-control" id="country" placeholder="Country / Region">
+                            <span class="text text-danger" id="wakoo">{{ $errors->first('country') }}</span>
+
                         </div>
                         <div class="form-group col-md-6">
                             <label for="company">Company Name</label>
                             <input type="text" class="form-control" id="company" placeholder="Company (optional)">
+
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="streetAddress">Street Address*</label>
-                            <input type="text" class="form-control" id="streetAddress" placeholder="House number and street name">
+                            <input type="text" name="street_address" class="form-control" id="streetAddress" placeholder="House number and street name">
+                            <span class="text text-danger" id="wakoo">{{ $errors->first('street_address') }}</span>
+
                         </div>
                         <div class="form-group col-md-6">
                             <label for="aptSuiteUnit">Apt, suite, unit</label>
                             <input type="text" class="form-control" id="aptSuiteUnit" placeholder="Apartment, suite, unit, etc. (optional)">
+                            <span class="text text-danger" id="wakoo">{{ $errors->first('email') }}</span>
+
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="city">City*</label>
-                            <input type="text" class="form-control" id="city" placeholder="Town / City">
+                            <input type="text" name="city" class="form-control" id="city" placeholder="Town / City">
+                            <span class="text text-danger" id="wakoo">{{ $errors->first('city') }}</span>
+
                         </div>
                         <div class="form-group col-md-4">
                             <label for="state">State*</label>
@@ -58,12 +72,16 @@
                         <div class="form-group col-md-4">
                             <label for="postalCode">Postal Code*</label>
                             <input type="number" class="form-control" id="postalCode" placeholder="Postal Code">
+                            <span class="text text-danger" id="wakoo">{{ $errors->first('email') }}</span>
+
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="phone">Phone*</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="Phone">
+                            <input type="tel" name="mobile_number" class="form-control" id="phone" placeholder="Phone">
+                            <span class="text text-danger" id="wakoo">{{ $errors->first('mobile_number') }}</span>
+
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Continue to delivery</button>
@@ -186,8 +204,8 @@
                     </div>
                     <div class="promo-code mt-2">
                         <h6>Enter your Promotional Code</h6>
-                        <input type="text" class="form-control" id="promoCode" placeholder="Promo Code">
-                        <button type="button" class="btn btn-secondary btn-apply">Apply</button>
+                        <input type="text" class="form-control" id="referal_code" placeholder="Promo Code">
+                        <button type="button" id="applyDiscount" class="btn btn-secondary btn-apply">Apply</button>
                     </div>
                     <div class="total mt-2">
                         <h6>Total</h6>
@@ -445,12 +463,14 @@
     <script src="{{ asset('assets/js/lazysizes.js')}}"></script>
     <script src="{{ asset('assets/js/main.js')}}"></script>
     <!--Instagram Js-->
-    <script src="{{ asset('assets/js/vendor/jquery.instagramFeed.min.js"></script>
+    <script src="{{ asset('assets/js/vendor/jquery.instagramFeed.min.js')}}"></script>
     <!-- Swiper JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <!-- Initialize Swiper -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script>
         // Initialize Swiper for carousel
@@ -591,6 +611,28 @@
                 icon.classList.add('fa-eye');
             }
         });
+    </script>
+    
+    <script>
+       $('#applyDiscount').on('click', function() {
+        var selectedValue =  $('#referal_code').val();
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+            url: '{{ route('apply_discount') }}',
+            method: 'POST',
+            data: { id: selectedValue },
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            success: function (response) {
+              
+            },
+
+            error: function (error) {
+                console.error(error);
+            }
+        });
+});
     </script>
 </div>
 @endsection
