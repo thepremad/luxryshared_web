@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Frontend\EditProfieController;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\frontend\ItemController;
@@ -68,94 +69,58 @@ Route::get('/optimize-clear', function () {
 //     }
 // });
 
-// // lending
 // Route::get('/log', [AuthController::class, 'log']);
-// Route::get('/about', function () {
-//     return view('frontend.about');
-// });
-// Route::get('/cartpage', function () {
-//     return view('frontend.cartpage');
-// });
-// Route::get('/about', function () {
-//     return view('frontend.about');
-// });
-// Route::get('/category-page', function () {
-//     return view('frontend.category-page');
-// });
-// Route::get('/checkout', function () {
-//     return view('frontend.checkout');
-// });
-// Route::get('/dashbord-wishlist', function () {
-//     return view('frontend.dashbord-wishlist');
-// });
-// Route::get('/editprofile-dashboard', function () {
-//     return view('frontend.editprofile-dashboard');
-// });
-// Route::get('/editptwo-dashbord', function () {
-//     return view('frontend.editptwo-dashbord');
-// });
-// Route::get('/empty-cart', function () {
-//     return view('frontend.empty-cart');
-// });
-// Route::get('/lending', function () {
-//     return view('frontend.lending');
-// });
-// Route::get('/order-confirmed', function () {
-//     return view('frontend.order-confirmed');
-// });
-// Route::get('/order-confirmed', function () {
-//     return view('frontend.order-confirmed');
-// });
-// Route::get('/product-det', function () {
-//     return view('frontend.product-det');
-// });
-// Route::get('/renting', function () {
-//     return view('frontend.renting');
-// });
-// Route::get('/wishlist-empty', function () {
-//     return view('frontend.wishlist-empty');
-// });
-// Route::get('/wishlist-page', function () {
-//     return view('frontend.wishlist-page');
-// });
 
 
-Route::get('/',[LoginContriller::class,'login'])->name('login');
-Route::post('login',[LoginContriller::class,'loginCheck'])->name('login');
-Route::post('register',[LoginContriller::class,'register'])->name('register');
-Route::get('forget-password',[ForgetPasswordController::class,'forgetPassword'])->name('forget_password');
-Route::post('forgot-password',[ForgetPasswordController::class,'forgotPassword'])->name('forgot_password');
-Route::get('match-otp/{id}',[ForgetPasswordController::class,'matchotpp'])->name('match_otp');
-Route::post('match-otp/{id}',[ForgetPasswordController::class,'matchOtp'])->name('match_otp');
-Route::get('new-password/{id}',[ForgetPasswordController::class,'newPasswordd'])->name('new_password');
-Route::post('new-password/{id}',[ForgetPasswordController::class,'newPassword'])->name('new_password');
+Route::get('/', [LoginContriller::class, 'login'])->name('login');
+Route::post('login', [LoginContriller::class, 'loginCheck'])->name('login');
+Route::post('register', [LoginContriller::class, 'register'])->name('register');
+Route::get('forget-password', [ForgetPasswordController::class, 'forgetPassword'])->name('forget_password');
+Route::post('forgot-password', [ForgetPasswordController::class, 'forgotPassword'])->name('forgot_password');
+Route::get('match-otp/{id}', [ForgetPasswordController::class, 'matchotpp'])->name('match_otp');
+Route::post('match-otp/{id}', [ForgetPasswordController::class, 'matchOtp'])->name('match_otp');
+Route::get('new-password/{id}', [ForgetPasswordController::class, 'newPasswordd'])->name('new_password');
+Route::post('new-password/{id}', [ForgetPasswordController::class, 'newPassword'])->name('new_password');
 
 
 
 Route::middleware(['website'])->group(function () {
-    Route::get('/home',[HomeController::class,'home'])->name('home');
-    Route::get('/about-us',[HomeController::class,'aboutUs'])->name('about_us');
-    Route::get('/faq',[HomeController::class,'faq'])->name('faq');
-    Route::get('/list-item',[ItemController::class,'listItem'])->name('list_item');
-    Route::get('/privacy-policy',[HomeController::class,'privacyPolicy'])->name('privacy_policy');
-    Route::get('/terms-and-conditions',[HomeController::class,'termsAndConditions'])->name('terms_and_conditions');
-    Route::post('/save-item',[HomeController::class,'saveItem'])->name('save_item');
-    Route::get('/logout',[HomeController::class,'logout'])->name('logout');
-    //Route::get('/product-page/{id}',[HomeController::class,'categories'])->name('product_page');
-    Route::get('product-page_1/{id}',[ProductListController::class,'categories'])->name('product_list_categories');
-    Route::get('product-page_2/{id}',[ProductListController::class,'ocassions'])->name('product_list_occasions');
-    Route::get('product-page_3/{id}',[ProductListController::class,'category'])->name('product_list_category');
-    Route::get('product-page_4/{id}',[ProductListController::class,'topBrands'])->name('product_list_topbrand');
-    Route::get('product-page_5/{id}',[ProductListController::class,'getTheLook'])->name('product_list_getthelook');
-    Route::get('product-detail/{id}',[ProductDetailController::class,'productDetail'])->name('product_detail'); 
-    Route::get('cart',[ProductDetailController::class,'cart'])->name('cart'); 
-    Route::post('apply-discount',[ProductDetailController::class,'applyDiscount'])->name('apply_discount'); 
-    Route::get('checkout',[ProductDetailController::class,'checkout'])->name('checkout'); 
-    Route::get('remove-item/{id}',[ProductDetailController::class,'removeItem'])->name('remove_item'); 
-    Route::post('checkouts',[ProductDetailController::class,'saveCheckout'])->name('save_checkout'); 
-    Route::get('wishlist',[ProductDetailController::class,'wishlist'])->name('wishlist'); 
-    Route::get('add-to-cart/{id}',[ProductDetailController::class,'addToCart'])->name('add_to_cart'); 
-    Route::get('remove-wishlist/{id}',[ProductDetailController::class,'removeWishlist'])->name('remove_wishlist'); 
-    Route::get('disclaimer',[StaticPagesController::class,'desclimer'])->name('desclimer'); 
-    Route::get('not-found',[StaticPagesController::class,'notFound'])->name('not_found'); 
+
+    Route::get('/home', [HomeController::class, 'home'])->name('home');
+    Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('about_us');
+    Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
+    Route::get('/list-item', [ItemController::class, 'listItem'])->name('list_item');
+    Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy_policy');
+    Route::get('/terms-and-conditions', [HomeController::class, 'termsAndConditions'])->name('terms_and_conditions');
+    Route::post('/save-item', [HomeController::class, 'saveItem'])->name('save_item');
+    Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+
+
+    Route::get('product-page_1/{id}', [ProductListController::class, 'categories'])->name('product_list_categories');
+    Route::get('product-page_2/{id}', [ProductListController::class, 'ocassions'])->name('product_list_occasions');
+    Route::get('product-page_3/{id}', [ProductListController::class, 'category'])->name('product_list_category');
+    Route::get('product-page_4/{id}', [ProductListController::class, 'topBrands'])->name('product_list_topbrand');
+    Route::get('product-page_5/{id}', [ProductListController::class, 'getTheLook'])->name('product_list_getthelook');
+    Route::get('product-detail/{id}', [ProductDetailController::class, 'productDetail'])->name('product_detail');
+
+
+    Route::get('cart', [ProductDetailController::class, 'cart'])->name('cart');
+    Route::post('apply-discount', [ProductDetailController::class, 'applyDiscount'])->name('apply_discount');
+    Route::get('checkout', [ProductDetailController::class, 'checkout'])->name('checkout');
+    Route::get('remove-item/{id}', [ProductDetailController::class, 'removeItem'])->name('remove_item');
+    Route::post('checkouts', [ProductDetailController::class, 'saveCheckout'])->name('save_checkout');
+    Route::get('wishlist', [ProductDetailController::class, 'wishlist'])->name('wishlist');
+    Route::get('add-to-cart/{id}', [ProductDetailController::class, 'addToCart'])->name('add_to_cart');
+    Route::get('remove-wishlist/{id}', [ProductDetailController::class, 'removeWishlist'])->name('remove_wishlist');
+
+
+    Route::get('disclaimer', [StaticPagesController::class, 'desclimer'])->name('desclimer');
+    Route::get('not-found', [StaticPagesController::class, 'notFound'])->name('not_found');
+    Route::get('legal-policy', [StaticPagesController::class, 'legalPolicy'])->name('legal_policy');
+    Route::post('charity', [StaticPagesController::class, 'charity'])->name('charity');
+    Route::get('how-to-lend', [StaticPagesController::class, 'howToLend'])->name('how_to_lend');
+
+
+    Route::get('edit-profile', [EditProfieController::class, 'editProfile'])->name('edit_profile');
+    Route::post('update-profile', [EditProfieController::class, 'editWebProfile'])->name('edit_web_profile');
 });

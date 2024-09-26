@@ -16,4 +16,16 @@ class StaticPagesController extends Controller
         $menu = Menu::latest()->get();
         return view('frontend.404',compact('menu'));
     }
+    public function legalPolicy(){
+        $menu = Menu::latest()->get();
+        return view('frontend.legal-policy',compact('menu'));
+    }
+    public function howToLend(){
+        $menu = Menu::latest()->get();
+        return view('frontend.how-it-work',compact('menu'));
+    }
+    // public function charity(){
+    //     $menu = Menu::latest()->get();
+    //     return view('frontend.how-it-work',compact('menu'));
+    // }
 }

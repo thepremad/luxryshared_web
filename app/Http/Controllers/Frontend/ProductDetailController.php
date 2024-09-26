@@ -9,6 +9,7 @@ use App\Models\Checkout;
 use App\Models\Discount;
 use App\Models\Item;
 use App\Models\Menu;
+use App\Models\Size;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
@@ -112,5 +113,12 @@ class ProductDetailController extends Controller
         $wishlist = Wishlist::findOrFail($id);
         $wishlist->delete();
         return redirect()->back();
+    }
+    public function productDetail($id){
+        $menu = Menu::latest()->get();
+        $item = Item::with('itemImage','users')->find($id);
+        $size = Size::latest()->get();
+        // $size = Size::latest()->get();
+        return view('frontend.product-details',compact('menu','item','size'));
     }
 }
