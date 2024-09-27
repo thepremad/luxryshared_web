@@ -14,6 +14,7 @@ use App\Http\Resources\StoreBlogResourceApi;
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Faq;
 use App\Models\Item;
 use App\Models\Look;
 use App\Models\Menu;
@@ -60,7 +61,8 @@ class HomeController extends Controller
     public function faq()
     {
         $menu = Menu::latest()->get();
-        return view('frontend.faq', compact('menu'));
+        $faq = Faq::latest()->get();
+        return view('frontend.faq', compact('menu','faq'));
     }
     public function privacyPolicy()
     {
@@ -89,5 +91,10 @@ class HomeController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+    public function faqDetails($id){
+        $faq = Faq::findOrFail($id);
+        $menu = Menu::latest()->get();
+        return view('frontend.faq-details',compact('faq','menu'));
     }
 }

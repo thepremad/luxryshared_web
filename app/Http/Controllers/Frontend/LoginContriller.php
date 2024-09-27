@@ -44,6 +44,8 @@ class LoginContriller extends Controller
     }
     public function login()
     {
+        // $menu = Menu::latest()->get();
+        // return view('frontend.product-list', compact('menu'));
         if(auth()->user()){
             return redirect()->route('home');
         }

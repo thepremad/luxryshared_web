@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 @section('content')
- <!--Body Content-->
- <div id="page-content">
+<!--Body Content-->
+<div id="page-content">
 
     <!-- Start Cart Table -->
     <div class="container-fluid shopping-cart">
@@ -30,123 +30,39 @@
                             <!-- Table Body -->
                             <tbody>
                                 <!-- Product 1 -->
-                                <tr id="product-1">
-                                    <td>
-                                        <div class="d-flex">
-                                            <img src="{{ asset('./assets/img/Rectangle 734.png')}}" alt="Product 1" class="img-fluid me-3" style="max-width: 100px;">
-                                            <div>
-                                                <h5 class="mb-1">Product Heading</h5>
-                                                <p class="mb-1">Color: Yellow</p>
-                                                <p class="mb-0">Size: M</p>
+                                @foreach ($cart as $val)
+                                    <tr id="product-1">
+                                        <td>
+                                            <div class="d-flex">
+                                                <img src="{{asset('uploads/item/' . $val->products->mainImag)}}"
+                                                    alt="Product 1" class="img-fluid me-3" style="max-width: 100px;">
+                                                <div>
+                                                    <h5 class="mb-1">{{$val->products->item_title}}</h5>
+                                                    <p class="mb-1">Color: {{$val->products->color->name ?? ''}}</p>
+                                                    <p class="mb-0">Size: {{$val->products->color->name ?? ''}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>$29.00</td>
-                                    <td>
-                                        <div class="quantity-controls">
-                                            <button class="btn btn-outline-secondary me-2" onclick="updateQuantity('product-1', -1)">-</button>
-                                            <span id="quantity-1">4</span>
-                                            <button class="btn btn-outline-secondary ms-2" onclick="updateQuantity('product-1', 1)">+</button>
-                                        </div>
-                                    </td>
-                                    <td>ABC</td>
-                                    <td>$29.00</td>
-                                    <td>
-                                        <button class="btn">
-                                            <img src="{{ asset('./assets/images/icons/deletecon.png')}}" alt="Remove">
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <!-- Product 2 -->
-                                <tr id="product-2">
-                                    <td>
-                                        <div class="d-flex">
-                                            <img src="{{ asset('./assets/img/Rectangle 734.png')}}" alt="Product 1" class="img-fluid me-3" style="max-width: 100px;">
-                                            <div>
-                                                <h5 class="mb-1">Product Heading</h5>
-                                                <p class="mb-1">Color: Yellow</p>
-                                                <p class="mb-0">Size: M</p>
+                                        </td>
+                                        <td>{{$val->products->rrp_price ?? ''}}</td>
+                                        <td>
+                                            <div class="quantity-controls">
+                                                <button class="btn btn-outline-secondary me-2"
+                                                    onclick="updateQuantity('product-1', -1)">-</button>
+                                                <span id="quantity-1">1</span>
+                                                <button class="btn btn-outline-secondary ms-2"
+                                                    onclick="updateQuantity('product-1', 1)">+</button>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>$29.00</td>
-                                    <td>
-                                        <div class="quantity-controls">
-                                            <button class="btn btn-outline-secondary me-2" onclick="updateQuantity('product-1', -1)">-</button>
-                                            <span id="quantity-1">4</span>
-                                            <button class="btn btn-outline-secondary ms-2" onclick="updateQuantity('product-1', 1)">+</button>
-                                        </div>
-                                    </td>
-                                    <td>ABC</td>
-                                    <td>$29.00</td>
-                                    <td>
-                                        <button class="btn">
-                                            <img src="{{ asset('./assets/images/icons/deletecon.png')}}" alt="Remove">
-                                        </button>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>{{$val->products->users->first_name ?? ''}}</td>
+                                        <td>{{$val->products->rrp_price ?? ''}}</td>
+                                        <td>
+                                            <button class="btn">
+                                                <a href="{{route('remove_item',$val->id)}}"><img src="{{asset('/assets/images/icons/deletecon.png')}}" alt="Remove"></a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
-                                <!-- Product 3 -->
-                                <tr id="product-3">
-                                    <td>
-                                        <div class="d-flex">
-                                            <img src="{{ asset('./assets/img/Rectangle 734.png')}}" alt="Product 1" class="img-fluid me-3" style="max-width: 100px;">
-                                            <div>
-                                                <h5 class="mb-1">Product Heading</h5>
-                                                <p class="mb-1">Color: Yellow</p>
-                                                <p class="mb-0">Size: M</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>$29.00</td>
-                                    <td>
-                                        <div class="quantity-controls">
-                                            <button class="btn btn-outline-secondary me-2" onclick="updateQuantity('product-1', -1)">-</button>
-                                            <span id="quantity-1">4</span>
-                                            <button class="btn btn-outline-secondary ms-2" onclick="updateQuantity('product-1', 1)">+</button>
-                                        </div>
-                                    </td>
-                                    <td>ABC</td>
-                                    <td>$29.00</td>
-                                    <td>
-                                        <button class="btn">
-                                            <img src="{{ asset('./assets/images/icons/deletecon.png')}}" alt="Remove">
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <!-- Product 4 -->
-                                <tr id="product-4">
-                                    <td>
-                                        <div class="d-flex">
-                                            <img src="{{ asset('./assets/img/Rectangle 734.png')}}" alt="Product 1" class="img-fluid me-3" style="max-width: 100px;">
-                                            <div>
-                                                <h5 class="mb-1">Product Heading</h5>
-                                                <p class="mb-1">Color: Yellow</p>
-                                                <p class="mb-0">Size: M</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>$29.00</td>
-                                    <td>
-                                        <div class="quantity-controls">
-                                            <button class="btn btn-outline-secondary me-2" onclick="updateQuantity('product-1', -1)">-</button>
-                                            <span id="quantity-1">4</span>
-                                            <button class="btn btn-outline-secondary ms-2" onclick="updateQuantity('product-1', 1)">+</button>
-                                        </div>
-                                    </td>
-                                    <td>ABC</td>
-                                    <td>$29.00</td>
-                                    <td>
-                                        <button class="btn">
-                                            <img src="{{ asset('./assets/images/icons/deletecon.png')}}" alt="Remove">
-                                        </button>
-                                    </td>
-                                </tr>
-                                
-
-                                <!-- Add more products similarly, ensuring each row has a unique ID -->
                             </tbody>
                         </div>
                     </div>
@@ -158,16 +74,16 @@
             <div class="row mt-3 mb-120 couponCode-section">
                 <div class="col-lg-12 mx-auto d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center referralCode">
-                        <input type="text" class="form-control me-2 referralCode-input" placeholder="ADD REFERRAL CODE">
-                        <a href="#">Apply</a>
+                        <!-- <input type="text" id="referal_code" class="form-control me-2 referralCode-input"
+                            placeholder="ADD REFERRAL CODE">
+                        <a href="#" id="applyDiscount">Apply</a> -->
                     </div>
-                    <button class="btn btn-success theme-btn">Proceed To Checkout</button>
+                    <a href="{{route('checkout')}}" class="btn btn-success theme-btn">Proceed To Checkout</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- End Cart Table -->
-
 
     <!--Scoll Top-->
     <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
@@ -187,7 +103,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="product-details-img">
                                         <div class="pl-20">
-                                            <img src="{{ asset('assets/images/product-detail-page/camelia-reversible-big1.jpg')}}"
+                                            <img src="assets/images/product-detail-page/camelia-reversible-big1.jpg"
                                                 alt />
                                         </div>
                                     </div>
@@ -208,8 +124,7 @@
                                         <p class="product-single__price product-single__price-product-template">
                                             <span class="visually-hidden">Regular
                                                 price</span>
-                                            <s id="ComparePrice-product-template"><span
-                                                    class="money">$600.00</span></s>
+                                            <s id="ComparePrice-product-template"><span class="money">$600.00</span></s>
                                             <span
                                                 class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
                                                 <span id="ProductPrice-product-template"><span
@@ -234,19 +149,17 @@
                                                 <div class="product-form__item">
                                                     <label class="header">Color:
                                                         <span class="slVariant">Red</span></label>
-                                                    <div data-value="Red"
-                                                        class="swatch-element color red available">
-                                                        <input class="swatchInput" id="swatch-0-red"
-                                                            type="radio" name="option-0" value="Red">
+                                                    <div data-value="Red" class="swatch-element color red available">
+                                                        <input class="swatchInput" id="swatch-0-red" type="radio"
+                                                            name="option-0" value="Red">
                                                         <label class="swatchLbl color medium rectangle"
                                                             for="swatch-0-red"
                                                             style="background-image:url(assets/images/product-detail-page/variant1-1.jpg);"
                                                             title="Red"></label>
                                                     </div>
-                                                    <div data-value="Blue"
-                                                        class="swatch-element color blue available">
-                                                        <input class="swatchInput" id="swatch-0-blue"
-                                                            type="radio" name="option-0" value="Blue">
+                                                    <div data-value="Blue" class="swatch-element color blue available">
+                                                        <input class="swatchInput" id="swatch-0-blue" type="radio"
+                                                            name="option-0" value="Blue">
                                                         <label class="swatchLbl color medium rectangle"
                                                             for="swatch-0-blue"
                                                             style="background-image:url(assets/images/product-detail-page/variant1-2.jpg);"
@@ -254,17 +167,16 @@
                                                     </div>
                                                     <div data-value="Green"
                                                         class="swatch-element color green available">
-                                                        <input class="swatchInput" id="swatch-0-green"
-                                                            type="radio" name="option-0" value="Green">
+                                                        <input class="swatchInput" id="swatch-0-green" type="radio"
+                                                            name="option-0" value="Green">
                                                         <label class="swatchLbl color medium rectangle"
                                                             for="swatch-0-green"
                                                             style="background-image:url(assets/images/product-detail-page/variant1-3.jpg);"
                                                             title="Green"></label>
                                                     </div>
-                                                    <div data-value="Gray"
-                                                        class="swatch-element color gray available">
-                                                        <input class="swatchInput" id="swatch-0-gray"
-                                                            type="radio" name="option-0" value="Gray">
+                                                    <div data-value="Gray" class="swatch-element color gray available">
+                                                        <input class="swatchInput" id="swatch-0-gray" type="radio"
+                                                            name="option-0" value="Gray">
                                                         <label class="swatchLbl color medium rectangle"
                                                             for="swatch-0-gray"
                                                             style="background-image:url(assets/images/product-detail-page/variant1-4.jpg);"
@@ -279,26 +191,26 @@
                                                     <div data-value="XS" class="swatch-element xs available">
                                                         <input class="swatchInput" id="swatch-1-xs" type="radio"
                                                             name="option-1" value="XS">
-                                                        <label class="swatchLbl medium rectangle"
-                                                            for="swatch-1-xs" title="XS">XS</label>
+                                                        <label class="swatchLbl medium rectangle" for="swatch-1-xs"
+                                                            title="XS">XS</label>
                                                     </div>
                                                     <div data-value="S" class="swatch-element s available">
                                                         <input class="swatchInput" id="swatch-1-s" type="radio"
                                                             name="option-1" value="S">
-                                                        <label class="swatchLbl medium rectangle"
-                                                            for="swatch-1-s" title="S">S</label>
+                                                        <label class="swatchLbl medium rectangle" for="swatch-1-s"
+                                                            title="S">S</label>
                                                     </div>
                                                     <div data-value="M" class="swatch-element m available">
                                                         <input class="swatchInput" id="swatch-1-m" type="radio"
                                                             name="option-1" value="M">
-                                                        <label class="swatchLbl medium rectangle"
-                                                            for="swatch-1-m" title="M">M</label>
+                                                        <label class="swatchLbl medium rectangle" for="swatch-1-m"
+                                                            title="M">M</label>
                                                     </div>
                                                     <div data-value="L" class="swatch-element l available">
                                                         <input class="swatchInput" id="swatch-1-l" type="radio"
                                                             name="option-1" value="L">
-                                                        <label class="swatchLbl medium rectangle"
-                                                            for="swatch-1-l" title="L">L</label>
+                                                        <label class="swatchLbl medium rectangle" for="swatch-1-l"
+                                                            title="L">L</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -307,12 +219,11 @@
                                                 <div class="product-form__item--quantity">
                                                     <div class="wrapQtyBtn">
                                                         <div class="qtyField">
-                                                            <a class="qtyBtn minus"
-                                                                href="javascript:void(0);"><i
+                                                            <a class="qtyBtn minus" href="javascript:void(0);"><i
                                                                     class="fa anm anm-minus-r"
                                                                     aria-hidden="true"></i></a>
-                                                            <input type="text" id="Quantity" name="quantity"
-                                                                value="1" class="product-form__input qty">
+                                                            <input type="text" id="Quantity" name="quantity" value="1"
+                                                                class="product-form__input qty">
                                                             <a class="qtyBtn plus" href="javascript:void(0);"><i
                                                                     class="fa anm anm-plus-r"
                                                                     aria-hidden="true"></i></a>
@@ -358,7 +269,7 @@
             <a class="btn closepopup"><i class="icon icon anm anm-times-l"></i></a>
             <!-- Modal content-->
             <div class="display-table splash-bg">
-                <div class="display-table-cell width40"><img src="{{ asset('assets/images/newsletter-img.jpg')}}"
+                <div class="display-table-cell width40"><img src="assets/images/newsletter-img.jpg"
                         alt="Join Our Mailing List" title="Join Our Mailing List" /> </div>
                 <div class="display-table-cell width60 text-center">
                     <div class="newsletter-left">
@@ -368,8 +279,8 @@
                             special offers</p>
                         <form action="#" method="post">
                             <div class="input-group">
-                                <input type="email" class="input-group__field newsletter__input" name="EMAIL"
-                                    value placeholder="Email address" required>
+                                <input type="email" class="input-group__field newsletter__input" name="EMAIL" value
+                                    placeholder="Email address" required>
                                 <span class="input-group__btn">
                                     <button type="submit" class="btn newsletter__submit" name="commit"
                                         id="subscribeBtn">
@@ -383,10 +294,10 @@
                                         class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
                             <li><a class="social-icons__link" href="#" title="Twitter"><i class="fa fa-twitter"
                                         aria-hidden="true"></i></a></li>
-                            <li><a class="social-icons__link" href="#" title="Pinterest"><i
-                                        class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                            <li><a class="social-icons__link" href="#" title="Instagram"><i
-                                        class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a class="social-icons__link" href="#" title="Pinterest"><i class="fa fa-pinterest"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a class="social-icons__link" href="#" title="Instagram"><i class="fa fa-instagram"
+                                        aria-hidden="true"></i></a></li>
                             <li><a class="social-icons__link" href="#" title="YouTube"><i class="fa fa-youtube"
                                         aria-hidden="true"></i></a></li>
                             <li><a class="social-icons__link" href="#" title="Vimeo"><i class="fa fa-vimeo"
@@ -399,29 +310,27 @@
     </div>
     <!-- End Newsletter Popup -->
 
-
-
-@endsection
-@section('js')
-
+    @endsection
+    @section('js')
     <!-- Including Jquery -->
-    <script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery.cookie.js')}}"></script>
-    <script src="{{ asset('assets/js/vendor/wow.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/jquery.cookie.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/wow.min.js')}}"></script>
     <!-- Including Javascript -->
-    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('assets/js/plugins.js')}}"></script>
-    <script src="{{ asset('assets/js/popper.min.js')}}"></script>
-    <script src="{{ asset('assets/js/lazysizes.js')}}"></script>
-    <script src="{{ asset('assets/js/main.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins.js')}}"></script>
+    <script src="{{asset('assets/js/popper.min.js')}}"></script>
+    <script src="{{asset('assets/js/lazysizes.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
     <!--Instagram Js-->
-    <script src="{{ asset('assets/js/vendor/jquery.instagramFeed.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/jquery.instagramFeed.min.js')}}"></script>
     <!-- Swiper JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <!-- Initialize Swiper -->
+
 
     <script>
         // Initialize Swiper for carousel
@@ -542,4 +451,4 @@
         }
     </script>
 
-@endsection
+    @endsection
