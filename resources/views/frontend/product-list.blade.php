@@ -277,17 +277,9 @@
                             </div>
                             <div class="widget-content py-4">
                                 <ul class="sidebar_categories">
-                                    @foreach()
+                                    @foreach($occasions as $val)
                                     <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Classic</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Dresses</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Suits</a>
-                                            </li>
-                                        </ul>
+                                        <a href="#;" class="site-nav">{{$val->name}}</a>
                                     </li>
                                     @endforeach
                                     {{-- <li class="level1 sub-level">
@@ -356,17 +348,13 @@
                             </div>
                             <div class="widget-content py-4">
                                 <ul class="sidebar_categories">
+                                    @foreach($brand as $val)
+                                    
                                     <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Classic</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Dresses</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Suits</a>
-                                            </li>
-                                        </ul>
+                                        <a href="#;" class="site-nav">{{$val->name}}</a>
+                                        
                                     </li>
+                                    @endforeach
                                     <li class="level1 sub-level">
                                         <a href="#;" class="site-nav">Casual</a>
                                         <ul class="sublinks">

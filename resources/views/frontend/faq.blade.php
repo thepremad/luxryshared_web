@@ -10,42 +10,16 @@
         </div>
         <div class="faq-container">
             <div class="row faq-contant">
-                <a href="">                            
+                @foreach ($faq as $val)
+                
+                <a href="{{route('faq_details',$val->id)}}">                            
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6 faqCard">
-                        <h4 class="faq-headingBefore">Renting</h4>
-                        <p class="faq-txtBefore">There are many variations of passages of Lorem Ipsum available.</p>
+                        <h4 class="faq-headingBefore">{{$val->title}}</h4>
+                        <p class="faq-txtBefore">{{$val->text}}</p>
                     </div>
                 </a>
-                <a href="">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6 faqCard">
-                        <h4 class="faq-headingBefore">Lending</h4>
-                        <p class="faq-txtBefore">There are many variations of passages of Lorem Ipsum available.</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6 faqCard">
-                        <h4>Resale</h4>
-                        <p class="faq-txtBefore">Define your shipping regions & rates.</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6 faqCard">
-                        <h4 class="faq-headingBefore">Fee’s & Payments</h4>
-                        <p>There are many variations of passages of Lorem Ipsum available.</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6 faqCard">
-                        <h4 class="faq-headingBefore">Damage & Security</h4>
-                        <p>Manage your language, region & currency and translate your site.</p>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-6 faqCard">
-                        <h4>My Account</h4>
-                        <p>Set your business name, logo, location and contact information.</p>
-                    </div>
-                </a>
+                @endforeach
+                
                 
             </div>
         </div>

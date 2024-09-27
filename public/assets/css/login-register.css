@@ -869,6 +869,9 @@
 .register-tabSection .password-visibility-toggle {
   cursor: pointer;
   transition: color 0.3s;
+  position: absolute;
+  top: 54px;
+  right: 30px;
 }
 
 .register-tabSection .password-visibility-toggle:hover {

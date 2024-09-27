@@ -1587,7 +1587,7 @@ label input:checked~span#checkBox-btn i {
   }
 
   #page-content.aboutUs .aboutUs-Heading h4 {
-    font-size: 17px;
+    font-size: 19px;
     margin-left: 30px;
   }
 
@@ -1607,7 +1607,7 @@ label input:checked~span#checkBox-btn i {
   }
 
   #page-content.aboutUs .aboutUs-Heading h4 {
-    font-size: 16px;
+    font-size: 19px;
     margin-left: 25px;
   }
 
@@ -1627,7 +1627,7 @@ label input:checked~span#checkBox-btn i {
   }
 
   #page-content.aboutUs .aboutUs-Heading h4 {
-    font-size: 15px;
+    font-size: 19px;
     margin-left: 20px;
   }
 
@@ -1647,7 +1647,7 @@ label input:checked~span#checkBox-btn i {
   }
 
   #page-content.aboutUs .aboutUs-Heading h4 {
-    font-size: 14px;
+    font-size: 17px;
     margin-left: 15px;
   }
 
@@ -1667,7 +1667,7 @@ label input:checked~span#checkBox-btn i {
   }
 
   #page-content.aboutUs .aboutUs-Heading h4 {
-    font-size: 13px;
+    font-size: 17px;
     margin-left: 10px;
   }
 
@@ -1707,211 +1707,166 @@ label input:checked~span#checkBox-btn i {
 }
 
 .aboutUs.faq .faq-container .row.faq-contant {
-  padding: 50px 0;
+  padding: 5px 15px;
   border: 1px solid #D9D9D9;
   width: auto;
   max-width: 100%;
   justify-content: space-between;
   align-items: baseline;
-  gap: 0px 52px;
   margin-bottom: 350px;
   display: flex;
-  /* Add for older browsers */
   flex-wrap: wrap;
-  /* Ensure responsiveness */
 }
 
 .faq-contant a {
   width: 30.3%;
   max-width: 100%;
   display: block;
-  /* Ensure it's clickable across browsers */
 }
 
-.aboutUs.faq .faq-container .row.faq-contant .faqCard {
+.faq-contant a .faqCard {
   position: relative;
-  width: 100%;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  max-width: 100%;
+  padding: 60px 0 80px;
 }
 
-.aboutUs.faq .faq-container .row.faq-contant .faqCard h4 {
+.faq-contant a:nth-child(1) .faqCard::before,
+.faq-contant a:nth-child(2) .faqCard::before,
+.faq-contant a:nth-child(4) .faqCard::before,
+.faq-contant a:nth-child(5) .faqCard::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 1px;
+  height: 130px;
+  background-color: #cccccc;
+}
+
+.faq-contant a:nth-child(1) .faqCard::after,
+.faq-contant a:nth-child(2) .faqCard::after,
+.faq-contant a:nth-child(3) .faqCard::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 223px;
+  height: 1px;
+  background-color: #cccccc;
+}
+
+.faq-contant a .faqCard h4 {
   font-family: 'Proxima Nova', sans-serif;
   font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: left;
+  font-weight: 500;
+  line-height: 1.3;
   color: #000000;
-  margin-bottom: 25px;
-  position: relative;
+  margin-bottom: 20px;
 }
 
-.aboutUs.faq .faq-container .row.faq-contant .faqCard h4.faq-headingBefore::before {
-  content: '';
-  position: absolute;
-  top: 15px;
-  right: 0;
-  height: 130px;
-  width: 1px;
-  background: #cccccc;
+.faq-contant a .faqCard p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #3C4242;
+  margin-bottom: 20px;
+  max-width: 90%;
 }
 
-.aboutUs.faq .faq-container .row.faq-contant .faqCard p {
+.faq-container.update{
+  max-width: 100% !important;
+  margin: auto !important;
+  width: 1186px !important;
+}
+
+.faq-container.update .row.faq-contant2{
+  width: 100%;
+  margin: 0 auto;
+}
+
+.faq-container.update .faq-contant2 h4.faq-question{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #3C4242;
+  margin-bottom: 20px;
+}
+
+.faq-container.update .faq-contant2 p.faq-answer{
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: -0.022em;
-  text-align: left;
+  font-weight: 500;
+  line-height: 1.8;
   color: #3C4242;
-  max-width: 70%;
-  position: relative;
+  margin-bottom: 30px;
 }
 
-.aboutUs.faq .faq-container .row.faq-contant .faqCard p.faq-txtBefore::before {
-  content: '';
-  position: absolute;
-  top: 140px;
-  left: 0px;
-  height: 1px;
-  width: 223px;
-  background: #cccccc;
+@media (max-width: 768px) {
+  .faq-container.update .faq-contant2 h4.faq-question {
+    font-size: 15px;
+  }
+
+  .faq-container.update .faq-contant2 p.faq-answer {
+    font-size: 14px;
+  }
 }
 
-@media (max-width: 1366px) and (min-width: 1024px) {
+@media (max-width: 480px) {
+  .faq-container.update .faq-contant2 h4.faq-question {
+    font-size: 15px;
+  }
+
+  .faq-container.update .faq-contant2 p.faq-answer {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
   .aboutUs.faq .faq-container {
-    width: 1000px;
-    margin-top: 80px;
+    width: 90%;
+    margin-top: 50px;
   }
 
   .aboutUs.faq .faq-container .row.faq-contant {
-    padding: 40px 0;
-    margin-bottom: 200px;
-  }
-
-  .faq-contant a {
-    width: 32%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 220px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    max-width: 75%;
-  }
-}
-
-@media (max-width: 1023px) and (min-width: 992px) {
-  .aboutUs.faq .faq-container {
-    width: 900px;
-  }
-
-  .faq-contant a {
-    width: 48%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 200px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    max-width: 80%;
-  }
-}
-
-
-@media (max-width: 991px) and (min-width: 768px) {
-  .aboutUs.faq .faq-container {
-    width: 700px;
-  }
-
-  .faq-contant a {
-    width: 48%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 180px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    max-width: 85%;
-  }
-}
-
-
-@media (max-width: 767px) and (min-width: 576px) {
-  .aboutUs.faq .faq-container {
-    width: 100%;
+    padding: 20px 0;
+    flex-direction: column;
+    margin-bottom: 50px;
   }
 
   .faq-contant a {
     width: 100%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 160px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    max-width: 90%;
-  }
-}
-
-
-@media (max-width: 575px) and (min-width: 481px) {
-  .aboutUs.faq .faq-container {
-    width: 100%;
-  }
-
-  .faq-contant a {
-    width: 100%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 140px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard h4 {
-    font-size: 12px;
     margin-bottom: 20px;
   }
 
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    max-width: 95%;
+  .faq-contant a .faqCard {
+    padding: 40px 0 60px;
+  }
+
+  .faq-contant a .faqCard h4 {
+    font-size: 12px;
+  }
+
+  .faq-contant a .faqCard p {
+    font-size: 13px;
+  }
+
+  .faq-contant a .faqCard::before,
+  .faq-contant a .faqCard::after {
+    display: none;
   }
 }
 
-@media (max-width: 480px) and (min-width: 280px) {
-  .aboutUs.faq .faq-container {
-    width: 100%;
+@media (max-width: 480px) {
+  .aboutUs.faq .aboutUs-Heading h5 {
+    font-size: 14px;
+    margin-bottom: 30px;
   }
 
-  .faq-contant a {
-    width: 100%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 120px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard h4 {
-    font-size: 11px;
-    margin-bottom: 15px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    font-size: 10px;
-    line-height: 16px;
-    max-width: 100%;
+  .faq-contant a .faqCard {
+    padding: 30px 0 50px;
   }
 }
-
-
 
 
 
@@ -3802,58 +3757,115 @@ label input:checked~span#checkBox-btn i {
 *** End How IT Work
 **************** */
 
-/* -------------------------
-----------Edit Profile------
----------------------------- */
 #page-content.edit-profile .container {
-  background: #F6F6F680;
+  background: rgba(246, 246, 246, 0.5);
   border-radius: 15px;
-  border: 1px solid #807D7E12;
-  padding-left: 0;
+  padding: 0;
 }
 
 .edit-profile .row.banner-section {
   padding: 0;
 }
 
+.edit-profile .row.banner-section .col-xl-2,
+.edit-profile .row.banner-section .col-xl-10 {
+  padding: 0;
+  flex: 0;
+  max-width: 100%;
+}
+
 .edit-profile .row.banner-section .col-xl-2 {
-  padding-left: 0;
+  flex: 0 0 17.87%;
+}
+
+.edit-profile .row.banner-section .col-xl-10 {
+  flex: 0 0 82.13%;
 }
 
 .edit-profile .row.banner-section .col-xl-2 img {
   border-radius: 15px;
-  width: 235px;
-  height: 194px;
-  max-width: 100%;
+  width: 100%;
+  height: auto;
+  max-width: 235px;
+  max-height: 194px;
   object-fit: cover;
 }
 
-.edit-profile .row.banner-section .col-xl-2 {
-  flex: 0 0 17.866667%;
-  max-width: 17.866667%;
-}
-
-.edit-profile .row.banner-section .col-xl-10 {
-  flex: 0 0 82.133333%;
-  max-width: 82.133333%;
-}
-
-.edit-profile .row.banner-section .col-xl-10 .row h2 {
+.edit-profile .row.banner-section .col-xl-10 .row .col-md-12 h2 {
   font-family: 'Proxima Nova', sans-serif;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 600;
   line-height: 34.1px;
-  color: #000000;
+  color: #000;
+  text-transform: capitalize;
 }
 
-.edit-profile .row.banner-section .col-xl-10 .row .star-rating {
-  font-size: 30px;
+.edit-profile .row.banner-section .col-xl-10 .row .col-md-12 .star-rating {
+  font-size: 1.875rem;
   line-height: 43px;
   color: #ffcc00;
+  margin-right: 20px;
 }
 
-.edit-profile .userProfile-sidebar{
-  padding-top: 60px !important;
+.edit-profile .row.banner-section .col-xl-10 .row .col-md-12 span.rating {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #000;
+  margin-right: 40px;
+}
+
+.edit-profile .row.banner-section .col-xl-10 .row .col-md-12 button {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  border-radius: 10px;
+  height: 29px;
+  margin-right: 30px;
+  border: 1px solid transparent;
+}
+
+.edit-profile .row.banner-section .col-xl-10 .row .col-md-12 button.btn-primary {
+  color: #67ABA8;
+  background-color: #fff;
+  margin-bottom: 15px;
+}
+
+.edit-profile .row.banner-section .col-xl-10 .row .col-md-12 button.btn-secondary {
+  color: #fff;
+  background-color: #67ABA8;
+}
+
+.edit-profile .row.banner-section .col-xl-10 .user-information h5 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.edit-profile .row.banner-section .col-xl-10 .user-information div {
+  display: inline-block;
+}
+
+.edit-profile .row.banner-section .col-xl-10 .user-information p {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+  text-transform: uppercase;
+}
+
+.edit-profile .userProfile-sidebar {
+  padding: 60px 0 !important;
+  border-radius: 8px;
+  flex: 0 0 24%;
+  max-width: 24%;
+  min-height: 1049px;
 }
 
 .edit-profile .sidebar-nav {
@@ -3862,31 +3874,335 @@ label input:checked~span#checkBox-btn i {
 }
 
 .edit-profile .sidebar-nav li {
-  margin: 0;
+  margin-bottom: 10px;
 }
 
 .edit-profile .sidebar-nav a {
-  display: block;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+  display: flex;
   padding: 10px;
   text-decoration: none;
-  color: #333;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s;
+  -webkit-transition: background-color 0.3s, color 0.3s;
+  -moz-transition: background-color 0.3s, color 0.3s;
 }
 
 .edit-profile .sidebar-nav a:hover {
   background-color: #f0f0f0;
-  color: #000;
+  color: #3775A1;
 }
 
 .edit-profile .sidebar-nav li.active a {
   color: #3775A1;
 }
 
+.edit-profile .sidebar-nav a img.editProfile-icon {
+  width: 27px;
+  height: 25px;
+  margin-right: 40px;
+  transition: filter 0.3s;
+  -webkit-transition: filter 0.3s;
+  -moz-transition: filter 0.3s;
+}
+
+.edit-profile .sidebar-nav a:hover img.editProfile-icon,
+.edit-profile .sidebar-nav li.active a img.editProfile-icon {
+  filter: brightness(0) saturate(100%) invert(38%) sepia(54%) saturate(655%) hue-rotate(171deg) brightness(89%) contrast(94%);
+}
+
+.edit-profile .social-icons a {
+  margin-right: 8px;
+}
+
+@media (max-width: 1366px) {
+  .edit-profile .userProfile-sidebar {
+    min-height: 900px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .edit-profile .row.banner-section .col-xl-2,
+  .edit-profile .row.banner-section .col-xl-10 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .edit-profile .userProfile-sidebar {
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-height: 800px;
+  }
+
+  .edit-profile .row.banner-section .col-xl-2 img {
+    max-width: 100%;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 h2 {
+    font-size: 1.5rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 .star-rating {
+    font-size: 1.5rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 span.rating {
+    font-size: 0.8rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 button {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .user-information h5 {
+    font-size: 1.1rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .user-information p {
+    font-size: 0.8rem;
+  }
+
+  .edit-profile .sidebar-nav a {
+    font-size: 0.9rem;
+  }
+
+  .edit-profile .sidebar-nav a img.editProfile-icon {
+    width: 24px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 992px) {
+  .edit-profile .row.banner-section .col-xl-2,
+  .edit-profile .row.banner-section .col-xl-10 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .edit-profile .userProfile-sidebar {
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .edit-profile .row.banner-section .col-xl-2 img {
+    max-width: 100%;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 h2 {
+    font-size: 1.5rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 .star-rating {
+    font-size: 1.5rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 span.rating {
+    font-size: 0.8rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 button {
+    width: 50%;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .user-information h5 {
+    font-size: 1.1rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .user-information p {
+    font-size: 0.8rem;
+  }
+
+  .edit-profile .userProfile-sidebar {
+    padding: 30px 0;
+    min-height: auto;
+  }
+
+  .edit-profile .sidebar-nav a {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-profile .row.banner-section .col-xl-2,
+  .edit-profile .row.banner-section .col-xl-10 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .edit-profile .row.banner-section .col-xl-2 img {
+    max-width: 100%;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 h2 {
+    font-size: 1.5rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 .star-rating {
+    font-size: 1.5rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 span.rating {
+    font-size: 0.8rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 button {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .user-information h5 {
+    font-size: 1.1rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .user-information p {
+    font-size: 0.8rem;
+  }
+
+  .edit-profile .userProfile-sidebar {
+    padding: 30px 0;
+    min-height: auto;
+  }
+
+  .edit-profile .sidebar-nav a {
+    font-size: 0.9rem;
+  }
+
+  .edit-profile .sidebar-nav a img.editProfile-icon {
+    width: 24px;
+    height: 22px;
+  }
+
+  .edit-profile .social-icons a {
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 576px) {
+  .edit-profile .row.banner-section .col-xl-2,
+  .edit-profile .row.banner-section .col-xl-10 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .edit-profile .row.banner-section .col-xl-2 img {
+    max-width: 100%;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 h2 {
+    font-size: 1.25rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 .star-rating {
+    font-size: 1.25rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 span.rating {
+    font-size: 0.75rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 button {
+    font-size: 0.8rem;
+    height: auto;
+    width: 100%;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .user-information h5 {
+    font-size: 1rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .user-information p {
+    font-size: 0.75rem;
+  }
+
+  .edit-profile .userProfile-sidebar {
+    padding: 20px 0;
+    min-height: auto;
+  }
+
+  .edit-profile .sidebar-nav a {
+    font-size: 0.875rem;
+    padding: 5px;
+  }
+
+  .edit-profile .sidebar-nav a img.editProfile-icon {
+    width: 22px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .edit-profile .social-icons a {
+    margin-right: 3px;
+  }
+}
+
+@media (max-width: 481px) {
+  .edit-profile .row.banner-section .col-xl-2,
+  .edit-profile .row.banner-section .col-xl-10 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 h2 {
+    font-size: 1.1rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 .star-rating {
+    font-size: 1.1rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 span.rating {
+    font-size: 0.7rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .row .col-md-12 button {
+    font-size: 0.75rem;
+    height: auto;
+    width: 100%;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .user-information h5 {
+    font-size: 0.9rem;
+  }
+
+  .edit-profile .row.banner-section .col-xl-10 .user-information p {
+    font-size: 0.65rem;
+  }
+
+  .edit-profile .sidebar-nav a {
+    font-size: 0.75rem;
+    padding: 5px;
+  }
+
+  .edit-profile .sidebar-nav a img.editProfile-icon {
+    width: 20px;
+    height: 18px;
+    margin-right: 8px;
+  }
+
+  .edit-profile .social-icons a {
+    margin-right: 2px;
+  }
+}
+
+
+/* **************************
+**** Start Edit Profile ****
+**************************** */
 .edit-profile .content-section {
   display: none;
 }
 
 .edit-profile .content-section.active {
   display: block;
+  background: #fafafa;
 }
 
 .edit-profile .banner-section {
@@ -3895,6 +4211,1044 @@ label input:checked~span#checkBox-btn i {
   border-radius: 8px;
 }
 
+.edit-profile .content-section h3 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 30px;
+  text-transform: capitalize;
+  width: 100%;
+}
+
+.edit-profile .content-section .container-fluid h3 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.edit-profile .userProfile-contant {
+  flex: 0 0 75%;
+  max-width: 75%;
+  border-radius: 8px;
+}
+
+.edit-profile .userProfile-contant .container-fluid {
+  min-height: 83.3vh;
+}
+
+.edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 {
+  padding: 50px 20px;
+  text-align: center;
+  background: #F6F6F6;
+}
+
+.edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 .btn {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  background-color: #67ABA8;
+  color: #ffffff;
+  text-transform: capitalize;
+  width: 235px;
+  height: 61px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 .btn:hover,
+.edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 .btn:active,
+.edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 .btn:focus {
+  border: unset;
+  box-shadow: unset;
+}
+
+@media (max-width: 1366px) {
+  .edit-profile .userProfile-contant {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .edit-profile .content-section h3 {
+    font-size: 18px;
+  }
+
+  .edit-profile .content-section .container-fluid h3 {
+    font-size: 22px;
+  }
+
+  .edit-profile .userProfile-contant {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 {
+    padding: 40px 15px;
+  }
+
+  .edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 .btn {
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 992px) {
+  .edit-profile .content-section h3 {
+    font-size: 18px;
+  }
+
+  .edit-profile .content-section .container-fluid h3 {
+    font-size: 22px;
+  }
+
+  .edit-profile .userProfile-contant {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 {
+    padding: 30px 10px;
+  }
+
+  .edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 .btn {
+    width: 180px;
+    height: 45px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-profile .content-section h3 {
+    font-size: 16px;
+  }
+
+  .edit-profile .content-section .container-fluid h3 {
+    font-size: 20px;
+  }
+
+  .edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 {
+    padding: 25px 5px;
+  }
+
+  .edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 .btn {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .edit-profile .content-section h3 {
+    font-size: 14px;
+  }
+
+  .edit-profile .content-section .container-fluid h3 {
+    font-size: 18px;
+  }
+
+  .edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 {
+    padding: 20px 5px;
+  }
+
+  .edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 .btn {
+    height: 35px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 481px) {
+  .edit-profile .content-section h3 {
+    font-size: 12px;
+  }
+
+  .edit-profile .content-section .container-fluid h3 {
+    font-size: 16px;
+  }
+
+  .edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 {
+    padding: 15px 5px;
+  }
+
+  .edit-profile .userProfile-contant .content-section-inner .col-12.mb-3 .btn {
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+/* **************************
+**** End Edit Profile ****
+**************************** */
+
+/* **************************
+**** Start Wish List ****
+**************************** */
+.edit-profile .userProfile-contant .wishlist-card h5 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.edit-profile .userProfile-contant .wishlist-card .star-rating i.star-gold {
+  color: #E3C01C;
+}
+
+.edit-profile .userProfile-contant .wishlist-card .star-rating p.card-text {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000;
+}
+
+@media (max-width: 1366px) {
+  .edit-profile .userProfile-contant .wishlist-card h5 {
+    font-size: 11px;
+  }
+
+  .edit-profile .userProfile-contant .wishlist-card .star-rating p.card-text {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .edit-profile .userProfile-contant .wishlist-card h5 {
+    font-size: 11px;
+  }
+
+  .edit-profile .userProfile-contant .wishlist-card .star-rating p.card-text {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 992px) {
+  .edit-profile .userProfile-contant .wishlist-card h5 {
+    font-size: 10px;
+  }
+
+  .edit-profile .userProfile-contant .wishlist-card .star-rating p.card-text {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-profile .userProfile-contant .wishlist-card h5 {
+    font-size: 10px;
+  }
+
+  .edit-profile .userProfile-contant .wishlist-card .star-rating p.card-text {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .edit-profile .userProfile-contant .wishlist-card h5 {
+    font-size: 9px;
+  }
+
+  .edit-profile .userProfile-contant .wishlist-card .star-rating p.card-text {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 481px) {
+  .edit-profile .userProfile-contant .wishlist-card h5 {
+    font-size: 8px;
+  }
+
+  .edit-profile .userProfile-contant .wishlist-card .star-rating p.card-text {
+    font-size: 8px;
+  }
+}
+
+/* **************************
+**** End Wish List ****
+**************************** */
+
+/* **************************
+**** Start Selling ****
+**************************** */
+.edit-profile .userProfile-contant h4.orderHeading {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 25px;
+}
+
+.edit-profile .userProfile-contant .selling-card img {
+  width: 266px;
+  height: 316px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.edit-profile .userProfile-contant .selling-card .table td {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000;
+}
+
+@media (max-width: 1366px) {
+  .edit-profile .userProfile-contant h4.orderHeading {
+    font-size: 15px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card img {
+    width: 240px;
+    height: 290px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card .table td {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .edit-profile .userProfile-contant h4.orderHeading {
+    font-size: 15px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card img {
+    width: 230px;
+    height: 270px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card .table td {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .edit-profile .userProfile-contant h4.orderHeading {
+    font-size: 14px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card img {
+    width: 220px;
+    height: 260px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card .table td {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-profile .userProfile-contant h4.orderHeading {
+    font-size: 14px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card img {
+    width: 200px;
+    height: 240px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card .table td {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .edit-profile .userProfile-contant h4.orderHeading {
+    font-size: 13px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card img {
+    width: 180px;
+    height: 220px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card .table td {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 481px) {
+  .edit-profile .userProfile-contant h4.orderHeading {
+    font-size: 12px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card img {
+    width: 160px;
+    height: 200px;
+  }
+
+  .edit-profile .userProfile-contant .selling-card .table td {
+    font-size: 12px;
+  }
+}
+
+/* **************************
+**** End Selling ****
+**************************** */
+
+/* **************************
+**** Start Leading ****
+**************************** */
+.edit-profile .userProfile-contant .buyingTable table.table tr {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #DBDADA;
+  padding: 10px 0;
+}
+
+.edit-profile .userProfile-contant .buyingTable table.table tr td a {
+  position: relative;
+  transition: all 0.3s ease-in;
+  text-decoration: none;
+}
+
+.edit-profile .userProfile-contant .buyingTable table.table tr td a:hover {
+  text-decoration: underline;
+  text-decoration-color: #867D7D;
+}
+
+.edit-profile .userProfile-contant .buyingTable table.table tr td a::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  top: -3px;
+  width: 23px;
+  height: 23px;
+  background-image: url(../images/icons/play.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.edit-profile .userProfile-contant .buyingTable table.table tr td a:focus {
+  outline: 2px dashed #867D7D;
+}
+
+.edit-profile .userProfile-contant .details-content {
+  display: none; 
+  margin-top: 20px; 
+}
+
+.edit-profile .userProfile-contant .details-content .card-body h5.card-title {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+}
+
+.edit-profile .userProfile-contant .details-content .card-body p.card-text {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000;
+}
+
+.edit-profile .userProfile-contant .details-content .col-lg-4 button.btn {
+  background-color: #ffffff;
+  border-radius: 10px;
+  min-width: 174px;
+  height: 48px;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000;
+  border: 1px solid #000000;
+  text-transform: capitalize;
+}
+
+.edit-profile .details-content .modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-profile .details-content .modal-content {
+  background-color: #fefefe;
+  padding: 50px;
+  border: 4px solid #dddddd;
+  width: 470px;
+  margin: auto;
+  border-radius: 8px;
+}
+
+.edit-profile #lending .details-content .modal-content {
+  top: 30%;
+}
+
+.edit-profile .details-content .modal-content label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+}
+
+.edit-profile .details-content .modal-content .star-rating {
+  display: flex;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.edit-profile .details-content .modal-content .star {
+  margin-right: 5px;
+}
+
+.edit-profile .details-content .modal-content .star i {
+  color: gold;
+  border-radius: 3px;
+  padding: 5px;
+  font-size: 24px;
+}
+
+.edit-profile .details-content .modal-content .star.selected i {
+  color: gold;
+}
+
+.edit-profile .details-content .modal-content textarea {
+  height: 150px;
+  padding: 20px 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #00000066;
+}
+
+.edit-profile .details-content .modal-content .submit-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background-color: #17181A;
+  color: white;
+  width: 154px;
+  height: 47px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  line-height: 1.2;
+  border-radius: 10px;
+}
+
+/* Media Queries */
+@media (max-width: 1366px) {
+  .edit-profile .userProfile-contant .buyingTable table.table tr {
+    padding: 8px 0;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body h5.card-title {
+    font-size: 13px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body p.card-text {
+    font-size: 13px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .col-lg-4 button.btn {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .edit-profile .userProfile-contant .buyingTable table.table tr {
+    padding: 8px 0;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body h5.card-title {
+    font-size: 12px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body p.card-text {
+    font-size: 12px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .col-lg-4 button.btn {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 992px) {
+  .edit-profile .userProfile-contant .buyingTable table.table tr {
+    padding: 7px 0;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body h5.card-title {
+    font-size: 12px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body p.card-text {
+    font-size: 12px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .col-lg-4 button.btn {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-profile .userProfile-contant .buyingTable table.table tr {
+    padding: 6px 0;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body h5.card-title {
+    font-size: 11px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body p.card-text {
+    font-size: 11px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .col-lg-4 button.btn {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 576px) {
+  .edit-profile .userProfile-contant .buyingTable table.table tr {
+    padding: 5px 0;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body h5.card-title {
+    font-size: 10px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body p.card-text {
+    font-size: 10px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .col-lg-4 button.btn {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 481px) {
+  .edit-profile .userProfile-contant .buyingTable table.table tr {
+    padding: 4px 0;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body h5.card-title {
+    font-size: 9px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .card-body p.card-text {
+    font-size: 9px;
+  }
+
+  .edit-profile .userProfile-contant .details-content .col-lg-4 button.btn {
+    font-size: 9px;
+  }
+}
+
+.edit-profile .userProfile-contant .buyingTable table.table tr td a {
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+.edit-profile .details-content .modal-content {
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* **************************
+**** End Leading ****
+**************************** */
+
+/* **************************
+**** Start Edit Profile ****
+**************************** */
+.edit-profile #edit-profile .editProfile-form h4 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 25px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.edit-profile #edit-profile .editProfile-form label {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.edit-profile #edit-profile .editProfile-form input {
+  background-color: #ffffff;
+  border: 1px solid #3775A1;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #000000;
+  border-radius: 10px;
+  height: 54px;
+}
+
+.edit-profile #edit-profile .editProfile-form .custom-file-upload {
+  padding: 6px 12px;
+  cursor: pointer;
+  position: absolute;
+  top: 14px;
+  left: 9px;
+}
+
+.edit-profile #edit-profile .editProfile-form .upload-circle-outer {
+  padding: 10px;
+  background: #F6F6F6;
+  border-radius: 8px;
+}
+
+.edit-profile #edit-profile .editProfile-form .upload-circle {
+  width: 65px;
+  height: 65px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  background: #cccccc;
+}
+
+.edit-profile #edit-profile .editProfile-form .form-label-required {
+  color: red;
+}
+
+.edit-profile #edit-profile .editProfile-form input[type="number"]::-webkit-inner-spin-button,
+.edit-profile #edit-profile .editProfile-form input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.edit-profile #edit-profile .editProfile-form button {
+  background-color: #17181A;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #ffffff;
+  margin-left: 15px;
+  margin-top: 25px;
+  border-radius: 10px;
+  text-transform: capitalize;
+  width: 223px;
+  height: 42px;
+}
+
+/* Media Queries */
+@media (max-width: 1366px) {
+  .edit-profile #edit-profile .editProfile-form h4 {
+    font-size: 18px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form label,
+  .edit-profile #edit-profile .editProfile-form input,
+  .edit-profile #edit-profile .editProfile-form button {
+    font-size: 13px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form button {
+    width: 200px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .edit-profile #edit-profile .editProfile-form h4 {
+    font-size: 17px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form label,
+  .edit-profile #edit-profile .editProfile-form input,
+  .edit-profile #edit-profile .editProfile-form button {
+    font-size: 12px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form button {
+    width: 180px;
+  }
+}
+
+@media (max-width: 992px) {
+  .edit-profile #edit-profile .editProfile-form h4 {
+    font-size: 16px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form label,
+  .edit-profile #edit-profile .editProfile-form input,
+  .edit-profile #edit-profile .editProfile-form button {
+    font-size: 11px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form button {
+    width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-profile #edit-profile .editProfile-form h4 {
+    font-size: 15px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form label,
+  .edit-profile #edit-profile .editProfile-form input,
+  .edit-profile #edit-profile .editProfile-form button {
+    font-size: 10px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form button {
+    width: 140px;
+  }
+}
+
+@media (max-width: 576px) {
+  .edit-profile #edit-profile .editProfile-form h4 {
+    font-size: 14px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form label,
+  .edit-profile #edit-profile .editProfile-form input,
+  .edit-profile #edit-profile .editProfile-form button {
+    font-size: 9px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form button {
+    width: 120px;
+  }
+}
+
+@media (max-width: 481px) {
+  .edit-profile #edit-profile .editProfile-form h4 {
+    font-size: 13px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form label,
+  .edit-profile #edit-profile .editProfile-form input,
+  .edit-profile #edit-profile .editProfile-form button {
+    font-size: 8px;
+  }
+
+  .edit-profile #edit-profile .editProfile-form button {
+    width: 100px;
+  }
+}
+
+.edit-profile #edit-profile .editProfile-form input {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.edit-profile #edit-profile .editProfile-form button {
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* **************************
+**** End Edit Profile ****
+**************************** */
+
+/* **************************
+**** Start Refer a Friend ****
+**************************** */
+.edit-profile #refer-friend .referFriend h4 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.edit-profile #refer-friend .referFriend p {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #000000;
+  font-weight: 500;
+}
+
+.edit-profile #refer-friend .referFriend h6 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.edit-profile #refer-friend .referFriend .row button.btn {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 15px 20px;
+  width: 161px;
+  height: 77px;
+  border-radius: 0;
+  background-color: #57110C;
+}
+
+/* Vendor Prefixes for Cross-Browser Compatibility */
+.edit-profile #refer-friend .referFriend .row button.btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+/* Media Queries */
+@media (max-width: 1366px) {
+  .edit-profile #refer-friend .referFriend h4 {
+    font-size: 18px;
+  }
+
+  .edit-profile #refer-friend .referFriend p {
+    font-size: 11px;
+  }
+
+  .edit-profile #refer-friend .referFriend h6 {
+    font-size: 13px;
+  }
+
+  .edit-profile #refer-friend .referFriend .row button.btn {
+    font-size: 20px;
+    width: 150px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .edit-profile #refer-friend .referFriend h4 {
+    font-size: 17px;
+  }
+
+  .edit-profile #refer-friend .referFriend p {
+    font-size: 10px;
+  }
+
+  .edit-profile #refer-friend .referFriend h6 {
+    font-size: 12px;
+  }
+
+  .edit-profile #refer-friend .referFriend .row button.btn {
+    font-size: 18px;
+    width: 140px;
+    height: 65px;
+  }
+}
+
+@media (max-width: 992px) {
+  .edit-profile #refer-friend .referFriend h4 {
+    font-size: 16px;
+  }
+
+  .edit-profile #refer-friend .referFriend p {
+    font-size: 9px;
+  }
+
+  .edit-profile #refer-friend .referFriend h6 {
+    font-size: 11px;
+  }
+
+  .edit-profile #refer-friend .referFriend .row button.btn {
+    font-size: 16px;
+    width: 130px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-profile #refer-friend .referFriend h4 {
+    font-size: 15px;
+  }
+
+  .edit-profile #refer-friend .referFriend p {
+    font-size: 8px;
+  }
+
+  .edit-profile #refer-friend .referFriend h6 {
+    font-size: 10px;
+  }
+
+  .edit-profile #refer-friend .referFriend .row button.btn {
+    font-size: 15px;
+    width: 120px;
+    height: 55px;
+  }
+}
+
+@media (max-width: 576px) {
+  .edit-profile #refer-friend .referFriend h4 {
+    font-size: 14px;
+  }
+
+  .edit-profile #refer-friend .referFriend p {
+    font-size: 7px;
+  }
+
+  .edit-profile #refer-friend .referFriend h6 {
+    font-size: 9px;
+  }
+
+  .edit-profile #refer-friend .referFriend .row button.btn {
+    font-size: 14px;
+    width: 110px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 481px) {
+  .edit-profile #refer-friend .referFriend h4 {
+    font-size: 13px;
+  }
+
+  .edit-profile #refer-friend .referFriend p {
+    font-size: 6px;
+  }
+
+  .edit-profile #refer-friend .referFriend h6 {
+    font-size: 8px;
+  }
+
+  .edit-profile #refer-friend .referFriend .row button.btn {
+    font-size: 13px;
+    width: 100px;
+    height: 45px;
+  }
+}
+/* **************************
+**** End Start Refer a Friend ****
+**************************** */
 
 @media (max-width: 768px) {
   .edit-profile .sidebar-nav {
@@ -3909,3 +5263,568 @@ label input:checked~span#checkBox-btn i {
     max-width: 80px;
   }
 }
+
+/* **************************
+**** Start Sharing is Caring****
+**************************** */
+.sharing-caring .sharing-caring-banner {
+  padding: 170px 0 100px 70px;
+  background-image: url(../images/banners/sharing-banner.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  padding-bottom: 170px !important;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.sharing-caring .sharing-caring-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.97), rgba(0, 0, 0, 0));
+  z-index: 1;
+}
+
+.sharing-caring .sharing-caring-banner div.col-xl-6 {
+  position: relative;
+  z-index: 199;
+}
+
+.sharing-caring .sharing-caring-banner h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1.3;
+  color: #ffffff;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+
+.sharing-caring .sharing-caring-banner p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #ffffff;
+  max-width: 87%;
+}
+
+.sharing-caring .sharing-caring-banner .btn-row div.col-lg-4 {
+  width: fit-content;
+  max-width: fit-content;
+}
+
+.sharing-caring .sharing-caring-banner .donate-btn,
+.sharing-caring .sharing-caring-banner .aboute-btn,
+.sharing-caring .sharing-caring-aboutUs .readMore {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  border: unset;
+  border-radius: 8px;
+  transition: background-color 0.3s ease-in, transform 0.3s ease-in;
+}
+
+.sharing-caring .sharing-caring-banner .donate-btn {
+  color: #ffffff;
+  width: 158px;
+  height: 54px;
+  background-color: #3775A1;
+}
+
+.sharing-caring .sharing-caring-banner .aboute-btn {
+  color: #3C4242;
+  width: 128px;
+  height: 54px;
+  background-color: #ffffff;
+  margin-left: 20px;
+}
+
+.sharing-caring .sharing-caring-aboutUs .caring-aboutUs-img {
+  flex: 0 0 53%;
+  max-width: 53%;
+}
+
+.sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant {
+  flex: 0 0 47%;
+  max-width: 47%;
+}
+
+.sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #000000;
+  margin-bottom: 25px;
+}
+
+.sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant h4 span {
+  color: #3775A1;
+}
+
+.sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #3C4242;
+}
+
+.sharing-caring .sharing-caring-aboutUs .readMore {
+  color: #ffffff;
+  width: 140px;
+  height: 54px;
+  background-color: #3775A1;
+  padding: 17px;
+  text-transform: capitalize;
+}
+
+.sharing-caring .sharing-caring-causes h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #000000;
+  margin-bottom: 25px;
+  text-transform: capitalize;
+}
+
+.sharing-caring .sharing-caring-causes h2 span {
+  color: #3775A1;
+}
+
+.sharing-caring .sharing-caring-causes p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #3C4242;
+  margin-bottom: 30px;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row {
+  justify-content: space-evenly;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row .col-xl-4 {
+  flex: 0 0 28.633333%;
+  max-width: 28.633333%;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row .col-xl-4 .card-body {
+  background-color: #F6F6F6;
+  position: relative;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row .col-xl-4 h4.card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #3C4242;
+  margin-bottom: 20px;
+  max-width: 65%;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row .col-xl-4 p.card-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #3C4242;
+  margin-bottom: 20px;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row .col-xl-4 a.readMore-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #3C4242;
+  background-color: transparent;
+  border: 1px solid #CCCCCC;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+}
+
+@media (max-width: 1366px) {
+  .sharing-caring .sharing-caring-banner {
+    padding: 100px 20px;
+  }
+
+  .sharing-caring .sharing-caring-banner h2 {
+    font-size: 32px;
+  }
+
+  .sharing-caring .sharing-caring-banner p {
+    font-size: 12px;
+  }
+
+  .sharing-caring .sharing-caring-banner .btn-row div.col-lg-4 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-banner .donate-btn,
+  .sharing-caring .sharing-caring-banner .aboute-btn {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-img {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant h4 {
+    font-size: 30px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant p {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .readMore {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .sharing-caring .sharing-caring-causes h2 {
+    font-size: 32px;
+  }
+
+  .sharing-caring .sharing-caring-causes p {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row {
+    justify-content: center;
+  }
+
+  /* .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  } */
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 .card-body {
+    padding: 15px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 h4.card-title {
+    font-size: 18px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 p.card-text {
+    font-size: 12px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 a.readMore-btn {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sharing-caring .sharing-caring-banner {
+    padding: 80px 10px;
+  }
+
+  .sharing-caring .sharing-caring-banner h2 {
+    font-size: 28px;
+  }
+
+  .sharing-caring .sharing-caring-banner p {
+    font-size: 11px;
+  }
+
+  .sharing-caring .sharing-caring-banner .btn-row div.col-lg-4 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-banner .donate-btn,
+  .sharing-caring .sharing-caring-banner .aboute-btn {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-img {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant h4 {
+    font-size: 26px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant p {
+    font-size: 13px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .readMore {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .sharing-caring .sharing-caring-causes h2 {
+    font-size: 28px;
+  }
+
+  .sharing-caring .sharing-caring-causes p {
+    font-size: 13px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row {
+    justify-content: center;
+  }
+
+  /* .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+  } */
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 .card-body {
+    padding: 10px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 h4.card-title {
+    font-size: 16px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 p.card-text {
+    font-size: 11px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 a.readMore-btn {
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 992px) {
+  .sharing-caring .sharing-caring-banner {
+    padding: 70px 5px;
+  }
+
+  .sharing-caring .sharing-caring-banner h2 {
+    font-size: 24px;
+  }
+
+  .sharing-caring .sharing-caring-banner p {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-banner .btn-row div.col-lg-4 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-banner .donate-btn,
+  .sharing-caring .sharing-caring-banner .aboute-btn {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-img {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant h4 {
+    font-size: 22px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant p {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .readMore {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .sharing-caring .sharing-caring-causes h2 {
+    font-size: 24px;
+  }
+
+  .sharing-caring .sharing-caring-causes p {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row {
+    justify-content: center;
+  }
+
+  /* .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+  } */
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 .card-body {
+    padding: 8px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 h4.card-title {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 p.card-text {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 a.readMore-btn {
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .sharing-caring .sharing-caring-banner {
+    padding: 60px 5px;
+  }
+
+  .sharing-caring .sharing-caring-banner div.col-xl-6{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-banner h2 {
+    font-size: 50px;
+    text-align: center;
+  }
+
+  .sharing-caring .sharing-caring-banner p {
+    font-size: 16px;
+    text-align: center;
+    max-width: 100%;
+    padding: 0 15%;
+  }
+
+  .sharing-caring .sharing-caring-banner .btn-row div.col-lg-4 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-banner .row.btn-row{
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .sharing-caring .sharing-caring-banner .donate-btn,
+  .sharing-caring .sharing-caring-banner .aboute-btn {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+
+  .sharing-caring .sharing-caring-banner .aboute-btn{
+    margin-left: 0;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-img {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant h4 {
+    font-size: 35px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant p {
+    font-size: 19px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .readMore {
+    width: 40%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .sharing-caring .sharing-caring-causes h2 {
+    font-size: 35px;
+  }
+
+  .sharing-caring .sharing-caring-causes p {
+    font-size: 19px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row {
+    justify-content: center;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 .card-body {
+    padding: 8px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 h4.card-title {
+    font-size: 19px;
+    max-width: 100%;
+  }
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 p.card-text {
+    font-size: 16px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 a.readMore-btn {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 700px){
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4{
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 700px){
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4{
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+/* **************************
+**** End Sharing is Caring****
+**************************** */
