@@ -24,8 +24,8 @@ class StaticPagesController extends Controller
         $menu = Menu::latest()->get();
         return view('frontend.how-it-work',compact('menu'));
     }
-    // public function charity(){
-    //     $menu = Menu::latest()->get();
-    //     return view('frontend.how-it-work',compact('menu'));
-    // }
+    public function sharingIsCaring(){
+        $menu = Menu::latest()->get();
+        return view('frontend.sharing-is-caring',compact('menu'));
+    }
 }

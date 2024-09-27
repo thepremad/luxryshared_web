@@ -1587,7 +1587,7 @@ label input:checked~span#checkBox-btn i {
   }
 
   #page-content.aboutUs .aboutUs-Heading h4 {
-    font-size: 17px;
+    font-size: 19px;
     margin-left: 30px;
   }
 
@@ -1607,7 +1607,7 @@ label input:checked~span#checkBox-btn i {
   }
 
   #page-content.aboutUs .aboutUs-Heading h4 {
-    font-size: 16px;
+    font-size: 19px;
     margin-left: 25px;
   }
 
@@ -1627,7 +1627,7 @@ label input:checked~span#checkBox-btn i {
   }
 
   #page-content.aboutUs .aboutUs-Heading h4 {
-    font-size: 15px;
+    font-size: 19px;
     margin-left: 20px;
   }
 
@@ -1647,7 +1647,7 @@ label input:checked~span#checkBox-btn i {
   }
 
   #page-content.aboutUs .aboutUs-Heading h4 {
-    font-size: 14px;
+    font-size: 17px;
     margin-left: 15px;
   }
 
@@ -1667,7 +1667,7 @@ label input:checked~span#checkBox-btn i {
   }
 
   #page-content.aboutUs .aboutUs-Heading h4 {
-    font-size: 13px;
+    font-size: 17px;
     margin-left: 10px;
   }
 
@@ -1707,211 +1707,166 @@ label input:checked~span#checkBox-btn i {
 }
 
 .aboutUs.faq .faq-container .row.faq-contant {
-  padding: 50px 0;
+  padding: 5px 15px;
   border: 1px solid #D9D9D9;
   width: auto;
   max-width: 100%;
   justify-content: space-between;
   align-items: baseline;
-  gap: 0px 52px;
   margin-bottom: 350px;
   display: flex;
-  /* Add for older browsers */
   flex-wrap: wrap;
-  /* Ensure responsiveness */
 }
 
 .faq-contant a {
   width: 30.3%;
   max-width: 100%;
   display: block;
-  /* Ensure it's clickable across browsers */
 }
 
-.aboutUs.faq .faq-container .row.faq-contant .faqCard {
+.faq-contant a .faqCard {
   position: relative;
-  width: 100%;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  max-width: 100%;
+  padding: 60px 0 80px;
 }
 
-.aboutUs.faq .faq-container .row.faq-contant .faqCard h4 {
+.faq-contant a:nth-child(1) .faqCard::before,
+.faq-contant a:nth-child(2) .faqCard::before,
+.faq-contant a:nth-child(4) .faqCard::before,
+.faq-contant a:nth-child(5) .faqCard::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 1px;
+  height: 130px;
+  background-color: #cccccc;
+}
+
+.faq-contant a:nth-child(1) .faqCard::after,
+.faq-contant a:nth-child(2) .faqCard::after,
+.faq-contant a:nth-child(3) .faqCard::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 223px;
+  height: 1px;
+  background-color: #cccccc;
+}
+
+.faq-contant a .faqCard h4 {
   font-family: 'Proxima Nova', sans-serif;
   font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: left;
+  font-weight: 500;
+  line-height: 1.3;
   color: #000000;
-  margin-bottom: 25px;
-  position: relative;
+  margin-bottom: 20px;
 }
 
-.aboutUs.faq .faq-container .row.faq-contant .faqCard h4.faq-headingBefore::before {
-  content: '';
-  position: absolute;
-  top: 15px;
-  right: 0;
-  height: 130px;
-  width: 1px;
-  background: #cccccc;
+.faq-contant a .faqCard p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #3C4242;
+  margin-bottom: 20px;
+  max-width: 90%;
 }
 
-.aboutUs.faq .faq-container .row.faq-contant .faqCard p {
+.faq-container.update{
+  max-width: 100% !important;
+  margin: auto !important;
+  width: 1186px !important;
+}
+
+.faq-container.update .row.faq-contant2{
+  width: 100%;
+  margin: 0 auto;
+}
+
+.faq-container.update .faq-contant2 h4.faq-question{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #3C4242;
+  margin-bottom: 20px;
+}
+
+.faq-container.update .faq-contant2 p.faq-answer{
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: -0.022em;
-  text-align: left;
+  font-weight: 500;
+  line-height: 1.8;
   color: #3C4242;
-  max-width: 70%;
-  position: relative;
+  margin-bottom: 30px;
 }
 
-.aboutUs.faq .faq-container .row.faq-contant .faqCard p.faq-txtBefore::before {
-  content: '';
-  position: absolute;
-  top: 140px;
-  left: 0px;
-  height: 1px;
-  width: 223px;
-  background: #cccccc;
+@media (max-width: 768px) {
+  .faq-container.update .faq-contant2 h4.faq-question {
+    font-size: 15px;
+  }
+
+  .faq-container.update .faq-contant2 p.faq-answer {
+    font-size: 14px;
+  }
 }
 
-@media (max-width: 1366px) and (min-width: 1024px) {
+@media (max-width: 480px) {
+  .faq-container.update .faq-contant2 h4.faq-question {
+    font-size: 15px;
+  }
+
+  .faq-container.update .faq-contant2 p.faq-answer {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
   .aboutUs.faq .faq-container {
-    width: 1000px;
-    margin-top: 80px;
+    width: 90%;
+    margin-top: 50px;
   }
 
   .aboutUs.faq .faq-container .row.faq-contant {
-    padding: 40px 0;
-    margin-bottom: 200px;
-  }
-
-  .faq-contant a {
-    width: 32%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 220px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    max-width: 75%;
-  }
-}
-
-@media (max-width: 1023px) and (min-width: 992px) {
-  .aboutUs.faq .faq-container {
-    width: 900px;
-  }
-
-  .faq-contant a {
-    width: 48%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 200px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    max-width: 80%;
-  }
-}
-
-
-@media (max-width: 991px) and (min-width: 768px) {
-  .aboutUs.faq .faq-container {
-    width: 700px;
-  }
-
-  .faq-contant a {
-    width: 48%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 180px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    max-width: 85%;
-  }
-}
-
-
-@media (max-width: 767px) and (min-width: 576px) {
-  .aboutUs.faq .faq-container {
-    width: 100%;
+    padding: 20px 0;
+    flex-direction: column;
+    margin-bottom: 50px;
   }
 
   .faq-contant a {
     width: 100%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 160px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    max-width: 90%;
-  }
-}
-
-
-@media (max-width: 575px) and (min-width: 481px) {
-  .aboutUs.faq .faq-container {
-    width: 100%;
-  }
-
-  .faq-contant a {
-    width: 100%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 140px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard h4 {
-    font-size: 12px;
     margin-bottom: 20px;
   }
 
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    max-width: 95%;
+  .faq-contant a .faqCard {
+    padding: 40px 0 60px;
+  }
+
+  .faq-contant a .faqCard h4 {
+    font-size: 12px;
+  }
+
+  .faq-contant a .faqCard p {
+    font-size: 13px;
+  }
+
+  .faq-contant a .faqCard::before,
+  .faq-contant a .faqCard::after {
+    display: none;
   }
 }
 
-@media (max-width: 480px) and (min-width: 280px) {
-  .aboutUs.faq .faq-container {
-    width: 100%;
+@media (max-width: 480px) {
+  .aboutUs.faq .aboutUs-Heading h5 {
+    font-size: 14px;
+    margin-bottom: 30px;
   }
 
-  .faq-contant a {
-    width: 100%;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard {
-    height: 120px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard h4 {
-    font-size: 11px;
-    margin-bottom: 15px;
-  }
-
-  .aboutUs.faq .faq-container .row.faq-contant .faqCard p {
-    font-size: 10px;
-    line-height: 16px;
-    max-width: 100%;
+  .faq-contant a .faqCard {
+    padding: 30px 0 50px;
   }
 }
-
-
 
 
 
@@ -5432,7 +5387,443 @@ label input:checked~span#checkBox-btn i {
   text-transform: capitalize;
 }
 
+.sharing-caring .sharing-caring-causes h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #000000;
+  margin-bottom: 25px;
+  text-transform: capitalize;
+}
 
+.sharing-caring .sharing-caring-causes h2 span {
+  color: #3775A1;
+}
+
+.sharing-caring .sharing-caring-causes p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #3C4242;
+  margin-bottom: 30px;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row {
+  justify-content: space-evenly;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row .col-xl-4 {
+  flex: 0 0 28.633333%;
+  max-width: 28.633333%;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row .col-xl-4 .card-body {
+  background-color: #F6F6F6;
+  position: relative;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row .col-xl-4 h4.card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #3C4242;
+  margin-bottom: 20px;
+  max-width: 65%;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row .col-xl-4 p.card-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #3C4242;
+  margin-bottom: 20px;
+}
+
+.sharing-caring .sharing-caring-causes .causes-row .col-xl-4 a.readMore-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #3C4242;
+  background-color: transparent;
+  border: 1px solid #CCCCCC;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+}
+
+@media (max-width: 1366px) {
+  .sharing-caring .sharing-caring-banner {
+    padding: 100px 20px;
+  }
+
+  .sharing-caring .sharing-caring-banner h2 {
+    font-size: 32px;
+  }
+
+  .sharing-caring .sharing-caring-banner p {
+    font-size: 12px;
+  }
+
+  .sharing-caring .sharing-caring-banner .btn-row div.col-lg-4 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-banner .donate-btn,
+  .sharing-caring .sharing-caring-banner .aboute-btn {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-img {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant h4 {
+    font-size: 30px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant p {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .readMore {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .sharing-caring .sharing-caring-causes h2 {
+    font-size: 32px;
+  }
+
+  .sharing-caring .sharing-caring-causes p {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row {
+    justify-content: center;
+  }
+
+  /* .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  } */
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 .card-body {
+    padding: 15px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 h4.card-title {
+    font-size: 18px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 p.card-text {
+    font-size: 12px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 a.readMore-btn {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sharing-caring .sharing-caring-banner {
+    padding: 80px 10px;
+  }
+
+  .sharing-caring .sharing-caring-banner h2 {
+    font-size: 28px;
+  }
+
+  .sharing-caring .sharing-caring-banner p {
+    font-size: 11px;
+  }
+
+  .sharing-caring .sharing-caring-banner .btn-row div.col-lg-4 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-banner .donate-btn,
+  .sharing-caring .sharing-caring-banner .aboute-btn {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-img {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant h4 {
+    font-size: 26px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant p {
+    font-size: 13px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .readMore {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .sharing-caring .sharing-caring-causes h2 {
+    font-size: 28px;
+  }
+
+  .sharing-caring .sharing-caring-causes p {
+    font-size: 13px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row {
+    justify-content: center;
+  }
+
+  /* .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+  } */
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 .card-body {
+    padding: 10px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 h4.card-title {
+    font-size: 16px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 p.card-text {
+    font-size: 11px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 a.readMore-btn {
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 992px) {
+  .sharing-caring .sharing-caring-banner {
+    padding: 70px 5px;
+  }
+
+  .sharing-caring .sharing-caring-banner h2 {
+    font-size: 24px;
+  }
+
+  .sharing-caring .sharing-caring-banner p {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-banner .btn-row div.col-lg-4 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-banner .donate-btn,
+  .sharing-caring .sharing-caring-banner .aboute-btn {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-img {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant h4 {
+    font-size: 22px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant p {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .readMore {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .sharing-caring .sharing-caring-causes h2 {
+    font-size: 24px;
+  }
+
+  .sharing-caring .sharing-caring-causes p {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row {
+    justify-content: center;
+  }
+
+  /* .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+  } */
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 .card-body {
+    padding: 8px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 h4.card-title {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 p.card-text {
+    font-size: 14px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 a.readMore-btn {
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .sharing-caring .sharing-caring-banner {
+    padding: 60px 5px;
+  }
+
+  .sharing-caring .sharing-caring-banner div.col-xl-6{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-banner h2 {
+    font-size: 50px;
+    text-align: center;
+  }
+
+  .sharing-caring .sharing-caring-banner p {
+    font-size: 16px;
+    text-align: center;
+    max-width: 100%;
+    padding: 0 15%;
+  }
+
+  .sharing-caring .sharing-caring-banner .btn-row div.col-lg-4 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sharing-caring .sharing-caring-banner .row.btn-row{
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .sharing-caring .sharing-caring-banner .donate-btn,
+  .sharing-caring .sharing-caring-banner .aboute-btn {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+
+  .sharing-caring .sharing-caring-banner .aboute-btn{
+    margin-left: 0;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-img {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant h4 {
+    font-size: 35px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .caring-aboutUs-contant p {
+    font-size: 19px;
+  }
+
+  .sharing-caring .sharing-caring-aboutUs .readMore {
+    width: 40%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .sharing-caring .sharing-caring-causes h2 {
+    font-size: 35px;
+  }
+
+  .sharing-caring .sharing-caring-causes p {
+    font-size: 19px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row {
+    justify-content: center;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 .card-body {
+    padding: 8px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 h4.card-title {
+    font-size: 19px;
+    max-width: 100%;
+  }
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 p.card-text {
+    font-size: 16px;
+  }
+
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 a.readMore-btn {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 700px){
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4{
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 700px){
+  .sharing-caring .sharing-caring-causes .causes-row .col-xl-4{
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+}
 
 /* **************************
 **** End Sharing is Caring****

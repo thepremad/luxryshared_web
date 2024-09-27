@@ -24,18 +24,15 @@ class EditProfieController extends Controller
         $itemsCount = Item::where('user_id', auth()->user()->id)->count();
         // Lending
         $date = date('d-m-Y');
-        $item = Checkout::with(['products', 'products.users', 'user', 'bookingdate'])
+        $lendingData = Checkout::with(['products', 'products.users', 'user', 'bookingdate'])
             ->where('seller_id', auth()->user()->id)
             ->whereHas('bookingdate', function ($query) use ($date) {
                 $query->where('date', '=', $date); // Ensure 'date' is the correct column in the 'bookingdate' relation
             })->get();
-        $lendingData = LendingProductApiResource::collection($item);
+            // dd($lendingData);
 
         // Renting
-        $cart = Checkout::with('products', 'products.users', 'saler')->where('user_id', auth()->user()->id)->where('checkout_status', 0)->get();
-        // dd($cart);
-        $rentingData = RentProductResource::collection($cart);
-
+        $rentingData = Checkout::with('products', 'products.users', 'saler')->where('user_id', auth()->user()->id)->where('checkout_status', 0)->get();
         // Buy
         $cart = Checkout::with('products', 'products.users', 'products.brand', 'products.color', 'products.size')->where('user_id', auth()->user()->id)->where('checkout_status', 1)->get();
         $buyData = RentProductResource::collection($cart);
@@ -65,5 +62,27 @@ class EditProfieController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+    public function saveCheckout(Request $request){
+        return redirect("checkout/$request->size/$request->id/$request->rentDays/0");
+    }
+    public function checkoutSuccess(){
+        $menu = Menu::latest()->get();
+        return view('frontend.checkout-success',compact('menu'));
+    }
+    public function withdrawlRequest($id){
+        try {
+            $check = Checkout::where('id',$id)->first();
+            $check->withdrawl_request = Checkout::$approved;
+            $check->save();
+            return redirect()->back();
+         } catch (\Throwable $th) {
+             \Log::error('Admin login error: ' . $th->getMessage());
+             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
+         }
+    }
+    public function help(){
+        $menu = Menu::latest()->get();
+        return view('frontend.help',compact('menu'));
     }
 }

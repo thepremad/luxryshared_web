@@ -89,6 +89,7 @@ Route::middleware(['website'])->group(function () {
     Route::get('/home', [HomeController::class, 'home'])->name('home');
     Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('about_us');
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
+    Route::get('/faq-details/{id}', [HomeController::class, 'faqDetails'])->name('faq_details');
     Route::get('/list-item', [ItemController::class, 'listItem'])->name('list_item');
     Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy_policy');
     Route::get('/terms-and-conditions', [HomeController::class, 'termsAndConditions'])->name('terms_and_conditions');
@@ -106,21 +107,25 @@ Route::middleware(['website'])->group(function () {
 
     Route::get('cart', [ProductDetailController::class, 'cart'])->name('cart');
     Route::post('apply-discount', [ProductDetailController::class, 'applyDiscount'])->name('apply_discount');
-    Route::get('checkout', [ProductDetailController::class, 'checkout'])->name('checkout');
+    Route::get('checkout/{size}/{id}/{rentDay}/{method}', [ProductDetailController::class, 'checkout'])->name('checkout');
     Route::get('remove-item/{id}', [ProductDetailController::class, 'removeItem'])->name('remove_item');
     Route::post('checkouts', [ProductDetailController::class, 'saveCheckout'])->name('save_checkout');
     Route::get('wishlist', [ProductDetailController::class, 'wishlist'])->name('wishlist');
     Route::get('add-to-cart/{id}', [ProductDetailController::class, 'addToCart'])->name('add_to_cart');
     Route::get('remove-wishlist/{id}', [ProductDetailController::class, 'removeWishlist'])->name('remove_wishlist');
 
-
     Route::get('disclaimer', [StaticPagesController::class, 'desclimer'])->name('desclimer');
     Route::get('not-found', [StaticPagesController::class, 'notFound'])->name('not_found');
     Route::get('legal-policy', [StaticPagesController::class, 'legalPolicy'])->name('legal_policy');
     Route::post('charity', [StaticPagesController::class, 'charity'])->name('charity');
     Route::get('how-to-lend', [StaticPagesController::class, 'howToLend'])->name('how_to_lend');
+    Route::get('sharing-is-caring', [StaticPagesController::class, 'sharingIsCaring'])->name('sharing_is_caring');
 
 
     Route::get('edit-profile', [EditProfieController::class, 'editProfile'])->name('edit_profile');
     Route::post('update-profile', [EditProfieController::class, 'editWebProfile'])->name('edit_web_profile');
+    Route::post('checkout', [EditProfieController::class, 'saveCheckout'])->name('checkout_details');
+    Route::get('checkout-success', [EditProfieController::class, 'checkoutSuccess'])->name('checkout_success');
+    Route::get('withdrawl-request/{id}', [EditProfieController::class, 'withdrawlRequest'])->name('withdrawl_request');
+    Route::get('help', [EditProfieController::class, 'help'])->name('help');
 });

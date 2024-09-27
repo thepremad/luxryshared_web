@@ -14,11 +14,14 @@
                 <form action="{{route('save_checkout')}}" method="post">
                     @csrf
                     <div class="form-row">
+                        <input type="hidden" name="item_id" value="{{$itemId}}">
+                        <input type="hidden" name="size" value="{{$size}}">
+                        <input type="hidden" name="rental_period[]" value="{{$rentDay}}">
+                        <input type="hidden" name="checkout_status" value="{{$method}}">
                         <div class="form-group col-md-6">
                             <label for="firstName">First Name*</label>
                             <input type="text" name="first_name" class="form-control" id="firstName" placeholder="First Name">
                             <span class="text text-danger" id="wakoo">{{ $errors->first('first_name') }}</span>
-
                         </div>
                         <div class="form-group col-md-6">
                             <label for="lastName">Last Name*</label>
@@ -37,7 +40,6 @@
                         <div class="form-group col-md-6">
                             <label for="company">Company Name</label>
                             <input type="text" class="form-control" id="company" placeholder="Company (optional)">
-
                         </div>
                     </div>
                     <div class="form-row">
@@ -57,7 +59,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="city">City*</label>
-                            <input type="text" name="city" class="form-control" id="city" placeholder="Town / City">
+                            <input type="number" name="city" class="form-control" id="city" placeholder="Town / City">
                             <span class="text text-danger" id="wakoo">{{ $errors->first('city') }}</span>
 
                         </div>
@@ -71,8 +73,8 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="postalCode">Postal Code*</label>
-                            <input type="number" class="form-control" id="postalCode" placeholder="Postal Code">
-                            <span class="text text-danger" id="wakoo">{{ $errors->first('email') }}</span>
+                            <input type="number" class="form-control" name="postal_code" id="postalCode" placeholder="Postal Code">
+                            <span class="text text-danger" id="wakoo">{{ $errors->first('postal_code') }}</span>
 
                         </div>
                     </div>

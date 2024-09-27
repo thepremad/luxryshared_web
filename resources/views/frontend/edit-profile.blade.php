@@ -188,11 +188,11 @@
                                       
                                         <tr>
                                             <td class="border-0 px-3">
-                                                <img src="{{asset('uploads/item/'.$val->mainImag)}}" alt="">
+                                                <img width="70px" src="{{asset('uploads/item/'.$val->products->mainImag)}}" alt="">
                                             </td>
-                                            <td class="border-0 px-3 font-weight-bold">{{$val->productName ?? ''}}</td>
-                                            <td class="border-0 px-3 font-weight-bold">{{$val->rentorName ?? ''}}</td>
-                                            <td class="border-0 px-3 font-weight-bold">{{$val->paymentDetails ?? ''}}</td>
+                                            <td class="border-0 px-3 font-weight-bold">{{$val->products->item_title ?? ''}}</td>
+                                            <td class="border-0 px-3 font-weight-bold">{{$val->users->first_name ?? ''}}</td>
+                                            <td class="border-0 px-3 font-weight-bold">{{$val->products->rrp_price ?? ''}}</td>
                                             <td class="border-0 px-3">
                                                 <a href="#" class="details-toggle">Details</a>
                                             </td>
@@ -204,7 +204,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Lender Name</h5>
-                                                                <p class="card-text">{{$val->rentorName ?? ''}}</p>
+                                                                <p class="card-text">{{$val->products->users->first_name ?? ''}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -212,7 +212,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Product Name</h5>
-                                                                <p class="card-text">{{$val->productName ?? ''}}</p>
+                                                                <p class="card-text">{{$val->products->item_title ?? ''}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -220,7 +220,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Payment Details</h5>
-                                                                <p class="card-text">{{$val->paymentDetails ?? ''}} AED</p>
+                                                                <p class="card-text">{{$val->products->rrp_price ?? ''}} AED</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -228,7 +228,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Lender Mobile</h5>
-                                                                <p class="card-text">{{$val->RentorMobNumber ?? ''}}</p>
+                                                                <p class="card-text">{{$val->products->users->number ?? ''}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -236,7 +236,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Booking Date</h5>
-                                                                <p class="card-text">{{$val->bookingDate ?? ''}}</p>
+                                                                <p class="card-text">{{$val->products->booking_date ?? ''}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -280,7 +280,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Lender Email</h5>
-                                                                <p class="card-text">{{$val->rentalEmail ?? ''}}</p>
+                                                                <p class="card-text">{{$val->products->users->email ?? ''}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -349,11 +349,11 @@
                                         
                                         <tr>
                                             <td class="border-0 px-3">
-                                                <img src="{{asset('assets/images/product-images/buying.png')}}" alt="">
+                                                <img width="70px" src="{{asset('uploads/item/'.$val->products->mainImag)}}" alt="">
                                             </td>
-                                            <td class="border-0 px-3 font-weight-bold">{{$val->productName ?? ''}}</td>
-                                            <td class="border-0 px-3 font-weight-bold">{{$val->rentorName ?? ''}}</td>
-                                            <td class="border-0 px-3 font-weight-bold">{{$val->final_amount ?? ''}}</td>
+                                            <td class="border-0 px-3 font-weight-bold">{{$val->products->item_title ?? ''}}</td>
+                                            <td class="border-0 px-3 font-weight-bold">{{$val->products->users->first_name ?? ''}}</td>
+                                            <td class="border-0 px-3 font-weight-bold">{{$val->products->rrp_price ?? ''}}</td>
                                             <td class="border-0 px-3">
                                                 <a href="#" class="details-toggle">Details</a>
                                             </td>
@@ -365,7 +365,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Rental Name</h5>
-                                                                <p class="card-text">{{$val->rentorName ?? ''}}</p>
+                                                                <p class="card-text">{{$val->products->users->first_name ?? ''}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -373,7 +373,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Product Name</h5>
-                                                                <p class="card-text">{{$val->productName ?? ''}}</p>
+                                                                <p class="card-text">{{$val->products->item_title ?? ''}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -381,7 +381,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Payment Details</h5>
-                                                                <p class="card-text">{{$val->final_amount ?? ''}} AED</p>
+                                                                <p class="card-text">{{$val->products->item_title ?? ''}} AED</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -389,7 +389,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Rental Mobile</h5>
-                                                                <p class="card-text">{{$val->RentorMobNumber ?? ''}}</p>
+                                                                <p class="card-text">{{$val->products->users->number ?? ''}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -397,7 +397,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Booking Date</h5>
-                                                                <p class="card-text">{{$val->bookingDate ?? ''}}</p>
+                                                                <p class="card-text">{{$val->products->booking_date ?? ''}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -405,7 +405,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Rental Period</h5>
-                                                                <p class="card-text">{{$val->rental_period ?? ''}}</p>
+                                                                <p class="card-text">{{$val->bookingDate->pluck('date') ?? ''}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -413,7 +413,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Rental Email</h5>
-                                                                <p class="card-text">{{$val->rentalEmail ?? ''}}</p>
+                                                                <p class="card-text">{{$val->products->users->email ?? ''}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -421,7 +421,7 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Quantity of Product</h5>
-                                                                <p class="card-text">{{$val->quantity_of_product ?? ''}}</p>
+                                                                <p class="card-text">01</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -429,7 +429,9 @@
                                                         <div class="card border-0">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Status</h5>
-                                                                <p class="card-text">Pending/Paid</p>
+                                                                <p class="card-text">@if ($val->withdrawl_request == 0) Pending @else Paid
+                                                                
+                                                                @endif</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -452,8 +454,8 @@
                                                             data-target="rateItemModal">Rate Item</button>
                                                     </div>
                                                     <div class="col-lg-4">
-                                                        <button class="btn btn-primary openModal"
-                                                            data-target="withdrawalModal">Request Withdrawal</button>
+                                                        <a href="{{route('withdrawl_request',$val->id)}}"><button  class="btn btn-primary openModal"
+                                                            data-target="withdrawalModal">Request Withdrawal</button></a>
                                                     </div>
                                                 </div>
 
@@ -558,7 +560,7 @@
                            
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-4 selling-card">
                                 <div class="card border-0">
-                                    <img src="{{$val->icon}}" class="card-img-top mb-4"
+                                    <img src="{{asset('uploads/item/'.$val->products->mainImag)}}" class="card-img-top mb-4"
                                         alt="Product Image">
                                     <div class="card-body p-0">
                                         <h5 class="card-title">Product Heading</h5>
@@ -579,7 +581,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="border-0 px-0">Product Name:</td>
-                                            <td class="border-0 px-0 font-weight-bold">{{$val->productName ?? ''}}</td>
+                                            <td class="border-0 px-0 font-weight-bold">{{$val->products->item_title ?? ''}}</td>
                                         </tr>
                                         <tr>
                                             <td class="border-0 px-0">Brand:</td>
@@ -602,11 +604,11 @@
                                     <tbody>
                                         <tr>
                                             <td class="border-0 px-0 text-center">Pricing</td>
-                                            <td class="border-0 px-0 font-weight-bold">{{$val->price ?? ''}}</td>
+                                            <td class="border-0 px-0 font-weight-bold">{{$val->products->rrp_price ?? ''}}</td>
                                         </tr>
                                         <tr>
                                             <td class="border-0 px-0 text-center">Quantity</td>
-                                            <td class="border-0 px-0 font-weight-bold">{{$val->quility_of_product ?? ''}}</td>
+                                            <td class="border-0 px-0 font-weight-bold">01</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -630,7 +632,7 @@
                             
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-4 selling-card">
                                 <div class="card border-0">
-                                    <img src="{{asset('assets/images/product-images/product-1.png')}}" class="card-img-top mb-4"
+                                    <img src="{{asset('uploads/item/'.$val->products->mainImag)}}" class="card-img-top mb-4"
                                         alt="Product Image">
                                     <div class="card-body p-0">
                                         <h5 class="card-title">Product Heading</h5>

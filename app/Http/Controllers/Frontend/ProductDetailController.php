@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWebCheckoutStore;
+use App\Models\BookingDate;
 use App\Models\Cart;
 use App\Models\Checkout;
 use App\Models\Discount;
@@ -11,6 +12,8 @@ use App\Models\Item;
 use App\Models\Menu;
 use App\Models\Size;
 use App\Models\Wishlist;
+use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller
@@ -73,10 +76,10 @@ class ProductDetailController extends Controller
             'product_prices' => $allProductPrices,
         ];
     }
-    public function checkout()
+    public function checkout($size,$itemId,$rentDay,$method)
     {
         $menu = Menu::latest()->get();
-        return view('frontend.checkout', compact('menu'));
+        return view('frontend.checkout', compact('menu','size','itemId','rentDay','method'));
     }
     public function removeItem($id)
     {
@@ -86,8 +89,37 @@ class ProductDetailController extends Controller
     public function saveCheckout(StoreWebCheckoutStore $request)
     {
         try {
+            // dd($request->all());
+            DB::beginTransaction();
+            $count = count($request->rental_period);
+            $products = Item::where('id', $request->item_id)->first();
+            foreach ($request->rental_period as $value) {
+                $bookingDates = BookingDate::where('item_id', $request->item_id)->where('date', $value)->first();
+                
+                if ($bookingDates) {
+                    DB::rollBack();
+                    return response()->json(['date' => 'Item already booked on this date'], 200);
+                }
+            }
             $checkout = new Checkout();
+            $day_price = Item::where('rrp_price',$request->price)->sum('suggested_day_price');
+            if ($count <= '1') {
+                $dayPrice = ($products->rrp_price*3)/100;
+            }else{
+                $dayPrice = $day_price/$count;
+            }
+            $checkout->product_price = $dayPrice;
+            $checkout->shipping_address = $request->street_address;
+            $checkout->payment_method = 1;
+            $checkout->seller_id = $products->user_id;
+            $checkout->user_id = auth()->user()->id;
+            $checkout->booking_date = Carbon::now();
+            $checkout->fill($request->all());
+            $checkout->save();
+            DB::commit();
+            return redirect()->route('checkout_success');
         } catch (\Throwable $th) {
+            DB::rollBack();
             throw $th;
         }
     }
