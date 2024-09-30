@@ -97,12 +97,24 @@ Route::middleware(['website'])->group(function () {
     Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 
-    Route::get('product-page_1/{id}', [ProductListController::class, 'categories'])->name('product_list_categories');
-    Route::get('product-page_2/{id}', [ProductListController::class, 'ocassions'])->name('product_list_occasions');
-    Route::get('product-page_3/{id}', [ProductListController::class, 'category'])->name('product_list_category');
-    Route::get('product-page_4/{id}', [ProductListController::class, 'topBrands'])->name('product_list_topbrand');
-    Route::get('product-page_5/{id}', [ProductListController::class, 'getTheLook'])->name('product_list_getthelook');
-    Route::get('product-detail/{id}', [ProductDetailController::class, 'productDetail'])->name('product_detail');
+    // Route::get('product-page_1/{id}', [ProductListController::class, 'categories'])->name('product_list_categories');
+    // Route::get('product-page_2/{id}', [ProductListController::class, 'ocassions'])->name('product_list_occasions');
+    // Route::get('product-page_3/{id}', [ProductListController::class, 'category'])->name('product_list_category');
+    // Route::get('product-page_4/{id}', [ProductListController::class, 'topBrands'])->name('product_list_topbrand');
+    // Route::get('product-page_5/{id}', [ProductListController::class, 'getTheLook'])->name('product_list_getthelook');
+    // Route::get('product-detail/{id}', [ProductDetailController::class, 'productDetail'])->name('product_detail');
+
+    Route::get('product-page_1/{id}',[ProductListController::class,'categories'])->name('product_list_categories');
+    Route::get('product-page_2/{id}',[ProductListController::class,'ocassions'])->name('product_list_occasions');
+    Route::get('product-page_3/{id}',[ProductListController::class,'category'])->name('product_list_category');
+    Route::get('product-page_4/{id}',[ProductListController::class,'topBrands'])->name('product_list_topbrand');
+    Route::get('product-page_5/{id}',[ProductListController::class,'getTheLook'])->name('product_list_getthelook');
+    Route::get('product-color/{id}',[ProductListController::class,'color'])->name('product_list_color');
+    Route::get('product-size/{id}',[ProductListController::class,'size'])->name('product_list_size'); 
+
+    Route::get('/product-filter_1',[ProductListController::class,'index'])->name('product_list_filter');
+
+    Route::get('product-detail/{id}',[ProductDetailController::class,'productDetail'])->name('product_detail');
 
 
     Route::get('cart', [ProductDetailController::class, 'cart'])->name('cart');

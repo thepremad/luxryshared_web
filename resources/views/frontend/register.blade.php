@@ -147,6 +147,7 @@
                                                     id="idVerification" accept="image/*">
                                                 <span class="invalid-feedback">{{ $errors->first('id_image') }}</span>
                                             </div>
+                                            <div id="map" style="height:400px;width: 100%;"></div>
 
                                             <div class="form-check">
                                                 <input type="checkbox"
@@ -157,6 +158,7 @@
                                                     PRIVACY POLICY.</label>
                                                 <span class="invalid-feedback">{{ $errors->first('terms') }}</span>
                                             </div>
+                                            
 
                                             <div class="registerForm-btnSection mt-3">
                                                 <button type="submit"
@@ -496,6 +498,7 @@
             });
             return false;
         });
+  
     </script>
     <!--End For Newsletter Popup-->
 
@@ -503,7 +506,25 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY-6MKHepWFeOaSSX7u75-ZfcXfuJldNg&callback=initMap">
+    </script>
+<script>
+function initMap() {
+            var dumbo = {lat: 26.7980, lng:75.8193};
+            var mapOptions = {
+                center: dumbo,
+                zoom: 10
+            };
+            var googlemap = new google.maps.Map(document.getElementById("map"), mapOptions);
+        }
 
+        var googlemap = new google.maps.Map(document.getElementById("map"), mapOptions);
+            var marker = new google.maps.Marker({
+                position: siliconValley,
+                map: googlemap
+            });
+    </script>
 
     <!-- Register Form Validation and Fillters -->
 @endsection
