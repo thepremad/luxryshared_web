@@ -51,21 +51,21 @@
                                 </div>
                                 <div class="col-6 col-sm-6 col-md-12 col-lg-6">
                                     <h4 class="text-end">
-                                        <a href="{{route('product_list_categories',0)}}" class="text-decoration-none">View All</a>
+                                        <a href="{{route('product_list_categories',['id' => '0' ,'sub_id' => '0'])}}" class="text-decoration-none">View All</a>
                                     </h4>
                                 </div>
                             </div>
                             <h2 class="h2"></h2>
                         </div>
                         <div class="logo-bar">
-                            <a href="{{ route('product_list_categories',0)}}" class="collection-grid-item__link">
+                            <a href="{{ route('product_list_categories',['id' => '0' ,'sub_id' => '0'])}}" class="collection-grid-item__link">
                                 <div class="logo-bar__item text-center">
                                     <img src="{{ asset('assets/img/Group 18399.png')}}" alt="" title="" />
                                     <h4 class="logo-bar__heading">All</h4>
                                 </div>
                             </a>
                             @foreach ($allData['category'] as $val)
-                            <a href="{{ route('product_list_categories',$val->id)}}" class="collection-grid-item__link">
+                            <a href="{{ route('product_list_categories',['id' => 0 ,'sub_id' => $val->id])}}" class="collection-grid-item__link">
                                 <div class="logo-bar__item text-center">
                                     <img src="{{ asset('/uploads/category/'.$val->image)}}" alt="" title="" />
                                     <h4 class="logo-bar__heading">{{$val->name}}</h4>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        <a href="{{route('product_list_occasions',0)}}">View All</a>
+                        <a href="{{route('product_list_occasions',['id' => 1 ,'sub_id' => 0])}}">View All</a>
                     </div>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                     
                     <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                         <div class="collection-grid-item text-center">
-                            <a href="{{ route('product_list_occasions',$val->id)}}" class="collection-grid-item__link">
+                            <a href="{{ route('product_list_occasions',['id' => 1 ,'sub_id' => $val->id])}}" class="collection-grid-item__link">
                                 <img data-src="{{ asset('uploads/occasion/'.$val->image)}}" src="{{ asset('assets/img/Rectangle 26.png')}}"
                                 alt="Hot" class="blur-up lazyload" />
                                 <h3 class="mt-4">{{$val->name}}</h3>

@@ -1,5 +1,6 @@
 @extends('frontend.layouts.app')
 @section('content')
+
     <!--Body Content-->
     <div id="page-content">
         <!--Collection Banner-->
@@ -162,7 +163,7 @@
                                     <h4 id="filterTItle">Price</h4>
                                 </div>
                                 <form action="#" method="post" class="price-filter mt-4">
-                                    <div id="slider-range"
+                                    <div id="slider-range" 
                                         class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
                                     </div>
                                     <div class="row justify-content-between">
@@ -748,65 +749,83 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <script>
-        $(function() {
-            $("#slider-range").slider({
-                range: true,
-                min: 0,
-                max: 100000,
-                values: [0, 100000],
-                slide: function(event, ui) {
-                    $("#min-price").val(ui.values[0]);
-                    $("#max-price").val(ui.values[1]);
-                }
-            });
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
-            // Initialize input fields with slider values
-            $("#min-price").val($("#slider-range").slider("values", 0));
-            $("#max-price").val($("#slider-range").slider("values", 1));
-        });
+   
 
+<script>
+$(function() {
+    $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 100000,
+        values: [0, 100000],
+        slide: function(event, ui) {
+            $("#min-price").val(ui.values[0]);
+            $("#max-price").val(ui.values[1]);
+            search(ui.values[0], ui.values[1]); // Call search with slider values
 
-        function search() {
-
-            var subcategories = [];
-            var colors = [];
-            var sizes = [];
-            var occasions = [];
-            var brands = [];
-            var nearby ;
-            
-            // var consultation_languages = [];
-            $('.subcategory:checked').each(function() {
-                subcategories.push($(this).val());
-            });
-            $('.color-checkbox:checked').each(function() {
-                colors.push($(this).val());
-            });
-            $('.size-checkbox:checked').each(function() {
-                sizes.push($(this).val());
-            });
-            $('.occasion-checkbox:checked').each(function() {
-                occasions.push($(this).val());
-            });
-            $('.brand-checkbox:checked').each(function() {
-                brands.push($(this).val());
-            });
-            $('.nearby:checked').each(function() {
-                nearby = $(this).val();
-            });
-            $.ajax({
-                url: "{{ route('product_list_filter') }}",
-                method: 'GET',
-                data: {
-                    subcategory: subcategories, color:colors, size:sizes, occasion:occasions, brand:brands, near:nearby
-                },
-                dataType: 'html',
-                success: function(data) {
-                    $('#show-items').html(data);
-                }
-            });
         }
+    });
+
+    $("#min-price").val($("#slider-range").slider("values", 0));
+    $("#max-price").val($("#slider-range").slider("values", 1));
+});
+
+function search(minPrice = null, maxPrice = null) {
+    var subcategories = [];
+    var colors = [];
+    var sizes = [];
+    var occasions = [];
+    var brands = [];
+    var nearby;
+   
+
+    $('.subcategory:checked').each(function() {
+        subcategories.push($(this).val());
+    });
+    $('.color-checkbox:checked').each(function() {
+        colors.push($(this).val());
+    });
+    $('.size-checkbox:checked').each(function() {
+        sizes.push($(this).val());
+    });
+    $('.occasion-checkbox:checked').each(function() {
+        occasions.push($(this).val());
+    });
+    $('.brand-checkbox:checked').each(function() {
+        brands.push($(this).val());
+    });
+    $('.nearby:checked').each(function() {
+        nearby = $(this).val();
+    });
+
+    var data = {
+        subcategory: subcategories,
+        color: colors,
+        size: sizes,
+        occasion: occasions,
+        brand: brands,
+        near: nearby,
         
-    </script>
+    };
+
+    if (minPrice !== null && maxPrice !== null) {
+        data.minprice = minPrice;
+        data.maxprice = maxPrice;
+    }
+
+    $.ajax({
+        url: "{{ route('product_list_filter',['id'=>$id,'sub_id'=>$sub_id]) }}",
+        method: 'GET',
+        data: data,
+        dataType: 'html',
+        success: function(data) {
+            $('#show-items').html(data);
+        }
+    });
+}
+</script>
+
 @endsection

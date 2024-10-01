@@ -17,7 +17,7 @@ class ProductListController extends Controller
 {
 
 
-  public function index(Request $request)
+  public function index(Request $request,$id,$sub_id)
   {
 
     $scid = $request->input('subcategory');
@@ -26,6 +26,9 @@ class ProductListController extends Controller
     $oid = $request->input('occasion');
     $bid = $request->input('brand');
     $nid = $request->input('near');
+    $maxp = $request->input('maxprice');
+    $minp = $request->input('minprice');
+    
     $nid_array = [];
     // dd($nid);
     if ($nid) {
@@ -45,15 +48,15 @@ class ProductListController extends Controller
       }
     }
     
-    //     $languages = $request->input('languages');
-    //     $search = $request->input('search');
+        $languages = $request->input('languages');
+        $search = $request->input('search');
 
     $items = Item::where('status', Item::$active)
       ->where('checkout_status', '0')
       ->when($scid, function ($query) use ($scid) {
         $query->whereHas('subCategory', function ($query_2) use ($scid) {
-          $query_2->whereIn('id', $scid);
-        });
+          $query_2->whereIn('id', $scid)->where('status',1);
+        });       
       })
       ->when($cid, function ($query) use ($cid) {
         $query->whereHas('color', function ($query_2) use ($cid) {
@@ -78,33 +81,130 @@ class ProductListController extends Controller
       ->when($nid_array, function ($query) use ($nid_array) {
         $query->whereIn('user_id', $nid_array);
         })
-     
+      ->when($maxp and $minp, function ($query) use ($maxp,$minp) {
+        $query->whereBetween('rrp_price', [$minp, $maxp]);
+        })
+        ->whereHas('category',function($query_3){
+          $query_3->where('status', 1);
+        })
+        ->whereHas('brand',function($query_3){
+          $query_3->where('status', 1);
+        })
+        ->whereHas('subCategory',function($query_3){
+          $query_3->where('status', 1);
+        })
       ->latest()
       ->get();
+    // if( $id==0){
+    //   if($sub_id==0){
+    //       $categories = Category::with('subCategory', 'subCategory.item', 'subCategory.item.itemBrand')->where('status', 1)->latest()->get();
+    //       $item = [];
+    //       foreach ($categories as $val) {
+    //         foreach ($val->subCategory as $val) {
+    //           foreach ($val->item as $val) {
+    //             if ($val->itemBrand != null) {
+    //               foreach ($items as $single_item) {
+    //                 if ($single_item->id == $val->id) {
+    //                   $item[] = $single_item;
+    //                 }
+    //               }
+    //             }
+    //           }
+    //         }
+    //       }
+    //   }else{
+    //     $categories = Category::with('subCategory', 'subCategory.item', 'subCategory.item.itemBrand')->where('status', 1)->latest()->get();
+    //     $item = [];
+    //       foreach ($categories as $val) {
+    //         foreach ($val->subCategory as $val) {
+    //           if($sub_id == $val->id){
+    //           foreach ($val->item as $val) {
+    //             if ($val->itemBrand != null) {
+    //               foreach ($items as $single_item) {
+    //                 if ($single_item->id == $val->id) {
+    //                   $item[] = $single_item;
+    //                 }
+    //               }
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
 
-    $categories = Category::with('subCategory', 'subCategory.item', 'subCategory.item.itemBrand')->where('status', 1)->latest()->get();
-    $item = [];
-    foreach ($categories as $val) {
-      foreach ($val->subCategory as $val) {
-        foreach ($val->item as $val) {
-          if ($val->itemBrand != null) {
+
+    // if( $id==0){
+    //   if($sub_id==0){
+    //       $categories = Category::with('subCategory', 'subCategory.item', 'subCategory.item.itemBrand')->where('status', 1)->latest()->get();
+    //       $item = [];
+    //       foreach ($categories as $val) {
+    //         foreach ($val->subCategory as $val) {
+    //           foreach ($val->item as $val) {
+    //             if ($val->itemBrand != null) {
+    //               foreach ($items as $single_item) {
+    //                 if ($single_item->id == $val->id) {
+    //                   $item[] = $single_item;
+    //                 }
+    //               }
+    //             }
+    //           }
+    //         }
+    //       }
+    //   }else{
+    //     $categories = Category::with('subCategory', 'subCategory.item', 'subCategory.item.itemBrand')->where('status', 1)->latest()->get();
+    //     $item = [];
+    //       foreach ($categories as $val) {
+    //         foreach ($val->subCategory as $val) {
+    //           if($sub_id == $val->id){
+    //           foreach ($val->item as $val) {
+    //             if ($val->itemBrand != null) {
+    //               foreach ($items as $single_item) {
+    //                 if ($single_item->id == $val->id) {
+    //                   $item[] = $single_item;
+    //                 }
+    //               }
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+    dd($items);
+    if( $id==0){
+      if($sub_id==0){
+          $item_list = Item::where('status', 1)->latest()->get();
+          $item = [];
+            foreach ($item_list as $val){  
+              foreach ($items as $single_item) {
+                if ($single_item->id == $val->id) {
+                  $item[] = $single_item;
+                }
+              }  
+            }
+          }else{
+        $item_list = Item::where('status', 1)->latest()->get();
+        $item = [];
+          foreach ($item_list as $val){  
             foreach ($items as $single_item) {
               if ($single_item->id == $val->id) {
                 $item[] = $single_item;
               }
-            }
+            }  
           }
-        }
       }
     }
+
     // dd($item);   
     if ($request->ajax()) {
       return view('frontend.product-list-filter', compact('item'))
         ->render();
     }
+  
   }
 
-  public function categories($id)
+  public function categories($id,$sub_id)
   {
     $categories = Category::with('subCategory', 'subCategory.item', 'subCategory.item.itemBrand')->where('status', 1)->latest()->get();
 
@@ -113,7 +213,7 @@ class ProductListController extends Controller
     $color = Color::latest()->get();
     $size = Size::latest()->get();
     $menu = Menu::latest()->get();
-    if ($id == 0) {
+    if ($id == 0 && $sub_id == 0) {
       $items = Item::where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
       $item = [];
       foreach ($categories as $val) {
@@ -130,16 +230,15 @@ class ProductListController extends Controller
         }
       }
 
-      return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand'));
-    }
-    ;
+      return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
+    };
 
-    $item = Item::where('sub_category_id', $id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
-    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand'));
+    $item = Item::where('sub_category_id', $sub_id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
+    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
 
   }
 
-  public function ocassions($id)
+  public function ocassions($id,$sub_id)
   {
     $categories = Category::with('subCategory', 'subCategory.item')->where('status', 1)->latest()->get();
     $occasions = Occasion::where('status', 1)->latest()->get();
@@ -147,7 +246,7 @@ class ProductListController extends Controller
     $color = Color::latest()->get();
     $size = Size::latest()->get();
     $menu = Menu::latest()->get();
-    if ($id == 0) {
+    if ($id == 1 && $sub_id == 0) {
       $items = Item::where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
       $item = [];
       foreach ($occasions as $val) {
@@ -158,11 +257,11 @@ class ProductListController extends Controller
         }
 
       }
-      return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand'));
+      return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
     }
     ;
-    $item = Item::where('occasion_id', $id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
-    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand'));
+    $item = Item::where('occasion_id', $sub_id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
+    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
   }
 
   public function category($id)
