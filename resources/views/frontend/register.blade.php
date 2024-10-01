@@ -167,6 +167,7 @@
                                                     PRIVACY POLICY.</label>
                                                 <span class="invalid-feedback">{{ $errors->first('terms') }}</span>
                                             </div>
+                                            
 
                                             <div class="registerForm-btnSection mt-3">
                                                 <button type="submit"

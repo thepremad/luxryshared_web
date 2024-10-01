@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ResendOtpRequest;
 use App\Http\Requests\StoreLoginRequest;
 use App\Http\Requests\StoreSignupRequest;
 use App\Mail\UserVerificationMail;
@@ -17,6 +18,21 @@ class AuthController extends Controller
 {
     use FileUploadTrait;
     use ApiResponse;
+
+
+    function resendOtp(ResendOtpRequest $request){
+        try {
+            $data = [
+                'otp' => mt_rand(1000, 9999),
+            ];
+            \Mail::to($request->email)->send(new UserVerificationMail($data));
+            return response()->json(['otp' => $data['otp']], 200);
+        } catch (\Throwable $th) {
+            Log::error('api signup post : exception');
+            Log::error($th);
+            return response()->json(['error' => "Something went wrong. Please try again later."], 500);
+        }
+    }
     public function signup(StoreSignupRequest $request)
     {
         try {

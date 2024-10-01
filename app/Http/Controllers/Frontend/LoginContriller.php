@@ -33,7 +33,7 @@ class LoginContriller extends Controller
                 return redirect()->route('home');
             } else {
                 Session::flash('email-password','your Email and Password did not match');
-                return redirect('/');
+                return redirect('/login');
                 
 
             }

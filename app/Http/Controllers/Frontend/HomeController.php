@@ -33,9 +33,9 @@ class HomeController extends Controller
     {
         $categories = Category::with('products', 'products.bookingDate')->latest()->get();
         $data = HomeApiResource::collection($categories);
-        $cateegory = Category::latest()->get();
+        $cateegory = Category::where('status',1)->latest()->get();
         $categorydata = CategoryResource::collection($cateegory);
-        $occasions = Occasion::latest()->take(6)->get();
+        $occasions = Occasion::where('status',1)->latest()->take(6)->get();
         $occassionData = OccasionResource::collection($occasions);
         $item = Item::with('category', 'bookingDate')->where('status', Item::$active)->where('checkout_status', '0')->latest()->take(4)->get();
         $productJustLanded = GetProductResource::collection($item);

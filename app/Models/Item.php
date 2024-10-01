@@ -31,6 +31,9 @@ class Item extends Model
     public function color(){
        return $this->hasOne(Color::class,'id','color_id');
     }
+    public function occasion(){
+      return $this->hasOne(Occasion::class,'id','occasion_id');
+   }
     public function category(){
         return $this->hasOne(Category::class,'id','category_id');
      }
@@ -58,6 +61,11 @@ class Item extends Model
 
      public function bookingDate(){
       return $this->hasMany(BookingDate::class,'item_id');
+     }
+
+     public function itemBrand(){
+      return $this->hasOne(Brand::class,'id','brand_id')->where('status',1);
+
      }
    //   public function bookingDatee(){
    //    return $this->hasMany(BookingDate::class,'item_id');
