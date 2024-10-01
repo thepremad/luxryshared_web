@@ -171,7 +171,7 @@ class ProductListController extends Controller
     //     }
     //   }
     // }
-    dd($items);
+    
     if( $id==0){
       if($sub_id==0){
           $item_list = Item::where('status', 1)->latest()->get();

@@ -155,7 +155,7 @@
                                                 class="money">$748.00</span></span>
                                     </div>
                                     <div class="buttonSet text-center">
-                                        <a href="#" class="btn btn-secondary btn--small">View
+                                        <a href="{{route('cart')}}" class="btn btn-secondary btn--small">View
                                             Cart</a>
                                         <a href="#" class="btn btn-secondary btn--small">Checkout</a>
                                     </div>
@@ -164,10 +164,11 @@
                             <!--End Minicart Popup-->
                         </div>
                         <div class="site-header__search">
-                            <span class="search-trigger"><i class="icon anm anm-heart-l"></i></span>
+                            <span class="search-trigger"><a href="{{route('wishlist')}}"><i class="icon anm anm-heart-l"></i></a></span>
                         </div>
                         <div class="site-header__search">
-                            <span class="search-trigger"><i class="icon anm anm-user-l"></i></span>
+                            <a href="{{route('edit_profile')}}"><span class="search-trigger"><i class="icon anm anm-user-l"></i></span></a>
+                            
                         </div>
                     </div>
                 </div>

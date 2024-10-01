@@ -31,6 +31,11 @@
                     <li><a href="#">Contact Us</a></li>
                     <li><a href="{{route('faq')}}">FAQ’s</a></li>
                     <li><a href="#">Delivery & Returns</a></li>
+                    <li><a href="{{route('how_to_lend')}}">how-to-lend</a></li>
+                    <li><a href="{{route('sharing_is_caring')}}">sharing is caring</a></li>
+                    <li><a href="{{route('charity')}}">charity</a></li>
+                    <li><a href="{{route('desclimer')}}">disclaimer</a></li>
+                    <li><a href="{{route('legal_policy')}}">legal-policy</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-4 footer-column" id="footer-col4">

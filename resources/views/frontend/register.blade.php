@@ -1,6 +1,12 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+<style>
+        #map {
+            height: 200px;
+            width: 100%;
+        }
+    </style>
     <div class="register">
         <!--Body Content-->
         <div id="page-content">
@@ -147,7 +153,10 @@
                                                     id="idVerification" accept="image/*">
                                                 <span class="invalid-feedback">{{ $errors->first('id_image') }}</span>
                                             </div>
-                                            <div id="map" style="height:400px;width: 100%;"></div>
+                                            
+                                            <div id="map"></div>
+                                            <input type="hidden" name="latitude" id="lantitude">
+                                            <input type="hidden" name="longitude" id="longitude">
 
                                             <div class="form-check">
                                                 <input type="checkbox"
@@ -498,7 +507,29 @@
             });
             return false;
         });
-  
+    </script>
+    <script>
+        let map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 26.7980, lng: 75.8193 }, // Default center
+                zoom: 8,
+            });
+
+            const marker = new google.maps.Marker({
+                position: { lat: 26.7980, lng: 75.8193 }, // Default marker position
+                map: map,
+                draggable: true,
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function(event) {
+                const lat = event.latLng.lat();
+                const lng = event.latLng.lng();
+            $("#lantitude").val(lat);
+            $("#longitude").val(lng);
+
+            });
+        }
     </script>
     <!--End For Newsletter Popup-->
 
@@ -506,25 +537,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY-6MKHepWFeOaSSX7u75-ZfcXfuJldNg&callback=initMap">
-    </script>
-<script>
-function initMap() {
-            var dumbo = {lat: 26.7980, lng:75.8193};
-            var mapOptions = {
-                center: dumbo,
-                zoom: 10
-            };
-            var googlemap = new google.maps.Map(document.getElementById("map"), mapOptions);
-        }
-
-        var googlemap = new google.maps.Map(document.getElementById("map"), mapOptions);
-            var marker = new google.maps.Marker({
-                position: siliconValley,
-                map: googlemap
-            });
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhnL3m-fMoXjlJirMR5evyqqXqGD0bRqg&callback=initMap" async defer></script>
 
     <!-- Register Form Validation and Fillters -->
 @endsection
