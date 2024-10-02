@@ -17,7 +17,18 @@ class Category extends Model
     static $in_active = 0;
     
     public function products(){
-        return $this->hasMany(Item::class,'category_id')->where('status',Item::$active)->where('checkout_status','0');
+        return $this->hasMany(Item::class,'category_id')
+        ->where('status',Item::$active)
+        ->where('checkout_status','0')
+        ->whereHas('category',function($query_3){
+            $query_3->where('status', 1);
+          })
+          ->whereHas('brand',function($query_3){
+            $query_3->where('status', 1);
+          })
+          ->whereHas('subCategory',function($query_3){
+            $query_3->where('status', 1);
+          });
     }
     
     public function subCategory(){

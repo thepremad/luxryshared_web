@@ -20,13 +20,19 @@
                 </div>
                 <div class="banner-buttons-row text-center d-flex justify-content-center">
                     <div class="banner-button" id="banner-btn-1">
-                        <button class="btn btn-block btn-lg" onclick="changeContent(1)">List An item</button>
+                        <a href="{{ route('list_item') }}">
+                        <button class="btn btn-block btn-lg" >List An item</button>
+                        </a>
                     </div>
                     <div class="banner-button" id="banner-btn-2">
-                        <button class="btn btn-block btn-lg" onclick="changeContent(2)">Rent</button>
+                        <a href="{{route('product_list_categories',['id' => '0' ,'sub_id' => '0'])}}">
+                        <button class="btn btn-block btn-lg">Rent</button>
+                        </a>
                     </div>
                     <div class="banner-button" id="banner-btn-3">
-                        <button class="btn btn-block btn-lg" onclick="changeContent(3)">Resale</button>
+                        <a href="{{route('product_list_categories',['id' => '5' ,'sub_id' => '0'])}}">
+                        <button class="btn btn-block btn-lg" >Resale</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -155,9 +161,7 @@
                         </div>
                     </div>
 
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        <a href="">View All</a>
-                    </div>
+                    
                 </div>
             </div>
             <div class="productSlider-style2 grid-products justify-content-start align-items-start">
@@ -167,7 +171,7 @@
                     <!-- start product image -->
                     <div class="product-image">
                         <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
+                        <a href="{{ route('product_detail',$val->id) }}" class="grid-view-item__link">
                             <!-- image -->
                             <img class="primary blur-up lazyload" data-src="{{asset('uploads/item/'.$val->mainImag)}}"
                                 src="{{asset('uploads/item/'.$val->mainImag)}}" alt="image" title="product">
@@ -182,8 +186,9 @@
                         <form class="variants add" action="#" method="post">
                             <div class="d-flex btn-background" style="">
                                 <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
+                                @if($val->buy == 'true')
                                 <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
+                                @endif
                             </div>
                         </form>
                         <div class="button-set">
@@ -200,7 +205,7 @@
                     <div class="product-details text-center">
                         <!-- product name -->
                         <div class="product-name">
-                            <a href="product-layout-1.html">{{$val->image_title}}</a>
+                            <a href="product-layout-1.html">{{$val->item_title}}</a>
                         </div>
                         <!-- End product name -->
                         <div class="star text-center">
@@ -243,7 +248,8 @@
                 </div>
             </div>
         </div>
-        @foreach ($allData['category_product'] as $val)
+       
+        @foreach ($allData['category_product'] as $val) 
         
         <div class="section hot-picks">
             <div class="container-fluid">
@@ -256,9 +262,10 @@
                     </div>
                     
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        <a href="{{ route('product_list_category',$val->id) }}">
+                    <a href="{{ route('product_list_category',['id' => 2 ,'sub_id' => $val->id]) }}">View All</a>
+                        <!-- < href="{{ route('product_list_category',['id' => 2 ,'sub_id' => 0] )}}">
                             <button>View All</button>
-                        </a>
+                        </a> -->
                     </div>
                     
                 </div>
@@ -270,7 +277,7 @@
                     <!-- start product image -->
                     <div class="product-image">
                         <!-- start product image -->
-                        <a href="product-layout-1.html" class="grid-view-item__link">
+                        <a href="{{ route('product_detail',$product->id) }}" class="grid-view-item__link">
                             <!-- image -->
                             <img class="primary blur-up lazyload" data-src="{{ asset('uploads/item/'.$product->mainImag)}}"
                                 src="{{ asset('uploads/item/'.$product->mainImag)}}" alt="image" title="product">
@@ -285,8 +292,9 @@
                         <form class="variants add" action="#" method="post">
                             <div class="d-flex btn-background" style="">
                                 <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
-
+                                @if($product->buy == 'true')
                                 <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
+                                @endif
                             </div>
                         </form>
                         <div class="button-set">
@@ -319,7 +327,7 @@
                     <div class="product-details text-center">
                         <!-- product name -->
                         <div class="product-name">
-                            <a href="product-layout-1.html">Buttons tweed blazer</a>
+                            <a href="product-layout-1.html">{{$product->item_title}}</a>
                         </div>
                         <!-- End product name -->
                         <div class="star text-center">
@@ -333,11 +341,11 @@
                         </div>
                         <!-- product price -->
                         <div class="product-price">
-                            <span class="price">AED 250</span>
+                            <span class="price">AED {{ $product->rrp_price }}</span>
                         </div>
                         <!-- End product price -->
                         <!-- product Link -->
-                        <a href="#" class="product_link">Dresses</a>
+                        <!-- <a href="#" class="product_link">{{ $product->category->name ?? '' }}</a> -->
                         <!-- End Product Link -->
                     </div>
                     <!-- End product details -->
@@ -360,7 +368,7 @@
                         </div>
                     </div>
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                        <a href="{{route('product_list_topbrand',0)}}" class="topBrands-btn">View All</a>
+                        <a href="{{route('product_list_topbrand',['id' => 3 ,'sub_id' => 0])}}" class="topBrands-btn">View All</a>
                     </div>
                 </div>
                 <div class="swiper-container top-product-slider">
@@ -372,7 +380,7 @@
                                 <img src="{{ asset('uploads/brand/'.$val->image)}}" alt="">
                             </div>
                             <div class="topProduct-name">
-                                <a href="{{ route('product_list_topbrand',$val->id) }}">
+                                <a href="{{ route('product_list_topbrand',['id' => 3 ,'sub_id' => $val->id]) }}">
                                 <h4>{{$val->name}}</h4>
                                 </a>
                             </div>
@@ -401,6 +409,7 @@
                         <p>Introduce a friend to LXRY Shared and you both will get AED 50 credit.</p>
                     </div>
                     <div class="col-lg-4 col-sm-4 col-md-4 col-4">
+                    <!-- <a href="{{ route('product_list_topbrand',['id' => 4 ,'sub_id' => 0]) }}"> -->
                         <a href="#" class="refer-btn">Refer Now</a>
                     </div>
                 </div>
