@@ -184,7 +184,7 @@ class ProductListController extends Controller
               }  
             }
           }else{
-        $item_list = Item::where('status', 1)->latest()->get();
+        $item_list = Item::where('status', 1)->where('sub_category_id',$sub_id)->latest()->get();
         $item = [];
           foreach ($item_list as $val){  
             foreach ($items as $single_item) {
@@ -196,6 +196,86 @@ class ProductListController extends Controller
       }
     }
 
+
+    if($id == 1){
+      if($sub_id == 0){
+        $item_list = Item::where('status', 1)->latest()->get();
+          $item = [];
+            foreach ($item_list as $val){  
+              foreach ($items as $single_item) {
+                if ($single_item->id == $val->id) {
+                  $item[] = $single_item;
+                }
+              }  
+            }
+          }else{
+            $item_list = Item::where('status', 1)->where('occasion_id',$sub_id)->latest()->get();
+            $item = [];
+          foreach ($item_list as $val){  
+            foreach ($items as $single_item) {
+              if ($single_item->id == $val->id) {
+                $item[] = $single_item;
+              }
+            }  
+          }
+          }
+   // return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
+    }
+
+    if($id == 2){
+      $item_list = Item::where('status', 1)->where('category_id',$sub_id)->latest()->get();
+      $item = [];
+    foreach ($item_list as $val){  
+      foreach ($items as $single_item) {
+        if ($single_item->id == $val->id) {
+          $item[] = $single_item;
+        }
+      }  
+    }
+//return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
+}
+
+if($id == 3){
+  if($sub_id == 0){
+    $item_list = Item::where('status', 1)->latest()->get();
+      $item = [];
+        foreach ($item_list as $val){  
+          foreach ($items as $single_item) {
+            if ($single_item->id == $val->id) {
+              $item[] = $single_item;
+            }
+          }  
+        }
+      }else{
+        $item_list = Item::where('status', 1)->where('brand_id',$sub_id)->latest()->get();
+        $item = [];
+      foreach ($item_list as $val){  
+        foreach ($items as $single_item) {
+          if ($single_item->id == $val->id) {
+            $item[] = $single_item;
+          }
+        }  
+      }
+      }
+//return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
+    }
+
+
+    if($id == 5){
+      if($sub_id == 0){
+        $item_list = Item::where('status', 1)->where('buy','true')->latest()->get();
+          $item = [];
+            foreach ($item_list as $val){  
+              foreach ($items as $single_item) {
+                if ($single_item->id == $val->id) {
+                  $item[] = $single_item;
+                }
+              }  
+            }
+          }
+          
+   // return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
+    }
     // dd($item);   
     if ($request->ajax()) {
       return view('frontend.product-list-filter', compact('item'))
@@ -213,159 +293,275 @@ class ProductListController extends Controller
     $color = Color::latest()->get();
     $size = Size::latest()->get();
     $menu = Menu::latest()->get();
-    if ($id == 0 && $sub_id == 0) {
-      $items = Item::where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
-      $item = [];
-      foreach ($categories as $val) {
-        foreach ($val->subCategory as $val) {
-          foreach ($val->item as $val) {
-            if ($val->itemBrand != null) {
+    $items = Item::where('status', Item::$active)
+    ->where('checkout_status', '0')
+    ->whereHas('category',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->whereHas('brand',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->whereHas('subCategory',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->latest()
+    ->get();
+    
+    if($id == 0){
+      if($sub_id == 0){
+        $item_list = Item::where('status', 1)->latest()->get();
+          $item = [];
+            foreach ($item_list as $val){  
               foreach ($items as $single_item) {
                 if ($single_item->id == $val->id) {
                   $item[] = $single_item;
                 }
+              }  
+            }
+          }else{
+            $item_list = Item::where('status', 1)->where('sub_category_id',$sub_id)->latest()->get();
+            $item = [];
+          foreach ($item_list as $val){  
+            foreach ($items as $single_item) {
+              if ($single_item->id == $val->id) {
+                $item[] = $single_item;
               }
+            }  
+          }
+          }
+          
+    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
+    }
+
+    if($id == 5){
+      if($sub_id == 0){
+        $item_list = Item::where('status', 1)->where('buy','true')->latest()->get();
+          $item = [];
+            foreach ($item_list as $val){  
+              foreach ($items as $single_item) {
+                if ($single_item->id == $val->id) {
+                  $item[] = $single_item;
+                }
+              }  
             }
           }
-        }
-      }
-
-      return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
-    };
-
-    $item = Item::where('sub_category_id', $sub_id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
+          
     return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
+    }
+    // $categories = Category::with('subCategory', 'subCategory.item', 'subCategory.item.itemBrand')->where('status', 1)->latest()->get();
+    // $occasions = Occasion::where('status', 1)->latest()->get();
+    // $brand = Brand::where('status', 1)->latest()->get();
+    // $color = Color::latest()->get();
+    // $size = Size::latest()->get();
+    // $menu = Menu::latest()->get();
+    // if ($id == 0 && $sub_id == 0) {
+    //   $items = Item::where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
+    //   $item = [];
+    //   foreach ($categories as $val) {
+    //     foreach ($val->subCategory as $val) {
+    //       foreach ($val->item as $val) {
+    //         if ($val->itemBrand != null) {
+    //           foreach ($items as $single_item) {
+    //             if ($single_item->id == $val->id) {
+    //               $item[] = $single_item;
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+
+    //   return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
+    // };
+
+    //$item = Item::where('sub_category_id', $sub_id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
+    //return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
 
   }
 
   public function ocassions($id,$sub_id)
   {
-    $categories = Category::with('subCategory', 'subCategory.item')->where('status', 1)->latest()->get();
+    $categories = Category::with('subCategory', 'subCategory.item', 'subCategory.item.itemBrand')->where('status', 1)->latest()->get();
+
     $occasions = Occasion::where('status', 1)->latest()->get();
     $brand = Brand::where('status', 1)->latest()->get();
     $color = Color::latest()->get();
     $size = Size::latest()->get();
     $menu = Menu::latest()->get();
-    if ($id == 1 && $sub_id == 0) {
-      $items = Item::where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
-      $item = [];
-      foreach ($occasions as $val) {
-        foreach ($items as $single_item) {
-          if ($single_item->occasion_id == $val->id) {
-            $item[] = $single_item;
+    $items = Item::where('status', Item::$active)
+    ->where('checkout_status', '0')
+    ->whereHas('category',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->whereHas('brand',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->whereHas('subCategory',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->latest()
+    ->get();
+    if($id == 1){
+      if($sub_id == 0){
+        $item_list = Item::where('status', 1)->latest()->get();
+          $item = [];
+            foreach ($item_list as $val){  
+              foreach ($items as $single_item) {
+                if ($single_item->id == $val->id) {
+                  $item[] = $single_item;
+                }
+              }  
+            }
+          }else{
+            $item_list = Item::where('status', 1)->where('occasion_id',$sub_id)->latest()->get();
+            $item = [];
+          foreach ($item_list as $val){  
+            foreach ($items as $single_item) {
+              if ($single_item->id == $val->id) {
+                $item[] = $single_item;
+              }
+            }  
           }
-        }
-
-      }
-      return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
-    }
-    ;
-    $item = Item::where('occasion_id', $sub_id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
+          }
     return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
+    }
   }
 
-  public function category($id)
+  public function category($id,$sub_id)
   {
-    $categories = Category::with('subCategory', 'subCategory.item')->where('status', 1)->latest()->get();
+    $categories = Category::with('subCategory', 'subCategory.item', 'subCategory.item.itemBrand')->where('status', 1)->latest()->get();
+
     $occasions = Occasion::where('status', 1)->latest()->get();
     $brand = Brand::where('status', 1)->latest()->get();
     $color = Color::latest()->get();
     $size = Size::latest()->get();
     $menu = Menu::latest()->get();
-    $items = Item::where('category_id', $id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
-    $item = [];
-    foreach ($categories as $val) {
-      foreach ($val->subCategory as $val) {
-        foreach ($items as $single_item) {
-          if ($single_item->sub_category_id == $val->id) {
-            $item[] = $single_item;
+    $items = Item::where('status', Item::$active)
+    ->where('checkout_status', '0')
+    ->whereHas('category',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->whereHas('brand',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->whereHas('subCategory',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->latest()
+    ->get();
+    if($id == 2){
+            $item_list = Item::where('status', 1)->where('category_id',$sub_id)->latest()->get();
+            $item = [];
+          foreach ($item_list as $val){  
+            foreach ($items as $single_item) {
+              if ($single_item->id == $val->id) {
+                $item[] = $single_item;
+              }
+            }  
           }
-
-        }
-      }
+    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
     }
-    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand'));
 
   }
 
-  public function topBrands($id)
+  public function topBrands($id,$sub_id)
   {
-    $categories = Category::with('subCategory', 'subCategory.item')->where('status', 1)->latest()->get();
+    $categories = Category::with('subCategory', 'subCategory.item', 'subCategory.item.itemBrand')->where('status', 1)->latest()->get();
+
     $occasions = Occasion::where('status', 1)->latest()->get();
     $brand = Brand::where('status', 1)->latest()->get();
     $color = Color::latest()->get();
     $size = Size::latest()->get();
     $menu = Menu::latest()->get();
-    if ($id == 0) {
-      $items = Item::where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
-      $item = [];
-      foreach ($brand as $val) {
-        foreach ($items as $single_item) {
-          if ($single_item->brand_id == $val->id) {
-            $item[] = $single_item;
+    $items = Item::where('status', Item::$active)
+    ->where('checkout_status', '0')
+    ->whereHas('category',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->whereHas('brand',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->whereHas('subCategory',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->latest()
+    ->get();
+    if($id == 3){
+      if($sub_id == 0){
+        $item_list = Item::where('status', 1)->latest()->get();
+          $item = [];
+            foreach ($item_list as $val){  
+              foreach ($items as $single_item) {
+                if ($single_item->id == $val->id) {
+                  $item[] = $single_item;
+                }
+              }  
+            }
+          }else{
+            $item_list = Item::where('status', 1)->where('brand_id',$sub_id)->latest()->get();
+            $item = [];
+          foreach ($item_list as $val){  
+            foreach ($items as $single_item) {
+              if ($single_item->id == $val->id) {
+                $item[] = $single_item;
+              }
+            }  
           }
-        }
-
-      }
-      return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand'));
+          }
+    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
     }
-    ;
-    $item = Item::where('brand_id', $id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
-    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand'));
-
   }
 
-  public function color($id)
-  {
-    $categories = Category::with('subCategory', 'subCategory.item')->where('status', 1)->latest()->get();
-    $occasions = Occasion::where('status', 1)->latest()->get();
-    $brand = Brand::where('status', 1)->latest()->get();
-    $color = Color::latest()->get();
-    $size = Size::latest()->get();
-    $menu = Menu::latest()->get();
-    $items = Item::where('color_id', $id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
-    $item = [];
+  // public function color($id)
+  // {
+  //   $categories = Category::with('subCategory', 'subCategory.item')->where('status', 1)->latest()->get();
+  //   $occasions = Occasion::where('status', 1)->latest()->get();
+  //   $brand = Brand::where('status', 1)->latest()->get();
+  //   $color = Color::latest()->get();
+  //   $size = Size::latest()->get();
+  //   $menu = Menu::latest()->get();
+  //   $items = Item::where('color_id', $id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
+  //   $item = [];
 
-    foreach ($color as $val) {
-      foreach ($items as $single_item) {
-        if ($single_item->color_id == $val->id) {
-          $item[] = $single_item;
-        }
+  //   foreach ($color as $val) {
+  //     foreach ($items as $single_item) {
+  //       if ($single_item->color_id == $val->id) {
+  //         $item[] = $single_item;
+  //       }
 
-      }
-    }
-    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand'));
+  //     }
+  //   }
+  //   return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand'));
 
-  }
+  // }
 
 
-  public function size($id)
-  {
-    $categories = Category::with('subCategory', 'subCategory.item')->where('status', 1)->latest()->get();
-    $occasions = Occasion::where('status', 1)->latest()->get();
-    $brand = Brand::where('status', 1)->latest()->get();
-    $color = Color::latest()->get();
-    $size = Size::latest()->get();
-    $menu = Menu::latest()->get();
-    $items = Item::where('size_id', $id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
-    $item = [];
-    foreach ($size as $val) {
-      foreach ($items as $single_item) {
-        if ($single_item->size_id == $val->id) {
-          $item[] = $single_item;
-        }
+  // public function size($id)
+  // {
+  //   $categories = Category::with('subCategory', 'subCategory.item')->where('status', 1)->latest()->get();
+  //   $occasions = Occasion::where('status', 1)->latest()->get();
+  //   $brand = Brand::where('status', 1)->latest()->get();
+  //   $color = Color::latest()->get();
+  //   $size = Size::latest()->get();
+  //   $menu = Menu::latest()->get();
+  //   $items = Item::where('size_id', $id)->where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
+  //   $item = [];
+  //   foreach ($size as $val) {
+  //     foreach ($items as $single_item) {
+  //       if ($single_item->size_id == $val->id) {
+  //         $item[] = $single_item;
+  //       }
 
-      }
-    }
-    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand'));
+  //     }
+  //   }
+  //   return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand'));
 
-  }
+  // }
 
-  public function getTheLook($id)
-  {
-    if ($id == 0) {
-      $data = Item::latest()->get();
-    }
-    ;
-  }
+  // public function getTheLook($id)
+  // {
+  //   if ($id == 0) {
+  //     $data = Item::latest()->get();
+  //   };
+  // }
 }

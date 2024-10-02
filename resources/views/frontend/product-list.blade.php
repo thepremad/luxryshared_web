@@ -501,7 +501,11 @@
                                         <a href="{{ route('product_detail', $val->id) }}">
                                             <img src="{{ asset('uploads/item/' . $val->mainImag) }}" alt="Product 1">
                                         </a>
+                                        @if($val->buy == 'true')
+                                        <a href="{{ route('product_detail', $val->id) }}">
                                         <button class="buy-now">Buy Now</button>
+                                        </a>
+                                        @endif
                                         <div class="icons">
                                             <span class="icon heart-icon"><i class="fas fa-heart"></i></span>
                                             <span class="icon cart-icon"><i class="fas fa-shopping-cart"></i></span>
@@ -510,7 +514,9 @@
                                     <div class="product-details">
                                         <div class="product-name">
                                             <span>{{ $val->item_title }}</span>
+                                        <a href="{{ route('product_detail', $val->id) }}">
                                             <button class="rent-now">RENT NOW</button>
+                                        </a>
                                         </div>
                                         <div class="product-rating">
                                             <i class="fas fa-star"></i>
@@ -756,24 +762,56 @@
 
 <script>
 $(function() {
+     // Clear localStorage items on page load
+     localStorage.removeItem('minPrice');
+    localStorage.removeItem('maxPrice');
+   
+
+     // Retrieve minPrice and maxPrice from localStorage if they exist
+    var minPrice = localStorage.getItem('minPrice') || 0;
+    var maxPrice = localStorage.getItem('maxPrice') || 100000;
+
+    // Initialize the slider
     $("#slider-range").slider({
         range: true,
         min: 0,
         max: 100000,
-        values: [0, 100000],
+        values: [minPrice, maxPrice],
         slide: function(event, ui) {
             $("#min-price").val(ui.values[0]);
             $("#max-price").val(ui.values[1]);
             search(ui.values[0], ui.values[1]); // Call search with slider values
-
+        },
+        change: function(event, ui) {
+            // Update localStorage on change
+            localStorage.setItem('minPrice', ui.values[0]);
+            localStorage.setItem('maxPrice', ui.values[1]);
         }
     });
 
+    // Set initial values in the input fields
     $("#min-price").val($("#slider-range").slider("values", 0));
     $("#max-price").val($("#slider-range").slider("values", 1));
 });
 
-function search(minPrice = null, maxPrice = null) {
+//     $("#slider-range").slider({
+//         range: true,
+//         min: 0,
+//         max: 100000,
+//         values: [0, 100000],
+//         slide: function(event, ui) {
+//             $("#min-price").val(ui.values[0]);
+//             $("#max-price").val(ui.values[1]);
+//             search(ui.values[0], ui.values[1]); // Call search with slider values
+
+//         }
+//     });
+
+//     $("#min-price").val($("#slider-range").slider("values", 0));
+//     $("#max-price").val($("#slider-range").slider("values", 1));
+// });
+
+function search(minPrice = localStorage.getItem('minPrice') || 0, maxPrice = localStorage.getItem('maxPrice') || 100000) {
     var subcategories = [];
     var colors = [];
     var sizes = [];
