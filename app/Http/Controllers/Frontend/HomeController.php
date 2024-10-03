@@ -90,6 +90,7 @@ class HomeController extends Controller
     public function saveItem(StoreWebItem $request)
     {
         try {
+            dd('hello');
             $item = new Item();
             $item->fill($request->all());
             if ($file = $request->file('mainImag')) {

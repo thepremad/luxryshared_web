@@ -16,7 +16,7 @@
                                 <div class="col-md-6">
                                     <label for="category">Category</label>
                                     <select name="category_id" id="moku" onchange="getSubCateogry(this)" class="form-control">
-                                    <option value=""></option>
+                                    <option value=""> select category </option>
                                         @foreach($category as $val)
                                     
                                             <option value="{{$val->id}}">{{ $val->name }}</option>
@@ -29,6 +29,7 @@
                                     <select name="sub_category_id" id="toku" class="form-control">
                                         <!-- Add options here -->
                                     </select>
+                                    <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -40,6 +41,7 @@
                                             <!-- Add options here -->
                                         @endforeach
                                     </select>
+                                    <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="item-title">Item Title</label>
@@ -56,6 +58,7 @@
                                             <option value="{{$val->id}}">{{ $val->name}}</option>
                                             <!-- Add options here -->
                                         @endforeach
+                                        <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
                                     </select>
                                 </div>
                                 <div class="col-md-6 row-half-width">
@@ -68,6 +71,7 @@
                                                 <!-- Add options here -->
                                             @endforeach
                                         </select>
+                                        <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
                                         <!-- <i class="fas fa-question-circle info-icon"></i> -->
                                         <div class="info-tooltip">Size description goes here.</div>
                                     </div>
@@ -85,6 +89,7 @@
                                                 accept="image/*">
                                         </div>
                                         <img style="width:50px" id="blah" src="#" alt="your image" />
+                                        <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
                                     </div>
                                     <script>
                                         imgInp.onchange = evt => {
@@ -94,7 +99,7 @@
                                             }
                                         }
                                     </script>
-                                </div>
+                                </div> 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="additional-images">Upload 4 More Item Images: <span>*</span></label>
@@ -102,9 +107,10 @@
                                             <div class="upload-button">
                                                 <img src="{{ asset('./assets/images/icons/cloud.png') }}" alt="">
                                             </div>
-                                            <input type="file" class="custom-file-input" id="additional-images"
+                                            <input type="file" name="images[]" class="custom-file-input" id="additional-images"
                                                 accept="image/*" multiple>
                                         </div>
+                                        <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -113,6 +119,7 @@
                                 <textarea class="form-control" name="image_description" id="description" rows="5"
                                     placeholder="Describe your item and include fitting notes eg. perfect sizing, or item comes longer in length"></textarea>
                             </div>
+                            <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
                             <div class="button-container">
                                 <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next</button>
                             </div>
@@ -640,8 +647,9 @@
 
     function getSubCateogry(data) {
         let subCateogry = {!! json_encode($subCategory) !!};
+        $('#toku').empty();
         subCateogry.forEach(item => {
-            $('#toku').empty();
+            
             if (item.category_id == data.value) {
                 var newRow = '<option value="' + item.id + '">' + item.name + '</option>';
                 $('#toku').append(newRow);

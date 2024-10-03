@@ -185,9 +185,13 @@
                         <!-- Start product button -->
                         <form class="variants add" action="#" method="post">
                             <div class="d-flex btn-background" style="">
+                                <a href="{{ route('product_detail',$val->id) }}">
                                 <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
+                                </a>
                                 @if($val->buy == 'true')
+                                <a href="{{ route('product_detail',$val->id) }}">
                                 <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
+                                </a>
                                 @endif
                             </div>
                         </form>
@@ -290,10 +294,14 @@
                         <!-- end product image -->
                         <!-- Start product button -->
                         <form class="variants add" action="#" method="post">
-                            <div class="d-flex btn-background" style="">
+                        <div class="d-flex btn-background" style="">
+                                <a href="{{ route('product_detail',$product->id) }}">
                                 <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
+                                </a>
                                 @if($product->buy == 'true')
+                                <a href="{{ route('product_detail',$product->id) }}">
                                 <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
+                                </a>
                                 @endif
                             </div>
                         </form>
@@ -426,13 +434,15 @@
                     </div>
                 </div>
                 <div class="row get-card-row justify-content-start align-items-start">
+                   
                     @foreach ($allData['get_the_look'] as $val)
-                    
+                    @if($val->products)
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                        <a href="#">
+                        <a href="{{ route('product_detail',$val->products->id) }}">
                             <img src="{{ asset('/uploads/looks/'.$val->image)}}" alt="">
                         </a>
                     </div>
+                    @endif
                     @endforeach
                     
                 </div>
