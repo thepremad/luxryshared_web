@@ -13,7 +13,7 @@ class Look extends Model
         'product_id'
     ];
     public function products(){
-        return $this->hasOne(Item::class,'id')
+        return $this->hasOne(Item::class,'id','product_id')
         ->where('status',Item::$active)
         ->where('checkout_status','0')
         ->whereHas('category',function($query_3){

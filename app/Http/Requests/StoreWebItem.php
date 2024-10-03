@@ -32,6 +32,7 @@ class StoreWebItem extends FormRequest
             'color_id' => 'required|exists:colors,id',
             'size_id' => 'required|exists:sizes,id',
             'mainImag' => 'required',
+            //'images[]' => 'required',
             'image_description' => 'required',
             'rrp_price' => 'required|numeric|min:500',
             'suggested_day_price' => 'required',
