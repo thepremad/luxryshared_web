@@ -71,8 +71,9 @@ Route::get('/optimize-clear', function () {
 
 // Route::get('/log', [AuthController::class, 'log']);
 
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/', [LoginContriller::class, 'login'])->name('login');
+Route::get('/login', [LoginContriller::class, 'login'])->name('login');
 Route::post('login', [LoginContriller::class, 'loginCheck'])->name('login');
 Route::post('register', [LoginContriller::class, 'register'])->name('register');
 Route::get('forget-password', [ForgetPasswordController::class, 'forgetPassword'])->name('forget_password');
@@ -86,7 +87,6 @@ Route::post('new-password/{id}', [ForgetPasswordController::class, 'newPassword'
 
 Route::middleware(['website'])->group(function () {
 
-    Route::get('/home', [HomeController::class, 'home'])->name('home');
     Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('about_us');
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
     Route::get('/faq-details/{id}', [HomeController::class, 'faqDetails'])->name('faq_details');
@@ -97,14 +97,27 @@ Route::middleware(['website'])->group(function () {
     Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 
-    Route::get('product-page_1/{id}', [ProductListController::class, 'categories'])->name('product_list_categories');
-    Route::get('product-page_2/{id}', [ProductListController::class, 'ocassions'])->name('product_list_occasions');
-    Route::get('product-page_3/{id}', [ProductListController::class, 'category'])->name('product_list_category');
-    Route::get('product-page_4/{id}', [ProductListController::class, 'topBrands'])->name('product_list_topbrand');
-    Route::get('product-page_5/{id}', [ProductListController::class, 'getTheLook'])->name('product_list_getthelook');
-    Route::get('product-detail/{id}', [ProductDetailController::class, 'productDetail'])->name('product_detail');
+    // Route::get('product-page_1/{id}', [ProductListController::class, 'categories'])->name('product_list_categories');
+    // Route::get('product-page_2/{id}', [ProductListController::class, 'ocassions'])->name('product_list_occasions');
+    // Route::get('product-page_3/{id}', [ProductListController::class, 'category'])->name('product_list_category');
+    // Route::get('product-page_4/{id}', [ProductListController::class, 'topBrands'])->name('product_list_topbrand');
+    // Route::get('product-page_5/{id}', [ProductListController::class, 'getTheLook'])->name('product_list_getthelook');
+    // Route::get('product-detail/{id}', [ProductDetailController::class, 'productDetail'])->name('product_detail');
 
+    Route::get('product-page_1/{id}/{sub_id}',[ProductListController::class,'categories'])->name('product_list_categories');
+    Route::get('product-page_2/{id}/{sub_id}',[ProductListController::class,'ocassions'])->name('product_list_occasions');
+    Route::get('product-page_3/{id}/{sub_id}',[ProductListController::class,'category'])->name('product_list_category');
+    Route::get('product-page_4/{id}/{sub_id}',[ProductListController::class,'topBrands'])->name('product_list_topbrand');
+    //Route::get('product-page_5/{id}/{sub_id}',[ProductListController::class,'getTheLook'])->name('product_list_getthelook');
+    
+    //Route::get('product-color/{id}',[ProductListController::class,'color'])->name('product_list_color');
+    //Route::get('product-size/{id}',[ProductListController::class,'size'])->name('product_list_size'); 
 
+    Route::get('/product-filter_1/{id}/{sub_id}',[ProductListController::class,'index'])->name('product_list_filter');
+
+    Route::get('product-detail/{id}',[ProductDetailController::class,'productDetail'])->name('product_detail');
+
+    //Route::get('list-item', [ItemController::class, 'listItem'])->name('list_item');
     Route::get('cart', [ProductDetailController::class, 'cart'])->name('cart');
     Route::post('apply-discount', [ProductDetailController::class, 'applyDiscount'])->name('apply_discount');
     Route::get('checkout/{size}/{id}/{rentDay}/{method}', [ProductDetailController::class, 'checkout'])->name('checkout');

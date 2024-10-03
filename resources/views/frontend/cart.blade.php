@@ -30,7 +30,7 @@
                             <!-- Table Body -->
                             <tbody>
                                 <!-- Product 1 -->
-                                @foreach ($cart as $val)
+                                @foreach ($cart as $val)cart
                                     <tr id="product-1">
                                         <td>
                                             <div class="d-flex">
@@ -78,7 +78,6 @@
                             placeholder="ADD REFERRAL CODE">
                         <a href="#" id="applyDiscount">Apply</a> -->
                     </div>
-                    <a href="{{route('checkout')}}" class="btn btn-success theme-btn">Proceed To Checkout</a>
                 </div>
             </div>
         </div>

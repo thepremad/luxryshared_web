@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::any('resend_otp',[AuthController::class,'resendOtp']);
+
 Route::controller(AuthController::class)->group(function () {
     Route::post('/signup', 'signup');
     Route::post('/login', 'login');
