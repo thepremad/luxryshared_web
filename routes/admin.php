@@ -49,6 +49,7 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('terms_and_condetions',TermsAndConditionsController::class);
     Route::resource('discounts',DiscountController::class);
     Route::resource('looks',LookController::class);
+    Route::resource('editor',EditorController::class);
     Route::resource('commissions',CommissionController::class);
 
     Route::controller(DiscountController::class)->group(function () {
