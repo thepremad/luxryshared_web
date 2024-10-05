@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Color;
+use App\Models\Editor;
 use App\Models\Item;
 use App\Models\Menu;
 use App\Models\Occasion;
@@ -42,6 +43,7 @@ class ProductListController extends Controller
         ->having('distance', '<', $distance)
         ->orderBy('distance')
         ->get();
+      
 
       foreach ($userData as $val) {
         $nid_array[] = $val->id;
@@ -276,6 +278,19 @@ if($id == 3){
           
    // return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
     }
+
+    if ($id == 6) {
+      $item_list = Editor::latest()->get();
+          $item = [];
+            foreach ($item_list as $val){  
+              foreach ($items as $single_item) {
+                if ($single_item->id == $val->products->id) {
+                  $item[] = $single_item;
+                }
+              }  
+            }
+    //return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
+    };
     // dd($item);   
     if ($request->ajax()) {
       return view('frontend.product-list-filter', compact('item'))
@@ -558,10 +573,39 @@ if($id == 3){
 
   // }
 
-  // public function getTheLook($id)
-  // {
-  //   if ($id == 0) {
-  //     $data = Item::latest()->get();
-  //   };
-  // }
+  public function editorPicture($id,$sub_id)
+  {
+    $categories = Category::with('subCategory', 'subCategory.item', 'subCategory.item.itemBrand')->where('status', 1)->latest()->get();
+
+    $occasions = Occasion::where('status', 1)->latest()->get();
+    $brand = Brand::where('status', 1)->latest()->get();
+    $color = Color::latest()->get();
+    $size = Size::latest()->get();
+    $menu = Menu::latest()->get();
+    $items = Item::where('status', Item::$active)
+    ->where('checkout_status', '0')
+    ->whereHas('category',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->whereHas('brand',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->whereHas('subCategory',function($query_3){
+      $query_3->where('status', 1);
+    })
+    ->latest()
+    ->get();
+    if ($id == 6) {
+      $item_list = Editor::latest()->get();
+          $item = [];
+            foreach ($item_list as $val){  
+              foreach ($items as $single_item) {
+                if ($single_item->id == $val->products->id) {
+                  $item[] = $single_item;
+                }
+              }  
+            }
+    return view('frontend.product-list', compact('item', 'menu', 'categories', 'occasions', 'color', 'size', 'brand','id','sub_id'));
+    };
+  }
 }

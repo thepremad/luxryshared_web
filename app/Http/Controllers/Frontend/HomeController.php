@@ -14,8 +14,10 @@ use App\Http\Resources\StoreBlogResourceApi;
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Editor;
 use App\Models\Faq;
 use App\Models\Item;
+use App\Models\ItemImage;
 use App\Models\Look;
 use App\Models\Menu;
 use App\Models\Occasion;
@@ -51,10 +53,12 @@ class HomeController extends Controller
           })->latest()->take(4)->get();
         $productJustLanded = GetProductResource::collection($item);
         $look = GetTheLookResource::collection(Look::with('products', 'products.bookingDate')->latest()->take(6)->get());
+        $editor = Editor::with('products', 'products.bookingDate')->latest()->take(6)->get();
+
         $brand = Brand::where('status',1)->latest()->take(6)->get();
         $privacyPolicy = Blog::latest()->take(6)->get();
         $blogData = StoreBlogResourceApi::collection($privacyPolicy);
-        $allData = ['category' => $categorydata, 'occassion' => $occassionData, "just_landed" => $productJustLanded, 'get_the_look' => $look, 'brands' => BrandResource::collection($brand), 'category_product' => $data, 'comunity' => $blogData];
+        $allData = ['category' => $categorydata, 'occassion' => $occassionData, "just_landed" => $productJustLanded, 'get_the_look' => $look, 'editor_picture'=>$editor, 'brands' => BrandResource::collection($brand), 'category_product' => $data, 'comunity' => $blogData];
         //    dd($allData);
         $menu = Menu::latest()->get();
         return view('frontend.index', compact('allData', 'menu'));
@@ -89,17 +93,37 @@ class HomeController extends Controller
     }
     public function saveItem(StoreWebItem $request)
     {
+        
         try {
-            dd('hello');
+            
             $item = new Item();
             $item->fill($request->all());
-            if ($file = $request->file('mainImag')) {
+            if($request->hasFile('mainImag')){
+                $pic = $request->mainImag->getClientOriginalName();
                 $folder = public_path('/uploads/item');
-                $item->mainImag = $this->uploadFile($file, $folder);
+                $request->file('mainImag')->move($folder,$pic);
+                $item->mainImag = $pic ;
             }
             $item->user_id = auth()->user()->id;
             $item->save();
-            return redirect()->route('home');
+            
+            
+//dd($request->file('images'));
+           
+          // $item_images->fill($request->images);
+          if($request->hasFile('images')){
+           foreach($request->file('images') as $image){
+                $item_images = new ItemImage;
+                $pic = $image->getClientOriginalName();
+                $folder = public_path('/uploads/item');
+                $image->move($folder,$pic);
+                $item_images->image = $pic;
+                $item_images->item_id = $item->id;
+                $item_images->save();
+            }
+           }
+        
+        return redirect()->route('home');
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -6,12 +6,24 @@
         <div class="listItem-section">
             <div class="row justify-content-center">
                 <div class="col-lg-9 col-md-9 col-sm-9 col-9">
-                    <form id="multi-step-form" action="{{route('save_item')}}" method="post">
+                    <form id="multi-step-form" action="{{route('save_item')}}" method="post" enctype="multipart/form-data">
                         <!-- Step 1 -->
                         @csrf
                         <div class="step-form active" id="step-1">
                             <h2 class="text-center">List an Item</h2>
                             <h4 class="text-center">ITEM DETAILS</h4>
+<!-- 
+                            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div class="alert-body">
+                                            {{$error}}
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endforeach
+            @endif -->
+
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="category">Category</label>
@@ -41,7 +53,7 @@
                                             <!-- Add options here -->
                                         @endforeach
                                     </select>
-                                    <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
+                                    <span class="text text-danger" >{{ $errors->first('brand_id') }}</span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="item-title">Item Title</label>
@@ -58,7 +70,7 @@
                                             <option value="{{$val->id}}">{{ $val->name}}</option>
                                             <!-- Add options here -->
                                         @endforeach
-                                        <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
+                                        <span class="text text-danger" >{{ $errors->first('color_id') }}</span>
                                     </select>
                                 </div>
                                 <div class="col-md-6 row-half-width">
@@ -71,7 +83,7 @@
                                                 <!-- Add options here -->
                                             @endforeach
                                         </select>
-                                        <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
+                                        <span class="text text-danger" >{{ $errors->first('size_id') }}</span>
                                         <!-- <i class="fas fa-question-circle info-icon"></i> -->
                                         <div class="info-tooltip">Size description goes here.</div>
                                     </div>
@@ -86,19 +98,19 @@
                                                 <img src="{{ asset('./assets/images/icons/cloud.png') }}" alt="">
                                             </div>
                                             <input type="file" name="mainImag" class="custom-file-input" id="imgInp"
-                                                accept="image/*">
+                                                accept="image/*" >
                                         </div>
                                         <img style="width:50px" id="blah" src="#" alt="your image" />
-                                        <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
+                                        <span class="text text-danger" >{{ $errors->first('mainImag') }}</span>
                                     </div>
-                                    <script>
+                                    <!-- <script>
                                         imgInp.onchange = evt => {
                                             const [file] = imgInp.files
                                             if (file) {
                                                 blah.src = URL.createObjectURL(file)
                                             }
                                         }
-                                    </script>
+                                    </script> -->
                                 </div> 
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -107,11 +119,19 @@
                                             <div class="upload-button">
                                                 <img src="{{ asset('./assets/images/icons/cloud.png') }}" alt="">
                                             </div>
-                                            <input type="file" name="images[]" class="custom-file-input" id="additional-images"
+                                            <input type="file" name="images[]" class="custom-file-input" id="imgInpp"
                                                 accept="image/*" multiple>
                                         </div>
-                                        <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
+                                        <span class="text text-danger" >{{ $errors->first('images[]') }}</span>
                                     </div>
+                                    <!-- <script>
+                                        imgInpp.onchange = evt => {
+                                            const [file] = imgInpp.files
+                                            if (file) {
+                                                blah.src = URL.createObjectURL(file)
+                                            }
+                                        }
+                                    </script> -->
                                 </div>
                             </div>
                             <div class="form-group">
@@ -119,7 +139,7 @@
                                 <textarea class="form-control" name="image_description" id="description" rows="5"
                                     placeholder="Describe your item and include fitting notes eg. perfect sizing, or item comes longer in length"></textarea>
                             </div>
-                            <span class="text text-danger" >{{ $errors->first('sub_category_id') }}</span>
+                            <span class="text text-danger" >{{ $errors->first('image_description') }}</span>
                             <div class="button-container">
                                 <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next</button>
                             </div>
