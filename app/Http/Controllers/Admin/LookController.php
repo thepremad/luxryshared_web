@@ -39,9 +39,17 @@ class LookController extends Controller
     public function create()
     {
         $looks = new Look();
-        $product = Item::get();
-
-        
+        $product = Item::where('status',Item::$active)
+        ->where('checkout_status','0')
+        ->whereHas('category',function($query_3){
+            $query_3->where('status', 1);
+          })
+          ->whereHas('brand',function($query_3){
+            $query_3->where('status', 1);
+          })
+          ->whereHas('subCategory',function($query_3){
+            $query_3->where('status', 1);
+          })->get();
         return view('backend.looks.create',compact('looks','product'));
     }
 
@@ -84,7 +92,19 @@ class LookController extends Controller
     public function edit($id)
     {
         $looks = Look::findOrFail($id);
-        $product = Item::get();
+        $product = Item::where('status',Item::$active)
+        ->where('checkout_status','0')
+        ->whereHas('category',function($query_3){
+            $query_3->where('status', 1);
+          })
+          ->whereHas('brand',function($query_3){
+            $query_3->where('status', 1);
+          })
+          ->whereHas('subCategory',function($query_3){
+            $query_3->where('status', 1);
+          })->get();
+
+
         return view('backend.looks.create',compact('looks','product'));
     }
 

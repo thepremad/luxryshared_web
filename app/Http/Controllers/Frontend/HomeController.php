@@ -35,10 +35,12 @@ class HomeController extends Controller
     {
         $categories = Category::with('products','products.category','products.bookingDate')->where('status',1)->latest()->get();
         $data = HomeApiResource::collection($categories);
+
         $cateegory = Category::where('status',1)->latest()->get();
         $categorydata = CategoryResource::collection($cateegory,);
         $occasions = Occasion::where('status',1)->latest()->take(6)->get();
         $occassionData = OccasionResource::collection($occasions);
+
         $item = Item::with('category', 'bookingDate')
         ->where('status', Item::$active)
         ->where('checkout_status', '0')
@@ -51,15 +53,51 @@ class HomeController extends Controller
           ->whereHas('subCategory',function($query_3){
             $query_3->where('status', 1);
           })->latest()->take(4)->get();
-        $productJustLanded = GetProductResource::collection($item);
-        $look = GetTheLookResource::collection(Look::with('products', 'products.bookingDate')->latest()->take(6)->get());
-        $editor = Editor::with('products', 'products.bookingDate')->latest()->take(6)->get();
 
+
+          $resale = Item::with('category', 'bookingDate')
+            ->where('status', Item::$active)
+            ->where('checkout_status', '0')
+            ->whereHas('category',function($query_3){
+            $query_3->where('status', 1);
+          })
+          ->whereHas('brand',function($query_3){
+            $query_3->where('status', 1);
+          })
+          ->whereHas('subCategory',function($query_3){
+            $query_3->where('status', 1);
+          })->latest()->take(4)->get();
+
+
+        //   return $resale;
+
+        $productJustLanded = GetProductResource::collection($item);
+        $resale = GetProductResource::collection($resale);
+
+        $look = GetTheLookResource::collection(Look::with('products', 'products.bookingDate')->latest()->take(6)->get());
+
+        // return $look;
         $brand = Brand::where('status',1)->latest()->take(6)->get();
         $privacyPolicy = Blog::latest()->take(6)->get();
         $blogData = StoreBlogResourceApi::collection($privacyPolicy);
-        $allData = ['category' => $categorydata, 'occassion' => $occassionData, "just_landed" => $productJustLanded, 'get_the_look' => $look, 'editor_picture'=>$editor, 'brands' => BrandResource::collection($brand), 'category_product' => $data, 'comunity' => $blogData];
-        //    dd($allData);
+
+        $editor_picture = Editor::with('products', 'products.bookingDate')->latest()->take(6)->get();
+        // return $editor_picture;
+        // $editor_picture = GetTheLookResource::collection($editor_picture);
+
+
+        $allData = [
+            'category' => $categorydata, 
+            'occassion' => $occassionData, 
+            "just_landed" => $productJustLanded,
+            'get_the_look' => $look, 
+            'brands' => BrandResource::collection($brand), 
+            'category_product' => $data, 
+            'comunity' => $blogData,
+            'resale' => $resale,
+            'editor_picture' => $editor_picture
+        ];
+        
         $menu = Menu::latest()->get();
         return view('frontend.index', compact('allData', 'menu'));
     }
