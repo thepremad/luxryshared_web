@@ -37,29 +37,36 @@
                                 <div class="tab-pane fade show active" id="login" role="tabpanel"
                                     aria-labelledby="login-tab">
                                     <div class="form-section login-section">
-                                        <form class="loginForm" action="{{ route('login') }}" method="post">
+                                        <form class="loginForm" action="{{ route('login') }}" method="post" id="loginForm" >
                                             @csrf
                                             <div class="form-group">
                                                 @if(Session::has("email-password"))
-                                                <p class="alert alert-danger" id="wakoo">{{ Session::get('email-password')}}</p>
+                                                    <p class="alert alert-danger" id="wakoo">{{ Session::get('email-password')}}</p>
                                                 @endif
                                                 
                                                 <label for="loginEmail">Your email</label>
-                                                <input type="email" required class="form-control" name="email"
-                                                    id="loginEmail" placeholder="Enter email">
-                                                <span class="invalid-feedback" id="wakoo">{{ $errors->first('email') }}</span>
-
+                                                <div class="input-group">
+                                                    <input type="email" class="form-control" name="email" id="loginEmail" placeholder="Enter email">
+                                                </div>
+                                                
+                                                
+                                                <div>
+                                                    <span class="text-danger validation-class" id="email-login_errors"></span>
+                                                </div>
                                             </div>
+                                            
                                             <div class="form-group">
                                                 <label for="loginPassword">Password</label>
                                                 <div class="input-group">
-                                                    <input type="password" required class="form-control" name="password"
-                                                        id="loginPassword" placeholder="Password">
-                                                    <span class="invalid-feedback" id="wakoo">{{ $errors->first('password') }}</span>
+                                                    <input type="password" class="form-control" name="password" id="loginPassword" placeholder="Password">
+                                                    
 
                                                     <div class="input-group-append" id="togglePassword">
                                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                                     </div>
+                                                </div>
+                                                <div>
+                                                    <span class="text-danger validation-class" id="password-login_errors"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -80,11 +87,15 @@
                                     </form>
                                 </div>
 
+                                
+
                                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                                     <div class="form-section register-section">
                                         <h3>Register With LXRY Shared</h3>
+
                                         <form class="registerForm" action="{{ route('register') }}" method="post"
-                                            enctype="multipart/form-data">
+                                            enctype="multipart/form-data" id="registerForm">
+                                            
                                             @csrf
                                             <div class="form-group">
                                                 <label for="registerEmail">Email Address*</label>
@@ -93,6 +104,8 @@
                                                     id="registerEmail" placeholder="Enter email"
                                                     value="{{ old('email') }}">
                                                 <span class="invalid-feedback">{{ $errors->first('email') }}</span>
+
+                                                <span class="text-danger validation-class" id="email-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
@@ -101,6 +114,7 @@
                                                     class="form-control @error('first_name') is-invalid @enderror"
                                                     id="firstName" placeholder="First Name" value="{{ old('first_name') }}">
                                                 <span class="invalid-feedback">{{ $errors->first('first_name') }}</span>
+                                                <span class="text-danger validation-class" id="first_name-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
@@ -110,6 +124,7 @@
                                                     id="lastName" placeholder="Last Name"
                                                     value="{{ old('last_name') }}">
                                                 <span class="invalid-feedback">{{ $errors->first('last_name') }}</span>
+                                                <span class="text-danger validation-class" id="last_name-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
@@ -118,6 +133,7 @@
                                                     class="form-control @error('password') is-invalid @enderror"
                                                     id="registerPassword" placeholder="Enter Password">
                                                 <span class="invalid-feedback">{{ $errors->first('password') }}</span>
+                                                <span class="text-danger validation-class" id="password-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
@@ -127,6 +143,8 @@
                                                     id="confirmPassword" placeholder="Enter Your Password Again">
                                                 <span
                                                     class="invalid-feedback">{{ $errors->first('password_confirmation') }}</span>
+
+                                                    <span class="text-danger validation-class" id="password_confirmation-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
@@ -136,7 +154,9 @@
                                                     id="mobileNumber" placeholder="Enter Mobile Number"
                                                     value="{{ old('number') }}">
                                                 <span class="invalid-feedback">{{ $errors->first('number') }}</span>
+                                                <span class="text-danger validation-class" id="number-register_errors"></span>
                                             </div>
+
                                             <div class="form-group">
                                                 <label for="mobileNumber">Address*</label>
                                                 <input type="text" name="address"
@@ -144,14 +164,17 @@
                                                     id="mobileNumber" placeholder="Enter Address"
                                                     value="{{ old('address') }}">
                                                 <span class="invalid-feedback">{{ $errors->first('addrrss') }}</span>
+                                                <span class="text-danger validation-class" id="address-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="idVerification">Upload Emirates ID Card or Passport*</label>
+                                                <label for="idVerificationn">Upload Emirates ID Card or Passport*</label>
                                                 <input type="file" name="id_image"
                                                     class="form-control-file @error('id_image') is-invalid @enderror"
-                                                    id="idVerification" accept="image/*">
+                                                    id="idVerificationn" accept="image/*">
+
                                                 <span class="invalid-feedback">{{ $errors->first('id_image') }}</span>
+                                                <span class="text-danger validation-class" id="id_image-register_errors"></span>
                                             </div>
                                             
                                             <div id="map"></div>
@@ -166,6 +189,7 @@
                                                     SERVICES AND
                                                     PRIVACY POLICY.</label>
                                                 <span class="invalid-feedback">{{ $errors->first('terms') }}</span>
+                                                <span class="text-danger validation-class" id="terms-register_errors"></span>
                                             </div>
                                             
 
@@ -533,12 +557,91 @@
     </script>
     <!--End For Newsletter Popup-->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhnL3m-fMoXjlJirMR5evyqqXqGD0bRqg&callback=initMap" async defer></script>
 
     <!-- Register Form Validation and Fillters -->
+
+
+    <script>
+        $(document).ready(function() {
+    
+            $('#registerForm').on('submit', function(e) {
+                e.preventDefault(); // Prevent the default form submission
+                var $form = $('#registerForm');
+                var url = $form.attr('action');
+                var formData = new FormData($form[0]);
+                $('.validation-class').html('');
+                $.ajax({
+                    // url: "{{ url('/api/users/login') }}",
+                    url: url,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $('.spinner-loader').css('display', 'block');
+                    },
+                    success: function(res) {
+                        location.reload();
+                        // window.location.href = res;
+                    },
+                    error: function(res) {
+                        if (res.status == 400 || res.status == 422) {
+                            if (res.responseJSON && res.responseJSON.errors) {
+                                var error = res.responseJSON.errors
+                                $.each(error, function(key, value) {
+                                    $("#" + key + "-register_errors").text(value[0]);
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+        });
+        
+    </script>
+
+<script>
+    $(document).ready(function() {
+
+        $('#loginForm').on('submit', function(e) {
+            e.preventDefault(); // Prevent the default form submission
+            var $form = $('#loginForm');
+            var url = $form.attr('action');
+            var formData = new FormData($form[0]);
+            $('.validation-class').html('');
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $('.spinner-loader').css('display', 'block');
+                },
+                success: function(res) {
+                    // location.reload();
+                    window.location.href = res;
+                },
+                error: function(res) {
+                    if (res.status == 400 || res.status == 422) {
+                        if (res.responseJSON && res.responseJSON.errors) {
+                            var error = res.responseJSON.errors
+                            $.each(error, function(key, value) {
+                                $("#" + key + "-login_errors").text(value[0]);
+                            });
+                        }
+                    }
+                }
+            });
+        });
+    });
+    
+</script>
 @endsection
 </div>

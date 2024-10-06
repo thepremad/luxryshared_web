@@ -1,6 +1,41 @@
 @extends('frontend.layouts.app')
 @section('content')
+<style>
+    .popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
 
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+</style>
     <!--Body Content-->
     <div id="page-content">
         <!--Collection Banner-->
@@ -453,6 +488,7 @@
                 <!-- Main Content Area -->
                 <div class="col-lg-9 col-md-12 col-sm-12 col-12 main-col p-0">
                     <!-- NEAR ME Checkbox -->
+                     @if(auth()->user())
                     <div class="outer-container d-flex justify-content-between align-items-start mb-3">
                         <div class="inner-container d-flex align-items-center">
                             <span class="label-text mr-2">NEAR ME</span>
@@ -463,7 +499,30 @@
                             </label>
                         </div>
                     </div>
+                    @else
+                    <div class="outer-container d-flex justify-content-between align-items-start mb-3">
+                        <div class="inner-container d-flex align-items-center">
+                            <span class="label-text mr-2">NEAR ME</span>
+                            <label class="switch">
+                                <input type="checkbox" class="nearby" id="nearMeCheckbox" name="nearby" value="{{ null }}"
+                                onchange="itemFilter()">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
 
+                    <!-- Login Prompt Popup -->
+                                        
+                    <div id="loginPrompt" class="popup">
+                        <div class="popup-content">
+                            <span class="close" id="closePopup">&times;</span>
+                            <h2>You have to log in</h2>
+                            <p>Please log in to continue.</p>
+                            <a href="{{ route('login') }}" class="btn btn-primary">Go to Login</a>
+                        </div>
+                    </div>
+
+                    @endif
                     <!-- Products Row -->
                     <div class="row justify-content-start" id="show-items">
                         <!-- Product Card Start -->
@@ -866,4 +925,35 @@ function search(minPrice = localStorage.getItem('minPrice') || 0, maxPrice = loc
 }
 </script>
 
+<script>
+function itemFilter() {
+    // Call the function to show the login prompt
+    showLoginPrompt();
+}
+
+function showLoginPrompt() {
+    // Show the login prompt popup
+    document.getElementById('loginPrompt').style.display = 'block';
+}
+
+// Close the popup when the user clicks on <span> (x)
+document.getElementById('closePopup').onclick = function() {
+    document.getElementById('nearMeCheckbox').checked = false;
+    document.getElementById('loginPrompt').style.display = 'none';
+    // var checkbox = document.getElementById('nearMeCheckboxInput'); // Replace with the actual ID of your checkbox
+    // if (checkbox) {
+    //     checkbox.checked = false; // Uncheck the checkbox
+    // }
+    
+
+
+}
+
+// Close the popup when clicking anywhere outside of the popup
+window.onclick = function(event) {
+    if (event.target == document.getElementById('loginPrompt')) {
+        document.getElementById('loginPrompt').style.display = 'none';
+    }
+}
+</script>
 @endsection

@@ -23,12 +23,12 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Look</h2>
+                            <h2 class="content-header-title float-start mb-0">Editor Picture</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{  route('admin.dashboard') }}">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.looks.index') }}">Looks</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.editor.index') }}">Editor Picture</a>
                                     </li>
                                     <li class="breadcrumb-item active">List
                                     </li>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="col-md-3" style="text-align: end">
-                    <a href="{{ route('admin.looks.create') }}" class=" btn btn-primary btn-gradient round">Create</a>
+                    <a href="{{ route('admin.editor.create') }}" class=" btn btn-primary btn-gradient round">Create</a>
                 </div>
             </div>
             <div class="content-body">
@@ -85,8 +85,9 @@
                                                 <td>{{$i }}</td>
                                                 <td>
                                                 <img src="{{ url('public/uploads/looks/'.$item->image)}}" alt="Toolbar svg" height="50px" width="50px" />
-                                               
+                                                   
                                                 </td>
+                                                
                                                 <td>{{$item->products->item_title ?? ''}}</td>
                                                 <td>
                                                     <div class="dropdown">
@@ -94,7 +95,7 @@
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="{{route('admin.looks.edit',$item->id)}}">
+                                                            <a class="dropdown-item" href="{{route('admin.editor.edit',$item->id)}}">
                                                                 <i data-feather="edit-2" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
@@ -143,9 +144,9 @@
   
     $(document).on('click', '.delete-record', function () {
             var associateId =  $(this).data('id');            
-            if (confirm('Are you sure you want to delete this looks ?')) {
+            if (confirm('Are you sure you want to delete this Editor Picture ?')) {
                 $.ajax({
-                    url: "{{ url('admin/looks') }}/" + associateId, // Use the url() function
+                    url: "{{ url('admin/editor') }}/" + associateId, // Use the url() function
                     type: 'DELETE',
                     data: {
                         '_token': '{{ csrf_token() }}', // You may need to pass CSRF token
@@ -154,7 +155,7 @@
                         if (res.status === 200) {
                             toastr.success(res.message);
                             window.location.href =
-                                "{{ route('admin.looks.index') }}";
+                                "{{ route('admin.editor.index') }}";
                         }
                     },
                     error: function (xhr) {
@@ -171,7 +172,7 @@
         });
         function fetch_data(query = '') {
             $.ajax({
-                url: "{{ route('admin.looks.index') }}",
+                url: "{{ route('admin.editor.index') }}",
                 method: 'GET',
                 data: { search: query },
                 dataType: 'html',

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Look extends Model
+class Editor extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -13,6 +13,7 @@ class Look extends Model
         'product_id'
     ];
     public function products(){
+
         return $this->hasOne(Item::class,'id','product_id')
         ->where('status',Item::$active)
         ->where('checkout_status','0')
@@ -24,6 +25,8 @@ class Look extends Model
           })
           ->whereHas('subCategory',function($query_3){
             $query_3->where('status', 1);
-          });
+          })
+        ;
+
     }
 }

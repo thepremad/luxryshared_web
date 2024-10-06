@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreWebRegisterRequest extends FormRequest
+class FrontendLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,8 @@ class StoreWebRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|unique:users,email',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'password' => 'required',
-            'number' => 'required|unique:users,number',
-            'address' => 'required',
-            'id_image' => 'required',
-            "password_confirmation" => 'required|same:password',
-            'terms' => 'required'
+            'email' => 'required|exists:users,email',
+            'password' => 'required'
         ];
     }
 }
