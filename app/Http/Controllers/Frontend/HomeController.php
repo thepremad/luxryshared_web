@@ -80,7 +80,11 @@ class HomeController extends Controller
         $brand = Brand::where('status',1)->latest()->take(6)->get();
         $privacyPolicy = Blog::latest()->take(6)->get();
         $blogData = StoreBlogResourceApi::collection($privacyPolicy);
-        
+
+        $editor_picture = Editor::with('products', 'products.bookingDate')->latest()->take(6)->get();
+        // return $editor_picture;
+        // $editor_picture = GetTheLookResource::collection($editor_picture);
+
 
         $allData = [
             'category' => $categorydata, 
@@ -90,7 +94,8 @@ class HomeController extends Controller
             'brands' => BrandResource::collection($brand), 
             'category_product' => $data, 
             'comunity' => $blogData,
-            'resale' => $resale
+            'resale' => $resale,
+            'editor_picture' => $editor_picture
         ];
         
         $menu = Menu::latest()->get();
