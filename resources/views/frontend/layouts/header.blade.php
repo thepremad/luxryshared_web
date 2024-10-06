@@ -1,5 +1,42 @@
 
         <!--Top Header-->
+        <style>
+    .popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+</style>
+
         <div class="top-header home8-jewellery-top">
             <div class="container-fluid">
                 <div class="row">
@@ -73,6 +110,7 @@
                             <!--End Search Icon-->
                         </div>
                     </div>
+                    @if(auth()->user())
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="site-cart">
                             <a href="#" class="site-header__cart" title="Cart">
@@ -129,7 +167,7 @@
                                                 Waist Dress</a>
                                             <div class="variant-cart">Gray /
                                                 XXL</div>
-                                            <div class="wrapQtyBtn">
+                                            <!-- <div class="wrapQtyBtn">
                                                 <div class="qtyField">
                                                     <span class="label">Qty:</span>
                                                     <a class="qtyBtn minus" onclick="decrease(1)" ><i
@@ -139,7 +177,7 @@
                                                     <a class="qtyBtn plus" onclick="increase(2)" ><i
                                                             class="fa anm anm-plus-r" aria-hidden="true"></i></a>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="priceRow">
                                                 <div class="product-price">
                                                     <span class="money">$99.00</span>
@@ -164,13 +202,33 @@
                             <!--End Minicart Popup-->
                         </div>
                         <div class="site-header__search">
-                            <span class="search-trigger"><a href="{{route('wishlist')}}"><i class="icon anm anm-heart-l"></i></a></span>
+                            <span class=""><a href="{{route('wishlist')}}"><i class="icon anm anm-heart-l"></i></a></span>
                         </div>
                         <div class="site-header__search">
-                            <a href="{{route('edit_profile')}}"><span class="search-trigger"><i class="icon anm anm-user-l"></i></span></a>
+                            <a href="{{route('edit_profile')}}"><span class=""><i class="icon anm anm-user-l"></i></span></a>
                             
                         </div>
                     </div>
+                    @else
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="site-header__search" onclick="profile()">
+                            <span ><i class="icon anm anm-user-l"></i></span>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Login Prompt Popup -->
+                    
+                    <div id="loginPrompt" class="popup">
+                        <div class="popup-content">
+                            <span class="close" id="closePopup">&times;</span>
+                            <h2>You have to log in</h2>
+                            <p>Please log in to continue.</p>
+                            <a href="{{ route('login') }}" class="btn btn-primary">Go to Login</a>
+                        </div>
+                    </div>
+
+                    @endif
                 </div>
                 <div class="row align-items-center justify-content-center   ">
                     <!--Desktop Logo-->
@@ -213,6 +271,31 @@
                 </div>
             </div>
         </section>
+
+        <script>
+function profile() {
+    // Call the function to show the login prompt
+    showLoginPrompt();
+}
+
+function showLoginPrompt() {
+    // Show the login prompt popup
+    document.getElementById('loginPrompt').style.display = 'block';
+}
+
+// Close the popup when the user clicks on <span> (x)
+document.getElementById('closePopup').onclick = function() {
+    document.getElementById('loginPrompt').style.display = 'none';
+}
+
+// Close the popup when clicking anywhere outside of the popup
+window.onclick = function(event) {
+    if (event.target == document.getElementById('loginPrompt')) {
+        document.getElementById('loginPrompt').style.display = 'none';
+    }
+}
+</script>
+<!-- 
 <script>
     function increase(id){
         alert(id)
@@ -241,7 +324,7 @@
     }
 
    
-</script>
+</script> -->
         <!--End Header-->
         <!--Mobile Menu-->
         

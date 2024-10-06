@@ -208,6 +208,26 @@
             </li>
                
             <li
+                class=" nav-item {{ Request::routeIs('admin.editor.index', 'admin.editor.create', 'admin.editor.show', 'admin.editor.edit', 'admin.editor.appraisals', 'admin.editor.loans', 'admin.editor.salaries') ? 'has-sub open' : '' }} ">
+                <a class="d-flex align-items-center" href="#"><i class="fa-regular fa-id-card"></i><span
+                        class="menu-title text-truncate" data-i18n="Invoice">Editor pic master </span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center {{ Request::routeIs('admin.editor.index', 'admin.editor.show', 'admin.editor.edit', 'admin.editor.appraisals', 'admin.editor.loans', 'admin.editor.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                            href="{{ route('admin.editor.index') }}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="Shop"> List Editor pic</span>
+                        </a>
+                    </li>
+
+                    <li><a class="d-flex align-items-center {{ Request::routeIs('admin.editor.create') ? 'active' : '' }} "
+                            href="{{ route('admin.editor.create') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Shop"> Add Editor pic</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li
                 class=" nav-item {{ Request::routeIs('admin.commissions.index', 'admin.commissions.create', 'admin.commissions.show', 'admin.commissions.edit', 'admin.commissions.appraisals', 'admin.commissions.loans', 'admin.commissions.salaries') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-hand-holding-dollar"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Commission  </span></a>

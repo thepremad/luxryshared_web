@@ -14,8 +14,10 @@ use App\Http\Resources\StoreBlogResourceApi;
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Editor;
 use App\Models\Faq;
 use App\Models\Item;
+use App\Models\ItemImage;
 use App\Models\Look;
 use App\Models\Menu;
 use App\Models\Occasion;
@@ -124,16 +126,37 @@ class HomeController extends Controller
     }
     public function saveItem(StoreWebItem $request)
     {
+        
         try {
+            
             $item = new Item();
             $item->fill($request->all());
-            if ($file = $request->file('mainImag')) {
+            if($request->hasFile('mainImag')){
+                $pic = $request->mainImag->getClientOriginalName();
                 $folder = public_path('/uploads/item');
-                $item->mainImag = $this->uploadFile($file, $folder);
+                $request->file('mainImag')->move($folder,$pic);
+                $item->mainImag = $pic ;
             }
             $item->user_id = auth()->user()->id;
             $item->save();
-            return redirect()->route('home');
+            
+            
+//dd($request->file('images'));
+           
+          // $item_images->fill($request->images);
+          if($request->hasFile('images')){
+           foreach($request->file('images') as $image){
+                $item_images = new ItemImage;
+                $pic = $image->getClientOriginalName();
+                $folder = public_path('/uploads/item');
+                $image->move($folder,$pic);
+                $item_images->image = $pic;
+                $item_images->item_id = $item->id;
+                $item_images->save();
+            }
+           }
+        
+        return redirect()->route('home');
         } catch (\Throwable $th) {
             throw $th;
         }
