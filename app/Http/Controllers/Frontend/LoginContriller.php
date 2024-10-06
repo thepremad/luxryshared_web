@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FrontendLoginRequest;
 use App\Http\Requests\StoreWebLoginRequest;
 use App\Http\Requests\StoreWebRegisterRequest;
 use App\Http\Requests\WebLoginRequest;
@@ -12,38 +13,37 @@ use App\Traits\FileUploadTrait;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Session;
 
 class LoginContriller extends Controller
 {
     use FileUploadTrait;
-    public function loginCheck(Request $request)
+    public function loginCheck(FrontendLoginRequest $request)
     {
         try {
-            $this->validate($request,[
-                'email' => 'required|Email',
-                'password' =>  'required',
-            ]);
             $credinals = [
                 'email' => $request->email,
                 'password' => $request->password,
                 'role'=> '2',
             ];
             if (Auth::attempt($credinals)) {
-                return redirect()->route('home');
+                session()->flash('success','Login Successfully');
+                return route('home');
             } else {
-                Session::flash('email-password','your Email and Password did not match');
-                return redirect('/login');
-                
-
+                session()->flash('error','your Email and Password did not match');
+                return url('/login');
             }
         } catch (\Exception $exception) {
-            \Log::error('Admin login error: ' . $exception->getMessage());
+            Log::error('Admin login error: ' . $exception->getMessage());
             return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
         }
     }
     public function login()
     {
+        // session()->flash('success','kapil');
+        // die;
         // $menu = Menu::latest()->get();
         // return view('frontend.product-list', compact('menu'));
         if(auth()->user()){
@@ -61,16 +61,21 @@ class LoginContriller extends Controller
             if ($file = $request->file('id_image')) {
                 $folder = public_path('/uploads/image');
                 $user->id_image = $this->uploadFile($file, $folder);
+                // die;
             }
+            $user->password = Hash::make($request->password);
             $user->latitude = 1234;
             $user->longitude = 123;
             $user->save();
-                return redirect()->route('login');
-
+            session()->flash('success','Register successfully');
+            // return redirect()->route('login');
 
         } catch (\Throwable $th) {
-            \Log::error('Admin login error: ' . $th->getMessage());
-            return response()->json(['status' => 500, 'message' => 'Oops...Something went wrong! Please contact the support team.']);
+            Log::error('Admin login error: ' . $th->getMessage());
+            return response()->json(['status' => 500, 
+                "message_2" => $th->getMessage(),
+                'message' => 'Oops...Something went wrong! Please contact the support team.'
+            ]);
         }
     }
 }

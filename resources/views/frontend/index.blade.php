@@ -248,6 +248,88 @@
                 </div>
             </div>
         </div>
+
+        <div class="section hot-picks">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="section-header">
+                            <h2 class="h2 heading-font">Resale </h2>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <div class="productSlider-style2 grid-products justify-content-start align-items-start">
+                @foreach ($allData['resale'] as $val)
+                
+                <div class="col-12 item">
+                    <!-- start product image -->
+                    <div class="product-image">
+                        <!-- start product image -->
+                        <a href="{{ route('product_detail',$val->id) }}" class="grid-view-item__link">
+                            <!-- image -->
+                            <img class="primary blur-up lazyload" data-src="{{asset('uploads/item/'.$val->mainImag)}}"
+                                src="{{asset('uploads/item/'.$val->mainImag)}}" alt="image" title="product">
+                            <!-- End image -->
+                            <!-- Hover image -->
+                            <img class="hover blur-up lazyload" data-src="{{asset('uploads/item/'.$val->mainImag)}}"
+                                src="{{asset('uploads/item/'.$val->mainImag)}}" alt="image" title="product">
+                            <!-- End hover image -->
+                        </a>
+                        <!-- end product image -->
+                        <!-- Start product button -->
+                        <form class="variants add" action="#" method="post">
+                            <div class="d-flex btn-background" style="">
+                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
+                                @if($val->buy == 'true')
+                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
+                                @endif
+                            </div>
+                        </form>
+                        <div class="button-set">
+                            <div class="wishlist-btn">
+                                <a class="wishlist add-to-wishlist" href="wishlist.html">
+                                    <i class="icon anm anm-heart-l"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- end product button -->
+                    </div>
+                    <!-- end product image -->
+                    <!--start product details -->
+                    <div class="product-details text-center">
+                        <!-- product name -->
+                        <div class="product-name">
+                            <a href="product-layout-1.html">{{$val->item_title}}</a>
+                        </div>
+                        <!-- End product name -->
+                        <div class="star text-center">
+                            <ul class="list-unstyled" style="display: inline-flex;">
+                                <li><i class="fa fa-star px-2 star"></i></li>
+                                <li><i class="fa fa-star px-2 star"></i></li>
+                                <li><i class="fa fa-star px-2 star"></i></li>
+                                <li><i class="fa fa-star px-2 star"></i></li>
+                                <li><i class="fa fa-star px-2 star"></i></li>
+                            </ul>
+                        </div>
+                        <!-- product price -->
+                        <div class="product-price">
+                            <span class="price">AED {{$val->rrp_price}}</span>
+                        </div>
+                        <!-- End product price -->
+                        <!-- product Link -->
+                        <a href="#" class="product_link">{{$val->category->name ?? ''}}</a>
+                        <!-- End Product Link -->
+                    </div>
+                    <!-- End product details -->
+                </div>
+                @endforeach
+            
+
+            </div>
+        </div>
        
         @foreach ($allData['category_product'] as $val) 
         
