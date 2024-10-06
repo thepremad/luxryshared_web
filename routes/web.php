@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Frontend\EditProfieController;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\frontend\ItemController;
+use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\LoginContriller;
 use App\Http\Controllers\Frontend\ProductDetailController;
 use App\Http\Controllers\Frontend\ProductListController;
