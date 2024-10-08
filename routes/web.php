@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Frontend\EditProfieController;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\frontend\ItemController;
+use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\LoginContriller;
 use App\Http\Controllers\Frontend\ProductDetailController;
 use App\Http\Controllers\Frontend\ProductListController;
@@ -110,7 +110,7 @@ Route::middleware(['website'])->group(function () {
 
     
     Route::get('/list-item', [ItemController::class, 'listItem'])->name('list_item');
-    Route::post('/save-item', [HomeController::class, 'saveItem'])->name('save_item');
+    Route::post('/save-item', [ItemController::class, 'saveItem'])->name('save_item');
     Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 

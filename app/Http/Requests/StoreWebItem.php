@@ -26,27 +26,37 @@ class StoreWebItem extends FormRequest
     {
        
         $rules = [
-             'category_id' => 'required|exists:categories,id',
-             'sub_category_id' => 'required|exists:sub_categories,id',
+            'category_id' => 'required|exists:categories,id',
+            'sub_category_id' => 'required|exists:sub_categories,id',
             'brand_id' => 'required|exists:brands,id',
             'item_title' => 'required',
             'color_id' => 'required|exists:colors,id',
             'size_id' => 'required|exists:sizes,id',
             'mainImag' => 'required',
-             'images' => 'required',
+            'images' => 'required',
             'image_description' => 'required',
-            'rrp_price' => 'required|numeric|min:500',
-            'suggested_day_price' => 'required',
-            'fourDaysPrice' => 'required|numeric',
-            'sevenToTwentyNineDayPrice' => 'required|numeric',
-            'thirtyPlusDayPrice' => 'required|numeric',
+
+            // 'rrp_price' => 'required|numeric|min:500',
+            // 'suggested_day_price' => 'required',
+            // 'fourDaysPrice' => 'required|numeric',
+            // 'sevenToTwentyNineDayPrice' => 'required|numeric',
+            // 'thirtyPlusDayPrice' => 'required|numeric',
 
 
         ];
+
+        if ($this->step == 2) {
+            $rules['rrp_price'] = 'required|numeric|min:500';
+            $rules['suggested_day_price'] =  'required';
+            $rules['fourDaysPrice'] = 'required|numeric';
+            $rules['sevenToTwentyNineDayPrice'] = 'required|numeric';
+            $rules['thirtyPlusDayPrice'] = 'required|numeric';
+        }
         
         if ($this->buy == 'true') {
             $rules['buy_price'] = 'required';
         }
+
         return $rules;
     }
     
