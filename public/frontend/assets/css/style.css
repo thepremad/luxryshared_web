@@ -9131,3 +9131,77 @@ footer#footer .row.copyrigt-row p a {
     line-height: 20px;
   }
 }
+
+
+.howToRent h2 {
+  font-family: 'proxima nova', sans-serif;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 20px;
+}
+.circle-image {
+  display: inline-block;
+  width: 127px;
+  height: 127px;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+  padding: 35px;
+}
+.circle-image img {
+  width: 100%;
+  height: auto;
+}
+.benefit-card {
+  padding: 25px 70px;
+  border-radius: 0;
+  box-shadow: none;
+}
+.benefit-card .icon {
+  width: 60px;
+  height: auto;
+}
+.benefit-card .heading {
+  font-family: 'proxima nova', sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 500;
+  margin: 20px 0 10px;
+}
+.benefit-card .content {
+  font-family: 'proxima nova', sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #807D7E;
+  margin-bottom: 25px;
+}
+@media (max-width: 768px) {
+  .howToRent h2 {
+    font-size: 20px;
+  }
+  .benefit-card .heading {
+    font-size: 18px;
+  }
+  .benefit-card .content {
+    font-size: 14px;
+  }
+}
+@media (max-width: 576px) {
+  .howToRent h2 {
+    font-size: 15px;
+  }
+  .benefit-card .heading {
+    font-size: 15px;
+  }
+  .benefit-card .content {
+    font-size: 14px;
+  }
+  .circle-image {
+    width: 100px;
+    height: 100px;
+  }
+}
