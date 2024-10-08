@@ -312,6 +312,7 @@
                     
                 </div>
             </div>
+
             <div class="productSlider-style2 grid-products justify-content-start align-items-start">
                 @foreach ($allData['editor_picture'] as $val)
                 
@@ -481,7 +482,7 @@
             </div>
         </div>
        
-        @foreach ($allData['category_product'] as $val) 
+        {{-- @foreach ($allData['category_product'] as $val) 
         
         <div class="section hot-picks">
             <div class="container-fluid">
@@ -590,7 +591,7 @@
 
             </div>
         </div>
-        @endforeach
+        @endforeach --}}
 
         <!--End Hot picks-->
 
