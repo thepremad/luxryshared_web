@@ -56,7 +56,9 @@
                                             <div class="mb-1">
                                                     {!! Form::label('name', 'Name') !!}
                                                         {!! Form::text('name', null,  ['class' => 'form-control','required', 'autocomplete'=>"off", 'placeholder' => 'Name', 'id' =>
-                                                          'name','oninput' => 'filterAlphabets(this)']) !!}
+                                                          'name',
+                                                        //   'oninput' => 'filterAlphabets(this)'
+                                                          ]) !!}
                                                     
                                                     <span class="text-danger validation-class" id="name-error"></span>
                                                 </div>
