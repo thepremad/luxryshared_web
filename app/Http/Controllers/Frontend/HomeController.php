@@ -33,40 +33,40 @@ class HomeController extends Controller
     use FileUploadTrait;
     public function home()
     {
-        $categories = Category::with('products','products.category','products.bookingDate')->where('status',1)->latest()->get();
+        $categories = Category::with('products', 'products.category', 'products.bookingDate')->where('status', 1)->latest()->get();
         $data = HomeApiResource::collection($categories);
 
-        $cateegory = Category::where('status',1)->latest()->get();
+        $cateegory = Category::where('status', 1)->latest()->get();
         $categorydata = CategoryResource::collection($cateegory,);
-        $occasions = Occasion::where('status',1)->latest()->take(6)->get();
+        $occasions = Occasion::where('status', 1)->latest()->take(6)->get();
         $occassionData = OccasionResource::collection($occasions);
 
         $item = Item::with('category', 'bookingDate')
-        ->where('status', Item::$active)
-        ->where('checkout_status', '0')
-        ->whereHas('category',function($query_3){
-            $query_3->where('status', 1);
-          })
-          ->whereHas('brand',function($query_3){
-            $query_3->where('status', 1);
-          })
-          ->whereHas('subCategory',function($query_3){
-            $query_3->where('status', 1);
-          })->latest()->take(4)->get();
-
-
-          $resale = Item::with('category', 'bookingDate')
             ->where('status', Item::$active)
             ->where('checkout_status', '0')
-            ->whereHas('category',function($query_3){
-            $query_3->where('status', 1);
-          })
-          ->whereHas('brand',function($query_3){
-            $query_3->where('status', 1);
-          })
-          ->whereHas('subCategory',function($query_3){
-            $query_3->where('status', 1);
-          })->latest()->take(4)->get();
+            ->whereHas('category', function ($query_3) {
+                $query_3->where('status', 1);
+            })
+            ->whereHas('brand', function ($query_3) {
+                $query_3->where('status', 1);
+            })
+            ->whereHas('subCategory', function ($query_3) {
+                $query_3->where('status', 1);
+            })->latest()->take(4)->get();
+
+
+        $resale = Item::with('category', 'bookingDate')
+            ->where('status', Item::$active)
+            ->where('checkout_status', '0')
+            ->whereHas('category', function ($query_3) {
+                $query_3->where('status', 1);
+            })
+            ->whereHas('brand', function ($query_3) {
+                $query_3->where('status', 1);
+            })
+            ->whereHas('subCategory', function ($query_3) {
+                $query_3->where('status', 1);
+            })->latest()->take(4)->get();
 
 
         //   return $resale;
@@ -77,7 +77,7 @@ class HomeController extends Controller
         $look = GetTheLookResource::collection(Look::with('products', 'products.bookingDate')->latest()->take(6)->get());
 
         // return $look;
-        $brand = Brand::where('status',1)->latest()->take(6)->get();
+        $brand = Brand::where('status', 1)->latest()->take(6)->get();
         $privacyPolicy = Blog::latest()->take(6)->get();
         $blogData = StoreBlogResourceApi::collection($privacyPolicy);
 
@@ -87,17 +87,17 @@ class HomeController extends Controller
 
 
         $allData = [
-            'category' => $categorydata, 
-            'occassion' => $occassionData, 
+            'category' => $categorydata,
+            'occassion' => $occassionData,
             "just_landed" => $productJustLanded,
-            'get_the_look' => $look, 
-            'brands' => BrandResource::collection($brand), 
-            'category_product' => $data, 
+            'get_the_look' => $look,
+            'brands' => BrandResource::collection($brand),
+            'category_product' => $data,
             'comunity' => $blogData,
             'resale' => $resale,
             'editor_picture' => $editor_picture
         ];
-        
+
         $menu = Menu::latest()->get();
         return view('frontend.index', compact('allData', 'menu'));
     }
@@ -115,7 +115,7 @@ class HomeController extends Controller
     {
         $menu = Menu::latest()->get();
         $faq = Faq::latest()->get();
-        return view('frontend.faq', compact('menu','faq'));
+        return view('frontend.faq', compact('menu', 'faq'));
     }
     public function privacyPolicy()
     {
@@ -131,44 +131,41 @@ class HomeController extends Controller
     }
     public function saveItem(StoreWebItem $request)
     {
-        
+
         try {
-            
+
             $item = new Item();
             $item->fill($request->all());
-            if($request->hasFile('mainImag')){
+            if ($request->hasFile('mainImag')) {
                 $pic = $request->mainImag->getClientOriginalName();
                 $folder = public_path('/uploads/item');
-                $request->file('mainImag')->move($folder,$pic);
-                $item->mainImag = $pic ;
+                $request->file('mainImag')->move($folder, $pic);
+                $item->mainImag = $pic;
             }
             $item->user_id = auth()->user()->id;
             $item->save();
-            
-            
-//dd($request->file('images'));
-           
-          // $item_images->fill($request->images);
-          if($request->hasFile('images')){
-           foreach($request->file('images') as $image){
-                $item_images = new ItemImage;
-                $pic = $image->getClientOriginalName();
-                $folder = public_path('/uploads/item');
-                $image->move($folder,$pic);
-                $item_images->image = $pic;
-                $item_images->item_id = $item->id;
-                $item_images->save();
+
+            if ($request->hasFile('images')) {
+
+                foreach ($request->file('images') as $image) {
+                    $item_images = new ItemImage;
+                    $pic = $image->getClientOriginalName();
+                    $folder = public_path('/uploads/item');
+                    $image->move($folder, $pic);
+                    $item_images->image = $pic;
+                    $item_images->item_id = $item->id;
+                    $item_images->save();
+                }
             }
-           }
-        
-        return redirect()->route('home');
+            return redirect()->route('home');
         } catch (\Throwable $th) {
             throw $th;
         }
     }
-    public function faqDetails($id){
+    public function faqDetails($id)
+    {
         $faq = Faq::findOrFail($id);
         $menu = Menu::latest()->get();
-        return view('frontend.faq-details',compact('faq','menu'));
+        return view('frontend.faq-details', compact('faq', 'menu'));
     }
 }

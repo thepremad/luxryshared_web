@@ -14,7 +14,7 @@
             <div class="listItem-section">
                 <div class="row justify-content-center">
                     <div class="col-lg-9 col-md-9 col-sm-9 col-9">
-                        <form id="multi-step-form" action="{{ route('save_item') }}" method="post"
+                        <form id="item_save_form" action="{{ route('save_item') }}" method="post"
                             enctype="multipart/form-data">
                             <!-- Step 1 -->
                             @csrf
@@ -33,6 +33,7 @@
                                             @endforeach
                                         </select>
                                         <span class="text text-danger">{{ $errors->first('category_id') }}</span>
+                                        <span class="text-danger validation-class" id="category_id-submit_errors"></span>
                                     </div>
 
                                     <div class="col-md-6">
@@ -41,6 +42,7 @@
                                             <!-- Add options here -->
                                         </select>
                                         <span class="text text-danger">{{ $errors->first('sub_category_id') }}</span>
+                                        <span class="text-danger validation-class" id="sub_category_id-submit_errors"></span>
                                     </div>
                                     
                                 </div>
@@ -54,11 +56,13 @@
                                             @endforeach
                                         </select>
                                         <span class="text text-danger">{{ $errors->first('brand_id') }}</span>
+                                        <span class="text-danger validation-class" id="brand_id-submit_errors"></span>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="item-title">Item Title</label>
                                         <input type="text" name="item_title" class="form-control" id="item-title"
                                             placeholder="Enter Item Name">
+                                        <span class="text-danger validation-class" id="item_title-submit_errors"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -70,6 +74,7 @@
                                                 <!-- Add options here -->
                                             @endforeach
                                             <span class="text text-danger">{{ $errors->first('color_id') }}</span>
+                                            <span class="text-danger validation-class" id="color_id-submit_errors"></span>
                                         </select>
                                     </div>
                                     <div class="col-md-6 row-half-width">
@@ -82,6 +87,7 @@
                                                 @endforeach
                                             </select>
                                             <span class="text text-danger">{{ $errors->first('size_id') }}</span>
+                                            <span class="text-danger validation-class" id="size_id-submit_errors"></span>
                                             <!-- <i class="fas fa-question-circle info-icon"></i> -->
                                             <div class="info-tooltip">Size description goes here.</div>
                                         </div>
@@ -100,6 +106,7 @@
                                                 </div>
                                             </label>
                                             <input type="file" name="mainImag" class="form-control" id="imgInp" accept="image/*">    
+                                            <span class="text-danger validation-class" id="mainImag-submit_errors"></span>
                                             <span class="text text-danger">{{ $errors->first('mainImag') }}</span>
                                         </div>
 
@@ -131,11 +138,15 @@
                                                     </div>
                                                     
                                                 </div>
+
+                                                <input type="hidden" name="step" value="1"  id="step_id">
+
                                             </label>
                                             
 
 
                                             <input type="file" name="images[]" class="form-control" id="multiple_image_file_input" accept="image/*" multiple>
+                                            <span class="text-danger validation-class" id="images-submit_errors"></span>
                                             <p class="error" id="errorMsg"></p>
 
                                             <span class="text text-danger">{{ $errors->first('images[]') }}</span>
@@ -147,6 +158,7 @@
                                     <label for="description">Item Description <span>*</span></label>
                                     <textarea class="form-control" name="image_description" id="description" rows="5"
                                         placeholder="Describe your item and include fitting notes eg. perfect sizing, or item comes longer in length"></textarea>
+                                        <span class="text-danger validation-class" id="image_description-submit_errors"></span>
                                 </div>
                                 <span class="text text-danger">{{ $errors->first('image_description') }}</span>
                                 <div class="button-container">
@@ -163,11 +175,14 @@
                                         <label for="rrp-price">RRP PRICE</label>
                                         <input type="number" name="rrp_price" class="form-control" id="rrp-price"
                                             onInput="rrpInput(this)">
+
+                                            <span class="text-danger validation-class" id="rrp_price-submit_errors"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="day-price">Day Price</label>
                                         <input type="number" name="suggested_day_price" class="form-control"
                                             id="day-price">
+                                            <span class="text-danger validation-class" id="suggested_day_price-submit_errors"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row row-half-width" id="additional">
@@ -194,7 +209,9 @@
                                                     <h5>4-6 Days</h5>
                                                     <input type="hidden" name="fourDaysPrice" class="form-control"
                                                         id="4--6day">
+                                                        
                                                     <p><span id="4-6day"></span> AED/day</p>
+                                                    <span class="text-danger validation-class" id="fourDaysPrice-submit_errors"></span>
                                                 </div>
                                             </button>
                                             <button type="button" class="btn btn-secondary btn-sm">
@@ -203,6 +220,7 @@
                                                     <input type="hidden" name="sevenToTwentyNineDayPrice"
                                                         class="form-control" id="7--29day">
                                                     <p><span id="7-29day"></span> AED/day</p>
+                                                    <span class="text-danger validation-class" id="sevenToTwentyNineDayPrice-submit_errors"></span>
                                                 </div>
                                             </button>
                                             <button type="button" class="btn btn-secondary btn-sm">
@@ -212,6 +230,7 @@
                                                         id="30--day">
                                                     <p><span id="30-day"></span> AED/day</p>
                                                     <input type="hidden" name="buy" value="false">
+                                                    <span class="text-danger validation-class" id="thirtyPlusDayPrice-submit_errors"></span>
                                                 </div>
                                             </button>
                                         </div>
@@ -618,15 +637,51 @@
         }
 
         function nextStep(step) {
+            $(document).ready(function() {
 
-            showStep(step + 1);
+            // $('#loginForm').on('submit', function(e) {
+                // e.preventDefault(); // Prevent the default form submission
+                var $form = $('#item_save_form');
+                var url = $form.attr('action');
+                var formData = new FormData($form[0]);
+                $('.validation-class').html('');
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $('.spinner-loader').css('display', 'block');
+                    },
+                    success: function(res) {
+                        showStep(step + 1);
+                        $('#step_id').val(2);
+                    },
+                    error: function(res) {
+                        if (res.status == 400 || res.status == 422) {
+                            if (res.responseJSON && res.responseJSON.errors) {
+                                var error = res.responseJSON.errors
+                                $.each(error, function(key, value) {
+                                    $("#" + key + "-submit_errors").text(value[0]);
+                                });
+                            }
+                        }
+                    }
+                });
+            // });
+            });
+
+            
         }
 
         function prevStep(step) {
+            $('#step_id').val(1);
             showStep(step - 1);
         }
 
         function goToStep1() {
+            $('#step_id').val(1);
             showStep(1);
         }
 
@@ -724,5 +779,46 @@
                 $('#additional-images-container').show();
             }
     });
+</script>
+
+
+
+<script>
+    $(document).ready(function() {
+
+$('#item_save_form').on('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission
+    var $form = $('#item_save_form');
+    var url = $form.attr('action');
+    var formData = new FormData($form[0]);
+    $('.validation-class').html('');
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        beforeSend: function() {
+            $('.spinner-loader').css('display', 'block');
+        },
+        success: function(res) {
+            window.location.href = res;
+            // showStep(step + 1);
+            // $('#step_id').val(2);
+
+        },
+        error: function(res) {
+            if (res.status == 400 || res.status == 422) {
+                if (res.responseJSON && res.responseJSON.errors) {
+                    var error = res.responseJSON.errors
+                    $.each(error, function(key, value) {
+                        $("#" + key + "-submit_errors").text(value[0]);
+                    });
+                }
+            }
+        }
+    });
+});
+});
 </script>
 @endsection
