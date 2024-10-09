@@ -33,7 +33,8 @@ class StoreWebItem extends FormRequest
             'color_id' => 'required|exists:colors,id',
             'size_id' => 'required|exists:sizes,id',
             'mainImag' => 'required',
-            'images' => 'required',
+            'images' => 'required|array|size:4',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'image_description' => 'required',
 
             // 'rrp_price' => 'required|numeric|min:500',
@@ -54,7 +55,7 @@ class StoreWebItem extends FormRequest
         }
         
         if ($this->buy == 'true') {
-            $rules['buy_price'] = 'required';
+            $rules['buy_price'] = 'required|numeric|min:0';
         }
 
         return $rules;

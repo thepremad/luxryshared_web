@@ -56,6 +56,7 @@ class HomeController extends Controller
 
 
         $resale = Item::with('category', 'bookingDate')
+            ->where('buy',true)
             ->where('status', Item::$active)
             ->where('checkout_status', '0')
             ->whereHas('category', function ($query_3) {
