@@ -30,7 +30,8 @@
                             <!-- Table Body -->
                             <tbody>
                                 <!-- Product 1 -->
-                                @foreach ($cart as $val)cart
+                                @foreach ($cart as $val)
+                                
                                     <tr id="product-1">
                                         <td>
                                             <div class="d-flex">

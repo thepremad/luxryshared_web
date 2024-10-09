@@ -84,7 +84,7 @@ class ProductFilterController extends Controller
         try {
             $checkCartItems = Cart::where('item_id',$request->item_id)->where('user_id',auth()->user()->id)->first();
             if ($checkCartItems) {
-            return response()->json(['message' => 'Item Already Addes In Cart'], 200);
+                return response()->json(['error' => ['item_id' => 'Item Already Addes In Cart']], 422);
             }
             $cart = new Cart();
             $cart->item_id = $request->item_id;

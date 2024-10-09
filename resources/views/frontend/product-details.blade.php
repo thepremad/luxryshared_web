@@ -227,7 +227,7 @@ justify-content: center;
 
                         <div class="size-options mb-3 d-flex justify-content-between">
                             <div class="size-container">
-                                <h5>XL</h5>                               
+                                <h5>{{ $item->size->name }}</h5>                               
                             </div>
                             {{-- <a href="#" class="size-guide-link">Size Guide</a> --}}
                         </div>
@@ -237,6 +237,10 @@ justify-content: center;
                         <h3 class="text-center py-4 product-divider">
                             Longer rental means lower daily rates and bigger savings.
                         </h3>
+
+
+                        <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+
                 
                         <!-- Rental Plans -->
                         <div class="rental-plans mb-3 d-flex justify-content-between py-3">
@@ -245,33 +249,37 @@ justify-content: center;
                                 <label for="plan1" class="plan">
                                     <h5>4 Days</h5>
                                     <h6 class="price">$62.30</h6>
-                                    <h6 class="price-per-day">$15.57/day</h6>
+                                    <h6 class="price-per-day">AED {{ $item->fourDaysPrice }}/day</h6>
                                 </label>
                             </div>
+
                             <div class="plan-outer">
                                 <input type="radio" id="plan2" name="plan" value="7" class="plan-radio" data-days="7">
                                 <label for="plan2" class="plan">
                                     <h5>7 Days</h5>
-                                    <h6 class="price">$85.00</h6>
-                                    <h6 class="price-per-day">$12.14/day</h6>
+                                    <h6 class="price">AED {{ $item->sevenToTwentyNineDayPrice  * 7 }} </h6>
+                                    <h6 class="price-per-day">AED {{ $item->sevenToTwentyNineDayPrice }}/day</h6>
                                 </label>
                             </div>
+
                             <div class="plan-outer">
                                 <input type="radio" id="plan3" name="plan" value="10" class="plan-radio" data-days="10">
                                 <label for="plan3" class="plan">
                                     <h5>10 Days</h5>
-                                    <h6 class="price">$120.00</h6>
-                                    <h6 class="price-per-day">$12.00/day</h6>
+                                    <h6 class="price">AED {{ $item->sevenToTwentyNineDayPrice  * 10 }}</h6>
+                                    <h6 class="price-per-day">AED {{ $item->sevenToTwentyNineDayPrice }}/day</h6>
                                 </label>
                             </div>
+
                             <div class="plan-outer">
-                                <input type="radio" id="plan4" name="plan" value="14" class="plan-radio" data-days="14">
-                                <label for="plan4" class="plan">
-                                    <h5>14 Days</h5>
-                                    <h6 class="price">$150.00</h6>
-                                    <h6 class="price-per-day">$10.71/day</h6>
+                                <input type="radio" id="plan4" name="plan" value="30" class="plan-radio" data-days="30">
+                                <label for="plan4" class="plan">    
+                                    <h5>30 Days</h5>
+                                    <h6 class="price">AED {{ $item->thirtyPlusDayPrice  * 30 }}</h6>
+                                    <h6 class="price-per-day">AED {{ $item->thirtyPlusDayPrice }}/day</h6>
                                 </label>
                             </div>
+
                         </div>
                 
                         <!-- Calendar for Rent -->
@@ -294,7 +302,12 @@ justify-content: center;
                                 <button class="btn btn-dark btn-block" id="rentNowBtn">RENT NOW</button>
                             </div>
                             <div class="col-lg-4 col-md-4 col-6">
-                                <button class="btn btn-light btn-bloxk" id="buyNowBtn">BUY NOW</button>
+                                <form action="{{ route('list_item.add_to_Cart') }}" method="POST" id="add_to_cart_form">
+                                    @csrf
+                                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                    <input type="hidden" name="days" value="1">
+                                    <button class="btn btn-light btn-bloxk" id="buyNowBtn">Add To Cart</button>
+                                </form>
                             </div>
                         </div>
                 
@@ -558,178 +571,109 @@ justify-content: center;
     });
 </script>
 
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <script>
-    $(document).ready(function() {
-        let maxDays = 0;
+    $(function() {
+        var select_date_range = 4; // Total of 5 days (0 + 4)
 
-        // Initialize the date picker with minimum date
-        $("#dateInput").datepicker({
-            dateFormat: 'dd-mm-yy',
-            minDate: 0,
-            onSelect: function(dateText) {
-                const selectedDate = $(this).datepicker('getDate');
-                const depositDate = new Date(selectedDate);
-                depositDate.setDate(selectedDate.getDate() + maxDays);
-
-                $('#depositDateInput').val($.datepicker.formatDate('dd-mm-yy', depositDate)); // Set deposit date
-                $('#depositLabel').show(); // Show the label for deposit date
-                $('#depositDateInput').show(); // Show the deposit date input
+        $('input[name="daterange"]').daterangepicker({
+            opens: 'left',
+            autoUpdateInput: false,  // Prevents the input from being updated until the range is applied
+            minDate: moment(),       // Disable previous dates
+            locale: {
+                format: 'YYYY-MM-DD'
+            },
+            isInvalidDate: function(date) {
+                // Disable selection of any date beyond the 5-day range from the start date
+                var startDate = $('input[name="daterange"]').data('daterangepicker')?.startDate;
+                if (startDate && date.isAfter(startDate.clone().add(select_date_range, 'days'))) {
+                    return true; // Disable dates outside the 5-day range
+                }
+                return false;
             }
         });
 
-        // Handle rental plan selection
-        $('input[name="plan"]').change(function() {
-            // Reset styles for all plans
-            $('.plan-outer').css({
-                'background-color': '',
-                'color': '',
-                'font-weight': ''
-            });
-            $('.plan h5, .plan h6').css({
-                'color': '', // Reset text color
-                'font-weight': '' // Reset font weight
-            });
-
-            // Set new maxDays
-            maxDays = parseInt($(this).data('days'));
-
-            // Update the selected plan's style
-            const selectedPlan = $(this).closest('.plan-outer');
-            selectedPlan.css({
-                'background-color': '#57110c',
-                'color': 'white',
-                'font-weight': 'bold'
-            });
-            selectedPlan.find('h5, h6').css({
-                'color': 'white', // Set text color to white
-                'font-weight': '600' // Set font weight to 600
-            });
-
-            $('.rent-calendar').removeClass('d-none').show();
-            $("#dateInput").val('').focus(); // Clear and focus the date input
-            $("#dateInput").datepicker("show"); // Show the datepicker
-            $('#depositLabel').hide(); // Hide the label initially
-            $('#depositDateInput').hide(); // Hide the deposit date input initially
+        $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+            var startDate = picker.startDate;
+            var endDate = startDate.clone().add(select_date_range, 'days'); // Automatically set the end date to 4 days after the start date (total 5 days)
+            picker.setEndDate(endDate); // Set the end date in the picker
+            $(this).val(startDate.format('YYYY-MM-DD') + ' to ' + endDate.format('YYYY-MM-DD')); // Update the input with the selected range
         });
 
-        // Handle RENT NOW button click
-        $('#rentNowBtn').click(function() {
-            const selectedDate = $("#dateInput").val();
-            if (!selectedDate) {
-                alert('Please select a rental date.');
-            } else {
-                alert('You have selected the rent date: ' + selectedDate);
-            }
+        // Automatically update input when a start date is selected
+        $('input[name="daterange"]').on('show.daterangepicker', function(ev, picker) {
+            picker.container.find('.available').off('click').on('click', function() {
+                var startDate = picker.startDate;
+                var endDate = startDate.clone().add(select_date_range, 'days'); // Auto select 5-day range
+                picker.setEndDate(endDate);
+                picker.hide(); // Automatically close the picker
+                $(this).val(startDate.format('YYYY-MM-DD') + ' to ' + endDate.format('YYYY-MM-DD')); // Update the input field
+            });
         });
     });
 </script>
 
 
 <script>
-document.querySelectorAll('.plan-radio').forEach(plan => {
-        plan.addEventListener('change', function() {
-            const calendar = document.querySelector('.rent-calendar');
-            calendar.classList.remove('d-none');
-            
-            // Logic to handle calendar date selection
-            const selectedPlan = this.value;
-            // Logic for auto-selecting dates based on selected plan
-            // Show the calendar using a library like Flatpickr, jQuery UI, etc.
-            initializeCalendar(selectedPlan);
-        });
-    });
+    $(document).ready(function() {
 
-    function initializeCalendar(plan) {
-        // Assuming you're using a library like Flatpickr
-        const calendarEl = document.getElementById('calendar');
-        const startDate = new Date();
-        
-        // Show calendar with custom logic to select multiple dates
-        // For example, if 4 days are selected, set up the calendar to allow selection of 4 days
-        // Use library features to handle date range selection
-        // Example: Flatpickr configuration
-        flatpickr(calendarEl, {
-            mode: "range",
-            dateFormat: "Y-m-d",
-            minDate: "today",
-            onChange: function(selectedDates) {
-                if (selectedDates.length === 2) {
-                    const from = selectedDates[0];
-                    const to = selectedDates[1];
-                    // Logic to automatically select the next dates based on the selected range
+    $('#add_to_cart_form').on('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        var $form = $('#add_to_cart_form');
+        var url = $form.attr('action');
+        var formData = new FormData($form[0]);
+        $('.validation-class').html('');
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $('.spinner-loader').css('display', 'block');
+            },
+            success: function(res) {
+                // window.location.href = res;
+                // showStep(step + 1);
+                // $('#step_id').val(2);
+
+                Toastify({
+                    text: res.message,
+                    className: "success",
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast();
+
+            },
+            error: function(res) {
+                if (res.status == 400 || res.status == 422) {
+                    if (res.responseJSON && res.responseJSON.error) {
+                        var error = res.responseJSON.error
+                        $.each(error, function(key, value) {
+                            Toastify({
+                                text: value,
+                                className: "error",
+                                style: {
+                                    background: "linear-gradient(to right, #a01515, #a01515)",
+                                }
+                            }).showToast();
+                            // alert(value);
+                        });
+                    }
                 }
             }
         });
-    }
-</script>
-
-<script>
-    $(document).ready(function() {
-        let maxDays = 0;
-
-        // Initialize the date picker with minimum date
-        $("#dateInput").datepicker({
-            dateFormat: 'dd-mm-yy',
-            minDate: 0,
-            onSelect: function(dateText) {
-                const selectedDate = $(this).datepicker('getDate');
-                const depositDate = new Date(selectedDate);
-                
-                // Set deposit date based on selected date and maxDays
-                const actualRentalDays = maxDays - 1; // Subtract 1 from maxDays for accurate calculation
-                depositDate.setDate(selectedDate.getDate() + actualRentalDays); // Calculate deposit date
-
-                $('#depositDateInput').val($.datepicker.formatDate('dd-mm-yy', depositDate)); // Set deposit date
-                $('#depositLabel').show(); // Show the label for deposit date
-                $('#depositDateInput').show(); // Show the deposit date input
-            }
-        });
-
-        // Handle rental plan selection
-        $('input[name="plan"]').change(function() {
-            // Reset styles for all plans
-            $('.plan-outer').css({
-                'background-color': '',
-                'color': '',
-                'font-weight': ''
-            });
-            $('.plan h5, .plan h6').css({
-                'color': '',
-                'font-weight': ''
-            });
-
-            // Set new maxDays
-            maxDays = parseInt($(this).data('days'));
-
-            // Update the selected plan's style
-            const selectedPlan = $(this).closest('.plan-outer');
-            selectedPlan.css({
-                'background-color': '#57110c',
-                'color': 'white',
-                'font-weight': 'bold'
-            });
-            selectedPlan.find('h5, h6').css({
-                'color': 'white',
-                'font-weight': '600'
-            });
-
-            $('.rent-calendar').removeClass('d-none').show();
-            $("#dateInput").val('').focus(); // Clear and focus the date input
-            $("#dateInput").datepicker("show"); // Show the datepicker
-            $('#depositLabel').hide(); // Hide the label initially
-            $('#depositDateInput').hide(); // Hide the deposit date input initially
-        });
-
-        // Handle RENT NOW button click
-        $('#rentNowBtn').click(function() {
-            const selectedDate = $("#dateInput").val();
-            if (!selectedDate) {
-                alert('Please select a rental date.');
-            } else {
-                alert('You have selected the rent date: ' + selectedDate);
-            }
-        });
     });
+});
 </script>
+
 
 @endsection
