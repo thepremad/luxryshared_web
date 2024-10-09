@@ -539,18 +539,7 @@
 @endsection
 @section('js')
     <!-- Including Jquery -->
-    <script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery.cookie.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/wow.min.js') }}"></script>
-    <!-- Including Javascript -->
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/lazysizes.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-    <!--Instagram Js-->
-    <script src="{{ asset('assets/js/vendor/jquery.instagramFeed.min.js') }}"></script>
+    
     <script>
         (function($) {
             $(window).on('load', function() {
@@ -811,39 +800,39 @@
 <script>
     $(document).ready(function() {
 
-$('#item_save_form').on('submit', function(e) {
-    e.preventDefault(); // Prevent the default form submission
-    var $form = $('#item_save_form');
-    var url = $form.attr('action');
-    var formData = new FormData($form[0]);
-    $('.validation-class').html('');
-    $.ajax({
-        url: url,
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        beforeSend: function() {
-            $('.spinner-loader').css('display', 'block');
-        },
-        success: function(res) {
-            window.location.href = res;
-            // showStep(step + 1);
-            // $('#step_id').val(2);
+    $('#item_save_form').on('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        var $form = $('#item_save_form');
+        var url = $form.attr('action');
+        var formData = new FormData($form[0]);
+        $('.validation-class').html('');
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $('.spinner-loader').css('display', 'block');
+            },
+            success: function(res) {
+                window.location.href = res;
+                // showStep(step + 1);
+                // $('#step_id').val(2);
 
-        },
-        error: function(res) {
-            if (res.status == 400 || res.status == 422) {
-                if (res.responseJSON && res.responseJSON.errors) {
-                    var error = res.responseJSON.errors
-                    $.each(error, function(key, value) {
-                        $("#" + key + "-submit_errors").text(value[0]);
-                    });
+            },
+            error: function(res) {
+                if (res.status == 400 || res.status == 422) {
+                    if (res.responseJSON && res.responseJSON.errors) {
+                        var error = res.responseJSON.errors
+                        $.each(error, function(key, value) {
+                            $("#" + key + "-submit_errors").text(value[0]);
+                        });
+                    }
                 }
             }
-        }
+        });
     });
-});
 });
 </script>
 @endsection

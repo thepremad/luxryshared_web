@@ -148,12 +148,12 @@ class ProductDetailController extends Controller
     }
     public function productDetail($id){
         $menu = Menu::latest()->get();
-        $item = Item::with('itemImage','users')->find($id);
+        $item = Item::with('itemImage','users','size')->find($id);
         $size = Size::latest()->get();
         // $size = Size::latest()->get();
 
 
-        // return $item->itemImage;
+        // return $item;
 
         return view('frontend.product-details',compact('menu','item','size'));
     }

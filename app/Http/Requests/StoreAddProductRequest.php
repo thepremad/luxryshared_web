@@ -25,6 +25,7 @@ class StoreAddProductRequest extends FormRequest
         return [
             'item_id' => 'required|exists:items,id',
             'days' => 'required',
+            // 'data' => 'required'
         ];
     }
     protected function failedValidation(Validator $validator)

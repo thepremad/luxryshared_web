@@ -15,7 +15,8 @@ use Illuminate\Http\Request;
 class ItemController extends Controller
 {
     use FileUploadTrait;
-    public function addListItem(StoreItemRequest $request){
+    public function addListItem(StoreItemRequest $request)
+    {
         try {
             $item = new Item();
             $item->user_id = auth()->user()->id;
@@ -36,37 +37,39 @@ class ItemController extends Controller
                 }
             }
             return response()->json(['message' => 'Successfully Registered'], 200);
-        }catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             Log::error('api item post : exception');
             Log::error($th);
-            return response()->json(['error'=> "Something went wrong. Please try again later."],500);
+            return response()->json(['error' => "Something went wrong. Please try again later."], 500);
         }
     }
-    public function product(Request $request){
-       try {
-        if ($request->categoryId == '0') {
-            $products = Item::where('status',Item::$active)->where('checkout_status','0')->latest()->get();
-        }else{
-            $products = Item::where('category_id',$request->categoryId)->where('status',Item::$active)->where('checkout_status','0')->get();
-        }
-        $data = GetProductResource::collection($products);
-        return response()->json($data, 200);
+    public function product(Request $request)
+    {
+        try {
+            if ($request->categoryId == '0') {
+                $products = Item::where('status', Item::$active)->where('checkout_status', '0')->latest()->get();
+            } else {
+                $products = Item::where('category_id', $request->categoryId)->where('status', Item::$active)->where('checkout_status', '0')->get();
+            }
+            $data = GetProductResource::collection($products);
+            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            Log::error('api item post : exception');
+            Log::error($th);
 
-       }catch (\Throwable $th) {
-        Log::error('api item post : exception');
-        Log::error($th);
-        return response()->json(['error'=> "Something went wrong. Please try again later."],500);
+            return response()->json(['error' => "Something went wrong. Please try again later."], 500);
+        }
     }
-}
-public function dayPrice(StoreDayPriceRequests $request){
-  $day_price = Item::where('rrp_price',$request->price)->sum('suggested_day_price');
-  $count = Item::where('rrp_price',$request->price)->count();
-  if ($count <= '1') {
-      $dayPrice = ($request->price*3)/100;
-  }else{
-      $dayPrice = $day_price/$count;
-  }
-   $data =  number_format($dayPrice, 2);
-  return response()->json(['day_price' => $data], 200);
-}
+    public function dayPrice(StoreDayPriceRequests $request)
+    {
+        $day_price = Item::where('rrp_price', $request->price)->sum('suggested_day_price');
+        $count = Item::where('rrp_price', $request->price)->count();
+        if ($count <= '1') {
+            $dayPrice = ($request->price * 3) / 100;
+        } else {
+            $dayPrice = $day_price / $count;
+        }
+        $data =  number_format($dayPrice, 2);
+        return response()->json(['day_price' => $data], 200);
+    }
 }

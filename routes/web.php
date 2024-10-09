@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Api\CheckoutController;
+use App\Http\Controllers\Api\ProductFilterController;
 use App\Http\Controllers\Frontend\EditProfieController;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -145,4 +147,11 @@ Route::middleware(['website'])->group(function () {
     Route::get('checkout-success', [EditProfieController::class, 'checkoutSuccess'])->name('checkout_success');
     Route::get('withdrawl-request/{id}', [EditProfieController::class, 'withdrawlRequest'])->name('withdrawl_request');
     Route::get('help', [EditProfieController::class, 'help'])->name('help');
+
+
+
+    Route::post('list_item.add_to_Cart',[ProductFilterController::class,'addTocart'])->name('list_item.add_to_Cart');
+    Route::any('list_item.add_to_wishlist',[CheckoutController::class,'wishlist'])->name('list_item.add_to_wishlist');
+
+
 });
