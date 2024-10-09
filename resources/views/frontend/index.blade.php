@@ -293,14 +293,14 @@
 
             </div>
         </div>
+        
         <!--End Hot picks-->
         <div class="section hot-picks">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="section-header">
-                            <h2 class="h2 heading-font">Editor Picture</h2>
-
+                            <h2 class="h2 heading-font">Editor Pick</h2>
                         </div>
                     </div>
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
@@ -312,6 +312,7 @@
                     
                 </div>
             </div>
+
             <div class="productSlider-style2 grid-products justify-content-start align-items-start">
                 @foreach ($allData['editor_picture'] as $val)
                 
@@ -481,7 +482,7 @@
             </div>
         </div>
        
-        @foreach ($allData['category_product'] as $val) 
+        {{-- @foreach ($allData['category_product'] as $val) 
         
         <div class="section hot-picks">
             <div class="container-fluid">
@@ -590,7 +591,7 @@
 
             </div>
         </div>
-        @endforeach
+        @endforeach --}}
 
         <!--End Hot picks-->
 

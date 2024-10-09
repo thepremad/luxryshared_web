@@ -9205,3 +9205,137 @@ footer#footer .row.copyrigt-row p a {
     height: 100px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .bg-red{
+      width: 100% !important;
+  }
+
+  .section.community .row .col-md-6{
+      width: 48% !important;
+  }
+
+  .section.community .row{
+      flex-direction: row !important;
+  }
+
+  .section.community .col-md-6 h3{
+      font-size: 16px;
+  }
+
+  .section.collection-box-style1 .row{
+      flex-direction: row !important;
+  }
+
+  .section.collection-box-style1 .row .col-6{
+      flex: 0 0 48% !important;
+      max-width: 48% !important;
+  }
+
+  .section.divider-btn .row{
+      flex-direction: row !important;
+  }
+
+  .section.divider-btn .row .col-6{
+      flex: 0 0 48% !important;
+      max-width: 48% !important;
+  }
+
+  .section.discount-divider .col-lg-8{
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      text-align: center !important;
+  }
+
+  .section.discount-divider .col-lg-4{
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      text-align: center !important;
+  }
+
+  .get-card-row{
+      flex-direction: row !important;
+  }
+
+  .get-the-look .row .col-lg-4 img{
+      min-height: 300px;
+      object-fit: cover;
+  }
+
+  .section.hot-picks .row{
+      flex-direction: row !important;
+  }
+
+  .section.hot-picks .row .col-6{
+      flex: 0 0 48% !important;
+      max-width: 48% !important;
+  }
+
+  .section.hot-picks .row{
+      flex-direction: row !important;
+  }
+
+  .section.hot-picks .row .col-6{
+      flex: 0 0 48% !important;
+      max-width: 48% !important;
+  }
+
+  .section.top-product .row{
+      flex-direction: row !important;
+  }
+
+  .section.top-product .row .col-6{
+      flex: 0 0 48% !important;
+      max-width: 48% !important;
+  }
+
+  #footer.footer .container-fluid{
+      padding: 0 !important;
+  }
+
+  #footer.footer .row{
+      flex-direction: row !important;
+  }
+
+  footer#footer .row div{
+      width: 47%;
+      max-width: 100%;
+      flex: 0 0 47%;
+  }
+}
+
+.home8-jewellery .collection-box-style1 a img{
+  width: 314px;
+  height: 608px;
+  object-fit: cover;
+  position: relative;
+}
+
+.grid-products .item .product-image img {
+  display: inline-block;
+  width: 100%;
+  margin: 0 auto;
+  vertical-align: middle;
+  -ms-transition: all ease-out 0.4s;
+  -webkit-transition: all ease-out 0.4s;
+  transition: all ease-out 0.4s;
+  height: 608px;
+  object-fit: cover;
+}
+
+.top-product .topProduct-img img {
+  width: 100%;
+  min-height: 412px !important;
+  object-fit: cover;
+}
+
+.get-the-look .row .col-lg-4 img {
+  width: 400px;
+  height: 400px;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.section.lxry-shared{
+  margin-bottom: 30px;
+}

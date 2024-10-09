@@ -31,6 +31,9 @@ class ItemController extends Controller
 
         try {
 
+
+            // return $request->all();
+
             if($request->step == 2){
 
                 $item = new Item();

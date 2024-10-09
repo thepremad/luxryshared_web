@@ -100,11 +100,12 @@
 
                                                 <div class="custom-file-upload" id="main-image-container">
                                                     <div class="upload-button">
-                                                        <img src="{{ asset('./assets/images/icons/cloud.png') }}" id="blah"
+                                                        <img src="{{ asset('./assets/images/icons/cloud.png') }}" 
                                                             alt="" for="" class="">
                                                     </div>
                                                 </div>
                                             </label>
+                                            <img src="" alt="" id="blah" width="" height="">
                                             <input type="file" name="mainImag" class="form-control" id="imgInp" accept="image/*">    
                                             <span class="text-danger validation-class" id="mainImag-submit_errors"></span>
                                             <span class="text text-danger">{{ $errors->first('mainImag') }}</span>
@@ -265,23 +266,30 @@
                                     </div>
                                 </div>
                                 <div class="form-group check-box-label">
-                                    <input type="checkbox" id="enable-purchase">
+                                    <input type="checkbox" id="enable-purchase" name="buy" value="true">
                                     <label for="enable-purchase">ENABLE THIS OPTION, IF YOUR PRODUCT IS AVAILABLE FOR
                                         PURCHASE.</label>
                                 </div>
-                                <div class="form-group" id="additional-deposit-group">
-                                    <!-- Additional input for security deposit, hidden by default -->
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <p>Size:</p>
-                                        <p id="selected-size">Size selected in Step 1</p>
+
+                                <div class="form-group" id="additional-deposit-group" style="display: none">
+                                    <div class="form-group row">
+                                        <div class="col-md-6">
+                                            <p>Size:</p>
+                                            <p id="selected-size">Size selected in Step 1</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Price:</p>
+                                            <p> 
+                                                <input type="text" name="buy_price" class="form-control" placeholder="AED">
+                                                <span class="text-danger validation-class" id="buy_price-submit_errors"></span>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <p>Price:</p>
-                                        <p>AED 100</p>
-                                    </div>
                                 </div>
+
+                                
+
+
                                 <div class="button-container">
                                     <button type="button" class="btn btn-secondary"
                                         onclick="prevStep(2)">Previous</button>
@@ -632,7 +640,11 @@
             });
             currentStep = step;
             if (step === 2) {
-                document.getElementById('selected-size').textContent = document.getElementById('size').value;
+                var selectElement = document.getElementById('size');
+                var selectedOption = selectElement.options[selectElement.selectedIndex].text;
+                // console.log(selectedOption);
+
+                document.getElementById('selected-size').textContent = selectedOption;
             }
         }
 
@@ -691,18 +703,31 @@
                 document.querySelector('#additional-deposit').style.display = 'block';
                 document.querySelector('#enable-purchase').nextElementSibling.textContent =
                     'YOU CAN NOW SELL YOUR PRODUCT';
-                additionalDepositGroup.innerHTML = `
-                    <div class="form-group">
-                        <label for="additional-deposit">Additional Deposit</label>
-                        <input type="number" class="form-control" id="additional-deposit">
-                    </div>`;
+
+                    $('#additional-deposit-group').show();
+                    
+
+                // $('')
+                // additionalDepositGroup.innerHTML = `
+                //     <div class="form-group">
+                //         <label for="additional-deposit">Additional Deposit</label>
+                //         <input type="number" class="form-control" id="additional-deposit">
+                //     </div>`;
             } else {
                 document.querySelector('#additional-deposit').style.display = 'none';
                 document.querySelector('#enable-purchase').nextElementSibling.textContent =
                     'ENABLE THIS OPTION, IF YOUR PRODUCT IS AVAILABLE FOR PURCHASE.';
-                additionalDepositGroup.innerHTML = '';
+                // additionalDepositGroup.innerHTML = '';
+
+                
+
+                $('#additional-deposit-group').hide();
+
+
             }
         });
+
+
 
         showStep(currentStep); // Show initial step
     </script>
