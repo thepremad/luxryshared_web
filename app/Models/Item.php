@@ -64,9 +64,9 @@ class Item extends Model
      }
 
      public function itemBrand(){
-      return $this->hasOne(Brand::class,'id','brand_id')->where('status',1);
-
+         return $this->hasOne(Brand::class,'id','brand_id')->where('status',1);
      }
+     
    //   public function bookingDatee(){
    //    return $this->hasMany(BookingDate::class,'item_id');
    //   }

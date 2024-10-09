@@ -151,6 +151,10 @@ class ProductDetailController extends Controller
         $item = Item::with('itemImage','users')->find($id);
         $size = Size::latest()->get();
         // $size = Size::latest()->get();
+
+
+        // return $item->itemImage;
+
         return view('frontend.product-details',compact('menu','item','size'));
     }
 }
