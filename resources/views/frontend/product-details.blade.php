@@ -6,11 +6,13 @@
 #depositDateInput {
 border: none;
 box-shadow: none;
-background: transparent;
+background: #57110c;
 font-family: 'proxima nova', sans-serif;
-font-size: 14px;
-font-weight: 500;
+font-size: 16px;
+font-weight: 600;
 line-height: 1.2;
+color: #ffffff;
+text-align: left;
 }
 
 #dateInput:focus,
@@ -21,114 +23,135 @@ border: none;
 box-shadow: none;
 }
 
-    .product-single .productDetails .d-flex .ms-auto i {
-        font-size: 22px;
-        margin-right: 5px;
-    }
+.product-single .productDetails .d-flex .ms-auto i {
+font-size: 22px;
+margin-right: 5px;
+}
 
-    .product-single .productDetails .product-rent-price h4,
-    .product-single .productDetails .product-sell-price h4,
-    .product-single .productDetails .productSize-avl,
-    .product-single .productDetails .product-divider {
-        font-family: 'proxima nova', sans-serif;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 1.3;
-        color: #3C4242;
-        margin-bottom: 15px !important;
-    }
+.product-single .productDetails .product-rent-price h4,
+.product-single .productDetails .product-sell-price h4,
+.product-single .productDetails .productSize-avl,
+.product-single .productDetails .product-divider {
+font-family: 'proxima nova', sans-serif;
+font-size: 16px;
+font-weight: 600;
+line-height: 1.3;
+color: #3C4242;
+margin-bottom: 15px !important;
+}
 
-    .product-single .productDetails .size-options h5 {
-        font-family: 'proxima nova', sans-serif;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 1.3;
-        color: #3C4242;
-    }
+.product-single .productDetails .size-options h5 {
+font-family: 'proxima nova', sans-serif;
+font-size: 16px;
+font-weight: 600;
+line-height: 1.3;
+color: #3C4242;
+}
 
-    .product-single .productDetails .product-divider {
-        background-color: #9FC560;
-        font-weight: 500;
-    }
+.product-single .productDetails .product-divider {
+background-color: #9FC560;
+font-weight: 500;
+}
 
-    .product-single .productDetails .plan-outer {
-        padding: 5px;
-        border: 1px solid;
-    }
+.product-single .productDetails .plan-outer {
+padding: 5px;
+border: 1px solid;
+}
 
-    .product-single .productDetails .plan-outer input {
-        opacity: 0;
-    }
+.product-single .productDetails .plan-outer input {
+opacity: 0;
+}
 
-    .product-single .productDetails #rentNowBtn,
-    .product-single .productDetails #buyNowBtn {
-        font-family: 'proxima nova', sans-serif;
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 1.2;
-        width: 100%;
-        max-width: 198px;
-        height: 40px;
-        border: 1px solid #000000;
-    }
+.product-single .productDetails #rentNowBtn,
+.product-single .productDetails #buyNowBtn {
+font-family: 'proxima nova', sans-serif;
+font-size: 14px;
+font-weight: 500;
+line-height: 1.2;
+width: 100%;
+max-width: 198px;
+height: 40px;
+border: 1px solid #000000;
+}
 
-    .product-single .productDetails #rentNowBtn {
-        background: #000000;
-        color: #ffffff;
-    }
+.product-single .productDetails #rentNowBtn {
+background: #000000;
+color: #ffffff;
+}
 
-    .product-single .productDetails #buyNowBtn {
-        background: #ffffff;
-        color: #000000;
-    }
+.product-single .productDetails #buyNowBtn {
+background: #ffffff;
+color: #000000;
+}
 
-    @media (max-width: 1024px) {
-        .product-single .productDetails h4,
-        .product-single .productDetails h5 {
-            font-size: 16px;
-        }
+.ui-datepicker .ui-datepicker-month{
+display: block !important;
+display: flex;
+justify-content: center;
+align-items: center;
+}
 
-        .product-single .productDetails #rentNowBtn,
-        .product-single .productDetails #buyNowBtn {
-            font-size: 14px;
-        }
-    }
+.ui-datepicker .ui-datepicker-title{
+line-height: 3em !important;
+justify-content: center;
+}
 
-    @media (max-width: 768px) {
-        .product-single .productDetails h4,
-        .product-single .productDetails h5 {
-            font-size: 16px;
-        }
+@media (max-width: 1024px) {
+.product-single .productDetails h4,
+.product-single .productDetails h5 {
+    font-size: 16px;
+}
 
-        .product-single .productDetails #rentNowBtn,
-        .product-single .productDetails #buyNowBtn {
-            font-size: 14px;
-        }
-    }
+.product-single .productDetails #rentNowBtn,
+.product-single .productDetails #buyNowBtn {
+    font-size: 14px;
+}
 
-    @media (max-width: 576px) {
-        .product-single .productDetails h4,
-        .product-single .productDetails h5 {
-            font-size: 16px;
-        }
+.singleProduct .breadcrumb-item {
+    font-size: 14px;
+}
+}
 
-        .product-single .productDetails #rentNowBtn,
-        .product-single .productDetails #buyNowBtn {
-            font-size: 14px;
-        }
-    }
+@media (max-width: 768px) {
+.product-single .productDetails h4,
+.product-single .productDetails h5 {
+    font-size: 16px;
+}
 
-    @media (max-width: 481px) {
-        .product-single .productDetails h4,
-        .product-single .productDetails h5 {
-            font-size: 16px;
-        }
+.product-single .productDetails #rentNowBtn,
+.product-single .productDetails #buyNowBtn {
+    font-size: 14px;
+}
 
-        .product-single .productDetails #rentNowBtn,
-        .product-single .productDetails #buyNowBtn {
-            font-size: 14px;
-        }
-    }
+.product-single  .productDetails{
+    padding: 20px 30px !important;
+}
+}
+
+@media (max-width: 576px) {
+.product-single .productDetails h4,
+.product-single .productDetails h5 {
+    font-size: 16px;
+}
+
+.product-single .productDetails #rentNowBtn,
+.product-single .productDetails #buyNowBtn {
+    font-size: 14px;
+}
+}
+
+@media (max-width: 481px) {
+.product-single .productDetails h4,
+.product-single .productDetails h5 {
+    font-size: 16px;
+}
+
+.product-single .productDetails #rentNowBtn,
+.product-single .productDetails #buyNowBtn {
+    font-size: 14px;
+}
+}
+
 
 </style>
 <!--Body Content-->
@@ -142,30 +165,22 @@ box-shadow: none;
                 <div class="row">
                     <div class="col-lg-7 col-md-7 col-sm-12 col-12">
                         <div class="position-relative">
-                            <img id="mainImage" src="assets/images/product-detail-page/cape-dress-1.jpg"
+                            <img id="mainImage" src="{{asset('uploads/item/' . $item->mainImag)}}"
                                 alt="Main Product Image" class="product-image">                                    
                         </div>
                         <div class="slider">
-                            <img src="assets/images/product-detail-page/cape-dress-1.jpg" alt="Product Image 1"
-                                class="slider-image">
-                            <img src="assets/images/product-detail-page/cape-dress-1.jpg" alt="Product Image 2"
-                                class="slider-image">
-                            <img src="assets/images/product-detail-page/cape-dress-1.jpg" alt="Product Image 3"
-                                class="slider-image">
-                            <img src="assets/images/product-detail-page/cape-dress-1.jpg" alt="Product Image 4"
-                                class="slider-image">
-                            <img src="assets/images/product-detail-page/cape-dress-1.jpg" alt="Product Image 5"
-                                class="slider-image">
-                            <img src="assets/images/product-detail-page/cape-dress-1.jpg" alt="Product Image 6"
-                                class="slider-image">
-                            <img src="assets/images/product-detail-page/cape-dress-1.jpg" alt="Product Image 7"
-                                class="slider-image">
-                            <img src="assets/images/product-detail-page/cape-dress-1.jpg" alt="Product Image 8"
-                                class="slider-image">
+
+                            @foreach ($item->itemImage as $val)
+
+                                <img src="{{asset('uploads/item/' . $val->image)}}" alt="Product Image 1"
+                                class="slider-image">    
+
+                            @endforeach
+                            
                         </div>
                     </div>
 
-                    <div class="col-lg-5 col-md-5 col-sm-12 col-12 productDetails pl-0">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-12 productDetails pl-0 px-sm-3 px-md-3">
                         <!-- Breadcrumb Navigation -->
                         <nav class="breadcrumb">
                             <a class="breadcrumb-item" href="#">Shop</a>
@@ -178,7 +193,7 @@ box-shadow: none;
                 
                         <!-- product owner -->
                         <div class="d-flex align-items-center">
-                            <h5 class="mb-0">@John Richerd</h5>
+                            <h5 class="mb-0">{{ $item->item_title }}</h5>
                             <div class="ms-auto">
                                 <i class="fas fa-star" style="color: #E3C01C;"></i>
                                 <i class="fas fa-star" style="color: #E3C01C;"></i>
@@ -195,20 +210,26 @@ box-shadow: none;
                         <!-- Product Info Row -->
                         <div class="prInfoRow">
                             <div class="product-rent-price d-block">
-                                <h4>50.99 $ / 4 Days</h4>
+                                <h4>AED {{ $item->fourDaysPrice }} / 4 Days</h4>
                             </div>
-                            <div class="product-sell-price d-block">
-                                <h4>$399.00 BUY NOW</h4>
-                            </div>
+
+                            @if ($item->buy == 'true')
+                                <div class="product-sell-price d-block">
+                                    <h4>AED {{ $item->buy_price }} BUY NOW</h4>
+                                </div>    
+                            @endif
+
+                            
                         </div>
                 
                         <!-- Select Size -->
                         <label for="size" class="form-label productSize-avl">Available Size</label>
+
                         <div class="size-options mb-3 d-flex justify-content-between">
                             <div class="size-container">
                                 <h5>XL</h5>                               
                             </div>
-                            <a href="#" class="size-guide-link">Size Guide</a>
+                            {{-- <a href="#" class="size-guide-link">Size Guide</a> --}}
                         </div>
                 
                         <!-- Rental Period -->
@@ -220,7 +241,7 @@ box-shadow: none;
                         <!-- Rental Plans -->
                         <div class="rental-plans mb-3 d-flex justify-content-between py-3">
                             <div class="plan-outer">
-                                <input type="radio" id="plan1" name="plan" value="4days" class="plan-radio" data-days="4">
+                                <input type="radio" id="plan1" name="plan" value="4" class="plan-radio" data-days="4">
                                 <label for="plan1" class="plan">
                                     <h5>4 Days</h5>
                                     <h6 class="price">$62.30</h6>
@@ -228,7 +249,7 @@ box-shadow: none;
                                 </label>
                             </div>
                             <div class="plan-outer">
-                                <input type="radio" id="plan2" name="plan" value="7days" class="plan-radio" data-days="7">
+                                <input type="radio" id="plan2" name="plan" value="7" class="plan-radio" data-days="7">
                                 <label for="plan2" class="plan">
                                     <h5>7 Days</h5>
                                     <h6 class="price">$85.00</h6>
@@ -236,7 +257,7 @@ box-shadow: none;
                                 </label>
                             </div>
                             <div class="plan-outer">
-                                <input type="radio" id="plan3" name="plan" value="10days" class="plan-radio" data-days="10">
+                                <input type="radio" id="plan3" name="plan" value="10" class="plan-radio" data-days="10">
                                 <label for="plan3" class="plan">
                                     <h5>10 Days</h5>
                                     <h6 class="price">$120.00</h6>
@@ -244,7 +265,7 @@ box-shadow: none;
                                 </label>
                             </div>
                             <div class="plan-outer">
-                                <input type="radio" id="plan4" name="plan" value="14days" class="plan-radio" data-days="14">
+                                <input type="radio" id="plan4" name="plan" value="14" class="plan-radio" data-days="14">
                                 <label for="plan4" class="plan">
                                     <h5>14 Days</h5>
                                     <h6 class="price">$150.00</h6>
@@ -255,13 +276,13 @@ box-shadow: none;
                 
                         <!-- Calendar for Rent -->
                         <div class="row py-3">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="rent-calendar d-none">
                                     <label for="calendar" class="form-label">Select Rent Date</label>
                                     <input type="text" id="dateInput" class="form-control" readonly>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">    
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-3">    
                                 <label for="depositDateInput" class="form-label" id="depositLabel" style="display: none;">Deposit Date</label>
                                 <input type="text" id="depositDateInput" class="form-control" readonly style="display: none;"> 
                             </div>
@@ -269,10 +290,10 @@ box-shadow: none;
                 
                         <!-- Buttons for Actions -->
                         <div class="row mt-3">
-                            <div class="col-4">
+                            <div class="col-lg-4 col-md-4 col-6">
                                 <button class="btn btn-dark btn-block" id="rentNowBtn">RENT NOW</button>
                             </div>
-                            <div class="col-4">
+                            <div class="col-lg-4 col-md-4 col-6">
                                 <button class="btn btn-light btn-bloxk" id="buyNowBtn">BUY NOW</button>
                             </div>
                         </div>
@@ -345,46 +366,49 @@ box-shadow: none;
                     <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col1">
                         <h4>Product Description</h4>
                     </div>
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-                            <div class="collection-grid-item text-center">
-                                <a href="collection-page.html" class="collection-grid-item__link">
-                                    <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Hot" class="blur-up ls-is-cached lazyloaded">
-                                    <h3 class="mt-4">PARTY WEAR</h3>
-                                </a>
-                            </div>
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                        <div class="collection-grid-item text-center">
+                            <a href="collection-page.html" class="collection-grid-item__link">
+                                <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Hot" class="blur-up ls-is-cached lazyloaded">
+                                <h3 class="mt-4">PARTY WEAR</h3>
+                            </a>
                         </div>
-                        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-                            <div class="collection-grid-item text-center">
-                                <a href="collection-page.html" class="collection-grid-item__link">
-                                    <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Denim" class="blur-up blur-active ls-is-cached lazyloaded">
-                                    <h3 class="mt-4">EVENING WEAR</h3>
-                                </a>
-                            </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                        <div class="collection-grid-item text-center">
+                            <a href="collection-page.html" class="collection-grid-item__link">
+                                <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Denim" class="blur-up blur-active ls-is-cached lazyloaded">
+                                <h3 class="mt-4">EVENING WEAR</h3>
+                            </a>
                         </div>
-                        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-                            <div class="collection-grid-item text-center">
-                                <a href="collection-page.html" class="collection-grid-item__link">
-                                    <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Summer" class="blur-up ls-is-cached lazyloaded">
-                                    <h3 class="mt-4">BUSINESS</h3>
-                                </a>
-                            </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                        <div class="collection-grid-item text-center">
+                            <a href="collection-page.html" class="collection-grid-item__link">
+                                <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Summer" class="blur-up ls-is-cached lazyloaded">
+                                <h3 class="mt-4">BUSINESS</h3>
+                            </a>
                         </div>
-                        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-                            <div class="collection-grid-item text-center">
-                                <a href="collection-page.html" class="collection-grid-item__link">
-                                    <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Summer" class="blur-up ls-is-cached lazyloaded">
-                                    <h3 class="mt-4">BIRTHDAY</h3>
-                                </a>
-                            </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                        <div class="collection-grid-item text-center">
+                            <a href="collection-page.html" class="collection-grid-item__link">
+                                <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Summer" class="blur-up ls-is-cached lazyloaded">
+                                <h3 class="mt-4">BIRTHDAY</h3>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
-    <!--MainContent-->
+    <!--#ProductSection-product-template-->
 </div>
+
+
 <!--End Body Content-->
 
 <!--End Footer-->
@@ -409,6 +433,9 @@ box-shadow: none;
 <!-- Photoswipe Gallery -->
 <script src="{{asset('assets/js/vendor/photoswipe.min.js')}}"></script>
 <script src="{{asset('assets/js/vendor/photoswipe-ui-default.min.js')}}"></script>
+
+
+
 <script>
     $(function () {
         var $pswp = $('.pswp')[0],
@@ -498,6 +525,9 @@ box-shadow: none;
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <!-- Custom JS -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 <script>
     $(document).ready(function () {
         // Initialize Slick Slider
@@ -515,13 +545,6 @@ box-shadow: none;
             $('#mainImage').attr('src', fullImageUrl);
         });
 
-        // Handle magnifier popup
-        $('#magnifierIcon').on('click', function () {
-            var fullImageUrl = $('#mainImage').attr('src');
-            $('#popupImage').attr('src', fullImageUrl);
-            $('#magnifierPopup').show();
-        });
-
         // Close magnifier popup
         $('#closePopup').on('click', function () {
             $('#magnifierPopup').hide();
@@ -536,85 +559,59 @@ box-shadow: none;
 </script>
 
 <script>
-    document.querySelectorAll('.plan-radio').forEach(radio => {
-        radio.addEventListener('change', function () {
-            document.querySelectorAll('.plan-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            this.parentElement.classList.add('selected');
-        });
-    });
-
-</script>
-
-
-<script>
-    document.querySelectorAll('.plan-radio').forEach(plan => {
-            plan.addEventListener('change', function() {
-                const calendar = document.querySelector('.rent-calendar');
-                calendar.classList.remove('d-none');
-                
-                // Logic to handle calendar date selection
-                const selectedPlan = this.value;
-                // Logic for auto-selecting dates based on selected plan
-                // Show the calendar using a library like Flatpickr, jQuery UI, etc.
-                initializeCalendar(selectedPlan);
-            });
-        });
-    
-        function initializeCalendar(plan) {
-            // Assuming you're using a library like Flatpickr
-            const calendarEl = document.getElementById('calendar');
-            const startDate = new Date();
-            
-            // Show calendar with custom logic to select multiple dates
-            // For example, if 4 days are selected, set up the calendar to allow selection of 4 days
-            // Use library features to handle date range selection
-            // Example: Flatpickr configuration
-            flatpickr(calendarEl, {
-                mode: "range",
-                dateFormat: "Y-m-d",
-                minDate: "today",
-                onChange: function(selectedDates) {
-                    if (selectedDates.length === 2) {
-                        const from = selectedDates[0];
-                        const to = selectedDates[1];
-                        // Logic to automatically select the next dates based on the selected range
-                    }
-                }
-            });
-        }
-    </script>
-    
-    <script>
-        $(document).ready(function() {
+    $(document).ready(function() {
         let maxDays = 0;
-    
+
         // Initialize the date picker with minimum date
         $("#dateInput").datepicker({
             dateFormat: 'dd-mm-yy',
-            minDate: 0, // Aaj se pehle ki date disable karne ke liye
+            minDate: 0,
             onSelect: function(dateText) {
                 const selectedDate = $(this).datepicker('getDate');
                 const depositDate = new Date(selectedDate);
                 depositDate.setDate(selectedDate.getDate() + maxDays);
-    
+
                 $('#depositDateInput').val($.datepicker.formatDate('dd-mm-yy', depositDate)); // Set deposit date
                 $('#depositLabel').show(); // Show the label for deposit date
                 $('#depositDateInput').show(); // Show the deposit date input
             }
         });
-    
+
         // Handle rental plan selection
         $('input[name="plan"]').change(function() {
+            // Reset styles for all plans
+            $('.plan-outer').css({
+                'background-color': '',
+                'color': '',
+                'font-weight': ''
+            });
+            $('.plan h5, .plan h6').css({
+                'color': '', // Reset text color
+                'font-weight': '' // Reset font weight
+            });
+
+            // Set new maxDays
             maxDays = parseInt($(this).data('days'));
+
+            // Update the selected plan's style
+            const selectedPlan = $(this).closest('.plan-outer');
+            selectedPlan.css({
+                'background-color': '#57110c',
+                'color': 'white',
+                'font-weight': 'bold'
+            });
+            selectedPlan.find('h5, h6').css({
+                'color': 'white', // Set text color to white
+                'font-weight': '600' // Set font weight to 600
+            });
+
             $('.rent-calendar').removeClass('d-none').show();
             $("#dateInput").val('').focus(); // Clear and focus the date input
             $("#dateInput").datepicker("show"); // Show the datepicker
             $('#depositLabel').hide(); // Hide the label initially
             $('#depositDateInput').hide(); // Hide the deposit date input initially
         });
-    
+
         // Handle RENT NOW button click
         $('#rentNowBtn').click(function() {
             const selectedDate = $("#dateInput").val();
@@ -625,7 +622,114 @@ box-shadow: none;
             }
         });
     });
-    
-    </script>
+</script>
+
+
+<script>
+document.querySelectorAll('.plan-radio').forEach(plan => {
+        plan.addEventListener('change', function() {
+            const calendar = document.querySelector('.rent-calendar');
+            calendar.classList.remove('d-none');
+            
+            // Logic to handle calendar date selection
+            const selectedPlan = this.value;
+            // Logic for auto-selecting dates based on selected plan
+            // Show the calendar using a library like Flatpickr, jQuery UI, etc.
+            initializeCalendar(selectedPlan);
+        });
+    });
+
+    function initializeCalendar(plan) {
+        // Assuming you're using a library like Flatpickr
+        const calendarEl = document.getElementById('calendar');
+        const startDate = new Date();
+        
+        // Show calendar with custom logic to select multiple dates
+        // For example, if 4 days are selected, set up the calendar to allow selection of 4 days
+        // Use library features to handle date range selection
+        // Example: Flatpickr configuration
+        flatpickr(calendarEl, {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            onChange: function(selectedDates) {
+                if (selectedDates.length === 2) {
+                    const from = selectedDates[0];
+                    const to = selectedDates[1];
+                    // Logic to automatically select the next dates based on the selected range
+                }
+            }
+        });
+    }
+</script>
+
+<script>
+    $(document).ready(function() {
+        let maxDays = 0;
+
+        // Initialize the date picker with minimum date
+        $("#dateInput").datepicker({
+            dateFormat: 'dd-mm-yy',
+            minDate: 0,
+            onSelect: function(dateText) {
+                const selectedDate = $(this).datepicker('getDate');
+                const depositDate = new Date(selectedDate);
+                
+                // Set deposit date based on selected date and maxDays
+                const actualRentalDays = maxDays - 1; // Subtract 1 from maxDays for accurate calculation
+                depositDate.setDate(selectedDate.getDate() + actualRentalDays); // Calculate deposit date
+
+                $('#depositDateInput').val($.datepicker.formatDate('dd-mm-yy', depositDate)); // Set deposit date
+                $('#depositLabel').show(); // Show the label for deposit date
+                $('#depositDateInput').show(); // Show the deposit date input
+            }
+        });
+
+        // Handle rental plan selection
+        $('input[name="plan"]').change(function() {
+            // Reset styles for all plans
+            $('.plan-outer').css({
+                'background-color': '',
+                'color': '',
+                'font-weight': ''
+            });
+            $('.plan h5, .plan h6').css({
+                'color': '',
+                'font-weight': ''
+            });
+
+            // Set new maxDays
+            maxDays = parseInt($(this).data('days'));
+
+            // Update the selected plan's style
+            const selectedPlan = $(this).closest('.plan-outer');
+            selectedPlan.css({
+                'background-color': '#57110c',
+                'color': 'white',
+                'font-weight': 'bold'
+            });
+            selectedPlan.find('h5, h6').css({
+                'color': 'white',
+                'font-weight': '600'
+            });
+
+            $('.rent-calendar').removeClass('d-none').show();
+            $("#dateInput").val('').focus(); // Clear and focus the date input
+            $("#dateInput").datepicker("show"); // Show the datepicker
+            $('#depositLabel').hide(); // Hide the label initially
+            $('#depositDateInput').hide(); // Hide the deposit date input initially
+        });
+
+        // Handle RENT NOW button click
+        $('#rentNowBtn').click(function() {
+            const selectedDate = $("#dateInput").val();
+            if (!selectedDate) {
+                alert('Please select a rental date.');
+            } else {
+                alert('You have selected the rent date: ' + selectedDate);
+            }
+        });
+    });
+</script>
 
 @endsection
