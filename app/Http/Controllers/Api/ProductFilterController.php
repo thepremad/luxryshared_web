@@ -78,24 +78,28 @@ class ProductFilterController extends Controller
             ], 500);
         }
     }
+
+
     public function addTocart(StoreAddProductRequest $request){
-    try {
-        $checkCartItems = Cart::where('item_id',$request->item_id)->where('user_id',auth()->user()->id)->first();
-        if ($checkCartItems) {
-        return response()->json(['message' => 'Item Already Addes In Cart'], 200);
+        try {
+            $checkCartItems = Cart::where('item_id',$request->item_id)->where('user_id',auth()->user()->id)->first();
+            if ($checkCartItems) {
+            return response()->json(['message' => 'Item Already Addes In Cart'], 200);
+            }
+            $cart = new Cart();
+            $cart->item_id = $request->item_id;
+            $cart->days = $request->days;
+            $cart->user_id = auth()->user()->id;
+            $cart->save();
+            return response()->json(['message' => 'Item Add Successfully'], 200);
+        }catch (\Throwable $th) {
+            \Log::error('api item post : exception');
+            \Log::error($th);
+            return response()->json(['error'=> "Something went wrong. Please try again later."],500);
         }
-        $cart = new Cart();
-        $cart->item_id = $request->item_id;
-        $cart->days = $request->days;
-        $cart->user_id = auth()->user()->id;
-        $cart->save();
-        return response()->json(['message' => 'Item Add Successfully'], 200);
-    }catch (\Throwable $th) {
-        \Log::error('api item post : exception');
-        \Log::error($th);
-        return response()->json(['error'=> "Something went wrong. Please try again later."],500);
     }
-    }
+
+    
     public function shoppingBag(){
         try {
             $cart = Cart::with('products')->where('user_id',auth()->user()->id)->latest()->get();
