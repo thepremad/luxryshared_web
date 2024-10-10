@@ -131,9 +131,7 @@
                                         <div class="form-group">
                                             <label for="multiple_image_file_input">Upload 4 More Item Images: <span>*</span>
 
-                                                <div id="preview">
-
-                                                </div>
+                                                
                                                 <div class="custom-file-upload" id="additional-images-container">
                                                     <div class="upload-button">
 
@@ -142,6 +140,10 @@
 
                                                     </div>
                                                     
+                                                </div>
+
+                                                <div id="preview">
+
                                                 </div>
 
                                                 <input type="hidden" name="step" value="1"  id="step_id">
@@ -792,7 +794,7 @@
             // }
 
             if (files) {
-                $('#additional-images-container').hide();
+                // $('#additional-images-container').hide();
                 Array.from(files).forEach(file => {
                     const reader = new FileReader();
                     reader.onload = function(e) {
@@ -803,7 +805,7 @@
                     reader.readAsDataURL(file);
                 });
             }else{
-                $('#additional-images-container').show();
+                // $('#additional-images-container').show();
             }
     });
 </script>
