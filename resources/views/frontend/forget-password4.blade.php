@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
  @section('content')
  <!--Body Content-->
- <div id="page-content">
+ <div id="page-content" class="register">
             <div class="container-fluid">
                 <div class="loginRegister-section">
                     <div class="row">

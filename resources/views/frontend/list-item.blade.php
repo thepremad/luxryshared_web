@@ -27,7 +27,7 @@
                                         <label for="category">Category</label>
                                         <select name="category_id" id="moku" onchange="getSubCateogry(this)"
                                             class="form-control">
-                                            <option value=""> select category </option>
+                                            <option value=""> Select Category </option>
                                             @foreach ($category as $val)
                                                 <option value="{{ $val->id }}">{{ $val->name }}</option>
                                             @endforeach
@@ -39,7 +39,7 @@
                                     <div class="col-md-6">
                                         <label for="sub-category">Sub Category</label>
                                         <select name="sub_category_id" id="toku" class="form-control">
-                                            <!-- Add options here -->
+                                            <option value=""> Select Sub - Category </option>
                                         </select>
                                         <span class="text text-danger">{{ $errors->first('sub_category_id') }}</span>
                                         <span class="text-danger validation-class" id="sub_category_id-submit_errors"></span>
@@ -93,7 +93,11 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="form-group row">
+
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="imgInp">Upload Main Image for your Item <span>*</span> 
@@ -154,7 +158,13 @@
                                         </div>
                                         
                                     </div>
+
+                                    
                                 </div>
+
+
+
+
                                 <div class="form-group">
                                     <label for="description">Item Description <span>*</span></label>
                                     <textarea class="form-control" name="image_description" id="description" rows="5"
@@ -165,6 +175,9 @@
                                 <div class="button-container">
                                     <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next</button>
                                 </div>
+
+
+                                
                             </div>
 
                             <!-- Step 2 -->

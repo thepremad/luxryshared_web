@@ -85,9 +85,13 @@
 .register .loginRegister-section #myTabContent.tab-content .form-group label {
   font-family: 'Proxima Nova', sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 19.49px;
   margin-bottom: 20px;
+}
+
+.register .loginRegister-section #myTabContent.tab-content .form-group label span{
+  color: #FF0000;
 }
 
 .register .loginRegister-section #myTabContent.tab-content .form-group .input-group {

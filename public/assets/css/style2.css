@@ -2119,6 +2119,7 @@ label input:checked~span#checkBox-btn i {
   line-height: 1.3;
   color: #383838;
   margin-bottom: 8px;
+  width: 100%;
 }
 
 .listItem-section .row .step-form label span {

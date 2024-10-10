@@ -13,7 +13,7 @@ setTimeout(function() {
     }
 }, 5000); // 5000 milliseconds = 5 seconds
 </script>
-<div id="page-content">
+<div id="page-content" class="register">
             <div class="container-fluid">
                 <div class="loginRegister-section">
                     <div class="row">

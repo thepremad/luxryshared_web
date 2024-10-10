@@ -98,7 +98,7 @@
                                             
                                             @csrf
                                             <div class="form-group">
-                                                <label for="registerEmail">Email Address*</label>
+                                                <label for="registerEmail">Email Address <span>*</span></label>
                                                 <input type="email" name="email"
                                                     class="form-control @error('email') is-invalid @enderror"
                                                     id="registerEmail" placeholder="Enter email"
@@ -109,7 +109,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="firstName">First Name*</label>
+                                                <label for="firstName">First Name <span>*</span></label>
                                                 <input type="text" name="first_name"
                                                     class="form-control @error('first_name') is-invalid @enderror"
                                                     id="firstName" placeholder="First Name" value="{{ old('first_name') }}">
@@ -118,7 +118,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="lastName">Last Name*</label>
+                                                <label for="lastName">Last Name <span>*</span></label>
                                                 <input type="text" name="last_name"
                                                     class="form-control @error('last_name') is-invalid @enderror"
                                                     id="lastName" placeholder="Last Name"
@@ -148,7 +148,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="mobileNumber">Mobile Number*</label>
+                                                <label for="mobileNumber">Mobile Number <span>*</span></label>
                                                 <input type="text" name="number"
                                                     class="form-control @error('number') is-invalid @enderror"
                                                     id="mobileNumber" placeholder="Enter Mobile Number"
@@ -158,7 +158,12 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="mobileNumber">Address*</label>
+                                                <label for="referralCode">Referral Code</label>
+                                                <input type="text" name="referralCode" class="form-control" id="referralCode" placeholder="REFERRAL CODE">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="mobileNumber">Address <span>*</span></label>
                                                 <input type="text" name="address"
                                                     class="form-control @error('address') is-invalid @enderror"
                                                     id="mobileNumber" placeholder="Enter Address"
@@ -166,9 +171,13 @@
                                                 <span class="invalid-feedback">{{ $errors->first('addrrss') }}</span>
                                                 <span class="text-danger validation-class" id="address-register_errors"></span>
                                             </div>
+                                            
+                                            <div id="map"></div>
+                                            <input type="hidden" name="latitude" id="lantitude">
+                                            <input type="hidden" name="longitude" id="longitude">
 
-                                            <div class="form-group">
-                                                <label for="idVerificationn">Upload Emirates ID Card or Passport*</label>
+                                            <div class="form-group" style="margin-top: 20px">
+                                                <label for="idVerificationn">Upload EID <span>*</span></label>
                                                 <input type="file" name="id_image"
                                                     class="form-control-file @error('id_image') is-invalid @enderror"
                                                     id="idVerificationn" accept="image/*">
@@ -176,14 +185,10 @@
                                                 <span class="invalid-feedback">{{ $errors->first('id_image') }}</span>
                                                 <span class="text-danger validation-class" id="id_image-register_errors"></span>
                                             </div>
-                                            
-                                            <div id="map"></div>
-                                            <input type="hidden" name="latitude" id="lantitude">
-                                            <input type="hidden" name="longitude" id="longitude">
 
                                             <div class="form-check">
                                                 <input type="checkbox"
-                                                    class="form-check-input @error('terms') is-invalid @enderror"
+                                                    class="form-check-input mt-0 @error('terms') is-invalid @enderror"
                                                     id="terms" name="terms">
                                                 <label class="form-check-label" for="terms">I AGREE TO THE TERMS OF
                                                     SERVICES AND
@@ -191,7 +196,14 @@
                                                 <span class="invalid-feedback">{{ $errors->first('terms') }}</span>
                                                 <span class="text-danger validation-class" id="terms-register_errors"></span>
                                             </div>
+
+                                            <div class="form-check">
+                                                <input type="checkbox"
+                                                    class="form-check-input mt-0" id="terms2" name="terms2">
+                                                <label class="form-check-label" for="terms2">I AGREE TO RECEIVE MARKETING EMAILS FROM LXRY.</label>
+                                            </div>
                                             
+
 
                                             <div class="registerForm-btnSection mt-3">
                                                 <button type="submit"
