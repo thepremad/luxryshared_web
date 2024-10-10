@@ -223,13 +223,15 @@
             <div class="section hot-picks">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 pl-0">
                             <div class="section-header">
                                 <h2 class="h2 heading-font">Just Landed</h2>
 
                             </div>
                         </div>
-
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
+                            <a href="">View All</a>
+                        </div>
 
                     </div>
                 </div>
@@ -316,7 +318,7 @@
             <div class="section hot-picks">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 pl-0">
                             <div class="section-header">
                                 <h2 class="h2 heading-font">Editor Pick</h2>
                             </div>
@@ -426,7 +428,7 @@
             <div class="section hot-picks">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 pl-0">
                             <div class="section-header">
                                 <h2 class="h2 heading-font">Resale </h2>
                             </div>
@@ -629,7 +631,7 @@
             <div class="section top-product">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 pl-0">
                             <div class="section-header">
                                 <h2 class="h2 heading-font top-brands">Top Brands</h2>
                             </div>

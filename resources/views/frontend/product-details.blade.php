@@ -34,7 +34,7 @@ margin-right: 5px;
 .product-single .productDetails .product-divider {
 font-family: 'proxima nova', sans-serif;
 font-size: 16px;
-font-weight: 600;
+font-weight: 500;
 line-height: 1.3;
 color: #3C4242;
 margin-bottom: 15px !important;
@@ -49,8 +49,9 @@ color: #3C4242;
 }
 
 .product-single .productDetails .product-divider {
-background-color: #9FC560;
+background-color: #F4C87E;
 font-weight: 500;
+padding: 10px 0;
 }
 
 .product-single .productDetails .plan-outer {

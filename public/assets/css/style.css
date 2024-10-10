@@ -1275,7 +1275,7 @@ textarea:-ms-input-placeholder {
 }
 
 #siteNav.center {
-  text-align: center;
+  text-align: left;
 }
 
 #AccessibleNav {
@@ -7855,6 +7855,10 @@ body.home15-funiture-template {
   gap: 17px;
 }
 
+.btn-background a{
+  width: 100%;
+}
+
 .star {
   color: #ffd250;
 }
@@ -8086,7 +8090,7 @@ span.bg-red-txt {
   content: "";
   position: absolute;
   bottom: 15px;
-  left: 13px;
+  left: 0;
   background-color: #57110c;
   width: 20.5%;
   height: 4px;
@@ -8452,7 +8456,9 @@ footer#footer .row.copyrigt-row p a {
 
 .banner-content img {
   width: 100%;
-  height: auto;
+  max-width: 100%;
+  height: 600px;
+  object-fit: cover;
 }
 
 .banner-content .content {
@@ -8529,10 +8535,10 @@ footer#footer .row.copyrigt-row p a {
   background: transparent;
   font-family: "Proxima Nova", sans-serif;
   font-size: 28px;
-  line-height: 20px;
+  line-height: 1.2;
   font-weight: 400;
   color: #000000;
-  padding: 56.4px;
+  padding: 36.4px;
   border-radius: 20px;
   transition: all 0.3s;
   text-transform: uppercase;
@@ -8601,6 +8607,10 @@ footer#footer .row.copyrigt-row p a {
     left: 540px;
   }
 
+  .banner-content img {
+    height: 500px;
+  }
+
   #banner-text.banner-details p {
     font-size: 28px;
     line-height: 35.98px;
@@ -8610,7 +8620,7 @@ footer#footer .row.copyrigt-row p a {
   .banner-buttons-row .banner-button button {
     font-size: 20px;
     line-height: 28px;
-    padding: 40px;
+    padding: 30px;
   }
 
   .section.logo-section {
@@ -8818,7 +8828,7 @@ footer#footer .row.copyrigt-row p a {
   .banner-buttons-row .banner-button button {
     font-size: 19px;
     line-height: 25px;
-    padding: 29.4px;
+    padding: 25px;
   }
 
   .section.logo-section {
@@ -8951,6 +8961,10 @@ footer#footer .row.copyrigt-row p a {
     width: 16px;
     height: 16px;
   }
+
+  .banner-content img {
+    height: 450px;
+  }
 }
 
 @media only screen and (max-device-width: 576px) {
@@ -8963,7 +8977,7 @@ footer#footer .row.copyrigt-row p a {
   .banner-buttons-row .banner-button button {
     font-size: 16px;
     line-height: 25px;
-    padding: 10px;
+    padding: 15px;
   }
 
   .banner-buttons-row {
@@ -9134,6 +9148,10 @@ footer#footer .row.copyrigt-row p a {
   .logo {
     padding: 0;
   }
+
+  .banner-content img {
+    height: 400px;
+  }
 }
 
 @media only screen and (max-device-width: 481px) {
@@ -9206,6 +9224,10 @@ footer#footer .row.copyrigt-row p a {
   .banner-buttons-row .banner-button button {
     font-size: 14px;
     line-height: 20px;
+  }
+
+  .banner-content img {
+    height: 380px;
   }
 }
 
@@ -12144,7 +12166,6 @@ Start CSS All Products Page
   }
 }
 
-
 .home8-jewellery .collection-box-style1 a img{
   width: 314px !important;
   height: 608px !important;
@@ -12469,7 +12490,7 @@ Start CSS All Products Page
   }
   .banner-buttons-row .banner-button button{
       font-size: 13px !important;
-      padding: 5px !important;
+      padding: 10px !important;
   }
 }
 
@@ -12815,3 +12836,38 @@ Start CSS All Products Page
 .container-fluid.shopping-cart {
   overflow-x: auto;
 }
+
+#item_save_form img#blah{
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 15px 0;
+}
+
+#item_save_form #preview {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+}
+
+#item_save_form #preview img{
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  max-width: unset;
+  max-height: unset;
+  margin: unset;
+}
+
+@media only screen and (max-device-width: 1024px) {  
+  #item_save_form img#blah{
+    width: 90px;
+    height: 90px;
+  }
+  #item_save_form #preview {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+
