@@ -123,6 +123,9 @@ Route::middleware(['website'])->group(function () {
     // Route::get('product-page_5/{id}', [ProductListController::class, 'getTheLook'])->name('product_list_getthelook');
     // Route::get('product-detail/{id}', [ProductDetailController::class, 'productDetail'])->name('product_detail');
 
+    Route::get('checkout_show',function(){
+        return view('frontend.checkout_show');
+    });
     
 
     //Route::get('list-item', [ItemController::class, 'listItem'])->name('list_item');

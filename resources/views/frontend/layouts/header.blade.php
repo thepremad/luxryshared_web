@@ -168,12 +168,16 @@
             <div class="row mr-0">
                 <div class="col-md-10">
                     <ul id="siteNav" class="site-nav medium center hidearrow">
-                        @foreach ($menu as $val)
+
+                    @if (!empty($menu))
+                    @foreach ($menu as $val)
                         
                         <li class="lvl1 parent megamenu"><a href='{{$val->link}}'>{{$val->name}} <i class="anm anm-angle-down-l"></i></a>
                         
                     </li>
                     @endforeach
+                    @endif
+                        
                        
                     </ul>
                 </div>
