@@ -12145,7 +12145,6 @@ Start CSS All Products Page
 }
 
 
-
 .home8-jewellery .collection-box-style1 a img{
   width: 314px !important;
   height: 608px !important;
@@ -12209,6 +12208,7 @@ Start CSS All Products Page
 
   .section.community .row{
       flex-direction: row !important;
+      justify-content: center;
   }
 
   .section.community .col-md-6 h3{
@@ -12217,6 +12217,7 @@ Start CSS All Products Page
 
   .section.collection-box-style1 .row{
       flex-direction: row !important;
+      justify-content: center !important;
   }
 
   .section.collection-box-style1 .row .col-6{
@@ -12226,6 +12227,8 @@ Start CSS All Products Page
 
   .section.divider-btn .row{
       flex-direction: row !important;
+      justify-content: center !important;
+      padding: 0 15px !important;
   }
 
   .section.divider-btn .row .col-6{
@@ -12275,6 +12278,13 @@ Start CSS All Products Page
 
   .section.top-product .row{
       flex-direction: row !important;
+  }
+
+  .section.top-product .swiper-wrapper{
+    justify-content: center !important;
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
   }
 
   .section.top-product .row .col-6{
@@ -12339,11 +12349,25 @@ Start CSS All Products Page
       padding: 50px 20px !important;
       align-items: center !important;
       padding-bottom: 50px !important;
+      width: 90% !important;
   }
 
   .top-product .topProduct-img img{
       height: 280px !important;
       min-height: 280px !important;
+  }
+
+  .section.get-the-look{
+    padding: 20px 30px;
+  }
+
+  .lxryShared-row{
+    padding: 0 30px;
+  }
+
+  .lxry-shared-contant a{
+    font-size: 17px;
+    padding: 8.9px 20px;
   }
 
   .section.logo-section .section-header .row{
@@ -12361,7 +12385,7 @@ Start CSS All Products Page
   }
 
   .top-product .top-brands::before{
-      left: 25px !important;
+      left: 20px !important;
   }
 
   .logo-bar__item img{
@@ -12416,6 +12440,10 @@ Start CSS All Products Page
   .listItem-section .row .step-form h4::after{
       display: none;
   }
+
+  .section-header{
+      padding-left: 0 !important;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -12434,6 +12462,14 @@ Start CSS All Products Page
   }
   .listItem-section .row .step-form textarea{
       font-size: 14px !important;
+  }
+  .lxry-shared-contant a {
+      font-size: 14px;
+      padding: 8.9px 12px;
+  }
+  .banner-buttons-row .banner-button button{
+      font-size: 13px !important;
+      padding: 5px !important;
   }
 }
 
@@ -12682,4 +12718,100 @@ Start CSS All Products Page
       /* max-width: 100% !important; */
       padding: 0;
   }
+}
+
+.header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) {
+  display: flex !important;
+  display: flex !important;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div{
+  width: 2.5%;
+}
+
+.header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div i.anm{
+  font-size: 20px;
+  width: 28px;
+  display: inline-block;
+  height: 28px;
+}
+
+.header-wrap .site-header__cart-count {
+  top: -7px !important;
+}
+
+.shopping-cart .spaced-table tr#cartHeading-row th{
+  vertical-align: middle;
+  padding: 0 15px !important;
+}
+
+@media only screen and (max-device-width: 1024px) {   
+  .header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div{
+      width: 7%;
+  }
+}
+
+@media only screen and (max-device-width: 768px) {   
+  .header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div{
+      width: 9% !important;
+  } 
+
+  .table.spaced-table{
+      width: 100% !important;
+      min-width: 700px !important;
+  }
+
+  .shopping-cart .spaced-table tr#cartHeading-row th {
+      font-size: 14px !important;
+  }
+
+  .shopping-cart .spaced-table tbody tr td {
+      font-size: 16px !important;
+      vertical-align: middle !important;
+      padding: 15px 10px !important;
+  }
+
+  .shopping-cart .spaced-table tbody tr td:nth-child(1) {
+      width: 28% !important;
+  }
+
+  .shopping-cart .spaced-table tbody tr td{
+      width: auto !important;
+  }
+
+  .shopping-cart .spaced-table th#cartHeading-1 {
+      padding-left: 30px !important;
+  }
+
+  .shopping-cart .spaced-table tbody tr td div.d-flex p.mb-1{
+      margin-top: -10px !important;
+  }
+
+  .shopping-cart .spaced-table tbody tr td div.d-flex img{
+      width: 60px !important;
+      height: 60px !important;
+      border-radius: 8px !important;
+  }
+}
+
+/* @media only screen and (max-device-width: 576px) {   
+  .header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div{
+      width: 12% !important;
+  }
+  .shopping-cart .spaced-table tbody tr td div.d-flex{
+      gap: unset !important;
+      justify-content: space-between !important;
+  }
+  .shopping-cart .spaced-table tr#cartHeading-row th {
+      font-size: 10px;
+  }
+  .shopping-cart .spaced-table th#cartHeading-1 {
+      padding-left: 20px !important;
+  }
+} */
+
+.container-fluid.shopping-cart {
+  overflow-x: auto;
 }
