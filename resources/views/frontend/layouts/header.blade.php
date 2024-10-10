@@ -113,15 +113,18 @@
                     @if(auth()->user())
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
 
+                        <div class="listItrm-link">
+                            <a href="">List An Item</a>
+                        </div>
+                        <div class="site-header__search">
+                            <span class=""><a href="{{route('wishlist')}}"><i class="icon anm anm-heart-l"></i></a></span>
+                        </div>
                         <div class="site-cart">
                             <a href="{{ route('cart') }}" class="site- header__cart" title="Cart">
                                 <i class="icon anm anm-bag-l"></i>
                                 <span id="CartCount" class="site-header__cart-count"
                                     data-cart-render="item_count">2</span>
                             </a>
-                        </div>
-                        <div class="site-header__search">
-                            <span class=""><a href="{{route('wishlist')}}"><i class="icon anm anm-heart-l"></i></a></span>
                         </div>
                         <div class="site-header__search">
                             <a href="{{route('edit_profile')}}"><span class=""><i class="icon anm anm-user-l"></i></span></a>
@@ -167,7 +170,7 @@
                     <ul id="siteNav" class="site-nav medium center hidearrow">
                         @foreach ($menu as $val)
                         
-                        <li class="lvl1 parent megamenu"><a target="_blank" href='{{$val->link}}'>{{$val->name}} <i class="anm anm-angle-down-l"></i></a>
+                        <li class="lvl1 parent megamenu"><a href='{{$val->link}}'>{{$val->name}} <i class="anm anm-angle-down-l"></i></a>
                         
                     </li>
                     @endforeach

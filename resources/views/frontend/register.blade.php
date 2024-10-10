@@ -177,7 +177,7 @@
                                             <input type="hidden" name="longitude" id="longitude">
 
                                             <div class="form-group" style="margin-top: 20px">
-                                                <label for="idVerificationn">Upload Emirates ID Card or Passport*</label>
+                                                <label for="idVerificationn">Upload EID <span>*</span></label>
                                                 <input type="file" name="id_image"
                                                     class="form-control-file @error('id_image') is-invalid @enderror"
                                                     id="idVerificationn" accept="image/*">
