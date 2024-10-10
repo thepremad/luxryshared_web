@@ -93,7 +93,11 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="form-group row">
+
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="imgInp">Upload Main Image for your Item <span>*</span> 
@@ -154,7 +158,13 @@
                                         </div>
                                         
                                     </div>
+
+                                    
                                 </div>
+
+
+
+
                                 <div class="form-group">
                                     <label for="description">Item Description <span>*</span></label>
                                     <textarea class="form-control" name="image_description" id="description" rows="5"
@@ -165,6 +175,9 @@
                                 <div class="button-container">
                                     <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next</button>
                                 </div>
+
+
+                                
                             </div>
 
                             <!-- Step 2 -->
