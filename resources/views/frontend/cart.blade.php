@@ -68,6 +68,8 @@
                         </div>
                     </div>
 
+
+
                 </table>
             </div>
 
@@ -75,10 +77,10 @@
             <div class="row mt-3 mb-120 couponCode-section">
                 <div class="col-lg-12 mx-auto d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center referralCode">
-                        <!-- <input type="text" id="referal_code" class="form-control me-2 referralCode-input"
-                            placeholder="ADD REFERRAL CODE">
-                        <a href="#" id="applyDiscount">Apply</a> -->
+                        <input type="text" class="form-control me-2 referralCode-input" placeholder="ADD REFERRAL CODE">
+                        <a href="#">Apply</a>
                     </div>
+                    <button class="btn btn-success theme-btn">Proceed To Checkout</button>
                 </div>
             </div>
         </div>

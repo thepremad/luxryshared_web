@@ -182,13 +182,7 @@ justify-content: center;
                     </div>
 
                     <div class="col-lg-5 col-md-5 col-sm-12 col-12 productDetails pl-0 px-sm-3 px-md-3">
-                        <!-- Breadcrumb Navigation -->
-                        <nav class="breadcrumb">
-                            <a class="breadcrumb-item" href="#">Shop</a>
-                            <a class="breadcrumb-item" href="#">Women</a>
-                            <span class="breadcrumb-item active" aria-current="page">Top</span>
-                        </nav>
-                
+                                       
                         <!-- Product Title -->
                         <h1 class="product-single__title">Product Name</h1>
                 
