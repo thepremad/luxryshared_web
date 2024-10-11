@@ -58,19 +58,19 @@
 /* Media Queries for responsiveness */
 @media (max-width: 768px) {
     .swiper-slide {
-        width: calc(100% / 4) !important; /* 2 slides for mobile */
+        width: calc(100% / 5) !important; /* 2 slides for mobile */
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .swiper-slide {
-        width: calc(100% / 4) !important; /* 4 slides for tablet */
+        width: calc(100% / 7) !important; /* 4 slides for tablet */
     }
 }
 
 @media (min-width: 1025px) {
     .swiper-slide {
-        width: calc(100% / 5) !important; /* 5 slides for desktop */
+        width: calc(100% / 9) !important; /* 5 slides for desktop */
     }
 }
 
@@ -265,83 +265,86 @@
 
                     </div>
                 </div>
-                <div class="productSlider-style2 grid-products justify-content-start align-items-start">
-                    @foreach ($allData['just_landed'] as $val)
-                        <div class="col-12 item">
-                            <!-- start product image -->
-                            <div class="product-image">
+                <div class="row justify-content-center">
+                    <div class="productSlider-style2 grid-products justify-content-start align-items-start">
+                        @foreach ($allData['just_landed'] as $val)
+                            <div class="col-12 item">
                                 <!-- start product image -->
-                                <a href="{{ route('product_detail', $val->id) }}" class="grid-view-item__link">
-                                    <!-- image -->
-                                    <img class="primary blur-up lazyload"
-                                        data-src="{{ asset('uploads/item/' . $val->mainImag) }}"
-                                        src="{{ asset('uploads/item/' . $val->mainImag) }}" alt="image"
-                                        title="product">
-                                    <!-- End image -->
-                                    <!-- Hover image -->
-                                    <img class="hover blur-up lazyload"
-                                        data-src="{{ asset('uploads/item/' . $val->mainImag) }}"
-                                        src="{{ asset('uploads/item/' . $val->mainImag) }}" alt="image"
-                                        title="product">
-                                    <!-- End hover image -->
-                                </a>
-                                <!-- end product image -->
-                                <!-- Start product button -->
-                                <form class="variants add" action="#" method="post">
-                                    <div class="d-flex btn-background" style="">
-                                        <a href="{{ route('product_detail', $val->id) }}">
-                                            <button class="btn btn-green mx-1" type="button" tabindex="0">Rent
-                                                Now</button>
-                                        </a>
-                                        @if ($val->buy == 'true')
+                                <div class="product-image">
+                                    <!-- start product image -->
+                                    <a href="{{ route('product_detail', $val->id) }}" class="grid-view-item__link">
+                                        <!-- image -->
+                                        <img class="primary blur-up lazyload"
+                                            data-src="{{ asset('uploads/item/' . $val->mainImag) }}"
+                                            src="{{ asset('uploads/item/' . $val->mainImag) }}" alt="image"
+                                            title="product">
+                                        <!-- End image -->
+                                        <!-- Hover image -->
+                                        <img class="hover blur-up lazyload"
+                                            data-src="{{ asset('uploads/item/' . $val->mainImag) }}"
+                                            src="{{ asset('uploads/item/' . $val->mainImag) }}" alt="image"
+                                            title="product">
+                                        <!-- End hover image -->
+                                    </a>
+                                    <!-- end product image -->
+                                    <!-- Start product button -->
+                                    <form class="variants add" action="#" method="post">
+                                        <div class="d-flex btn-background" style="">
                                             <a href="{{ route('product_detail', $val->id) }}">
-                                                <button class="btn btn-white mx-1" type="button" tabindex="0">Buy
+                                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent
                                                     Now</button>
                                             </a>
-                                        @endif
+                                            @if ($val->buy == 'true')
+                                                <a href="{{ route('product_detail', $val->id) }}">
+                                                    <button class="btn btn-white mx-1" type="button" tabindex="0">Buy
+                                                        Now</button>
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </form>
+                                    <div class="button-set">
+                                        <div class="wishlist-btn">
+                                            <a class="wishlist add-to-wishlist"  onclick="addToWishList({{ $val->id }})">
+                                                <i class="icon anm anm-heart-l"></i>
+                                            </a>
+                                        </div>
                                     </div>
-                                </form>
-                                <div class="button-set">
-                                    <div class="wishlist-btn">
-                                        <a class="wishlist add-to-wishlist"  onclick="addToWishList({{ $val->id }})">
-                                            <i class="icon anm anm-heart-l"></i>
-                                        </a>
+                                    <!-- end product button -->
+                                </div>
+                                <!-- end product image -->
+                                <!--start product details -->
+                                <div class="product-details text-center">
+                                    <!-- product name -->
+                                    <div class="product-name">
+                                        <a href="product-layout-1.html">{{ $val->item_title }}</a>
                                     </div>
+                                    <!-- End product name -->
+                                    <div class="star text-center">
+                                        <ul class="list-unstyled" style="display: inline-flex;">
+                                            <li><i class="fa fa-star px-2 star"></i></li>
+                                            <li><i class="fa fa-star px-2 star"></i></li>
+                                            <li><i class="fa fa-star px-2 star"></i></li>
+                                            <li><i class="fa fa-star px-2 star"></i></li>
+                                            <li><i class="fa fa-star px-2 star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <!-- product price -->
+                                    <div class="product-price">
+                                        <span class="price">AED {{ $val->rrp_price }}</span>
+                                    </div>
+                                    <!-- End product price -->
+                                    <!-- product Link -->
+                                    <a href="#" class="product_link">{{ $val->category->name ?? '' }}</a>
+                                    <!-- End Product Link -->
                                 </div>
-                                <!-- end product button -->
+                                <!-- End product details -->
                             </div>
-                            <!-- end product image -->
-                            <!--start product details -->
-                            <div class="product-details text-center">
-                                <!-- product name -->
-                                <div class="product-name">
-                                    <a href="product-layout-1.html">{{ $val->item_title }}</a>
-                                </div>
-                                <!-- End product name -->
-                                <div class="star text-center">
-                                    <ul class="list-unstyled" style="display: inline-flex;">
-                                        <li><i class="fa fa-star px-2 star"></i></li>
-                                        <li><i class="fa fa-star px-2 star"></i></li>
-                                        <li><i class="fa fa-star px-2 star"></i></li>
-                                        <li><i class="fa fa-star px-2 star"></i></li>
-                                        <li><i class="fa fa-star px-2 star"></i></li>
-                                    </ul>
-                                </div>
-                                <!-- product price -->
-                                <div class="product-price">
-                                    <span class="price">AED {{ $val->rrp_price }}</span>
-                                </div>
-                                <!-- End product price -->
-                                <!-- product Link -->
-                                <a href="#" class="product_link">{{ $val->category->name ?? '' }}</a>
-                                <!-- End Product Link -->
-                            </div>
-                            <!-- End product details -->
-                        </div>
-                    @endforeach
+                        @endforeach
 
 
+                    </div>
                 </div>
+
             </div>
 
             <!--End Hot picks-->
