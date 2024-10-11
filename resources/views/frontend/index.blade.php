@@ -44,6 +44,36 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .swiper-container {
+    width: 100%;
+    overflow: hidden; /* Prevent page scroll */
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .swiper-slide {
+        width: calc(100% / 4) !important; /* 2 slides for mobile */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .swiper-slide {
+        width: calc(100% / 4) !important; /* 4 slides for tablet */
+    }
+}
+
+@media (min-width: 1025px) {
+    .swiper-slide {
+        width: calc(100% / 5) !important; /* 5 slides for desktop */
+    }
+}
+
     </style>
     <div id="page-content">
 
@@ -127,28 +157,28 @@
                                 </div>
                                 <h2 class="h2"></h2>
                             </div>
-                            <div class="logo-bar">
-                                <a href="{{ route('product_list_categories', ['id' => '0', 'sub_id' => '0']) }}"
-                                    class="collection-grid-item__link">
-                                    <div class="logo-bar__item text-center">
-                                        <img src="{{ asset('assets/img/Group 18399.png') }}" alt=""
-                                            title="" />
-                                        <h4 class="logo-bar__heading">All</h4>
-                                    </div>
-                                </a>
-                                @foreach ($allData['category'] as $val)
-                                    <a href="{{ route('product_list_categories', ['id' => 0, 'sub_id' => $val->id]) }}"
-                                        class="collection-grid-item__link">
-                                        <div class="logo-bar__item text-center">
-                                            <img src="{{ asset('/uploads/category/' . $val->image) }}" alt=""
-                                                title="" />
-                                            <h4 class="logo-bar__heading">{{ $val->name }}</h4>
-                                        </div>
-                                    </a>
-                                @endforeach
+                            
+                            <div class="swiper-container" id="category Carousel">
+    <div class="swiper-wrapper">
+        @foreach ($allData['category'] as $val)
+            <div class="swiper-slide">
+                <a href="{{ route('product_list_categories', ['id' => 0, 'sub_id' => $val->id]) }}" class="collection-grid-item__link">
+                    <div class="logo-bar__item text-center">
+                        <img src="{{ asset('/uploads/category/' . $val->image) }}" alt="" title="" />
+                        <h4 class="logo-bar__heading">{{ $val->name }}</h4>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+    </div>
+    <!-- Add Navigation -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
 
 
-                            </div>
+
+
                         </div>
                     </div>
 
@@ -230,7 +260,7 @@
                             </div>
                         </div>
                         <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                            <a href="">View All</a>
+                            <a href=""  >View All</a>
                         </div>
 
                     </div>
@@ -1276,6 +1306,39 @@
                 }
             }
         </script>
+
+
+<script>
+const swiper = new Swiper('#categoryCarousel', {
+    slidesPerView: 2, // Default for mobile
+    slidesPerGroup: 1,
+    spaceBetween: 5, // Reduce space between slides
+    loop: true,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 2, // For mobile devices
+            slidesPerGroup: 1,
+        },
+        769: {
+            slidesPerView: 4, // For tablet devices
+            slidesPerGroup: 1,
+        },
+        1025: {
+            slidesPerView: 5, // For desktop devices
+            slidesPerGroup: 1,
+        },
+    },
+});
+
+
+
+</script>
+
+
 
 
 

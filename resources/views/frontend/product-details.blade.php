@@ -153,6 +153,26 @@ justify-content: center;
 }
 }
 
+        .product-divider {
+            border-bottom: 1px solid #ddd;
+        }
+        .plan-outer {
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .plan-outer:hover {
+            background-color: #f8f9fa;
+        }
+        .date-section {
+            display: none; /* Initially hidden */
+        }
+        .selected-range {
+            background-color: #d1e7dd !important; /* Light green for selected range */
+        }
+
 
 </style>
 <!--Body Content-->
@@ -182,13 +202,16 @@ justify-content: center;
                     </div>
 
                     <div class="col-lg-5 col-md-5 col-sm-12 col-12 productDetails pl-0 px-sm-3 px-md-3">
-                                       
-                        <!-- Product Title -->
+                        <nav class="breadcrumb">
+                            <a class="breadcrumb-item" href="#">Shop</a>
+                            <a class="breadcrumb-item" href="#">Women</a>
+                            <span class="breadcrumb-item active" aria-current="page">Top</span>
+                        </nav>
+
                         <h1 class="product-single__title">Product Name</h1>
-                
-                        <!-- product owner -->
+
                         <div class="d-flex align-items-center">
-                            <h5 class="mb-0">{{ $item->item_title }}</h5>
+                            <h5 class="mb-0">@John Richerd</h5>
                             <div class="ms-auto">
                                 <i class="fas fa-star" style="color: #E3C01C;"></i>
                                 <i class="fas fa-star" style="color: #E3C01C;"></i>
@@ -197,115 +220,85 @@ justify-content: center;
                                 <i class="fas fa-star" style="color: #E3C01C;"></i>
                             </div>
                         </div>
-                        
-                        <!-- Don't forget to include Font Awesome in your HTML -->
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-                        
 
-                        <!-- Product Info Row -->
                         <div class="prInfoRow">
                             <div class="product-rent-price d-block">
-                                <h4>AED {{ $item->fourDaysPrice }} / 4 Days</h4>
+                                <h4>50.99 $ / 4 Days</h4>
                             </div>
-
-                            @if ($item->buy == 'true')
-                                <div class="product-sell-price d-block">
-                                    <h4>AED {{ $item->buy_price }} BUY NOW</h4>
-                                </div>    
-                            @endif
-
-                            
+                            <div class="product-sell-price d-block">
+                                <h4>$399.00 BUY NOW</h4>
+                            </div>
                         </div>
-                
-                        <!-- Select Size -->
-                        <label for="size" class="form-label productSize-avl">Available Size</label>
 
+                        <label for="size" class="form-label productSize-avl">Available Size</label>
                         <div class="size-options mb-3 d-flex justify-content-between">
                             <div class="size-container">
-                                <h5>{{ $item->size->name }}</h5>                               
+                                <h5>XL</h5>                               
                             </div>
-                            {{-- <a href="#" class="size-guide-link">Size Guide</a> --}}
+                            <a href="#" class="size-guide-link">Size Guide</a>
                         </div>
-                
-                        <!-- Rental Period -->
+
                         <label for="rentalPeriod" class="form-label">Rental Period</label>
                         <h3 class="text-center py-4 product-divider">
                             Longer rental means lower daily rates and bigger savings.
                         </h3>
 
-
-                        <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
-
-                
-                        <!-- Rental Plans -->
                         <div class="rental-plans mb-3 d-flex justify-content-between py-3">
                             <div class="plan-outer">
                                 <input type="radio" id="plan1" name="plan" value="4" class="plan-radio" data-days="4">
                                 <label for="plan1" class="plan">
                                     <h5>4 Days</h5>
                                     <h6 class="price">$62.30</h6>
-                                    <h6 class="price-per-day">AED {{ $item->fourDaysPrice }}/day</h6>
+                                    <h6 class="price-per-day">$15.57/day</h6>
                                 </label>
                             </div>
-
                             <div class="plan-outer">
                                 <input type="radio" id="plan2" name="plan" value="7" class="plan-radio" data-days="7">
                                 <label for="plan2" class="plan">
                                     <h5>7 Days</h5>
-                                    <h6 class="price">AED {{ $item->sevenToTwentyNineDayPrice  * 7 }} </h6>
-                                    <h6 class="price-per-day">AED {{ $item->sevenToTwentyNineDayPrice }}/day</h6>
+                                    <h6 class="price">$85.00</h6>
+                                    <h6 class="price-per-day">$12.14/day</h6>
                                 </label>
                             </div>
-
                             <div class="plan-outer">
                                 <input type="radio" id="plan3" name="plan" value="10" class="plan-radio" data-days="10">
                                 <label for="plan3" class="plan">
                                     <h5>10 Days</h5>
-                                    <h6 class="price">AED {{ $item->sevenToTwentyNineDayPrice  * 10 }}</h6>
-                                    <h6 class="price-per-day">AED {{ $item->sevenToTwentyNineDayPrice }}/day</h6>
+                                    <h6 class="price">$120.00</h6>
+                                    <h6 class="price-per-day">$12.00/day</h6>
                                 </label>
                             </div>
-
                             <div class="plan-outer">
-                                <input type="radio" id="plan4" name="plan" value="30" class="plan-radio" data-days="30">
-                                <label for="plan4" class="plan">    
-                                    <h5>30 Days</h5>
-                                    <h6 class="price">AED {{ $item->thirtyPlusDayPrice  * 30 }}</h6>
-                                    <h6 class="price-per-day">AED {{ $item->thirtyPlusDayPrice }}/day</h6>
+                                <input type="radio" id="plan4" name="plan" value="14" class="plan-radio" data-days="14">
+                                <label for="plan4" class="plan">
+                                    <h5>14 Days</h5>
+                                    <h6 class="price">$150.00</h6>
+                                    <h6 class="price-per-day">$10.71/day</h6>
                                 </label>
                             </div>
-
                         </div>
-                
-                        <!-- Calendar for Rent -->
-                        <div class="row py-3">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                <div class="rent-calendar d-none">
-                                    <label for="calendar" class="form-label">Select Rent Date</label>
+
+                        <!-- New Section for Dates -->
+                        <div class="date-section">
+                            <h4 class="mt-4">Dates*</h4>
+                            <p>Tap to select Start Date, preferably 1-2 days before you plan to wear it.</p>
+
+                            <div class="row py-3">
+                                <div class="col-12 mb-3">
                                     <input type="text" id="dateInput" class="form-control" readonly>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-3">    
-                                <label for="depositDateInput" class="form-label" id="depositLabel" style="display: none;">Deposit Date</label>
-                                <input type="text" id="depositDateInput" class="form-control" readonly style="display: none;"> 
-                            </div>
                         </div>
-                
-                        <!-- Buttons for Actions -->
+
                         <div class="row mt-3">
                             <div class="col-lg-4 col-md-4 col-6">
                                 <button class="btn btn-dark btn-block" id="rentNowBtn">RENT NOW</button>
                             </div>
                             <div class="col-lg-4 col-md-4 col-6">
-                                <form action="{{ route('list_item.add_to_Cart') }}" method="POST" id="add_to_cart_form">
-                                    @csrf
-                                    <input type="hidden" name="item_id" value="{{ $item->id }}">
-                                    <input type="hidden" name="days" value="1">
-                                    <button class="btn btn-light btn-bloxk" id="buyNowBtn">Add To Cart</button>
-                                </form>
+                                <button class="btn btn-light btn-block" id="buyNowBtn">BUY NOW</button>
                             </div>
                         </div>
-                
+
                         <p id="dateWarning" class="text-danger" style="display:none;">Please select exactly <span id="maxDays"></span> dates.</p>
                     </div>
 
@@ -574,101 +567,105 @@ justify-content: center;
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-<script>
-    $(function() {
-        var select_date_range = 4; // Total of 5 days (0 + 4)
-
-        $('input[name="daterange"]').daterangepicker({
-            opens: 'left',
-            autoUpdateInput: false,  // Prevents the input from being updated until the range is applied
-            minDate: moment(),       // Disable previous dates
-            locale: {
-                format: 'YYYY-MM-DD'
-            },
-            isInvalidDate: function(date) {
-                // Disable selection of any date beyond the 5-day range from the start date
-                var startDate = $('input[name="daterange"]').data('daterangepicker')?.startDate;
-                if (startDate && date.isAfter(startDate.clone().add(select_date_range, 'days'))) {
-                    return true; // Disable dates outside the 5-day range
-                }
-                return false;
-            }
-        });
-
-        $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
-            var startDate = picker.startDate;
-            var endDate = startDate.clone().add(select_date_range, 'days'); // Automatically set the end date to 4 days after the start date (total 5 days)
-            picker.setEndDate(endDate); // Set the end date in the picker
-            $(this).val(startDate.format('YYYY-MM-DD') + ' to ' + endDate.format('YYYY-MM-DD')); // Update the input with the selected range
-        });
-
-        // Automatically update input when a start date is selected
-        $('input[name="daterange"]').on('show.daterangepicker', function(ev, picker) {
-            picker.container.find('.available').off('click').on('click', function() {
-                var startDate = picker.startDate;
-                var endDate = startDate.clone().add(select_date_range, 'days'); // Auto select 5-day range
-                picker.setEndDate(endDate);
-                picker.hide(); // Automatically close the picker
-                $(this).val(startDate.format('YYYY-MM-DD') + ' to ' + endDate.format('YYYY-MM-DD')); // Update the input field
-            });
-        });
-    });
-</script>
-
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
     $(document).ready(function() {
+        let maxDays = 0;
+        let selectedDates = [];
+        let startDate = null;
 
-    $('#add_to_cart_form').on('submit', function(e) {
-        e.preventDefault(); // Prevent the default form submission
-        var $form = $('#add_to_cart_form');
-        var url = $form.attr('action');
-        var formData = new FormData($form[0]);
-        $('.validation-class').html('');
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            beforeSend: function() {
-                $('.spinner-loader').css('display', 'block');
-            },
-            success: function(res) {
-                // window.location.href = res;
-                // showStep(step + 1);
-                // $('#step_id').val(2);
+        // Initialize Flatpickr
+        const datePicker = flatpickr("#dateInput", {
+            mode: "single",
+            dateFormat: "d-m-Y",
+            minDate: "today",
+            inline: true,
+            onChange: function(selected) {
+                if (selected.length > 0) {
+                    const selectedDate = selected[0];
+                    const endDate = new Date(selectedDate);
+                    endDate.setDate(selectedDate.getDate() + maxDays - 1);
+                    selectedDates = generateDateRange(selectedDate, endDate);
 
-                Toastify({
-                    text: res.message,
-                    className: "success",
-                    style: {
-                        background: "linear-gradient(to right, #00b09b, #96c93d)",
-                    }
-                }).showToast();
-
-            },
-            error: function(res) {
-                if (res.status == 400 || res.status == 422) {
-                    if (res.responseJSON && res.responseJSON.error) {
-                        var error = res.responseJSON.error
-                        $.each(error, function(key, value) {
-                            Toastify({
-                                text: value,
-                                className: "error",
-                                style: {
-                                    background: "linear-gradient(to right, #a01515, #a01515)",
-                                }
-                            }).showToast();
-                            // alert(value);
-                        });
-                    }
+                    // Update input field
+                    $('#dateInput').val(`${flatpickr.formatDate(selectedDate, "d-m-Y")} to ${flatpickr.formatDate(endDate, "d-m-Y")}`);
+                    highlightDates(selectedDates);
                 }
+            },
+            onOpen: function() {
+                clearPreviousHighlights();
+                if (selectedDates.length > 0) {
+                    highlightDates(selectedDates); // Re-highlight previously selected dates
+                }
+            },
+            position: 'above'
+        });
+
+        // Close date picker on outside click
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest("#dateInput").length && !$(e.target).closest(".flatpickr-calendar").length) {
+                datePicker.close();
+            }
+        });
+
+        // Handle rental plan selection
+        $('input[name="plan"]').change(function() {
+            maxDays = parseInt($(this).data('days'));
+            $(".date-section").show(); // Show date section
+            datePicker.clear(); // Clear previous selections
+            $('#dateInput').val(''); // Clear input field
+            startDate = null; // Reset start date
+            selectedDates = []; // Reset selected dates
+            datePicker.open(); // Open date picker immediately
+        });
+
+        // Generate date range based on start and end date
+        function generateDateRange(start, end) {
+            const dates = [];
+            let currentDate = new Date(start);
+            while (currentDate <= end) {
+                dates.push(new Date(currentDate));
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            return dates;
+        }
+
+        // Highlight selected dates in the calendar
+        function highlightDates(dates) {
+            const calendar = datePicker.calendar;
+            clearPreviousHighlights(); // Clear any previous highlights
+            dates.forEach(date => {
+                const dateStr = flatpickr.formatDate(date, "Y-m-d");
+                const dayElement = calendar.days.querySelector(`[data-date="${dateStr}"]`);
+                if (dayElement) {
+                    dayElement.classList.add('selected-range');
+                }
+            });
+        }
+
+        // Clear previous highlights
+        function clearPreviousHighlights() {
+            const calendar = datePicker.calendar;
+            const previouslySelected = calendar.days.querySelectorAll('.selected-range');
+            previouslySelected.forEach(dayElement => {
+                dayElement.classList.remove('selected-range');
+            });
+        }
+
+        // Handle RENT NOW button click
+        $('#rentNowBtn').click(function() {
+            if (!$('#dateInput').val()) {
+                alert('Please select rental dates.');
+            } else {
+                alert('You have selected the rent dates: ' + $('#dateInput').val());
             }
         });
     });
-});
 </script>
+
+
 
 
 @endsection
