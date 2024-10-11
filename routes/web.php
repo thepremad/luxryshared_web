@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Api\CheckoutController;
 use App\Http\Controllers\Api\ProductFilterController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\EditProfieController;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -126,6 +127,8 @@ Route::middleware(['website'])->group(function () {
     Route::get('checkout_show',function(){
         return view('frontend.checkout_show');
     });
+
+    Route::get('cart-checkout',[CartController::class,'checkout'])->name('submit_checkout');
     
 
     //Route::get('list-item', [ItemController::class, 'listItem'])->name('list_item');
