@@ -114,7 +114,7 @@
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
 
                         <div class="listItrm-link">
-                            <a href="">List An Item</a>
+                            <a href="">List an item</a>
                         </div>
                         <div class="site-header__search">
                             <span class=""><a href="{{route('wishlist')}}"><i class="icon anm anm-heart-l"></i></a></span>

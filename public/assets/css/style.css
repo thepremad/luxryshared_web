@@ -8635,7 +8635,7 @@ footer#footer .row.copyrigt-row p a {
     width: 100% !important;
     display: flex;
     gap: 15px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap !important;
     justify-content: center;
   }
 
@@ -10278,6 +10278,14 @@ Start Short Descraption
 
 .header-wrap.home8-jewellery-header .row .col-6 .row div:nth-child(2){
   padding-left: 0;
+}
+
+.header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div.listItrm-link a{
+  font-family: "Proxima Nova", sans-serif;
+  font-size: 15px;
+  line-height: 1.2;
+  color: #000000;
+  font-weight: 300;
 }
 
 
@@ -12432,8 +12440,8 @@ Start CSS All Products Page
   }
 
   .logo-bar__item img{
-      height: 50px !important;
-      width: 50px !important;
+      height: 100px !important;
+      width: 100px !important;
   }
 }
 

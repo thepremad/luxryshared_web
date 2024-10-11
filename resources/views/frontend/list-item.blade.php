@@ -101,65 +101,39 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="imgInp">Upload Main Image for your Item <span>*</span> 
-
-                                                <div class="custom-file-upload" id="main-image-container">
+                                                <div class="custom-file-upload mt-3" id="main-image-container">
                                                     <div class="upload-button">
-                                                        <img src="{{ asset('./assets/images/icons/cloud.png') }}" 
-                                                            alt="" for="" class="">
+                                                        <img src="{{ asset('./assets/images/icons/cloud.png') }}" alt="" for="" class="">
                                                     </div>
                                                 </div>
                                             </label>
-                                            <img src="" alt="" id="blah" width="" height="">
-                                            <input type="file" name="mainImag" class="form-control" id="imgInp" accept="image/*">    
+                                            <input type="file" name="mainImag" class="form-control" id="imgInp" accept="image/*">     
                                             <span class="text-danger validation-class" id="mainImag-submit_errors"></span>
                                             <span class="text text-danger">{{ $errors->first('mainImag') }}</span>
                                         </div>
-
-                                        <script>
-                                            imgInp.onchange = evt => {
-                                                const [file] = imgInp.files
-                                                if (file) {
-                                                    // $('#main-image-container').hide();
-                                                    blah.src = URL.createObjectURL(file)
-                                                }
-                                            }
-                                        </script> 
-
-                                        
+        
+                                        <div id="mainImagePreview"></div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="multiple_image_file_input">Upload 4 More Item Images: <span>*</span>
-
-                                                
-                                                <div class="custom-file-upload" id="additional-images-container">
+                                                <div class="custom-file-upload mt-3" id="additional-images-container">
                                                     <div class="upload-button">
-
-                                                        <img src="{{ asset('./assets/images/icons/cloud.png') }}"
-                                                            alt="">
-
+                                                        <img src="{{ asset('./assets/images/icons/cloud.png') }}" alt="">
                                                     </div>
-                                                    
                                                 </div>
-
-                                                <div id="preview">
-
-                                                </div>
-
-                                                <input type="hidden" name="step" value="1"  id="step_id">
-
                                             </label>
-                                            
-
 
                                             <input type="file" name="images[]" class="form-control" id="multiple_image_file_input" accept="image/*" multiple>
                                             <span class="text-danger validation-class" id="images-submit_errors"></span>
                                             <p class="error" id="errorMsg"></p>
-
                                             <span class="text text-danger">{{ $errors->first('images[]') }}</span>
                                         </div>
                                         
+                                        <div id="additionalImagePreview"></div> <!-- Additional Images Preview -->
                                     </div>
+
 
                                     
                                 </div>
@@ -280,10 +254,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group check-box-label">
+                                <div class="form-group check-box-label switch">
                                     <input type="checkbox" id="enable-purchase" name="buy" value="true">
                                     <label for="enable-purchase">ENABLE THIS OPTION, IF YOUR PRODUCT IS AVAILABLE FOR
                                         PURCHASE.</label>
+                                        <span class="slider"></span>
                                 </div>
 
                                 <div class="form-group" id="additional-deposit-group" style="display: none">
@@ -778,35 +753,30 @@
 
 
 <script>
-    document.getElementById('multiple_image_file_input').addEventListener('change', function(event) {
-            const previewDiv = document.getElementById('preview');
-            const errorMsg = document.getElementById('errorMsg');
-            previewDiv.innerHTML = ''; // Clear any existing images
-            errorMsg.textContent = ''; // Clear previous error message
-            
-            const files = event.target.files;
+    function previewImages(input, previewDivId) {
+        const previewDiv = document.getElementById(previewDivId);
+        previewDiv.innerHTML = ''; // Clear any existing images
 
-            // Check if more than 4 images are selected
-            
-            // if (files.length > 4) {
-            //     errorMsg.textContent = "You can only select up to 4 images.";
-            //     return;
-            // }
-
-            if (files) {
-                // $('#additional-images-container').hide();
-                Array.from(files).forEach(file => {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        previewDiv.appendChild(img);
-                    }
-                    reader.readAsDataURL(file);
-                });
-            }else{
-                // $('#additional-images-container').show();
+        const files = input.files;
+        Array.from(files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.width = '100px'; // Adjust size as needed
+                img.style.margin = '5px';
+                previewDiv.appendChild(img);
             }
+            reader.readAsDataURL(file);
+        });
+    }
+
+    document.getElementById('imgInp').addEventListener('change', function(event) {
+        previewImages(event.target, 'mainImagePreview');
+    });
+
+    document.getElementById('multiple_image_file_input').addEventListener('change', function(event) {
+        previewImages(event.target, 'additionalImagePreview');
     });
 </script>
 

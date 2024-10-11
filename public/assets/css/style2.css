@@ -2170,6 +2170,35 @@ label input:checked~span#checkBox-btn i {
   margin: 0;
 }
 
+.listItem-section .row .step-form #mainImagePreview img{
+  width: 100px;
+  margin: 5px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+#imgInp, #multiple_image_file_input{
+  display: none;
+}
+
+additionalImagePreview{
+  display: flex;
+  justify-content: space-between;
+}
+
+#additionalImagePreview img{
+  display: inline-block;
+  width: 70px !important;
+  height: 70px;
+  object-fit: cover;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+
+
+
 .listItem-section .row .step-form .custom-file-input {
   position: absolute;
   width: 100%;
@@ -2247,6 +2276,53 @@ label input:checked~span#checkBox-btn i {
   color: #383838;
   margin-bottom: 0;
 }
+
+@media (max-width: 1024px) {
+  .listItem-section .switch label {
+    margin-left: 50px;
+  }
+  .listItem-section .slider {
+    width: 40px;
+    height: 22px;
+  }
+  .listItem-section .slider::before {
+    height: 18px;
+    width: 18px;
+    left: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .listItem-section .switch label {
+    margin-left: 30px;
+  }
+  .listItem-section .slider {
+    width: 35px;
+    height: 20px;
+  }
+  .listItem-section .slider::before {
+    height: 16px;
+    width: 16px;
+    left: 2px;
+  }
+}
+
+@media (max-width: 576px) {
+  .listItem-section .switch label {
+    font-size: 14px;
+    margin-left: 15px;
+  }
+  .listItem-section .slider {
+    width: 30px;
+    height: 18px;
+  }
+  .listItem-section .slider::before {
+    height: 14px;
+    width: 14px;
+    left: 1px;
+  }
+}
+
 
 
 /* ***************
