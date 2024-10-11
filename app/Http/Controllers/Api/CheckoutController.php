@@ -71,6 +71,10 @@ class CheckoutController extends Controller
     public function wishlist(StoreAddProductRequest $request)
     {
         try {
+            $checkCartItems = Wishlist::where('item_id',$request->item_id)->where('user_id',auth()->user()->id)->first();
+            if ($checkCartItems) {
+                return response()->json(['error' => ['item_id' => 'Item Already Addes In Wishlist']], 422);
+            }
             $cart = new Wishlist();
             $cart->item_id = $request->item_id;
             $cart->user_id = auth()->user()->id;

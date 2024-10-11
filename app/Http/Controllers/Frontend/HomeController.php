@@ -38,7 +38,7 @@ class HomeController extends Controller
 
         $cateegory = Category::where('status', 1)->latest()->get();
         $categorydata = CategoryResource::collection($cateegory,);
-        $occasions = Occasion::where('status', 1)->latest()->take(6)->get();
+        $occasions = Occasion::where('status', 1)->latest()->take(4)->get();
         $occassionData = OccasionResource::collection($occasions);
 
         $item = Item::with('category', 'bookingDate')
@@ -58,16 +58,17 @@ class HomeController extends Controller
         $resale = Item::with('category', 'bookingDate')
             ->where('buy',true)
             ->where('status', Item::$active)
-            ->where('checkout_status', '0')
-            ->whereHas('category', function ($query_3) {
-                $query_3->where('status', 1);
-            })
-            ->whereHas('brand', function ($query_3) {
-                $query_3->where('status', 1);
-            })
-            ->whereHas('subCategory', function ($query_3) {
-                $query_3->where('status', 1);
-            })->latest()->take(4)->get();
+            // ->where('checkout_status', '0')
+            // ->whereHas('category', function ($query_3) {
+            //     $query_3->where('status', 1);
+            // })
+            // ->whereHas('brand', function ($query_3) {
+            //     $query_3->where('status', 1);
+            // })
+            // ->whereHas('subCategory', function ($query_3) {
+            //     $query_3->where('status', 1);
+            // })
+            ->latest()->take(4)->get();
 
 
         //   return $resale;
@@ -75,14 +76,14 @@ class HomeController extends Controller
         $productJustLanded = GetProductResource::collection($item);
         $resale = GetProductResource::collection($resale);
 
-        $look = GetTheLookResource::collection(Look::with('products', 'products.bookingDate')->latest()->take(6)->get());
+        $look = GetTheLookResource::collection(Look::with('products', 'products.bookingDate')->latest()->take(4)->get());
 
         // return $look;
-        $brand = Brand::where('status', 1)->latest()->take(6)->get();
-        $privacyPolicy = Blog::latest()->take(6)->get();
+        $brand = Brand::where('status', 1)->latest()->take(4)->get();
+        $privacyPolicy = Blog::latest()->take(4)->get();
         $blogData = StoreBlogResourceApi::collection($privacyPolicy);
 
-        $editor_picture = Editor::with('products', 'products.bookingDate')->latest()->take(6)->get();
+        $editor_picture = Editor::with('products', 'products.bookingDate')->latest()->take(4)->get();
         // return $editor_picture;
         // $editor_picture = GetTheLookResource::collection($editor_picture);
 
