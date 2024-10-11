@@ -12900,3 +12900,20 @@ Start CSS All Products Page
 }
 
 
+.plan-outer {
+  padding: 10px;
+  border: 1px solid #ccc;
+  transition: background-color 0.3s;
+}
+
+.plan-outer.selected {
+  background-color: #f4c87e; 
+}
+
+.plan {
+  transition: color 0.3s;
+}
+
+.plan-outer.selected .plan {
+  color: white;
+}

@@ -167,12 +167,11 @@ justify-content: center;
             background-color: #f8f9fa;
         }
         .date-section {
-            display: none; /* Initially hidden */
+            display: none; 
         }
         .selected-range {
-            background-color: #d1e7dd !important; /* Light green for selected range */
+            background-color: #d1e7dd !important; 
         }
-
 
 </style>
 <!--Body Content-->
@@ -295,7 +294,12 @@ justify-content: center;
                                 <button class="btn btn-dark btn-block" id="rentNowBtn">RENT NOW</button>
                             </div>
                             <div class="col-lg-4 col-md-4 col-6">
-                                <button class="btn btn-light btn-block" id="buyNowBtn">BUY NOW</button>
+                                <form action="{{ route('list_item.add_to_Cart') }}" method="POST" id="add_to_cart_form">
+                                    @csrf
+                                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                    <input type="hidden" name="days" value="1">
+                                    <button class="btn btn-light btn-bloxk" id="buyNowBtn">Add To Cart</button>
+                                </form>
                             </div>
                         </div>
 
@@ -667,5 +671,68 @@ justify-content: center;
 
 
 
+
+<script>
+    $(document).ready(function() {
+    $('#add_to_cart_form').on('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        var $form = $('#add_to_cart_form');
+        var url = $form.attr('action');
+        var formData = new FormData($form[0]);
+        $('.validation-class').html('');
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $('.spinner-loader').css('display', 'block');
+            },
+            success: function(res) {
+                // window.location.href = res;
+                // showStep(step + 1);
+                // $('#step_id').val(2);
+                Toastify({
+                    text: res.message,
+                    className: "success",
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast();
+            },
+            error: function(res) {
+                if (res.status == 400 || res.status == 422) {
+                    if (res.responseJSON && res.responseJSON.error) {
+                        var error = res.responseJSON.error
+                        $.each(error, function(key, value) {
+                            Toastify({
+                                text: value,
+                                className: "error",
+                                style: {
+                                    background: "linear-gradient(to right, #a01515, #a01515)",
+                                }
+                            }).showToast();
+                            // alert(value);
+                        });
+                    }
+                }
+            }
+        });
+    });
+});
+</script>
+
+<script>
+ document.querySelectorAll('input[type=radio][name=plan]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            document.querySelectorAll('.plan-outer').forEach(outer => {
+                outer.classList.remove('selected'); // Remove selected class from all
+            });
+            radio.closest('.plan-outer').classList.add('selected'); // Add selected class to the parent
+        });
+    });
+
+</script>
 
 @endsection

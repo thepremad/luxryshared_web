@@ -1,55 +1,166 @@
 @extends('frontend.layouts.app')
 @section('content')
     <div id="page-content">
-    	<!--Page Title-->
-    	<div class="page section-header text-center">
-			<div class="page-title">
-        		<div class="wrapper"><h1 class="page-width">Wish List</h1></div>
-      		</div>
-		</div>
-        <!--End Page Title-->
-        
         <div class="container">
-        	<div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
-                	<form action="#">
-                        <div class="wishlist-table table-content table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                    	<th class="product-name text-center alt-font">Remove</th>
-                                        <th class="product-price text-center alt-font">Images</th>
-                                        <th class="product-name alt-font">Product</th>
-                                        <th class="product-price text-center alt-font">Unit Price</th>
-                                        <th class="stock-status text-center alt-font">Stock Status</th>
-                                        <th class="product-subtotal text-center alt-font">Add to Cart</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($wishlist as $val)
-                                    
-                                    <tr>
-                                    	<td class="product-remove text-center" valign="middle"><a href="{{route('remove_wishlist',$val->id)}}"><i class="icon icon anm anm-times-l"></i></a></td>
-                                        <td class="product-thumbnail text-center">
-                                            <a href="#"><img src="{{asset('uploads/item/'.$val->mainImag)}}" alt="" title="" /></a>
-                                        </td>
-                                        <td class="product-name"><h4 class="no-margin"><a href="#">{{$val->products->item_title ?? ''}}</a></h4></td>
-                                        <td class="product-price text-center"><span class="amount">{{$val->products->rrp_price ?? ''}}</span></td>
-                                        <td class="stock text-center">
-                                            <span class="in-stock">in stock</span>
-                                        </td>
-                                        <td class="product-subtotal text-center"><a href="{{route('add_to_cart',$val->item_id)}}" class="btn btn-small">Add To Cart</a></td>
-                                    </tr>
-                                    @endforeach
-                                   
-                                </tbody>
-                            </table>
+                <div class="aboutUs-Heading">
+                    <h4></h4>
+                    <h5 class="text-center"></h5>                  
+                </div>
+                <div class="row">
+
+                    @foreach ($wishlist as $item)
+                        @if (!empty($item->products))
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-6" id="item_withlist_{{ $item->products->id }}">
+                                <img class="primary blur-up lazyloaded" data-src="{{asset('uploads/item/' . $item->products->mainImag)}}" src="{{asset('uploads/item/' . $item->products->mainImag)}}" alt="image" title="product">
+                                <div class="product-Heading">
+                                    <h4>{{ $item->products->item_title ?? '' }}</h4>
+                                </div>
+                                <ul class="list-unstyled" style="display: inline-flex;">
+                                    <li><i class="fa fa-star px-2 star"></i></li>
+                                    <li><i class="fa fa-star px-2 star"></i></li>
+                                    <li><i class="fa fa-star px-2 star"></i></li>
+                                    <li><i class="fa fa-star px-2 star"></i></li>
+                                    <li><i class="fa fa-star px-2 star"></i></li>
+                                </ul>
+                                <div class="product-pricewish">
+                                    <h5>AED {{ $item->products->rrp_price ?? '' }}</h5>
+                                </div>
+
+                                <div class="row mt-3">
+                                    <div class="col-lg-6 col-md-6 col-6">
+                                        <button class="btn btn-dark btn-block" id="rentNowBtn">RENT NOW</button>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-6">
+                                        <form action="{{ route('list_item.add_to_Cart') }}" method="POST" id="add_to_cart_form{{ $item->id }}">
+                                            @csrf
+                                            <input type="hidden" name="item_id" value="{{ $item->products->id }}">
+                                            <input type="hidden" name="days" value="1">
+                                            <button class="btn btn-light btn-bloxk" id="buyNowBtn">Add To Cart</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>   
+                            
+                            <script>
+                                $(document).ready(function() {
+                                $('#add_to_cart_form{{ $item->id }}').on('submit', function(e) {
+                                    e.preventDefault(); // Prevent the default form submission
+                                    var $form = $('#add_to_cart_form{{ $item->id }}');
+                                    var url = $form.attr('action');
+                                    var formData = new FormData($form[0]);
+                                    $('.validation-class').html('');
+                                    $.ajax({
+                                        url: url,
+                                        type: 'POST',
+                                        data: formData,
+                                        processData: false,
+                                        contentType: false,
+                                        beforeSend: function() {
+                                            $('.spinner-loader').css('display', 'block');
+                                        },
+                                        success: function(res) {
+                                            $('#item_withlist_'+res.item_id).hide();
+                                            // window.location.href = res;
+                                            // showStep(step + 1);
+                                            // $('#step_id').val(2);
+                                            Toastify({
+                                                text: res.message,
+                                                className: "success",
+                                                style: {
+                                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                                }
+                                            }).showToast();
+                                        },
+                                        error: function(res) {
+                                            if (res.status == 400 || res.status == 422) {
+                                                if (res.responseJSON && res.responseJSON.error) {
+                                                    var error = res.responseJSON.error
+                                                    $.each(error, function(key, value) {
+                                                        Toastify({
+                                                            text: value,
+                                                            className: "error",
+                                                            style: {
+                                                                background: "linear-gradient(to right, #a01515, #a01515)",
+                                                            }
+                                                        }).showToast();
+                                                        // alert(value);
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    });
+                                });
+                            });
+                            </script>
+                        @endif
+                    @endforeach
+                    
+
+                    {{-- <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                        <img class="primary blur-up lazyloaded" data-src="assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
+                        <div class="product-Heading">
+                            <h4>Buttons tweed blazer</h4>
                         </div>
-                    </form>                   
-               	</div>
+                        <ul class="list-unstyled" style="display: inline-flex;">
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                        </ul>
+                        <div class="product-pricewish">
+                            <h5>AED 250</h5>
+                        </div>
+                        <button class="btn btn-block bg-white">BUY NOW</button>
+                        <button class="btn btn-block bg-dark">Add to cart</button>
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                        <img class="primary blur-up lazyloaded" data-src="assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
+                        <div class="product-Heading">
+                            <h4>Buttons tweed blazer</h4>
+                        </div>
+                        <ul class="list-unstyled" style="display: inline-flex;">
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                        </ul>
+                        <div class="product-pricewish">
+                            <h5>AED 250</h5>
+                        </div>
+                        <button class="btn btn-block bg-white">BUY NOW</button>
+                        <button class="btn btn-block bg-dark">Add to cart</button>
+
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                        <img class="primary blur-up lazyloaded" data-src="assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
+                        <div class="product-Heading">
+                            <h4>Buttons tweed blazer</h4>
+                        </div>
+                        <ul class="list-unstyled" style="display: inline-flex;">
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                        </ul>
+                        <div class="product-pricewish">
+                            <h5>AED 250</h5>
+                        </div>
+                        <button class="btn btn-block bg-white">BUY NOW</button>
+                        <button class="btn btn-block bg-dark">Add to cart</button>
+
+                    </div> --}}
+
+                </div>
             </div>
         </div>
-        
     </div>
     <!--End Body Content-->
     @section('js')
@@ -71,4 +182,7 @@
      <script src="{{asset('assets/js/lazysizes.js')}}"></script>
      <script src="{{asset('assets/js/main.js')}}"></script>
 </div>
+
+
+
 @endsection
