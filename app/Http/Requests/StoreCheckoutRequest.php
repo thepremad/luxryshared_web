@@ -31,7 +31,7 @@ class StoreCheckoutRequest extends FormRequest
             '*.city' => 'required|exists:cities,id',
             '*.mobile_number' => 'required',
             '*.checkout_status' => 'required',
-            '*.size' => 'required|exists:sizes,id',
+            // '*.size' => 'required|exists:sizes,id',
             '*.product_price' => 'required',
             '*.shipping_address' => 'required',
             '*.payment_method' => 'required',
