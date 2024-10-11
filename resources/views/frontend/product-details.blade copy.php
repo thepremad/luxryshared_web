@@ -447,15 +447,18 @@
 </script>
 
 <script>
-    document.querySelectorAll('.plan-radio').forEach(radio => {
-        radio.addEventListener('change', function () {
-            document.querySelectorAll('.plan-card').forEach(card => {
-                card.classList.remove('selected');
+    document.querySelectorAll('input[type=radio][name=plan]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            document.querySelectorAll('.plan-outer').forEach(outer => {
+                outer.classList.remove('selected'); // Pichle selected plan-outer ka background color hataen
             });
-            this.parentElement.classList.add('selected');
+            radio.closest('.plan-outer').classList.add('selected'); // Naya selected plan-outer ka background color change karein
         });
     });
 
+
 </script>
+
+
 
 @endsection

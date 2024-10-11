@@ -167,12 +167,11 @@ justify-content: center;
             background-color: #f8f9fa;
         }
         .date-section {
-            display: none; /* Initially hidden */
+            display: none; 
         }
         .selected-range {
-            background-color: #d1e7dd !important; /* Light green for selected range */
+            background-color: #d1e7dd !important; 
         }
-
 
 </style>
 <!--Body Content-->
@@ -722,6 +721,18 @@ justify-content: center;
         });
     });
 });
+</script>
+
+<script>
+ document.querySelectorAll('input[type=radio][name=plan]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            document.querySelectorAll('.plan-outer').forEach(outer => {
+                outer.classList.remove('selected'); // Remove selected class from all
+            });
+            radio.closest('.plan-outer').classList.add('selected'); // Add selected class to the parent
+        });
+    });
+
 </script>
 
 @endsection
