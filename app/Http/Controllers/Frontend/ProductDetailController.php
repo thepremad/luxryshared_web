@@ -125,6 +125,7 @@ class ProductDetailController extends Controller
     }
     public function wishlist()
     {
+        
         $menu = Menu::latest()->get();
         $wishlist = Wishlist::with('products')->where('user_id', auth()->user()->id)->latest()->get();
         return view('frontend.wishlist', compact('menu', 'wishlist'));
