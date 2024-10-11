@@ -56,7 +56,7 @@ class HomeController extends Controller
 
 
         $resale = Item::with('category', 'bookingDate')
-            ->where('buy',true)
+            ->where('buy','true')
             ->where('status', Item::$active)
             // ->where('checkout_status', '0')
             // ->whereHas('category', function ($query_3) {
@@ -76,7 +76,7 @@ class HomeController extends Controller
         $productJustLanded = GetProductResource::collection($item);
         $resale = GetProductResource::collection($resale);
 
-        $look = GetTheLookResource::collection(Look::with('products', 'products.bookingDate')->latest()->take(4)->get());
+        $look = GetTheLookResource::collection(Look::with('products', 'products.bookingDate')->latest()->take(6)->get());
 
         // return $look;
         $brand = Brand::where('status', 1)->latest()->take(4)->get();
