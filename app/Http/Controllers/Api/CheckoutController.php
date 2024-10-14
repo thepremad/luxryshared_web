@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\CartCheckoutRequest;
 use App\Http\Requests\StoreAddProductRequest;
 use App\Http\Requests\StoreCheckoutRequest;
 use App\Http\Resources\GetCartResource;
@@ -158,5 +159,11 @@ class CheckoutController extends Controller
             $checkoutDates->item_id = $itemId;
             $checkoutDates->save();
         }
+    }
+
+
+
+    function cartCheckout(CartCheckoutRequest $request){
+        
     }
 }
