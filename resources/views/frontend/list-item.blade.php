@@ -27,7 +27,7 @@
                                         <label for="category">Category</label>
                                         <select name="category_id" id="moku" onchange="getSubCateogry(this)"
                                             class="form-control">
-                                            <option value=""> Select Category </option>
+                                            <option value="">(Select Category) </option>
                                             @foreach ($category as $val)
                                                 <option value="{{ $val->id }}">{{ $val->name }}</option>
                                             @endforeach
@@ -39,7 +39,7 @@
                                     <div class="col-md-6">
                                         <label for="sub-category">Sub Category</label>
                                         <select name="sub_category_id" id="toku" class="form-control">
-                                            <option value=""> Select Sub - Category </option>
+                                            <option value=""> (Select Sub - Category) </option>
                                         </select>
                                         <span class="text text-danger">{{ $errors->first('sub_category_id') }}</span>
                                         <span class="text-danger validation-class" id="sub_category_id-submit_errors"></span>
@@ -47,7 +47,7 @@
                                     
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-2">
                                         <label for="brand">Brand</label>
                                         <select id="brand" name="brand_id" class="form-control">
                                             @foreach ($brand as $val)
@@ -58,13 +58,36 @@
                                         <span class="text text-danger">{{ $errors->first('brand_id') }}</span>
                                         <span class="text-danger validation-class" id="brand_id-submit_errors"></span>
                                     </div>
-                                    <div class="col-md-6">
+                                    
+
+                                    <div class="col-md-6 mb-2">
+                                        <label for="brand">Occasion</label>
+                                        <select id="brand" name="occasion_id" class="form-control">
+                                            <option value="">(Select Occasion)</option>
+                                            @foreach ($occasions as $val)
+                                                <option value="{{ $val->id }}">{{ $val->name }}</option>
+                                                <!-- Add options here -->
+                                            @endforeach
+                                        </select>
+                                        <span class="text text-danger">{{ $errors->first('occasion_id') }}</span>
+                                        <span class="text-danger validation-class" id="occasion_id-submit_errors"></span>
+                                    </div>
+                                    
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-md-12">
                                         <label for="item-title">Item Title</label>
                                         <input type="text" name="item_title" class="form-control" id="item-title"
                                             placeholder="Enter Item Name">
                                         <span class="text-danger validation-class" id="item_title-submit_errors"></span>
                                     </div>
                                 </div>
+
+                                <input type="hidden" value="1" id="step_id" name="step">
+
+
                                 <div class="form-group row">
                                     <div class="col-md-6">
                                         <label for="color">Color</label>

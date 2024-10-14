@@ -135,7 +135,10 @@ Route::middleware(['website'])->group(function () {
     });
 
     Route::get('cart-checkout',[CartController::class,'checkout'])->name('submit_checkout');
+
     
+
+    Route::post('apply_coupan',[CartController::class,'applyCoupan'])->name('apply_coupan');
 
     //Route::get('list-item', [ItemController::class, 'listItem'])->name('list_item');
     Route::get('cart', [ProductDetailController::class, 'cart'])->name('cart');
@@ -165,5 +168,6 @@ Route::middleware(['website'])->group(function () {
     Route::post('list_item.add_to_Cart',[ProductFilterController::class,'addTocart'])->name('list_item.add_to_Cart');
     Route::any('list_item.add_to_wishlist',[CheckoutController::class,'wishlist'])->name('list_item.add_to_wishlist');
 
+    Route::post('cart_checkout',[CheckoutController::class,'cartCheckout'])->name('cart_checkout');
 
 });
