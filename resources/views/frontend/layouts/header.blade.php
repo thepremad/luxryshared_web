@@ -140,17 +140,18 @@
 
                     <!-- Login Prompt Popup -->
                     
-                    <div id="loginPrompt" class="popup">
+                    <!-- <div id="loginPrompt" class="popup">
                         <div class="popup-content">
                             <span class="close" id="closePopup">&times;</span>
                             <h2>You have to log in</h2>
                             <p>Please log in to continue.</p>
                             <a href="{{ route('login') }}" class="btn btn-primary">Go to Login</a>
                         </div>
-                    </div>
+                    </div> -->
 
                     @endif
                 </div>
+                
                 <div class="row align-items-center justify-content-center   ">
                     <!--Desktop Logo-->
                     <div class="logo col-3 col-sm-6 col-md-6 col-lg-6 text-center">
@@ -186,6 +187,17 @@
 
         </nav>
         <!--End Desktop Menu-->
+
+        <!--Mobile Menu-->
+        <div class="mobile-nav-wrapper" role="navigation">
+            <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close
+                Menu</div>
+            <ul id="MobileNav" class="mobile-nav">
+
+            </ul>
+        </div>
+        <!--End Mobile Menu-->
+
         <section class="bg-red text-center">
             <div class="container">
                 <div class="row">
