@@ -36,6 +36,7 @@ class StoreWebItem extends FormRequest
             'images' => 'required|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'image_description' => 'required',
+            // 'occasion_id' => 'nullable|exists:occasions,id',
 
             // 'rrp_price' => 'required|numeric|min:500',
             // 'suggested_day_price' => 'required',
