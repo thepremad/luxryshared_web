@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\LoginContriller;
 use App\Http\Controllers\Frontend\ProductDetailController;
 use App\Http\Controllers\Frontend\ProductListController;
 use App\Http\Controllers\Frontend\StaticPagesController;
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -73,6 +74,11 @@ Route::get('/optimize-clear', function () {
 // });
 
 // Route::get('/log', [AuthController::class, 'log']);
+
+
+Route::get('get_cart_count',function(){
+    return ['cart_count' => Cart::where('user_id',auth()->user()->id)->count()];
+})->name('get_cart_count');
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
