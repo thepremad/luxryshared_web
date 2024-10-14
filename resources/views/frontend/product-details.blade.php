@@ -690,6 +690,7 @@ justify-content: center;
                 $('.spinner-loader').css('display', 'block');
             },
             success: function(res) {
+                updateCartCount();
                 // window.location.href = res;
                 // showStep(step + 1);
                 // $('#step_id').val(2);

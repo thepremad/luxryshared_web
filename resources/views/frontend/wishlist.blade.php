@@ -61,6 +61,7 @@
                                             $('.spinner-loader').css('display', 'block');
                                         },
                                         success: function(res) {
+                                            updateCartCount();
                                             $('#item_withlist_'+res.item_id).hide();
                                             // window.location.href = res;
                                             // showStep(step + 1);

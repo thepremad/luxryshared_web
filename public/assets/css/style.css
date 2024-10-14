@@ -12917,3 +12917,31 @@ Start CSS All Products Page
 .plan-outer.selected .plan {
   color: white;
 }
+
+
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+  button.search-trigger{
+      font-size: 12px !important;
+      padding: 10.5px 13px !important;
+      text-wrap: nowrap !important;
+  }
+  p.top-header_middle-text{
+      text-wrap: nowrap !important;
+      font-size: 11px;
+  }
+  .listItem-section .row .step-form h4::before{
+      width: 120px;
+      left: 60px;
+  }
+  .listItem-section .row .step-form h4::after{
+      width: 120px;
+      right: 60px;
+  }
+}
+.header-wrap.animated{
+  -webkit-animation-duration: unset !important;
+  animation-duration: unset !important;
+  -webkit-animation-fill-mode: unset !important;
+  animation-fill-mode: unset !important;
+}
