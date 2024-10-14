@@ -14,55 +14,63 @@
 
                         <div class="row justify-content-start">
                             <div class="col-lg-11 col-md-11 col-sm-11 col-12 p-0">
-                                <form class="checkOut-form">
+                                <form class="checkOut-form" id="checkoutForm" action="{{ route('cart_checkout') }}">
+                                    @csrf
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="firstName">First Name*</label>
-                                            <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                                            <input type="text" class="form-control" id="firstName" placeholder="First Name" name="first_name">
+                                            <span class="text-danger validation-class" id="first_name-submit_errors"></span>
                                         </div>
+
                                         <div class="form-group col-md-6">
                                             <label for="lastName">Last Name*</label>
-                                            <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" name="last_name">
+                                            <span class="text-danger validation-class" id="last_name-submit_errors"></span>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="country">Country / Region*</label>
-
-                                            <select id="state" class="form-control">
-                                                <option>Choose...</option>
+                                            <select id="state" class="form-control" name="country">
+                                                <option value="">Choose...</option>
                                                 @foreach ($countary as $countary)
-                                                    <option value="">{{ $countary->name }}</option>
+                                                    <option value="{{ $countary->name }}">{{ $countary->name }}</option>
                                                 @endforeach
                                             </select>
+                                            <span class="text-danger validation-class" id="country-submit_errors"></span>
 
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="company">Company Name</label>
-                                            <input type="text" class="form-control" id="company" placeholder="Company (optional)">
+                                            <input type="text" class="form-control" id="company" placeholder="Company (optional)" name="company_name">
+                                            <span class="text-danger validation-class" id="company_name-submit_errors"></span>
                                         </div>
                                     </div>
+
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="streetAddress">Street Address*</label>
-                                            <input type="text" class="form-control" id="streetAddress" placeholder="House number and street name">
+                                            <input type="text" class="form-control" id="streetAddress" placeholder="House number and street name" name="street_address">
+                                            <span class="text-danger validation-class" id="street_address-submit_errors"></span>
                                         </div>
+
                                         <div class="form-group col-md-6">
                                             <label for="aptSuiteUnit">Apt, suite, unit</label>
-                                            <input type="text" class="form-control" id="aptSuiteUnit" placeholder="Apartment, suite, unit, etc. (optional)">
+                                            <input type="text" class="form-control" id="aptSuiteUnit" placeholder="Apartment, suite, unit, etc. (optional)" name="arp_suit_unit">
+                                            <span class="text-danger validation-class" id="arp_suit_unit-submit_errors"></span>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="city">City*</label>
-
-                                            <select id="state" class="form-control">
+                                            <select id="city" class="form-control" name="city">
                                                 <option value="">Choose...</option>
                                                 @foreach ($cities as $city)
-                                                    <option value="">{{ $city->name }}</option>
+                                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
                                                 @endforeach
                                             </select>
-
+                                            <span class="text-danger validation-class" id="city-submit_errors"></span>
                                         </div>
 
                                         {{-- <div class="form-group col-md-4">
@@ -76,13 +84,15 @@
 
                                         <div class="form-group col-md-6">
                                             <label for="postalCode">Postal Code*</label>
-                                            <input type="number" class="form-control" id="postalCode" placeholder="Postal Code">
+                                            <input type="number" class="form-control" id="postalCode" placeholder="Postal Code" name="postal_code">
+                                            <span class="text-danger validation-class" id="postal_code-submit_errors"></span>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="phone">Phone*</label>
-                                            <input type="tel" class="form-control" id="phone" placeholder="Phone">
+                                            <input type="tel" class="form-control" id="phone" placeholder="Phone" name="mobile_number">
+                                            <span class="text-danger validation-class" id="mobile_number-submit_errors"></span>
                                         </div>
                                     </div>
                                     {{-- <button type="submit" class="btn btn-primary mt-4">Continue to delivery</button> --}}
@@ -90,7 +100,7 @@
                                         <input class="form-check-input" type="checkbox" id="saveInfo">
                                         <label class="form-check-label" for="saveInfo">Save my information for a faster checkout</label>
                                     </div>
-                                </form>
+                                
 
                                 <div class="shipping-address mt-4">
                                     <h6>Shipping Address</h6>
@@ -174,29 +184,33 @@
                                                 <div class="payment-details">
                                                     <img src="{{ url('public/assets/images/logo/GPay.png')}}" alt="Gpay">
                                                     <img src="{{ url('public/assets/images/logo/Visa.png')}}" alt="Visa">
-                                                    <form class="paymentForm mt-sm-3 py-sm-3">
+                                                    <div class="paymentForm mt-sm-3 py-sm-3">
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6 col-12">
                                                                 <!-- <label for="cardNumber">Card Number</label> -->
-                                                                <input type="text" class="form-control" id="cardNumber" placeholder="Card Number">
+                                                                <input type="text" class="form-control" id="cardNumber" placeholder="Card Number" name="card_no">
+                                                                <span class="text-danger validation-class" id="card_no-submit_errors"></span>
                                                             </div>
                                                             <div class="form-group col-md-6 col-12">
                                                                 <!-- <label for="nameOnCard">Name on Card</label> -->
-                                                                <input type="text" class="form-control" id="nameOnCard" placeholder="Name on Card">
+                                                                <input type="text" class="form-control" id="nameOnCard" placeholder="Name on Card" name="card_holder_name">
+                                                                <span class="text-danger validation-class" id="card_holder_name-submit_errors"></span>
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6 col-12">
                                                                 <!-- <label for="expirationDate">Expiration Date</label> -->
-                                                                <input type="text" class="form-control" id="expirationDate" placeholder="MM/YY">
+                                                                <input type="text" class="form-control" id="expirationDate" placeholder="MM/YY" name="exp_date">
+                                                                <span class="text-danger validation-class" id="exp_date-submit_errors"></span>
                                                             </div>
                                                             <div class="form-group col-md-6 col-12 cvv-container ">
                                                                 <!-- <label for="securityCode">Security Code</label> -->
-                                                                <input type="password" class="form-control" id="securityCode" placeholder="Security Code">
+                                                                <input type="password" class="form-control" id="securityCode" placeholder="Security Code" name="cvv">
                                                                 <span class="toggle-icon" id="toggleCVV"><i class="fa fa-eye"></i></span>
+                                                                <span class="text-danger validation-class" id="cvv-submit_errors"></span>
                                                             </div>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </label>
                                         </div>
@@ -219,6 +233,7 @@
 
         
                         <button type="submit" class="btn btn-primary mt-5">Pay Now</button>
+                        </form>
                     </div>
         
                     <!-- Col-lg-3 -->
@@ -281,7 +296,7 @@
 
                             <div class="savings mt-2">
                                 <h6>Savings</h6>
-                                <span>-</span>
+                                <span id="discount_amount">-</span>
                             </div>
 
                             {{-- <div class="shipping mt-2">
@@ -289,27 +304,27 @@
                                 <span>$5.00</span>
                             </div> --}}
 
-                            <div class="promo-code mt-2">
-                                <h6>Enter your Promotional Code</h6>
-                                <input type="text" class="form-control" id="promoCode" placeholder="Promo Code">
-                                <button type="button" class="btn btn-secondary btn-apply">Apply</button>
-                            </div>
+                            <form action="{{ route('apply_coupan') }}" method="POST" id="applyCoupanForm">
+                                @csrf
+                                <div class="promo-code mt-2">
+                                    <h6>Enter your Promotional Code</h6>
+                                    <input type="text" class="form-control" id="promoCode" placeholder="Promo Code" name="code">
+                                    <button type="submit" class="btn btn-secondary btn-apply">Apply</button>
+                                    <span class="text-danger validation-class" id="code-apply_coupon_errors"></span>
+                                    <span id="discount_message">
+
+                                    </span>
+                                </div>
+                            </form>
 
                             <div class="total mt-2">
-                                <h6>Total</h6>
-                                <span>{{ $cart_values['total_cart_amount'] }} AED</span>
+                                <h6>Total</h6>                                                                                                                                                  
+                                <span id="total_cart_amount">{{ $cart_values['total_cart_amount'] }} AED</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        
-
-
-
-
-
-
 
 
             <!-- Including Jquery -->
@@ -456,4 +471,92 @@
                 });
             </script>
         </div>
+
+
+        <script>
+            $(document).ready(function() {
+                $('#checkoutForm').on('submit', function(e) {
+                    e.preventDefault(); // Prevent the default form submission
+                    var $form = $('#checkoutForm');
+                    var url = $form.attr('action');
+                    var formData = new FormData($form[0]);
+                    $('.validation-class').html('');
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        beforeSend: function() {
+                            $('.spinner-loader').css('display', 'block');
+                        },
+                        success: function(res) {
+                            // window.location.href = res;
+                        },
+                        error: function(res) {
+                            if (res.status == 400 || res.status == 422) {
+                                if (res.responseJSON && res.responseJSON.error) {
+                                    var error = res.responseJSON.error
+                                    $.each(error, function(key, value) {
+                                        // alert(value);
+                                        $("#" + key + "-submit_errors").text(value);
+                                    });
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+
+
+<script>
+    $(document).ready(function() {
+        $('#applyCoupanForm').on('submit', function(e) {
+            e.preventDefault(); // Prevent the default form submission
+            var $form = $('#applyCoupanForm');
+            var url = $form.attr('action');
+            var formData = new FormData($form[0]);
+            $('.validation-class').html('');
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $('.spinner-loader').css('display', 'block');
+                },
+                success: function(res) {
+                    console.log(res);
+                    if(res.discount_amount){
+                        $('#discount_amount').html(res.discount_amount);
+                    }
+
+                    if(res.discount_message){
+                        $('#discount_message').html(res.discount_message);
+                    }
+
+                    if(res.total_cart_amount){
+                        $('#total_cart_amount').html(res.total_cart_amount);
+                    }
+                },
+                error: function(res) {
+                    
+                    
+                    
+                    if (res.status == 400 || res.status == 422) {
+                        if (res.responseJSON && res.responseJSON.errors) {
+                            var error = res.responseJSON.errors
+                            $.each(error, function(key, value) {
+                                // alert(value[0]);
+                                $("#" + key + "-apply_coupon_errors").text(value[0]);
+                            });
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>
 @endsection
