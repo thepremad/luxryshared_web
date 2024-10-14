@@ -10,6 +10,7 @@ use App\Models\Color;
 use App\Models\Item;
 use App\Models\ItemImage;
 use App\Models\Menu;
+use App\Models\Occasion;
 use App\Models\Size;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -23,16 +24,14 @@ class ItemController extends Controller
         $brand = Brand::latest()->get();
         $color = Color::latest()->get();
         $size = Size::latest()->get();
-        return view('frontend.list-item',compact('menu','category','subCategory','brand','color','size'));
+        $occasions = Occasion::where('status',1)->orderBy('name','ASC')->get();
+        return view('frontend.list-item',compact('menu','category','subCategory','brand','color','size','occasions'));
     }
 
     public function saveItem(StoreWebItem $request)
     {
 
         try {
-
-
-            // return $request->all();
 
             if($request->step == 2){
 
