@@ -122,6 +122,7 @@ justify-content: center;
 .product-single .productDetails #rentNowBtn,
 .product-single .productDetails #buyNowBtn {
     font-size: 14px;
+    padding: 10px 0 !important;
 }
 
 .product-single  .productDetails{
@@ -149,7 +150,7 @@ justify-content: center;
 
 .product-single .productDetails #rentNowBtn,
 .product-single .productDetails #buyNowBtn {
-    font-size: 14px;
+    font-size: 11px;
 }
 }
 
@@ -314,10 +315,10 @@ justify-content: center;
         </div>
 
         <!-- Magnifier Popup -->
-        <div id="magnifierPopup" class="magnifier-popup">
+        <!-- <div id="magnifierPopup" class="magnifier-popup">
             <span class="close-popup" id="closePopup">&times;</span>
             <img id="popupImage" src="" alt="Product Image">
-        </div>
+        </div> -->
         <!--End-product-single-->
 
         <!-- Start Product Description -->
@@ -349,13 +350,13 @@ justify-content: center;
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                             <span class="img-outer">
-                                <img src="./assets/images/icons/credit card.png" alt="">
+                                <img src="{{asset('/assets/images/icons/Frame-26.png')}}" alt="">
                             </span>
                             <h4>Secure payment</h4>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                             <span class="img-outer">
-                                <img src="./assets/images/icons/Size & Fit.png" alt="">
+                                <img src="{{asset('/assets/images/icons/Frame-25.png')}}" alt="">
                             </span>
                             <h4>Size & Fit</h4>
                         </div>

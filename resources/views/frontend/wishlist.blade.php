@@ -120,7 +120,7 @@
                     </div>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                        <img class="primary blur-up lazyloaded" data-src="assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
+                        <img class="primary blur-up lazyloaded" data-src="./public/assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
                         <div class="product-Heading">
                             <h4>Buttons tweed blazer</h4>
                         </div>
@@ -140,7 +140,7 @@
                     </div>
                     
                     <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                        <img class="primary blur-up lazyloaded" data-src="assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
+                        <img class="primary blur-up lazyloaded" data-src="./public/assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
                         <div class="product-Heading">
                             <h4>Buttons tweed blazer</h4>
                         </div>
@@ -157,8 +157,50 @@
                         <button class="btn btn-block bg-white">BUY NOW</button>
                         <button class="btn btn-block bg-dark">Add to cart</button>
 
+<<<<<<< HEAD
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                        <img class="primary blur-up lazyloaded" data-src="./public/assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
+                        <div class="product-Heading">
+                            <h4>Buttons tweed blazer</h4>
+                        </div>
+                        <ul class="list-unstyled" style="display: inline-flex;">
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                        </ul>
+                        <div class="product-pricewish">
+                            <h5>AED 250</h5>
+                        </div>
+                        <button class="btn btn-block bg-white">BUY NOW</button>
+                        <button class="btn btn-block bg-dark">Add to cart</button>
+
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                        <img class="primary blur-up lazyloaded" data-src="./public/assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
+                        <div class="product-Heading">
+                            <h4>Buttons tweed blazer</h4>
+                        </div>
+                        <ul class="list-unstyled" style="display: inline-flex;">
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                            <li><i class="fa fa-star px-2 star"></i></li>
+                        </ul>
+                        <div class="product-pricewish">
+                            <h5>AED 250</h5>
+                        </div>
+                        <button class="btn btn-block bg-white">BUY NOW</button>
+                        <button class="btn btn-block bg-dark">Add to cart</button>
+
+                    </div>
+=======
                     </div> --}}
 
+>>>>>>> f953ad95ee7229ed8f2482f93b5a63034af27b13
                 </div>
             </div>
         </div>

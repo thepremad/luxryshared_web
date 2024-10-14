@@ -250,108 +250,87 @@
             <!-- End occasions -->
 
             <!--Hot picks-->
-            <div class="section hot-picks">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 pl-0">
-                            <div class="section-header">
-                                <h2 class="h2 heading-font">Just Landed</h2>
-
+<!--Hot picks-->
+                <div class="section hot-picks" id="just-landed-slider">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="section-header">
+                                    <h2 class="h2 heading-font">Just Landed</h2>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
+                                <a href="">View All</a>
                             </div>
                         </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                            <a href=""  >View All</a>
-                        </div>
-
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="productSlider-style2 grid-products justify-content-start align-items-start">
-                        @foreach ($allData['just_landed'] as $val)
-                            <div class="col-12 item">
-                                <!-- start product image -->
-                                <div class="product-image">
-                                    <!-- start product image -->
-                                    <a href="{{ route('product_detail', $val->id) }}" class="grid-view-item__link">
-                                        <!-- image -->
-                                        <img class="primary blur-up lazyload"
-                                            data-src="{{ asset('uploads/item/' . $val->mainImag) }}"
-                                            src="{{ asset('uploads/item/' . $val->mainImag) }}" alt="image"
-                                            title="product">
-                                        <!-- End image -->
-                                        <!-- Hover image -->
-                                        <img class="hover blur-up lazyload"
-                                            data-src="{{ asset('uploads/item/' . $val->mainImag) }}"
-                                            src="{{ asset('uploads/item/' . $val->mainImag) }}" alt="image"
-                                            title="product">
-                                        <!-- End hover image -->
-                                    </a>
-                                    <!-- end product image -->
-                                    <!-- Start product button -->
-                                    <form class="variants add" action="#" method="post">
-                                        <div class="d-flex btn-background" style="">
-                                            <a href="{{ route('product_detail', $val->id) }}">
-                                                <button class="btn btn-green mx-1" type="button" tabindex="0">Rent
-                                                    Now</button>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="productSlider-style2 grid-products justify-content-start align-items-start" id="justLandedSwiper">
+                                @foreach ($allData['just_landed'] as $val)
+                                    <div class="col-12 item">
+                                        <div class="product-image">
+                                            <a href="{{ route('product_detail', $val->id) }}" class="grid-view-item__link">
+                                                <img class="primary blur-up lazyload"
+                                                    data-src="{{ asset('uploads/item/' . $val->mainImag) }}"
+                                                    src="{{ asset('uploads/item/' . $val->mainImag) }}" alt="image"
+                                                    title="product">
+                                                <img class="hover blur-up lazyload"
+                                                    data-src="{{ asset('uploads/item/' . $val->mainImag) }}"
+                                                    src="{{ asset('uploads/item/' . $val->mainImag) }}" alt="image"
+                                                    title="product">
                                             </a>
-                                            @if ($val->buy == 'true')
-                                                <a href="{{ route('product_detail', $val->id) }}">
-                                                    <button class="btn btn-white mx-1" type="button" tabindex="0">Buy
-                                                        Now</button>
-                                                </a>
-                                            @endif
+                                            <form class="variants add" action="#" method="post">
+                                                <div class="d-flex btn-background">
+                                                    <a href="{{ route('product_detail', $val->id) }}">
+                                                        <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
+                                                    </a>
+                                                    @if ($val->buy == 'true')
+                                                        <a href="{{ route('product_detail', $val->id) }}">
+                                                            <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </form>
+                                            <div class="button-set">
+                                                <div class="wishlist-btn">
+                                                    <a class="wishlist add-to-wishlist" onclick="addToWishList({{ $val->id }})">
+                                                        <i class="icon anm anm-heart-l"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </form>
-                                    <div class="button-set">
-                                        <div class="wishlist-btn">
-                                            <a class="wishlist add-to-wishlist"  onclick="addToWishList({{ $val->id }})">
-                                                <i class="icon anm anm-heart-l"></i>
-                                            </a>
+                                        <div class="product-details text-center">
+                                            <div class="product-name">
+                                                <a href="product-layout-1.html">{{ $val->item_title }}</a>
+                                            </div>
+                                            <div class="star text-center">
+                                                <ul class="list-unstyled" style="display: inline-flex;">
+                                                    <li><i class="fa fa-star px-2 star"></i></li>
+                                                    <li><i class="fa fa-star px-2 star"></i></li>
+                                                    <li><i class="fa fa-star px-2 star"></i></li>
+                                                    <li><i class="fa fa-star px-2 star"></i></li>
+                                                    <li><i class="fa fa-star px-2 star"></i></li>
+                                                </ul>
+                                            </div>
+                                            <div class="product-price">
+                                                <span class="price">AED {{ $val->rrp_price }}</span>
+                                            </div>
+                                            <a href="#" class="product_link">{{ $val->category->name ?? '' }}</a>
                                         </div>
                                     </div>
-                                    <!-- end product button -->
-                                </div>
-                                <!-- end product image -->
-                                <!--start product details -->
-                                <div class="product-details text-center">
-                                    <!-- product name -->
-                                    <div class="product-name">
-                                        <a href="product-layout-1.html">{{ $val->item_title }}</a>
-                                    </div>
-                                    <!-- End product name -->
-                                    <div class="star text-center">
-                                        <ul class="list-unstyled" style="display: inline-flex;">
-                                            <li><i class="fa fa-star px-2 star"></i></li>
-                                            <li><i class="fa fa-star px-2 star"></i></li>
-                                            <li><i class="fa fa-star px-2 star"></i></li>
-                                            <li><i class="fa fa-star px-2 star"></i></li>
-                                            <li><i class="fa fa-star px-2 star"></i></li>
-                                        </ul>
-                                    </div>
-                                    <!-- product price -->
-                                    <div class="product-price">
-                                        <span class="price">AED {{ $val->rrp_price }}</span>
-                                    </div>
-                                    <!-- End product price -->
-                                    <!-- product Link -->
-                                    <a href="#" class="product_link">{{ $val->category->name ?? '' }}</a>
-                                    <!-- End Product Link -->
-                                </div>
-                                <!-- End product details -->
+                                @endforeach
                             </div>
-                        @endforeach
-
-
+                        </div>
                     </div>
                 </div>
 
-            </div>
 
             <!--End Hot picks-->
             <div class="section hot-picks">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 pl-0">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                             <div class="section-header">
                                 <h2 class="h2 heading-font">Editor Pick</h2>
                             </div>
@@ -447,7 +426,7 @@
             <!-- Divider button -->
             <div class="section divider-btn">
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="row px-5">
                         <div class="col-6 col-sm-6 col-md-6 col-lg-6 ">
                             <a href="" class="how-to-rent btn-block btn-dark">HOW TO RENT</a>
                         </div>
@@ -458,47 +437,36 @@
                 </div>
             </div>
 
-            <div class="section hot-picks">
+            <div class="section hot-picks" id="resale-slider">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 col-sm-6 col-md-6 col-lg-6 pl-0">
                             <div class="section-header">
-                                <h2 class="h2 heading-font">Resale </h2>
+                                <h2 class="h2 heading-font">Resale</h2>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-                <div class="productSlider-style2 grid-products justify-content-start align-items-start">
+                <div class="container px-0">
+                    <div class="productSlider-style2 grid-products justify-content-start align-items-start" id="resaleSwiper">
                     @foreach ($allData['resale'] as $val)
                         <div class="col-12 item">
-                            <!-- start product image -->
                             <div class="product-image">
-                                <!-- start product image -->
                                 <a href="{{ route('product_detail', $val->id) }}" class="grid-view-item__link">
-                                    <!-- image -->
                                     <img class="primary blur-up lazyload"
                                         data-src="{{ asset('uploads/item/' . $val->mainImag) }}"
                                         src="{{ asset('uploads/item/' . $val->mainImag) }}" alt="image"
                                         title="product">
-                                    <!-- End image -->
-                                    <!-- Hover image -->
                                     <img class="hover blur-up lazyload"
                                         data-src="{{ asset('uploads/item/' . $val->mainImag) }}"
                                         src="{{ asset('uploads/item/' . $val->mainImag) }}" alt="image"
                                         title="product">
-                                    <!-- End hover image -->
                                 </a>
-                                <!-- end product image -->
-                                <!-- Start product button -->
                                 <form class="variants add" action="#" method="post">
-                                    <div class="d-flex btn-background" style="">
-                                        <button class="btn btn-green mx-1" type="button" tabindex="0">Rent
-                                            Now</button>
+                                    <div class="d-flex btn-background">
+                                        <button class="btn btn-green mx-1" type="button" tabindex="0">Rent Now</button>
                                         @if ($val->buy == 'true')
-                                            <button class="btn btn-white mx-1" type="button" tabindex="0">Buy
-                                                Now</button>
+                                            <button class="btn btn-white mx-1" type="button" tabindex="0">Buy Now</button>
                                         @endif
                                     </div>
                                 </form>
@@ -509,16 +477,11 @@
                                         </a>
                                     </div>
                                 </div>
-                                <!-- end product button -->
                             </div>
-                            <!-- end product image -->
-                            <!--start product details -->
                             <div class="product-details text-center">
-                                <!-- product name -->
                                 <div class="product-name">
                                     <a href="product-layout-1.html">{{ $val->item_title }}</a>
                                 </div>
-                                <!-- End product name -->
                                 <div class="star text-center">
                                     <ul class="list-unstyled" style="display: inline-flex;">
                                         <li><i class="fa fa-star px-2 star"></i></li>
@@ -528,22 +491,18 @@
                                         <li><i class="fa fa-star px-2 star"></i></li>
                                     </ul>
                                 </div>
-                                <!-- product price -->
                                 <div class="product-price">
                                     <span class="price">AED {{ $val->rrp_price }}</span>
                                 </div>
-                                <!-- End product price -->
-                                <!-- product Link -->
                                 <a href="#" class="product_link">{{ $val->category->name ?? '' }}</a>
-                                <!-- End Product Link -->
                             </div>
-                            <!-- End product details -->
                         </div>
                     @endforeach
-
-
                 </div>
+                
             </div>
+        </div>
+
 
             {{-- @foreach ($allData['category_product'] as $val) 
         
@@ -1312,34 +1271,51 @@
 
 
 <script>
-const swiper = new Swiper('#categoryCarousel', {
-    slidesPerView: 2, // Default for mobile
-    slidesPerGroup: 1,
-    spaceBetween: 5, // Reduce space between slides
-    loop: true,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-        0: {
-            slidesPerView: 2, // For mobile devices
-            slidesPerGroup: 1,
+    const justLandedSwiper = new Swiper('#justLandedSwiper', {
+        slidesPerView: 3,
+        slidesPerGroup: 1,
+        spaceBetween: 5,
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
-        769: {
-            slidesPerView: 4, // For tablet devices
-            slidesPerGroup: 1,
+        breakpoints: {
+            576: {
+                slidesPerView: 2,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+            1024: {
+                slidesPerView: 4,
+            },
         },
-        1025: {
-            slidesPerView: 5, // For desktop devices
-            slidesPerGroup: 1,
+    });
+
+    const resaleSwiper = new Swiper('#resaleSwiper', {
+        slidesPerView: 3,
+        slidesPerGroup: 1,
+        spaceBetween: 5,
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
-    },
-});
-
-
-
+        breakpoints: {
+            576: {
+                slidesPerView: 2,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+            1024: {
+                slidesPerView: 4,
+            },
+        },
+    });
 </script>
+
 
 
 
