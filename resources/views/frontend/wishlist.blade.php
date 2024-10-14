@@ -8,7 +8,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                        <img class="primary blur-up lazyloaded" data-src="assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
+                        <img class="primary blur-up lazyloaded" data-src="./public/assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
                         <div class="product-Heading">
                             <h4>Buttons tweed blazer</h4>
                         </div>
@@ -27,7 +27,7 @@
 
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                        <img class="primary blur-up lazyloaded" data-src="assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
+                        <img class="primary blur-up lazyloaded" data-src="./public/assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
                         <div class="product-Heading">
                             <h4>Buttons tweed blazer</h4>
                         </div>
@@ -46,7 +46,7 @@
 
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                        <img class="primary blur-up lazyloaded" data-src="assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
+                        <img class="primary blur-up lazyloaded" data-src="./public/assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
                         <div class="product-Heading">
                             <h4>Buttons tweed blazer</h4>
                         </div>
@@ -65,7 +65,7 @@
 
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                        <img class="primary blur-up lazyloaded" data-src="assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
+                        <img class="primary blur-up lazyloaded" data-src="./public/assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
                         <div class="product-Heading">
                             <h4>Buttons tweed blazer</h4>
                         </div>
