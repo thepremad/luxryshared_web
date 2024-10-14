@@ -101,4 +101,41 @@
             }).showToast();
         @endif
     }
+
+
+
+    
+
+
+
+
 </script>
+
+@if(auth()->user())
+
+
+<script>
+
+    updateCartCount();
+
+    function updateCartCount(){
+        $.ajax({
+            url: "{{ route('get_cart_count') }}",
+            type: 'GET',
+            data: {},
+            beforeSend: function() {
+                $('.spinner-loader').css('display', 'block');
+            },
+            success: function(res) {
+                $('#CartCount').html(res.cart_count);
+            },
+            error: function(res) {
+                
+            }
+        });
+    }
+    
+</script>
+
+
+@endif
