@@ -28,7 +28,14 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="country">Country / Region*</label>
-                                            <input type="text" class="form-control" id="country" placeholder="Country / Region">
+
+                                            <select id="state" class="form-control">
+                                                <option>Choose...</option>
+                                                @foreach ($countary as $countary)
+                                                    <option value="">{{ $countary->name }}</option>
+                                                @endforeach
+                                            </select>
+
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="company">Company Name</label>
@@ -46,19 +53,28 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label for="city">City*</label>
-                                            <input type="text" class="form-control" id="city" placeholder="Town / City">
+
+                                            <select id="state" class="form-control">
+                                                <option value="">Choose...</option>
+                                                @foreach ($cities as $city)
+                                                    <option value="">{{ $city->name }}</option>
+                                                @endforeach
+                                            </select>
+
                                         </div>
-                                        <div class="form-group col-md-4">
+
+                                        {{-- <div class="form-group col-md-4">
                                             <label for="state">State*</label>
                                             <select id="state" class="form-control">
                                                 <option>Choose...</option>
                                                 <option>State 1</option>
                                                 <option>State 2</option>
                                             </select>
-                                        </div>
-                                        <div class="form-group col-md-4">
+                                        </div> --}}
+
+                                        <div class="form-group col-md-6">
                                             <label for="postalCode">Postal Code*</label>
                                             <input type="number" class="form-control" id="postalCode" placeholder="Postal Code">
                                         </div>
@@ -69,7 +85,7 @@
                                             <input type="tel" class="form-control" id="phone" placeholder="Phone">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-4">Continue to delivery</button>
+                                    {{-- <button type="submit" class="btn btn-primary mt-4">Continue to delivery</button> --}}
                                     <div class="form-check mt-3">
                                         <input class="form-check-input" type="checkbox" id="saveInfo">
                                         <label class="form-check-label" for="saveInfo">Save my information for a faster checkout</label>
@@ -92,8 +108,9 @@
 
                                 </div>
                 
-                                <div class="shipping-methods mt-4">
+                                {{-- <div class="shipping-methods mt-4">
                                     <h6>Shipping Method</h6>
+
                                     <div class="row justify-content-start mb-4">
                                         <div class="col-sm-2 col-md-1 col-6 p-0">
                                             <img src="./assets/images/products/Rectangle 741.png" alt="Product Image" class="img-fluid">
@@ -143,20 +160,20 @@
                                     </div>
                                     
                                     <!-- Repeat above block for each product -->
-                                </div>
+                                </div> --}}
 
                                 <div class="payment-methods mt-4">
                                     <h6>Payment Method</h6>
                                     <p>All transactions are secure and encrypted.</p>
                                     <div class="paymenForm-outer">                                        
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard">
-                                            <label class="form-check-label" for="creditCard">
+                                            {{-- <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard"> --}}
+                                            <label class="form-check-label" for="creditCard" >
                                                 Credit Card
                                                 <p>We accept all major credit cards.</p>
-                                                <div class="payment-details d-none">
-                                                    <img src="./assets/images/logo/GPay.png" alt="Gpay">
-                                                    <img src="./assets/images/logo/Visa.png" alt="Visa">
+                                                <div class="payment-details">
+                                                    <img src="{{ url('public/assets/images/logo/GPay.png')}}" alt="Gpay">
+                                                    <img src="{{ url('public/assets/images/logo/Visa.png')}}" alt="Visa">
                                                     <form class="paymentForm mt-sm-3 py-sm-3">
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6 col-12">
@@ -183,7 +200,7 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <div class="form-check">
+                                        {{-- <div class="form-check">
                                             <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery">
                                             <label class="form-check-label" for="cashOnDelivery">Cash on delivery
                                                 <p>Pay with cash upon delivery.</p>
@@ -192,7 +209,7 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="paymentMethod" id="paypal">
                                             <label class="form-check-label" for="paypal">Paypal</label>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 
@@ -208,22 +225,25 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 col-12 me-sm-5 mt-3 mt-sm-0">
                         <div class="order-summary">
                             <h6>Order Summary</h6>
-                            <div class="order-item">
-                                <div class="row">
-                                    <div class="col-4 col-sm-3 col-md-2 p-0">
-                                        <img src="./assets/images/products/Rectangle 741.png" alt="Product Image" class="img-fluid">
-                                    </div>
-                                    <div class="col-6 col-sm-6 col-md-7">
-                                        <p>Product Name x <span>1</span></p>
-                                        <p>Color: <span>Yellow</span></p>
-                                    </div>
-                                    <div class="col-2 col-sm-3 col-md-3 p-0">
-                                        <p class="text-end">$29.00</p>
+
+                            @foreach ($cart as $val)
+                                <div class="order-item">
+                                    <div class="row">
+                                        <div class="col-4 col-sm-3 col-md-2 p-0">
+                                            <img src="{{asset('uploads/item/' . $val->products->mainImag)}}" alt="Product Image" class="img-fluid">
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-md-7">
+                                            <p>{{$val->products->item_title}}</p>
+                                            <p>Color: <span>{{$val->products->color->name ?? ''}}</span></p>
+                                        </div>
+                                        <div class="col-2 col-sm-3 col-md-3 p-0">
+                                            <p class="text-end">AED {{ $val->products->rrp_price }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                             
-                            <div class="order-item">
+                            {{-- <div class="order-item">
                                 <div class="row">
                                     <div class="col-4 col-sm-3 col-md-2 p-0">
                                         <img src="./assets/images/products/Rectangle 741.png" alt="Product Image" class="img-fluid">
@@ -237,6 +257,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="order-item">
                                 <div class="row">
                                     <div class="col-4 col-sm-3 col-md-2 p-0">
@@ -250,29 +271,33 @@
                                         <p class="text-end">$29.00</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- Repeat above block for each product -->
         
                             <div class="subtotal mt-3">
-                                <h6>Subtotal (3 items)</h6>
-                                <span>$513.00</span>
+                                <h6>Subtotal ({{ $cart_values['total_item'] }} items)</h6>
+                                <span>{{ $cart_values['total_cart_amount'] ?? 0 }} AED</span>
                             </div>
+
                             <div class="savings mt-2">
                                 <h6>Savings</h6>
-                                <span>-$30.00</span>
+                                <span>-</span>
                             </div>
-                            <div class="shipping mt-2">
+
+                            {{-- <div class="shipping mt-2">
                                 <h6>Shipping</h6>
                                 <span>$5.00</span>
-                            </div>
+                            </div> --}}
+
                             <div class="promo-code mt-2">
                                 <h6>Enter your Promotional Code</h6>
                                 <input type="text" class="form-control" id="promoCode" placeholder="Promo Code">
                                 <button type="button" class="btn btn-secondary btn-apply">Apply</button>
                             </div>
+
                             <div class="total mt-2">
                                 <h6>Total</h6>
-                                <span>$478.00</span>
+                                <span>{{ $cart_values['total_cart_amount'] }} AED</span>
                             </div>
                         </div>
                     </div>

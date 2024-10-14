@@ -9,6 +9,7 @@ use App\Http\Resources\GetProductResource;
 use App\Models\Cart;
 use App\Models\Item;
 use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
 class ProductFilterController extends Controller
@@ -86,12 +87,17 @@ class ProductFilterController extends Controller
             if ($checkCartItems) {
                 return response()->json(['error' => ['item_id' => 'Item Already Addes In Cart']], 422);
             }
+            Wishlist::where('item_id',$request->item_id)->where('user_id',auth()->user()->id)->delete();
+
+            
             $cart = new Cart();
             $cart->item_id = $request->item_id;
             $cart->days = $request->days;
             $cart->user_id = auth()->user()->id;
             $cart->save();
-            return response()->json(['message' => 'Item Add Successfully'], 200);
+            $data = $cart;
+            $data['message'] = "Item Add Successfully";
+            return response()->json($data, 200);
         }catch (\Throwable $th) {
             \Log::error('api item post : exception');
             \Log::error($th);
