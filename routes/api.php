@@ -91,6 +91,9 @@ Route::middleware('auth:api')->group(function () {
 
 
 
+    Route::get('get_user_cart',[CheckoutController::class,'getUserCart']);
+    Route::post('cart_checkout',[CheckoutController::class,'cartCheckout']);
+    
     
 
 
