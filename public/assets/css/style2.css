@@ -5885,6 +5885,10 @@ additionalImagePreview{
   .sharing-caring .sharing-caring-causes .causes-row .col-xl-4 a.readMore-btn {
     font-size: 13px;
   }
+
+  .section.top-product{
+    padding: 0 20px;
+  }
 }
 
 @media (max-width: 700px){

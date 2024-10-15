@@ -9023,13 +9023,13 @@ footer#footer .row.copyrigt-row p a {
   }
 
   .divider-btn .how-to-rent {
-    font-size: 21px;
+    font-size: 18px;
     line-height: 25px;
     padding: 18px 0;
   }
 
   .divider-btn .how-to-lend {
-    font-size: 21px;
+    font-size: 18px;
     line-height: 25px;
     padding: 17px 0;
   }
@@ -12336,7 +12336,7 @@ Start CSS All Products Page
   }
 
   .section.top-product .swiper-wrapper{
-    justify-content: center !important;
+    justify-content: flex-start !important;
     width: 90%;
     margin: 0 auto;
     overflow: hidden;
@@ -13084,6 +13084,21 @@ Start CSS All Products Page
     font-size: 17px;
     line-height: 18px;
   }
+
+  #just-landed-slider .row.px-0 .col-6:first-child{
+    padding-left: 0 !important;
+  }
+  .section.hot-picks .container-fluid .row.editoePics .col-6:first-child{
+    padding-left: 0 !important;
+  }
+
+  .section.hot-picks .container .row{
+    padding-left: 5px !important;
+  }
+
+  #resale-slider .container-fluid .row, #resale-slider .container .row{
+    padding-left: 10px !important;
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -13182,4 +13197,98 @@ Start CSS All Products Page
 
 .productDesc .nav.nav-tabs{
   margin-top: 30px;
+}
+
+/*******************************************
+*********** Wish List Page CSS ************ 
+******************************************** */
+.wishlist-item{
+  justify-content: flex-start;
+  gap: 3%;
+}
+
+.wishlist-item .col-lg-3{
+  flex: 0 0 22%;
+  max-width: 22%;
+}
+
+.wishlist-item .col-lg-3 img{
+  width: 263px;
+  max-width: 100%;
+  height: 496px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.wishlist-item .col-lg-3 .product-Heading h4{
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #626262;
+  margin-bottom: 15px;
+}
+
+.wishlist-item .col-lg-3 .list-unstyled i{
+  color: #E3C01C;
+  font-size: 14px;
+}
+
+.wishlist-item .col-lg-3 .product-pricewish h5{
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #626262;
+}
+
+.wishlist-item .row.mt-3 .col-lg-6 button.btn{
+  width: 100%;
+  padding: 10px 0;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000000;
+  background-color: transparent !important;
+  border: 1px solid #000000;
+} 
+
+@media (max-width: 1024px) {
+  .wishlist-item {
+    flex-direction: row;
+    align-items: center;
+    gap: unset !important;
+  }
+
+  .wishlist-item .col-lg-3 {
+    flex: 0 0 49%;
+    max-width: 49%;
+    margin-bottom: 20px;
+  }
+
+  .wishlist-item .col-lg-3 img {
+    width: 100%;
+    height: 300px;
+    max-height: 300px;
+  }
+
+  .wishlist-item .col-lg-3 .product-Heading h4 {
+    font-size: 14px;
+  }
+
+  .wishlist-item .col-lg-3 .product-pricewish h5 {
+    font-size: 14px;
+  }
+
+  .wishlist-item .row.mt-3 .col-lg-6 button.btn {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutUs.wishlist .row.wishlist-item .row.mt-3{
+    gap: 10px;
+  }
 }
