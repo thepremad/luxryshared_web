@@ -291,12 +291,12 @@
         
                             <div class="subtotal mt-3">
                                 <h6>Subtotal ({{ $cart_values['total_item'] }} items)</h6>
-                                <span>{{ $cart_values['total_cart_amount'] ?? 0 }} AED</span>
+                                <span>AED {{ $cart_values['sub_total_amount'] ?? 0 }}</span>
                             </div>
 
                             <div class="savings mt-2">
                                 <h6>Savings</h6>
-                                <span id="discount_amount">-</span>
+                                <span id="discount_amount">{{ $cart_values['discount_amount'] ?? '-' }}</span>
                             </div>
 
                             {{-- <div class="shipping mt-2">
@@ -308,18 +308,18 @@
                                 @csrf
                                 <div class="promo-code mt-2">
                                     <h6>Enter your Promotional Code</h6>
-                                    <input type="text" class="form-control" id="promoCode" placeholder="Promo Code" name="code">
+                                    <input type="text" class="form-control" id="promoCode" placeholder="Promo Code" name="code" value="{{ $cart_values['coupon_code'] ?? '' }}">
                                     <button type="submit" class="btn btn-secondary btn-apply">Apply</button>
                                     <span class="text-danger validation-class" id="code-apply_coupon_errors"></span>
-                                    <span id="discount_message">
-
+                                    <span id="discount_message" style="color: green">
+                                        {{ $cart_values['discount_message'] ?? '' }}
                                     </span>
                                 </div>
                             </form>
 
                             <div class="total mt-2">
                                 <h6>Total</h6>                                                                                                                                                  
-                                <span id="total_cart_amount">{{ $cart_values['total_cart_amount'] }} AED</span>
+                                <span id="total_cart_amount">{{ $cart_values['total_cart_amount'] }}</span>
                             </div>
                         </div>
                     </div>

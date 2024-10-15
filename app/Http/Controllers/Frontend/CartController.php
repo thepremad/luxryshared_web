@@ -40,6 +40,7 @@ class CartController extends Controller
         $data =  [
             "total_cart_amount" => $total_carts,
             'total_item' => $total_item,
+            'sub_total_amount' => $total_carts,
         ];
 
         $ApplyDiscount = ApplyDiscount::where('user_id',$user_id)->first();
@@ -49,6 +50,7 @@ class CartController extends Controller
             $coupons = Discount::where('id', $ApplyDiscount->discount_id)
             ->where('exp_date', '>=',$date)
             ->first();
+
             if(!empty($coupons)){
 
                 $less_amount = 0;
