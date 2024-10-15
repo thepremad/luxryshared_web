@@ -27,6 +27,11 @@ class CartController extends Controller
     }
 
 
+    function getUserCart(){
+        
+    }
+
+
     function cartValue($user_id){
         $total_carts = 0;
         $total_item = 0;
