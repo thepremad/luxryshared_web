@@ -335,7 +335,7 @@
             <!--End Hot picks-->
             <div class="section hot-picks">
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="row editoePics">
                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                             <div class="section-header">
                                 <h2 class="h2 heading-font">Editor Pick</h2>
