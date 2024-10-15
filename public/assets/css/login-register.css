@@ -103,6 +103,7 @@
   top: 28%;
   right: 20px;
   font-size: 23px;
+  z-index: 19999;
 }
 
 .register .loginRegister-section #myTabContent.tab-content a.d-block {

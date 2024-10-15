@@ -64,11 +64,13 @@
                                                     <div class="input-group-append" id="togglePassword">
                                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                                     </div>
+
                                                 </div>
                                                 <div>
                                                     <span class="text-danger validation-class" id="password-login_errors"></span>
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                         <script>
                                             // Function to hide the alert after 3 seconds
@@ -159,28 +161,29 @@
 
                                             <div class="form-group">
                                                 <label for="referralCode">Referral Code</label>
-                                                <input type="text" name="referralCode" class="form-control" id="referralCode" placeholder="REFERRAL CODE">
+                                                <input type="text" name="referralCode" class="form-control" id="referralCode" placeholder="Referral Code">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="mobileNumber">Address <span>*</span></label>
+                                                <label for="address">Address <span>*</span></label>
                                                 <input type="text" name="address"
                                                     class="form-control @error('address') is-invalid @enderror"
-                                                    id="mobileNumber" placeholder="Enter Address"
+                                                    id="address" placeholder="Enter Address"
                                                     value="{{ old('address') }}">
-                                                <span class="invalid-feedback">{{ $errors->first('addrrss') }}</span>
+                                                <span class="invalid-feedback">{{ $errors->first('address') }}</span>
                                                 <span class="text-danger validation-class" id="address-register_errors"></span>
                                             </div>
-                                            
-                                            <div id="map"></div>
+
+                                            <div id="map" style="height: 400px;"></div>
                                             <input type="hidden" name="latitude" id="lantitude">
                                             <input type="hidden" name="longitude" id="longitude">
+
 
                                             <div class="form-group" style="margin-top: 20px">
                                                 <label for="idVerificationn">Upload EID <span>*</span></label>
                                                 <input type="file" name="id_image"
                                                     class="form-control-file @error('id_image') is-invalid @enderror"
-                                                    id="idVerificationn" accept="image/*">
+                                                    id="idVerificationn" accept="image/*, application/pdf">
 
                                                 <span class="invalid-feedback">{{ $errors->first('id_image') }}</span>
                                                 <span class="text-danger validation-class" id="id_image-register_errors"></span>
@@ -544,7 +547,8 @@
             return false;
         });
     </script>
-    <script>
+
+    <!-- <script>
         let map;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
@@ -566,7 +570,10 @@
 
             });
         }
-    </script>
+    </script> -->
+
+
+    
     <!--End For Newsletter Popup-->
 
     
@@ -654,6 +661,55 @@
         });
     });
     
+</script>
+
+<script>
+
+        let map;
+let marker;
+
+function initMap() {
+    const defaultLocation = { lat: 26.7980, lng: 75.8193 }; // Default center
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: defaultLocation,
+        zoom: 8,
+    });
+
+    marker = new google.maps.Marker({
+        position: defaultLocation,
+        map: map,
+        draggable: true,
+    });
+
+    google.maps.event.addListener(marker, 'dragend', function(event) {
+        const lat = event.latLng.lat();
+        const lng = event.latLng.lng();
+        $("#lantitude").val(lat);
+        $("#longitude").val(lng);
+    });
+
+    document.getElementById('address').addEventListener('change', function() {
+        const address = this.value;
+        geocodeAddress(address);
+    });
+}
+
+function geocodeAddress(address) {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': address }, function(results, status) {
+        if (status === 'OK') {
+            const location = results[0].geometry.location;
+            map.setCenter(location);
+            marker.setPosition(location);
+            $("#lantitude").val(location.lat());
+            $("#longitude").val(location.lng());
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
+
+
 </script>
 @endsection
 </div>
