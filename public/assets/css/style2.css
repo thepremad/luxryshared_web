@@ -3078,6 +3078,7 @@ additionalImagePreview{
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   font-size: 12px;
   font-family: 'Proxima Nova', sans-serif;
+  text-transform: uppercase;
 }
 
 .cart-checkOut .cvv-container {
