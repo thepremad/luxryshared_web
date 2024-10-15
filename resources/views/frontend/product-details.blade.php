@@ -55,12 +55,18 @@ padding: 10px 0;
 }
 
 .product-single .productDetails .plan-outer {
-padding: 5px;
-border: 1px solid;
+    padding: 15px 5px 0;
+    width: 25%;
+    max-width: 25%;
+    border-radius: 0;
+    border: 1px solid #CCCCCC;
+    text-align: center;
+    cursor: pointer !important;
 }
 
 .product-single .productDetails .plan-outer input {
 opacity: 0;
+display: none;
 }
 
 .product-single .productDetails #rentNowBtn,
@@ -325,7 +331,7 @@ justify-content: center;
         <div class="container-fluid productDesc mt-5 mb-4">
             <div class="row justify-content-start">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col1">
-                    <h4>Product Description</h4>
+                    <h4 class="pl-4">Product Description</h4>
                      <!-- Nav tabs -->
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -346,22 +352,7 @@ justify-content: center;
                             </div>
                         </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col2">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                            <span class="img-outer">
-                                <img src="{{asset('/assets/images/icons/Frame-26.png')}}" alt="">
-                            </span>
-                            <h4>Secure payment</h4>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                            <span class="img-outer">
-                                <img src="{{asset('/assets/images/icons/Frame-25.png')}}" alt="">
-                            </span>
-                            <h4>Size & Fit</h4>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
         <!-- End Product Description -->
@@ -370,7 +361,7 @@ justify-content: center;
             <div class="container-fluid">
                 <div class="row justify-content-start">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col1">
-                        <h4>Product Description</h4>
+                        <h4 class="pl-4">More Similar Items</h4>
                     </div>
                 <div class="row">
                     <div class="col-6 col-sm-6 col-md-3 col-lg-3">
