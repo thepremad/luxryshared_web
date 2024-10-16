@@ -19,11 +19,11 @@ class ItemController extends Controller
 {
     public function listItem(){
         $menu = Menu::latest()->get();
-        $category = Category::latest()->get();
-        $subCategory = SubCategory::latest()->get();
-        $brand = Brand::latest()->get();
-        $color = Color::latest()->get();
-        $size = Size::latest()->get();
+        $category = Category::orderBy('name','ASC')->get();
+        $subCategory = SubCategory::orderBy('name','ASC')->get();
+        $brand = Brand::orderBy('name','ASC')->get();
+        $color = Color::orderBy('name','ASC')->get();
+        $size = Size::orderBy('name','ASC')->get();
         $occasions = Occasion::where('status',1)->orderBy('name','ASC')->get();
         return view('frontend.list-item',compact('menu','category','subCategory','brand','color','size','occasions'));
     }
