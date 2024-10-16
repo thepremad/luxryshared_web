@@ -13142,7 +13142,7 @@ Start CSS All Products Page
 }
 
 .section.top-product .swiper-container .swiper-wrapper{
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .rental-plans{
@@ -13650,4 +13650,23 @@ Start CSS All Products Page
   width: 40px; /* Set width to match slider */
   height: 20px; /* Set height to match slider */
   border-radius: 20px; /* Rounded corners */
+}
+
+@media (max-width: 768px) {
+  .top-header .user-menu {
+      display: none !important;
+  }
+}
+
+
+@media (max-width: 1466px) and (min-width: 1024px) {
+  #resale-slider .productSlider-style2.grid-products{
+    margin-left: 70px !important;
+  }
+  .banner-buttons-row{
+    width: 90% !important;
+  }
+  .section.hot-picks.editor .productSlider-style2.grid-products{
+    margin-left: 70px !important;
+  }
 }

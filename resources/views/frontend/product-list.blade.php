@@ -35,6 +35,12 @@
     cursor: pointer;
 }
 
+.widget-content.py-4{
+    height: 100% !important;
+    display: block !important;
+}
+
+
 </style>
     <!--Body Content-->
     <div id="page-content">
@@ -50,25 +56,21 @@
                 <div class="col-md-3 col-lg-3 sidebar filterbar">
                     <div class="collapse show" id="sidebarContent">
                         <div class="sidebar_tags">
-                            <!-- Categories Section -->
+                            
                             <div class="sidebar_widget categories filter-widget top">
                                 <div class="widget-title">
                                     <h4 id="filterTItle">Categories</h4>
                                 </div>
-                                <div class="widget-content py-4">
+                                <div class="widget-content py-4" style="display: none; overflow: hidden;">
                                     <ul class="sidebar_categories">
                                         @foreach ($categories as $category)
                                             <li class="level1 sub-level">
                                                 <a href="#;" class="site-nav">{{ $category->name }}</a>
-                                                <ul class="sublinks">
+                                                <ul class="sublinks" style="display: none;">
                                                     @foreach ($category->subCategory as $subCategory)
                                                         <li class="level2">
-                                                            <label for="subcategory-{{ $subCategory->id }}"
-                                                                class="site-nav">
-                                                                <input type="checkbox" class="subcategory"
-                                                                    id="subcategory-{{ $subCategory->id }}"
-                                                                    name="subcategories[]" value="{{ $subCategory->id }}"
-                                                                    onchange="search()" class="category-checkbox" />
+                                                            <label for="subcategory-{{ $subCategory->id }}">
+                                                                <input type="checkbox" class="subcategory" id="subcategory-{{ $subCategory->id }}" name="subcategories[]" value="{{ $subCategory->id }}" onchange="search()" />
                                                                 {{ $subCategory->name }}
                                                             </label>
                                                         </li>
@@ -76,123 +78,12 @@
                                                 </ul>
                                             </li>
                                         @endforeach
-                                        {{-- <li class="level1 sub-level">
-                        <a href="#;" class="site-nav">Women</a>
-                        <ul class="sublinks">
-                            <li class="level2">
-                                <label for="subcategory-women" class="site-nav">
-                                    <input type="checkbox" id="subcategory-women" name="subcategories[]" value="women" class="category-checkbox" />
-                                    Women
-                                </label>
-                            </li>
-                        </ul>
-                    </li> --}}
-                                    </ul>
-                                    {{-- <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Printed T-shirts</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Jeans</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Shorts</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Plain T-shirts</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Jackets</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Hoodies</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Plain T-shirts</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Jackets</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Hoodies</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Kurti</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Jackets</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Hoodies</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Boxers</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Jackets</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Hoodies</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Full sleeve T-shirts</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Jackets</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Hoodies</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Joggers</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Jackets</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Hoodies</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Payjamas</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Jackets</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Hoodies</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Jeans</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Jackets</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Hoodies</a>
-                                            </li>
-                                        </ul>
-                                    </li> --}}
-
                                     </ul>
                                 </div>
                             </div>
 
-                            <!-- Price Filter Section -->
+
+                           <!-- Price Filter Section -->
                             <div class="sidebar_widget filterBox filter-widget">
                                 <div class="widget-title widget-before">
                                     <h4 id="filterTItle">Price</h4>
@@ -956,4 +847,31 @@ window.onclick = function(event) {
     }
 }
 </script>
+
+<script>
+$(document).ready(function() {
+    $(document).on('click', '.site-nav', function(e) {
+        e.preventDefault(); // Prevent default action
+        var sublinks = $(this).siblings('.sublinks');
+
+        // Toggle visibility of sublinks
+        sublinks.toggle();
+
+        // Set styles for widget-content
+        if (sublinks.is(':visible')) {
+            $(this).closest('.widget-content').css({
+                'height': '100%',
+                'display': 'block'
+            });
+        } else {
+            $(this).closest('.widget-content').css({
+                'height': '',
+                'display': 'none'
+            });
+        }
+    });
+});
+</script>
+
+
 @endsection
