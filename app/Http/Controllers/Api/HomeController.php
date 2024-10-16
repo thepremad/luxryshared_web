@@ -57,6 +57,8 @@ class HomeController extends Controller
             'resale' => $resale,
             'editor_picture' => $editor_picture,
             'trending_products' => $trendings
+
+            
         ],200);
     }
     public function brandProduct(StoreBrandproductrequest $request){
