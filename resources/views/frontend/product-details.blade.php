@@ -55,18 +55,12 @@ padding: 10px 0;
 }
 
 .product-single .productDetails .plan-outer {
-    padding: 15px 5px 0;
-    width: 25%;
-    max-width: 25%;
-    border-radius: 0;
-    border: 1px solid #CCCCCC;
-    text-align: center;
-    cursor: pointer !important;
+padding: 5px;
+border: 1px solid;
 }
 
 .product-single .productDetails .plan-outer input {
 opacity: 0;
-display: none;
 }
 
 .product-single .productDetails #rentNowBtn,
@@ -128,7 +122,6 @@ justify-content: center;
 .product-single .productDetails #rentNowBtn,
 .product-single .productDetails #buyNowBtn {
     font-size: 14px;
-    padding: 10px 0 !important;
 }
 
 .product-single  .productDetails{
@@ -156,7 +149,7 @@ justify-content: center;
 
 .product-single .productDetails #rentNowBtn,
 .product-single .productDetails #buyNowBtn {
-    font-size: 11px;
+    font-size: 14px;
 }
 }
 
@@ -174,10 +167,15 @@ justify-content: center;
             background-color: #f8f9fa;
         }
         .date-section {
-            display: none; 
+            display: none; /* Initially hidden */
         }
         .selected-range {
-            background-color: #d1e7dd !important; 
+            background-color: #d1e7dd !important; /* Light green for selected range */
+        }
+
+        .flatpickr-calendar.animate.open{
+            top: 965.2px !important;
+            left: 830px !important;
         }
 
 </style>
@@ -214,7 +212,7 @@ justify-content: center;
                             <span class="breadcrumb-item active" aria-current="page">Top</span>
                         </nav>
 
-                        <h1 class="product-single__title">Product Name</h1>
+                        <h1 class="product-single__title">{{ $item->item_title }}</h1>
 
                         <div class="d-flex align-items-center">
                             <h5 class="mb-0">@John Richerd</h5>
@@ -229,17 +227,19 @@ justify-content: center;
 
                         <div class="prInfoRow">
                             <div class="product-rent-price d-block">
-                                <h4>50.99 $ / 4 Days</h4>
+                                <h4>SED {{ $item->rrp_price }} / 4 Days</h4>
                             </div>
-                            <div class="product-sell-price d-block">
-                                <h4>$399.00 BUY NOW</h4>
-                            </div>
+                            @if ($item->buy == 'true')
+                                <div class="product-sell-price d-block">
+                                    <h4>AED {{ $item->buy_price }} BUY NOW</h4>
+                                </div>    
+                            @endif
                         </div>
 
                         <label for="size" class="form-label productSize-avl">Available Size</label>
                         <div class="size-options mb-3 d-flex justify-content-between">
                             <div class="size-container">
-                                <h5>XL</h5>                               
+                                <h5>{{ $item->size->name ?? '' }}</h5>
                             </div>
                             <a href="#" class="size-guide-link">Size Guide</a>
                         </div>
@@ -284,7 +284,6 @@ justify-content: center;
                             </div>
                         </div>
 
-                        <!-- New Section for Dates -->
                         <div class="date-section">
                             <h4 class="mt-4">Dates*</h4>
                             <p>Tap to select Start Date, preferably 1-2 days before you plan to wear it.</p>
@@ -305,13 +304,14 @@ justify-content: center;
                                     @csrf
                                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                                     <input type="hidden" name="days" value="1">
-                                    <button class="btn btn-light btn-bloxk" id="buyNowBtn">Add To Cart</button>
+                                    <button class="btn btn-light btn-block" id="buyNowBtn">Add To Cart</button>
                                 </form>
                             </div>
                         </div>
 
                         <p id="dateWarning" class="text-danger" style="display:none;">Please select exactly <span id="maxDays"></span> dates.</p>
                     </div>
+
 
                     
                     
@@ -331,7 +331,7 @@ justify-content: center;
         <div class="container-fluid productDesc mt-5 mb-4">
             <div class="row justify-content-start">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col1">
-                    <h4 class="pl-4">Product Description</h4>
+                    <h4 class="px-4 mb-3">Product Description</h4>
                      <!-- Nav tabs -->
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -352,7 +352,22 @@ justify-content: center;
                             </div>
                         </div>
                 </div>
-
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col2">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <span class="img-outer">
+                                <img src="./assets/images/icons/credit card.png" alt="">
+                            </span>
+                            <h4>Secure payment</h4>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <span class="img-outer">
+                                <img src="./assets/images/icons/Size & Fit.png" alt="">
+                            </span>
+                            <h4>Size & Fit</h4>
+                        </div>
+                    </div>
+                </div> -->
             </div>
         </div>
         <!-- End Product Description -->
@@ -361,18 +376,24 @@ justify-content: center;
             <div class="container-fluid">
                 <div class="row justify-content-start">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col1">
-                        <h4 class="pl-4">More Similar Items</h4>
+                        <h4 class="px-4 mb-3">More Similar Items</h4>
                     </div>
                 <div class="row">
-                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-                        <div class="collection-grid-item text-center">
-                            <a href="collection-page.html" class="collection-grid-item__link">
-                                <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Hot" class="blur-up ls-is-cached lazyloaded">
-                                <h3 class="mt-4">PARTY WEAR</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+
+                    @foreach ($related_products as $item)
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                            <div class="collection-grid-item text-center">
+                                <a href="{{ route('product_detail',$item->id) }}" class="collection-grid-item__link">
+                                    <img data-src="{{asset('uploads/item/' . $item->mainImag)}}" src="{{asset('uploads/item/' . $item->mainImag)}}" alt="Hot" class="blur-up ls-is-cached lazyloaded">
+                                    <h3 class="mt-4">{{ $item->item_title }}</h3>
+                                </a>
+                            </div>
+                        </div>    
+                    @endforeach
+
+                    
+
+                    {{-- <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                         <div class="collection-grid-item text-center">
                             <a href="collection-page.html" class="collection-grid-item__link">
                                 <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Denim" class="blur-up blur-active ls-is-cached lazyloaded">
@@ -395,7 +416,9 @@ justify-content: center;
                                 <h3 class="mt-4">BIRTHDAY</h3>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
+
+
                 </div>
             </div>
         </div>
@@ -484,27 +507,27 @@ justify-content: center;
             <div class="pswp__item"></div>
             <div class="pswp__item"></div>
         </div>
-        <div class="pswp__ui pswp__ui--hidden">
+        <div class="pswp_ui pswp_ui--hidden">
             <div class="pswp__top-bar">
-                <div class="pswp__counter"></div><button class="pswp__button pswp__button--close"
-                    title="Close (Esc)"></button><button class="pswp__button pswp__button--share"
-                    title="Share"></button><button class="pswp__button pswp__button--fs"
-                    title="Toggle fullscreen"></button><button class="pswp__button pswp__button--zoom"
+                <div class="pswp_counter"></div><button class="pswpbutton pswp_button--close"
+                    title="Close (Esc)"></button><button class="pswp_button pswp_button--share"
+                    title="Share"></button><button class="pswp_button pswp_button--fs"
+                    title="Toggle fullscreen"></button><button class="pswp_button pswp_button--zoom"
                     title="Zoom in/out"></button>
                 <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
+                    <div class="pswp_preloader_icn">
+                        <div class="pswp_preloader_cut">
+                            <div class="pswp_preloader_donut"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+            <div class="pswp_share-modal pswpshare-modal--hidden pswp_single-tap">
                 <div class="pswp__share-tooltip"></div>
-            </div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button><button
-                class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+            </div><button class="pswp_button pswp_button--arrow--left" title="Previous (arrow left)"></button><button
+                class="pswp_button pswp_button--arrow--right" title="Next (arrow right)"></button>
             <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
+                <div class="pswp_caption_center"></div>
             </div>
         </div>
     </div>
@@ -569,95 +592,76 @@ justify-content: center;
 <script>
     $(document).ready(function() {
         let maxDays = 0;
+        let datePicker;
         let selectedDates = [];
-        let startDate = null;
+        let updatingDates = false;
 
-        // Initialize Flatpickr
-        const datePicker = flatpickr("#dateInput", {
-            mode: "single",
-            dateFormat: "d-m-Y",
-            minDate: "today",
-            inline: true,
-            onChange: function(selected) {
-                if (selected.length > 0) {
-                    const selectedDate = selected[0];
-                    const endDate = new Date(selectedDate);
-                    endDate.setDate(selectedDate.getDate() + maxDays - 1);
-                    selectedDates = generateDateRange(selectedDate, endDate);
-
-                    // Update input field
-                    $('#dateInput').val(`${flatpickr.formatDate(selectedDate, "d-m-Y")} to ${flatpickr.formatDate(endDate, "d-m-Y")}`);
-                    highlightDates(selectedDates);
+        function initDatePicker() {
+            datePicker = flatpickr("#dateInput", {
+                mode: "multiple",
+                dateFormat: "d-m-Y",
+                minDate: "today",
+                inline: false,
+                clickOpens: true,
+                static: false, // Prevents closing on outside clicks
+                onOpen: function() {
+                    this.calendarContainer.style.width = 'auto';
+                },
+                onChange: function(dates) {
+                    if (updatingDates) return;
+                    selectedDates = dates;
+                    if (dates.length > maxDays) {
+                        this.clear();
+                    } else if (dates.length > 0) {
+                        const startDate = dates[0];
+                        const endDate = new Date(startDate);
+                        endDate.setDate(startDate.getDate() + maxDays - 1);
+                        const rangeDates = [];
+                        for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+                            rangeDates.push(new Date(d));
+                        }
+                        updatingDates = true;
+                        this.setDate(rangeDates, true);
+                        updatingDates = false;
+                        selectedDates = rangeDates;
+                    }
                 }
-            },
-            onOpen: function() {
-                clearPreviousHighlights();
-                if (selectedDates.length > 0) {
-                    highlightDates(selectedDates); // Re-highlight previously selected dates
-                }
-            },
-            position: 'above'
-        });
+            });
+        }
 
-        // Close date picker on outside click
-        $(document).on('click', function(e) {
-            if (!$(e.target).closest("#dateInput").length && !$(e.target).closest(".flatpickr-calendar").length) {
-                datePicker.close();
-            }
-        });
-
-        // Handle rental plan selection
         $('input[name="plan"]').change(function() {
             maxDays = parseInt($(this).data('days'));
-            $(".date-section").show(); // Show date section
-            datePicker.clear(); // Clear previous selections
-            $('#dateInput').val(''); // Clear input field
-            startDate = null; // Reset start date
-            selectedDates = []; // Reset selected dates
-            datePicker.open(); // Open date picker immediately
+            if (selectedDates.length > 0) {
+                const newStartDate = selectedDates[0] || new Date();
+                const newEndDate = new Date(newStartDate);
+                newEndDate.setDate(newStartDate.getDate() + maxDays - 1);
+                const newRangeDates = [];
+                for (let d = new Date(newStartDate); d <= newEndDate; d.setDate(d.getDate() + 1)) {
+                    newRangeDates.push(new Date(d));
+                }
+                updatingDates = true;
+                datePicker.setDate(newRangeDates, true);
+                updatingDates = false;
+                selectedDates = newRangeDates;
+            } else {
+                datePicker.clear();
+            }
+            // Keep the date picker open
+            datePicker.open();
         });
 
-        // Generate date range based on start and end date
-        function generateDateRange(start, end) {
-            const dates = [];
-            let currentDate = new Date(start);
-            while (currentDate <= end) {
-                dates.push(new Date(currentDate));
-                currentDate.setDate(currentDate.getDate() + 1);
-            }
-            return dates;
-        }
-
-        // Highlight selected dates in the calendar
-        function highlightDates(dates) {
-            const calendar = datePicker.calendar;
-            clearPreviousHighlights(); // Clear any previous highlights
-            dates.forEach(date => {
-                const dateStr = flatpickr.formatDate(date, "Y-m-d");
-                const dayElement = calendar.days.querySelector(`[data-date="${dateStr}"]`);
-                if (dayElement) {
-                    dayElement.classList.add('selected-range');
-                }
-            });
-        }
-
-        // Clear previous highlights
-        function clearPreviousHighlights() {
-            const calendar = datePicker.calendar;
-            const previouslySelected = calendar.days.querySelectorAll('.selected-range');
-            previouslySelected.forEach(dayElement => {
-                dayElement.classList.remove('selected-range');
-            });
-        }
-
-        // Handle RENT NOW button click
         $('#rentNowBtn').click(function() {
-            if (!$('#dateInput').val()) {
+            const selectedDatesFormatted = selectedDates.map(date => {
+                return date.toLocaleDateString('en-GB');
+            }).join(', ');
+            if (selectedDates.length === 0) {
                 alert('Please select rental dates.');
             } else {
-                alert('You have selected the rent dates: ' + $('#dateInput').val());
+                alert('You have selected the rent dates: ' + selectedDatesFormatted);
             }
         });
+
+        initDatePicker();
     });
 </script>
 
@@ -682,7 +686,6 @@ justify-content: center;
                 $('.spinner-loader').css('display', 'block');
             },
             success: function(res) {
-                updateCartCount();
                 // window.location.href = res;
                 // showStep(step + 1);
                 // $('#step_id').val(2);
@@ -714,18 +717,6 @@ justify-content: center;
         });
     });
 });
-</script>
-
-<script>
- document.querySelectorAll('input[type=radio][name=plan]').forEach(radio => {
-        radio.addEventListener('change', () => {
-            document.querySelectorAll('.plan-outer').forEach(outer => {
-                outer.classList.remove('selected'); // Remove selected class from all
-            });
-            radio.closest('.plan-outer').classList.add('selected'); // Add selected class to the parent
-        });
-    });
-
 </script>
 
 @endsection

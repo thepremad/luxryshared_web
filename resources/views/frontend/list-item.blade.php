@@ -90,7 +90,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-md-6">
-                                        <label for="color">Color</label>
+                                        <label for="color">Colour</label>
                                         <select id="color" name="color_id" class="form-control">
                                             @foreach ($color as $val)
                                                 <option value="{{ $val->id }}">{{ $val->name }}</option>
@@ -278,11 +278,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group check-box-label switch">
-                                    <input type="checkbox" id="enable-purchase" name="buy" value="true">
-                                    <label for="enable-purchase">ENABLE THIS OPTION, IF YOUR PRODUCT IS AVAILABLE FOR
-                                        PURCHASE.</label>
-                                        <span class="slider"></span>
-                                </div>
+    <input type="checkbox" id="enable-purchase" name="buy" value="true">
+    <label for="enable-purchase">
+        ENABLE THIS OPTION, IF YOUR PRODUCT IS AVAILABLE FOR PURCHASE.
+        <span class="slider"></span>
+    </label>
+</div>
 
                                 <div class="form-group" id="additional-deposit-group" style="display: none">
                                     <div class="form-group row">

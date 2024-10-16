@@ -15,6 +15,7 @@ use App\Http\Resources\StoreBlogResourceApi;
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Editor;
 use App\Models\Item;
 use App\Models\Look;
 use App\Models\Occasion;
@@ -23,19 +24,42 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function home(){
-         $categories = Category::with('products','products.bookingDate')->latest()->get();
-         $data = HomeApiResource::collection($categories);
-         $cateegory = Category::where('status',Category::$active)->latest()->get();
+        $categories = Category::with('products','products.bookingDate')->latest()->get();
+        $data = HomeApiResource::collection($categories);
+        $cateegory = Category::where('status',Category::$active)->latest()->get();
         $categorydata = CategoryResource::collection($cateegory);
         $occasions = Occasion::latest()->take(6)->get();
         $occassionData = OccasionResource::collection($occasions);
         $item = Item::with('bookingDate')->where('status',Item::$active)->where('checkout_status','0')->latest()->take(6)->get();
+
+        $resale = Item::with('category', 'bookingDate')
+            ->where('buy','true')
+            ->where('status', Item::$active)
+            ->latest()->take(6)->get();
+
         $productJustLanded = GetProductResource::collection($item);
+        $resale = GetProductResource::collection($resale);
+        $trendings = GetProductResource::collection($resale);
+
         $look = GetTheLookResource::collection(Look::with('products','products.bookingDate')->latest()->get());
+        $editor_picture = GetTheLookResource::collection(Editor::with('products','products.bookingDate')->latest()->get());
         $brand = Brand::latest()->take(6)->get();
         $privacyPolicy = Blog::latest()->take(6)->get();
         $blogData = StoreBlogResourceApi::collection($privacyPolicy);
-         return response()->json(['category' => $categorydata, 'occassion' => $occassionData,"just_landed" => $productJustLanded,'get_the_look' => $look,'brands' => BrandResource::collection($brand),'category_product' => $data,'comunity' =>$blogData],200);
+         return response()->json([
+            'category' => $categorydata,
+            'occassion' => $occassionData,
+            "just_landed" => $productJustLanded,
+            'get_the_look' => $look,
+            'brands' => BrandResource::collection($brand),
+            'category_product' => $data,
+            'comunity' =>$blogData,
+            'resale' => $resale,
+            'editor_picture' => $editor_picture,
+            'trending_products' => $trendings
+
+            
+        ],200);
     }
     public function brandProduct(StoreBrandproductrequest $request){
      $item = Item::where('brand_id',$request->id)->get();

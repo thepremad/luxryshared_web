@@ -333,7 +333,7 @@
 
 
             <!--End Hot picks-->
-            <div class="section hot-picks">
+            <div class="section hot-picks editor">
                 <div class="container-fluid">
                     <div class="row editoePics">
                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">

@@ -296,7 +296,7 @@
 
                             <div class="savings mt-2">
                                 <h6>Savings</h6>
-                                <span id="discount_amount">{{ $cart_values['discount_amount'] ?? '-' }}</span>
+                                <span id="discount_amount">AED {{ $cart_values['discount_amount'] ?? '-' }}</span>
                             </div>
 
                             {{-- <div class="shipping mt-2">
@@ -308,8 +308,18 @@
                                 @csrf
                                 <div class="promo-code mt-2">
                                     <h6>Enter your Promotional Code</h6>
-                                    <input type="text" class="form-control" id="promoCode" placeholder="Promo Code" name="code" value="{{ $cart_values['coupon_code'] ?? '' }}">
-                                    <button type="submit" class="btn btn-secondary btn-apply">Apply</button>
+                                    <input type="text" class="form-control" id="promoCodeValue" placeholder="Promo Code" name="code" value="{{ $cart_values['coupon_code'] ?? '' }}">
+
+                                    
+                                        <div  @if (!empty($cart_values['coupon_code'])) style="display: none" @endif  id="apply_coupon_div">
+                                            <button type="submit" class="btn btn-secondary btn-apply" style="" >Apply</button>    
+                                        </div>
+
+                                        <div  @if (empty($cart_values['coupon_code'])) style="display: none" @endif id="remove_coupon_div">
+                                            <button type="button" class="btn btn-secondary btn-apply" style="background-color: red" style="" onclick="removeCoupon()" >Remove</button>
+                                        </div>
+                                    
+
                                     <span class="text-danger validation-class" id="code-apply_coupon_errors"></span>
                                     <span id="discount_message" style="color: green">
                                         {{ $cart_values['discount_message'] ?? '' }}
@@ -319,7 +329,7 @@
 
                             <div class="total mt-2">
                                 <h6>Total</h6>                                                                                                                                                  
-                                <span id="total_cart_amount">{{ $cart_values['total_cart_amount'] }}</span>
+                                <span id="total_cart_amount">AED {{ $cart_values['total_cart_amount'] }}</span>
                             </div>
                         </div>
                     </div>
@@ -491,7 +501,7 @@
                             $('.spinner-loader').css('display', 'block');
                         },
                         success: function(res) {
-                            // window.location.href = res;
+                            window.location.href = "{{  route('checkout_success')  }}";
                         },
                         error: function(res) {
                             if (res.status == 400 || res.status == 422) {
@@ -511,6 +521,47 @@
 
 
 <script>
+    function removeCoupon(){
+        $.ajax({
+                url: "{{ route('remove_coupon') }}",
+                type: 'GET',
+                data: {},
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $('.spinner-loader').css('display', 'block');
+                },
+                success: function(res) {
+                    console.log(res);
+
+                    $('#promoCodeValue').val('');
+                    $('#apply_coupon_div').show();
+                    $('#remove_coupon_div').hide();
+
+                    // if(res.discount_amount){
+                        $('#discount_amount').html(`${res.discount_amount}`);
+                    // }
+
+                    // if(res.discount_message){
+                        $('#discount_message').html(`${res.discount_message}`);
+                    // }
+
+                    // if(res.total_cart_amount){
+                        $('#total_cart_amount').html(`AED ${res.total_cart_amount}`);
+                    // }
+
+                },
+                error: function(res) {
+
+                }
+            });
+    }
+</script>
+
+
+<script>
+
+    
     $(document).ready(function() {
         $('#applyCoupanForm').on('submit', function(e) {
             e.preventDefault(); // Prevent the default form submission
@@ -528,9 +579,14 @@
                     $('.spinner-loader').css('display', 'block');
                 },
                 success: function(res) {
+
+                    $('#apply_coupon_div').hide();
+                    $('#remove_coupon_div').show();
+
+
                     console.log(res);
                     if(res.discount_amount){
-                        $('#discount_amount').html(res.discount_amount);
+                        $('#discount_amount').html(`AED ${res.discount_amount}`);
                     }
 
                     if(res.discount_message){
@@ -538,7 +594,7 @@
                     }
 
                     if(res.total_cart_amount){
-                        $('#total_cart_amount').html(res.total_cart_amount);
+                        $('#total_cart_amount').html(`AED ${res.total_cart_amount}`);
                     }
                 },
                 error: function(res) {
