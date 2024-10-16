@@ -29,6 +29,7 @@ class Checkout extends Model
         'exp_date',
         'card_holder_name',
         'booking_date',
+        'seller_id'
 
     ];
 

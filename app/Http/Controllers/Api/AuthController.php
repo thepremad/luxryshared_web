@@ -12,7 +12,10 @@ use App\Models\User;
 use App\Traits\ApiResponse;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -25,7 +28,7 @@ class AuthController extends Controller
             $data = [
                 'otp' => mt_rand(1000, 9999),
             ];
-            \Mail::to($request->email)->send(new UserVerificationMail($data));
+            Mail::to($request->email)->send(new UserVerificationMail($data));
             return response()->json(['otp' => $data['otp']], 200);
         } catch (\Throwable $th) {
             Log::error('api signup post : exception');
@@ -45,7 +48,7 @@ class AuthController extends Controller
             $data = [
                 'otp' => $otp
             ];
-            \Mail::to($request->email)->send(new UserVerificationMail($data));
+            Mail::to($request->email)->send(new UserVerificationMail($data));
             return response()->json(['data' => $user, 'otp' => $otp], 200);
         } catch (\Throwable $th) {
             Log::error('api signup post : exception');
@@ -63,7 +66,7 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->first();
             if ($request->email != 'admin@gmail.com') {
                 if (auth()->attempt($credentials)) {
-                    $token = auth()->user()->createToken('Token')->accessToken;
+                    $token = $user->createToken('Token')->accessToken;
                     return response()->json(['access_token' => $token], 200);
                 } elseif ($user) {
                     return response()->json(['error' => ['password' => "Incorrect password entered. Please try again."]], 422);
@@ -83,7 +86,7 @@ class AuthController extends Controller
     public function signupVerification(StoreSignupRequest $request)
     {
         try {
-            \DB::beginTransaction();
+            DB::beginTransaction();
             $user = new User();
             $user->fill($request->all());
             $x = 0;
@@ -106,18 +109,18 @@ class AuthController extends Controller
                     return response()->json(['from_refer' => 'refer code not valid'], 422);
                 }
             }
-            $user->password = \Hash::make($request->password);
+            $user->password = Hash::make($request->password);
             $user->first_name  = strtoupper($request->first_name);
             $user->last_name  = strtoupper($request->last_name);
             $user->save();
             $this->transactionReferSend($user->id);
             $token = $user->createToken($user->name)->accessToken;
-            \DB::commit();
+            DB::commit();
             return response()->json(['message' => 'Successfully Registered', 'token' => $token], 200);
         } catch (\Throwable $th) {
             Log::error('api signupVerification post : exception');
             Log::error($th);
-            \DB::rollBack();
+            DB::rollBack();
             return response()->json(['error' => "Something went wrong. Please try again later."], 500);
         }
     }
