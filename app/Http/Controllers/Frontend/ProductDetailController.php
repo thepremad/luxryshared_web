@@ -156,6 +156,10 @@ class ProductDetailController extends Controller
 
         // return $item;
 
-        return view('frontend.product-details',compact('menu','item','size'));
+        $related_products = Item::where('category_id',$item->category_id)->whereNot('id',$id)->where('status',1)->limit(4)->get();
+
+        // return $related_products;
+
+        return view('frontend.product-details',compact('menu','item','size','related_products'));
     }
 }

@@ -325,22 +325,73 @@ justify-content: center;
         </div>
         <!--End-product-single-->
 
+        <!-- Start Product Description -->
+        <div class="container-fluid productDesc mt-5 mb-4">
+            <div class="row justify-content-start">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col1">
+                    <h4>Product Description</h4>
+                     <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews <span Class="productReview-num">4</span></a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab content -->
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                                <p>100% Bio-washed Cotton – makes the fabric extra soft & silky. Flexible ribbed crew neck. Precisely stitched with no pilling & no fading. Provide  all-time comfort. Anytime, anywhere. Infinite range of matte-finish HD prints.</p>
+                            </div>
+                            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                                <p>100% Bio-washed Cotton – makes the fabric extra soft & silky. Flexible ribbed crew neck. Precisely stitched with no pilling & no fading. Provide  all-time comfort. Anytime, anywhere. Infinite range of matte-finish HD prints.</p>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col2">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <span class="img-outer">
+                                <img src="./assets/images/icons/credit card.png" alt="">
+                            </span>
+                            <h4>Secure payment</h4>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <span class="img-outer">
+                                <img src="./assets/images/icons/Size & Fit.png" alt="">
+                            </span>
+                            <h4>Size & Fit</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Product Description -->
+
         <div class="section collection-box-style1 productDesc mt-3">
             <div class="container-fluid">
                 <div class="row justify-content-start">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col1">
-                        <h4>Product Description</h4>
+                        <h4>More Similar Items</h4>
                     </div>
                 <div class="row">
-                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-                        <div class="collection-grid-item text-center">
-                            <a href="collection-page.html" class="collection-grid-item__link">
-                                <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Hot" class="blur-up ls-is-cached lazyloaded">
-                                <h3 class="mt-4">PARTY WEAR</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+
+                    @foreach ($related_products as $item)
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                            <div class="collection-grid-item text-center">
+                                <a href="{{ route('product_detail',$item->id) }}" class="collection-grid-item__link">
+                                    <img data-src="{{asset('uploads/item/' . $item->mainImag)}}" src="{{asset('uploads/item/' . $item->mainImag)}}" alt="Hot" class="blur-up ls-is-cached lazyloaded">
+                                    <h3 class="mt-4">{{ $item->item_title }}</h3>
+                                </a>
+                            </div>
+                        </div>    
+                    @endforeach
+
+                    
+
+                    {{-- <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                         <div class="collection-grid-item text-center">
                             <a href="collection-page.html" class="collection-grid-item__link">
                                 <img data-src="assets/img/Rectangle 26.png" src="assets/img/Rectangle 26.png" alt="Denim" class="blur-up blur-active ls-is-cached lazyloaded">
@@ -363,7 +414,9 @@ justify-content: center;
                                 <h3 class="mt-4">BIRTHDAY</h3>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
+
+
                 </div>
             </div>
         </div>
