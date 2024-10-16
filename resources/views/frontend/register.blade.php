@@ -581,7 +581,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhnL3m-fMoXjlJirMR5evyqqXqGD0bRqg&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8wm2FBG5yR1sxWxhOYfZ-Hii45dAk5tQ&callback=initMap" async defer></script>
 
     <!-- Register Form Validation and Fillters -->
 
