@@ -1,12 +1,12 @@
 @extends('frontend.layouts.app')
 @section('content')
-    <div id="page-content">
+    <div id="page-content" class="aboutUs wishlist">
         <div class="container">
                 <div class="aboutUs-Heading">
-                    <h4></h4>
+                    <h4>Wishlist</h4>
                     <h5 class="text-center"></h5>                  
                 </div>
-                <div class="row">
+                <div class="row wishlist-item">
 
                     @foreach ($wishlist as $item)
                         @if (!empty($item->products))
@@ -27,10 +27,10 @@
                                 </div>
 
                                 <div class="row mt-3">
-                                    <div class="col-lg-6 col-md-6 col-6">
+                                    <div class="col-lg-6 col-md-6 col-12">
                                         <button class="btn btn-dark btn-block" id="rentNowBtn">RENT NOW</button>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-6">
+                                    <div class="col-lg-6 col-md-6 col-12">
                                         <form action="{{ route('list_item.add_to_Cart') }}" method="POST" id="add_to_cart_form{{ $item->id }}">
                                             @csrf
                                             <input type="hidden" name="item_id" value="{{ $item->products->id }}">
@@ -157,7 +157,6 @@
                         <button class="btn btn-block bg-white">BUY NOW</button>
                         <button class="btn btn-block bg-dark">Add to cart</button>
 
-<<<<<<< HEAD
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-6">
                         <img class="primary blur-up lazyloaded" data-src="./public/assets/img/Rectangle 27.png" src="assets/img/Rectangle 27.png" alt="image" title="product">
@@ -197,10 +196,8 @@
                         <button class="btn btn-block bg-dark">Add to cart</button>
 
                     </div>
-=======
                     </div> --}}
 
->>>>>>> f953ad95ee7229ed8f2482f93b5a63034af27b13
                 </div>
             </div>
         </div>
