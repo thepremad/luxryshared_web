@@ -9,6 +9,7 @@ use App\Http\Requests\StoreCheckoutRequest;
 use App\Http\Resources\Api\UserCartResource;
 use App\Http\Resources\GetCartResource;
 use App\Http\Resources\GetMenuApiresource;
+use App\Http\Resources\GetProductResource;
 use App\Http\Resources\RentProductResource;
 use App\Models\ApplyDiscount;
 use App\Models\BookingDate;
@@ -176,10 +177,17 @@ class CheckoutController extends Controller
     function getUserCart(){
         $cart = Cart::with('products', 'products.color', 'products.size', 'products.users')->where('user_id', auth()->user()->id)->latest()->get();
         $cart_values = Cart::cartValue(auth()->user()->id);
+
         $user_cart = UserCartResource::collection($cart);
+
+
+        $related_products = Item::where('status', Item::$active)->where('checkout_status', '0')->latest()->limit(6)->get();
+        $related_products = GetProductResource::collection($related_products);
+
         $data = [
             'items' => $user_cart,
             'cart_values' => $cart_values,
+            'related_products' => $related_products
         ];
         return response()->json($data, 200);
     }
