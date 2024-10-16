@@ -173,6 +173,24 @@ class CheckoutController extends Controller
 
 
     function cartCheckout(CartCheckoutRequest $request){
+        $apply_discount = ApplyDiscount::where('user_id',auth()->user()->id)->first();
+        $carts = Cart::where('user_id',auth()->user()->id)->with('products')->get()->map(function($cart) use($request){
+            $data = $request->validated();
+            $data['item_id']  = $cart->item_id;
+            $data['user_id']  = $cart->user_id;
+            $data['checkout_status']  = 0;
+            $data['size']  = $cart->products->size_id ?? 0 ;
+            $data['product_price']  = $cart->products->rrp_price ?? 0;
+            $data['shipping_address']  = $request->street_address;
+            $data['payment_method']  = 1;
+            $data['booking_date']  = date('Y-m-d');
+            $data['seller_id']  = $cart->products->user_id ?? 0;
+            Checkout::create($data);
+            $cart->delete();
+        });
+        if(!empty($apply_discount)){
+            $apply_discount->delete();
+        }
         
     }
 

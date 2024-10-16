@@ -501,7 +501,7 @@
                             $('.spinner-loader').css('display', 'block');
                         },
                         success: function(res) {
-                            // window.location.href = res;
+                            window.location.href = "{{  route('checkout_success')  }}";
                         },
                         error: function(res) {
                             if (res.status == 400 || res.status == 422) {
@@ -547,7 +547,7 @@
                     // }
 
                     // if(res.total_cart_amount){
-                        $('#total_cart_amount').html(`${res.total_cart_amount}`);
+                        $('#total_cart_amount').html(`AED ${res.total_cart_amount}`);
                     // }
 
                 },
