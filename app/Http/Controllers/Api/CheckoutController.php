@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CartCheckoutRequest;
 use App\Http\Requests\StoreAddProductRequest;
 use App\Http\Requests\StoreCheckoutRequest;
+use App\Http\Resources\Api\UserCartResource;
 use App\Http\Resources\GetCartResource;
 use App\Http\Resources\GetMenuApiresource;
+use App\Http\Resources\GetProductResource;
 use App\Http\Resources\RentProductResource;
 use App\Models\ApplyDiscount;
 use App\Models\BookingDate;
@@ -21,6 +23,7 @@ use App\Models\Menu;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
@@ -135,8 +138,8 @@ class CheckoutController extends Controller
             $cart->delete();
             return response()->json(['message' => 'Item remove from wishlist'], 200);
         } catch (\Throwable $th) {
-            \Log::error('api item post : exception');
-            \Log::error($th);
+            Log::error('api item post : exception');
+            Log::error($th);
             return response()->json(['error' => "Something went wrong. Please try again later."], 500);
         }
     }
@@ -147,8 +150,8 @@ class CheckoutController extends Controller
             $data = GetMenuApiresource::collection($menu);
             return response()->json($data, 200);
         } catch (\Throwable $th) {
-            \Log::error('api item post : exception');
-            \Log::error($th);
+            Log::error('api item post : exception');
+            Log::error($th);
             return response()->json(['error' => "Something went wrong. Please try again later."], 500);
         }
     }
@@ -172,69 +175,21 @@ class CheckoutController extends Controller
     }
 
     function getUserCart(){
-        $cities = City::orderBy('name','DESC')->get();
         $cart = Cart::with('products', 'products.color', 'products.size', 'products.users')->where('user_id', auth()->user()->id)->latest()->get();
-        $cart_values = $this->cartValue(auth()->user()->id);
-        $countary = Country::orderBy('name','DESC')->get();
+        $cart_values = Cart::cartValue(auth()->user()->id);
+
+        $user_cart = UserCartResource::collection($cart);
+
+
+        $related_products = Item::where('status', Item::$active)->where('checkout_status', '0')->latest()->limit(6)->get();
+        $related_products = GetProductResource::collection($related_products);
+
         $data = [
-            'cities' => $cities,
-            'items' => $cart,
+            'items' => $user_cart,
             'cart_values' => $cart_values,
-            'countaries' => $countary
+            'related_products' => $related_products
         ];
         return response()->json($data, 200);
-
-    }
-
-    function cartValue($user_id){
-        $total_carts = 0;
-        $total_item = 0;
-        $cart = Cart::with('products')->where('user_id', auth()->user()->id)->latest()->get()->map(function($cart) use(&$total_carts , &$total_item){
-            $total_carts += $cart->products->rrp_price ?? 0;
-            $total_item ++;
-        });
-
-
-        
-        $data =  [
-            "total_cart_amount" => $total_carts,
-            'total_item' => $total_item,
-            'sub_total_amount' => $total_carts,
-        ];
-
-        $ApplyDiscount = ApplyDiscount::where('user_id',$user_id)->first();
-
-        if ($ApplyDiscount) {
-            $date  = date('Y-m-d');
-            $coupons = Discount::where('id', $ApplyDiscount->discount_id)
-            ->where('exp_date', '>=',$date)
-            ->first();
-
-            if(!empty($coupons)){
-
-                $less_amount = 0;
-                if($coupons->offer_type == 1){
-                    $less_amount = $coupons->fix_amount;
-                    $message = 'You get $discount% off on your purchase.';
-                    $message = "You get AED {$less_amount} off on your purchase.";
-                }elseif($coupons->offer_type == 2){
-                    $amount = $data['total_cart_amount'];   // Original amount
-                    $discount = $coupons->in_per;  // Discount percentage (50%)
-                    $less_amount = ($amount * ($discount / 100));
-                    $message = "You get {$discount}% off on your purchase.";
-                }
-
-                $data['total_cart_amount'] = $data['total_cart_amount'] - $less_amount;
-                $data['total_cart_amount'] = "AED {$data['total_cart_amount']}";
-                $data['coupon_code'] = $coupons->code;
-                $data['discount_amount'] = "AED {$less_amount}";
-                $data['discount_message'] = $message;
-            }
-
-            
-        }
-
-        return $data;
     }
 
 
