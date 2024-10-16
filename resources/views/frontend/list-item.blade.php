@@ -90,7 +90,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-md-6">
-                                        <label for="color">Color</label>
+                                        <label for="color">Colour</label>
                                         <select id="color" name="color_id" class="form-control">
                                             @foreach ($color as $val)
                                                 <option value="{{ $val->id }}">{{ $val->name }}</option>
