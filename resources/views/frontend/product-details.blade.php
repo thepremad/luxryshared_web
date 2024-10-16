@@ -55,18 +55,12 @@ padding: 10px 0;
 }
 
 .product-single .productDetails .plan-outer {
-    padding: 15px 5px 0;
-    width: 25%;
-    max-width: 25%;
-    border-radius: 0;
-    border: 1px solid #CCCCCC;
-    text-align: center;
-    cursor: pointer !important;
+padding: 5px;
+border: 1px solid;
 }
 
 .product-single .productDetails .plan-outer input {
 opacity: 0;
-display: none;
 }
 
 .product-single .productDetails #rentNowBtn,
@@ -128,7 +122,6 @@ justify-content: center;
 .product-single .productDetails #rentNowBtn,
 .product-single .productDetails #buyNowBtn {
     font-size: 14px;
-    padding: 10px 0 !important;
 }
 
 .product-single  .productDetails{
@@ -156,7 +149,7 @@ justify-content: center;
 
 .product-single .productDetails #rentNowBtn,
 .product-single .productDetails #buyNowBtn {
-    font-size: 11px;
+    font-size: 14px;
 }
 }
 
@@ -174,11 +167,12 @@ justify-content: center;
             background-color: #f8f9fa;
         }
         .date-section {
-            display: none; 
+            display: none; /* Initially hidden */
         }
         .selected-range {
-            background-color: #d1e7dd !important; 
+            background-color: #d1e7dd !important; /* Light green for selected range */
         }
+
 
 </style>
 <!--Body Content-->
@@ -214,7 +208,7 @@ justify-content: center;
                             <span class="breadcrumb-item active" aria-current="page">Top</span>
                         </nav>
 
-                        <h1 class="product-single__title">Product Name</h1>
+                        <h1 class="product-single__title">{{ $item->item_title }}</h1>
 
                         <div class="d-flex align-items-center">
                             <h5 class="mb-0">@John Richerd</h5>
@@ -229,17 +223,21 @@ justify-content: center;
 
                         <div class="prInfoRow">
                             <div class="product-rent-price d-block">
-                                <h4>50.99 $ / 4 Days</h4>
+                                <h4>SED {{ $item->rrp_price }}  / 4 Days</h4>
                             </div>
-                            <div class="product-sell-price d-block">
-                                <h4>$399.00 BUY NOW</h4>
-                            </div>
+
+                            @if ($item->buy == 'true')
+                                <div class="product-sell-price d-block">
+                                    <h4>AED {{ $item->buy_price }} BUY NOW</h4>
+                                </div>    
+                            @endif
+                            
                         </div>
 
                         <label for="size" class="form-label productSize-avl">Available Size</label>
                         <div class="size-options mb-3 d-flex justify-content-between">
                             <div class="size-container">
-                                <h5>XL</h5>                               
+                                <h5>{{ $item->size->name ?? '' }}</h5>                               
                             </div>
                             <a href="#" class="size-guide-link">Size Guide</a>
                         </div>
@@ -321,47 +319,17 @@ justify-content: center;
         </div>
 
         <!-- Magnifier Popup -->
-        <!-- <div id="magnifierPopup" class="magnifier-popup">
+        <div id="magnifierPopup" class="magnifier-popup">
             <span class="close-popup" id="closePopup">&times;</span>
             <img id="popupImage" src="" alt="Product Image">
-        </div> -->
-        <!--End-product-single-->
-
-        <!-- Start Product Description -->
-        <div class="container-fluid productDesc mt-5 mb-4">
-            <div class="row justify-content-start">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col1">
-                    <h4 class="pl-4">Product Description</h4>
-                     <!-- Nav tabs -->
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews <span Class="productReview-num">4</span></a>
-                            </li>
-                        </ul>
-
-                        <!-- Tab content -->
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                                <p>100% Bio-washed Cotton – makes the fabric extra soft & silky. Flexible ribbed crew neck. Precisely stitched with no pilling & no fading. Provide  all-time comfort. Anytime, anywhere. Infinite range of matte-finish HD prints.</p>
-                            </div>
-                            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                                <p>100% Bio-washed Cotton – makes the fabric extra soft & silky. Flexible ribbed crew neck. Precisely stitched with no pilling & no fading. Provide  all-time comfort. Anytime, anywhere. Infinite range of matte-finish HD prints.</p>
-                            </div>
-                        </div>
-                </div>
-
-            </div>
         </div>
-        <!-- End Product Description -->
+        <!--End-product-single-->
 
         <div class="section collection-box-style1 productDesc mt-3">
             <div class="container-fluid">
                 <div class="row justify-content-start">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col1">
-                        <h4 class="pl-4">More Similar Items</h4>
+                        <h4>Product Description</h4>
                     </div>
                 <div class="row">
                     <div class="col-6 col-sm-6 col-md-3 col-lg-3">
@@ -484,27 +452,27 @@ justify-content: center;
             <div class="pswp__item"></div>
             <div class="pswp__item"></div>
         </div>
-        <div class="pswp__ui pswp__ui--hidden">
+        <div class="pswp_ui pswp_ui--hidden">
             <div class="pswp__top-bar">
-                <div class="pswp__counter"></div><button class="pswp__button pswp__button--close"
-                    title="Close (Esc)"></button><button class="pswp__button pswp__button--share"
-                    title="Share"></button><button class="pswp__button pswp__button--fs"
-                    title="Toggle fullscreen"></button><button class="pswp__button pswp__button--zoom"
+                <div class="pswp_counter"></div><button class="pswpbutton pswp_button--close"
+                    title="Close (Esc)"></button><button class="pswp_button pswp_button--share"
+                    title="Share"></button><button class="pswp_button pswp_button--fs"
+                    title="Toggle fullscreen"></button><button class="pswp_button pswp_button--zoom"
                     title="Zoom in/out"></button>
                 <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
+                    <div class="pswp_preloader_icn">
+                        <div class="pswp_preloader_cut">
+                            <div class="pswp_preloader_donut"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+            <div class="pswp_share-modal pswpshare-modal--hidden pswp_single-tap">
                 <div class="pswp__share-tooltip"></div>
-            </div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button><button
-                class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+            </div><button class="pswp_button pswp_button--arrow--left" title="Previous (arrow left)"></button><button
+                class="pswp_button pswp_button--arrow--right" title="Next (arrow right)"></button>
             <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
+                <div class="pswp_caption_center"></div>
             </div>
         </div>
     </div>
@@ -586,7 +554,7 @@ justify-content: center;
                     selectedDates = generateDateRange(selectedDate, endDate);
 
                     // Update input field
-                    $('#dateInput').val(`${flatpickr.formatDate(selectedDate, "d-m-Y")} to ${flatpickr.formatDate(endDate, "d-m-Y")}`);
+                    $('#dateInput').val(${flatpickr.formatDate(selectedDate, "d-m-Y")} to ${flatpickr.formatDate(endDate, "d-m-Y")});
                     highlightDates(selectedDates);
                 }
             },
@@ -634,7 +602,7 @@ justify-content: center;
             clearPreviousHighlights(); // Clear any previous highlights
             dates.forEach(date => {
                 const dateStr = flatpickr.formatDate(date, "Y-m-d");
-                const dayElement = calendar.days.querySelector(`[data-date="${dateStr}"]`);
+                const dayElement = calendar.days.querySelector([data-date="${dateStr}"]);
                 if (dayElement) {
                     dayElement.classList.add('selected-range');
                 }
@@ -682,7 +650,6 @@ justify-content: center;
                 $('.spinner-loader').css('display', 'block');
             },
             success: function(res) {
-                updateCartCount();
                 // window.location.href = res;
                 // showStep(step + 1);
                 // $('#step_id').val(2);
@@ -714,18 +681,6 @@ justify-content: center;
         });
     });
 });
-</script>
-
-<script>
- document.querySelectorAll('input[type=radio][name=plan]').forEach(radio => {
-        radio.addEventListener('change', () => {
-            document.querySelectorAll('.plan-outer').forEach(outer => {
-                outer.classList.remove('selected'); // Remove selected class from all
-            });
-            radio.closest('.plan-outer').classList.add('selected'); // Add selected class to the parent
-        });
-    });
-
 </script>
 
 @endsection
