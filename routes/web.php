@@ -139,6 +139,7 @@ Route::middleware(['website'])->group(function () {
     
 
     Route::post('apply_coupan',[CartController::class,'applyCoupan'])->name('apply_coupan');
+    Route::get('remove_coupon',[CartController::class,'removeCoupan'])->name('remove_coupon');
 
     //Route::get('list-item', [ItemController::class, 'listItem'])->name('list_item');
     Route::get('cart', [ProductDetailController::class, 'cart'])->name('cart');
