@@ -13525,8 +13525,8 @@ Start CSS All Products Page
 }
 
 .flatpickr-calendar {
-    top: 970.8px;
-    left: 965px;
+    top: 970.8px !important;
+    left: 965px !important;
 }
 
 @media (min-width: 1025px) {
@@ -13589,4 +13589,65 @@ Start CSS All Products Page
         width: 50%;
         max-width: 50%;
     }
+}
+
+.listItem-section .switch.form-group {
+  position: relative;
+}
+
+.listItem-section .switch.form-group input[type="checkbox"] {
+  display: none; 
+}
+
+.listItem-section .switch.form-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px; 
+  background-color: #f8f8f8; 
+  border-radius: 20px;
+  transition: background-color 0.3s;
+  padding-left: 70px;
+}
+
+.listItem-section .switch.form-group .slider {
+  width: 40px;
+  height: 20px;
+  background-color: #f8f8f8;
+  border-radius: 20px;
+  position: relative;
+  margin-left: 10px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  position: absolute;
+  left: 0;
+}
+
+.listItem-section .switch.form-group input[type="checkbox"]:checked + label .slider {
+  background-color: #57110c; 
+}
+
+.listItem-section .switch.form-group .slider:before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px; 
+  left: 2px; 
+  transition: transform 0.3s;
+}
+
+.listItem-section .switch.form-group input[type="checkbox"]:checked + label .slider:before {
+  transform: translateX(20px); 
+}
+
+/* Optional: Style the checkbox to be visible as a toggle */
+.listItem-section .switch.form-group input[type="checkbox"]:checked {
+  display: inline-block; /* Show checkbox as inline-block */
+  background-color: #57110c; /* Color for checked state */
+  width: 40px; /* Set width to match slider */
+  height: 20px; /* Set height to match slider */
+  border-radius: 20px; /* Rounded corners */
 }
