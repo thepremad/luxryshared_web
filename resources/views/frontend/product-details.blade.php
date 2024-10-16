@@ -173,6 +173,10 @@ justify-content: center;
             background-color: #d1e7dd !important; /* Light green for selected range */
         }
 
+        .flatpickr-calendar.animate.open{
+            top: 965.2px !important;
+            left: 830px !important;
+        }
 
 </style>
 <!--Body Content-->
@@ -223,21 +227,19 @@ justify-content: center;
 
                         <div class="prInfoRow">
                             <div class="product-rent-price d-block">
-                                <h4>SED {{ $item->rrp_price }}  / 4 Days</h4>
+                                <h4>SED {{ $item->rrp_price }} / 4 Days</h4>
                             </div>
-
                             @if ($item->buy == 'true')
                                 <div class="product-sell-price d-block">
                                     <h4>AED {{ $item->buy_price }} BUY NOW</h4>
                                 </div>    
                             @endif
-                            
                         </div>
 
                         <label for="size" class="form-label productSize-avl">Available Size</label>
                         <div class="size-options mb-3 d-flex justify-content-between">
                             <div class="size-container">
-                                <h5>{{ $item->size->name ?? '' }}</h5>                               
+                                <h5>{{ $item->size->name ?? '' }}</h5>
                             </div>
                             <a href="#" class="size-guide-link">Size Guide</a>
                         </div>
@@ -282,7 +284,6 @@ justify-content: center;
                             </div>
                         </div>
 
-                        <!-- New Section for Dates -->
                         <div class="date-section">
                             <h4 class="mt-4">Dates*</h4>
                             <p>Tap to select Start Date, preferably 1-2 days before you plan to wear it.</p>
@@ -303,13 +304,14 @@ justify-content: center;
                                     @csrf
                                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                                     <input type="hidden" name="days" value="1">
-                                    <button class="btn btn-light btn-bloxk" id="buyNowBtn">Add To Cart</button>
+                                    <button class="btn btn-light btn-block" id="buyNowBtn">Add To Cart</button>
                                 </form>
                             </div>
                         </div>
 
                         <p id="dateWarning" class="text-danger" style="display:none;">Please select exactly <span id="maxDays"></span> dates.</p>
                     </div>
+
 
                     
                     
@@ -319,17 +321,17 @@ justify-content: center;
         </div>
 
         <!-- Magnifier Popup -->
-        <div id="magnifierPopup" class="magnifier-popup">
+        <!-- <div id="magnifierPopup" class="magnifier-popup">
             <span class="close-popup" id="closePopup">&times;</span>
             <img id="popupImage" src="" alt="Product Image">
-        </div>
+        </div> -->
         <!--End-product-single-->
 
         <!-- Start Product Description -->
         <div class="container-fluid productDesc mt-5 mb-4">
             <div class="row justify-content-start">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col1">
-                    <h4>Product Description</h4>
+                    <h4 class="px-4 mb-3">Product Description</h4>
                      <!-- Nav tabs -->
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -350,7 +352,7 @@ justify-content: center;
                             </div>
                         </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col2">
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col2">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                             <span class="img-outer">
@@ -365,7 +367,7 @@ justify-content: center;
                             <h4>Size & Fit</h4>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <!-- End Product Description -->
@@ -374,7 +376,7 @@ justify-content: center;
             <div class="container-fluid">
                 <div class="row justify-content-start">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-12 desc-col1">
-                        <h4>More Similar Items</h4>
+                        <h4 class="px-4 mb-3">More Similar Items</h4>
                     </div>
                 <div class="row">
 
@@ -590,95 +592,76 @@ justify-content: center;
 <script>
     $(document).ready(function() {
         let maxDays = 0;
+        let datePicker;
         let selectedDates = [];
-        let startDate = null;
+        let updatingDates = false;
 
-        // Initialize Flatpickr
-        const datePicker = flatpickr("#dateInput", {
-            mode: "single",
-            dateFormat: "d-m-Y",
-            minDate: "today",
-            inline: true,
-            onChange: function(selected) {
-                if (selected.length > 0) {
-                    const selectedDate = selected[0];
-                    const endDate = new Date(selectedDate);
-                    endDate.setDate(selectedDate.getDate() + maxDays - 1);
-                    selectedDates = generateDateRange(selectedDate, endDate);
-
-                    // Update input field
-                    $('#dateInput').val(${flatpickr.formatDate(selectedDate, "d-m-Y")} to ${flatpickr.formatDate(endDate, "d-m-Y")});
-                    highlightDates(selectedDates);
+        function initDatePicker() {
+            datePicker = flatpickr("#dateInput", {
+                mode: "multiple",
+                dateFormat: "d-m-Y",
+                minDate: "today",
+                inline: false,
+                clickOpens: true,
+                static: false, // Prevents closing on outside clicks
+                onOpen: function() {
+                    this.calendarContainer.style.width = 'auto';
+                },
+                onChange: function(dates) {
+                    if (updatingDates) return;
+                    selectedDates = dates;
+                    if (dates.length > maxDays) {
+                        this.clear();
+                    } else if (dates.length > 0) {
+                        const startDate = dates[0];
+                        const endDate = new Date(startDate);
+                        endDate.setDate(startDate.getDate() + maxDays - 1);
+                        const rangeDates = [];
+                        for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+                            rangeDates.push(new Date(d));
+                        }
+                        updatingDates = true;
+                        this.setDate(rangeDates, true);
+                        updatingDates = false;
+                        selectedDates = rangeDates;
+                    }
                 }
-            },
-            onOpen: function() {
-                clearPreviousHighlights();
-                if (selectedDates.length > 0) {
-                    highlightDates(selectedDates); // Re-highlight previously selected dates
-                }
-            },
-            position: 'above'
-        });
+            });
+        }
 
-        // Close date picker on outside click
-        $(document).on('click', function(e) {
-            if (!$(e.target).closest("#dateInput").length && !$(e.target).closest(".flatpickr-calendar").length) {
-                datePicker.close();
-            }
-        });
-
-        // Handle rental plan selection
         $('input[name="plan"]').change(function() {
             maxDays = parseInt($(this).data('days'));
-            $(".date-section").show(); // Show date section
-            datePicker.clear(); // Clear previous selections
-            $('#dateInput').val(''); // Clear input field
-            startDate = null; // Reset start date
-            selectedDates = []; // Reset selected dates
-            datePicker.open(); // Open date picker immediately
+            if (selectedDates.length > 0) {
+                const newStartDate = selectedDates[0] || new Date();
+                const newEndDate = new Date(newStartDate);
+                newEndDate.setDate(newStartDate.getDate() + maxDays - 1);
+                const newRangeDates = [];
+                for (let d = new Date(newStartDate); d <= newEndDate; d.setDate(d.getDate() + 1)) {
+                    newRangeDates.push(new Date(d));
+                }
+                updatingDates = true;
+                datePicker.setDate(newRangeDates, true);
+                updatingDates = false;
+                selectedDates = newRangeDates;
+            } else {
+                datePicker.clear();
+            }
+            // Keep the date picker open
+            datePicker.open();
         });
 
-        // Generate date range based on start and end date
-        function generateDateRange(start, end) {
-            const dates = [];
-            let currentDate = new Date(start);
-            while (currentDate <= end) {
-                dates.push(new Date(currentDate));
-                currentDate.setDate(currentDate.getDate() + 1);
-            }
-            return dates;
-        }
-
-        // Highlight selected dates in the calendar
-        function highlightDates(dates) {
-            const calendar = datePicker.calendar;
-            clearPreviousHighlights(); // Clear any previous highlights
-            dates.forEach(date => {
-                const dateStr = flatpickr.formatDate(date, "Y-m-d");
-                const dayElement = calendar.days.querySelector([data-date="${dateStr}"]);
-                if (dayElement) {
-                    dayElement.classList.add('selected-range');
-                }
-            });
-        }
-
-        // Clear previous highlights
-        function clearPreviousHighlights() {
-            const calendar = datePicker.calendar;
-            const previouslySelected = calendar.days.querySelectorAll('.selected-range');
-            previouslySelected.forEach(dayElement => {
-                dayElement.classList.remove('selected-range');
-            });
-        }
-
-        // Handle RENT NOW button click
         $('#rentNowBtn').click(function() {
-            if (!$('#dateInput').val()) {
+            const selectedDatesFormatted = selectedDates.map(date => {
+                return date.toLocaleDateString('en-GB');
+            }).join(', ');
+            if (selectedDates.length === 0) {
                 alert('Please select rental dates.');
             } else {
-                alert('You have selected the rent dates: ' + $('#dateInput').val());
+                alert('You have selected the rent dates: ' + selectedDatesFormatted);
             }
         });
+
+        initDatePicker();
     });
 </script>
 
