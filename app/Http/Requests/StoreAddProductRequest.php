@@ -23,9 +23,20 @@ class StoreAddProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'item_id' => 'required|exists:items,id',
-            'days' => 'required',
-            // 'data' => 'required'
+            "item_id" => "required|exists:items,id",
+            "type" => "nullable|in:buy,rent",
+            "days" => 'required_if:type,rent|numeric|min:1',
+            "rent_from" => [
+                'required_if:type,rent',
+                'date',
+                'after_or_equal:today', // Ensures rent_from is not in the past
+            ],
+            // "rent_to" => [
+            //     'required_if:type,rent',
+            //     'date',
+            //     'after_or_equal:today', // Ensures rent_to is not in the past
+            //     'after:rent_from',      // Ensures rent_to is after rent_from
+            // ],
         ];
     }
     protected function failedValidation(Validator $validator)

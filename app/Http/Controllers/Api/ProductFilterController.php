@@ -10,7 +10,9 @@ use App\Models\Cart;
 use App\Models\Item;
 use App\Models\User;
 use App\Models\Wishlist;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductFilterController extends Controller
 {
@@ -71,7 +73,7 @@ class ProductFilterController extends Controller
             $formattedProducts = GetProductResource::collection($products)->resolve();
             return response()->json($formattedProducts,200);
         } catch (\Exception $e) {
-            \Log::error('Filter Home Error: ' . $e->getMessage());
+            Log::error('Filter Home Error: ' . $e->getMessage());
             return response()->json([
                 'status' => 'error',
                 'message' => 'An error occurred while filtering products.',
@@ -88,19 +90,31 @@ class ProductFilterController extends Controller
                 return response()->json(['error' => ['item_id' => 'Item Already Addes In Cart']], 422);
             }
             Wishlist::where('item_id',$request->item_id)->where('user_id',auth()->user()->id)->delete();
+            $data = $request->validated();
+            $type = $request->type ?? 'buy';
+            if($type == 'buy'){
+                $data['type'] = 'buy';
+                $data['rent_from'] = null;
+                $data['rent_to'] = null;
+                $data['days'] = 0;
+            }else{
 
-            
-            $cart = new Cart();
-            $cart->item_id = $request->item_id;
-            $cart->days = $request->days;
-            $cart->user_id = auth()->user()->id;
-            $cart->save();
-            $data = $cart;
-            $data['message'] = "Item Add Successfully";
-            return response()->json($data, 200);
+
+                $data['rent_from'] = Carbon::parse($data['rent_from']); // Convert to Carbon instance
+                $data['rent_to'] = $data['rent_from']->copy()->addDays($request->days - 1); // Add 5 days
+            }
+            $cart = Cart::updateOrCreate([
+                'item_id' => $request->item_id ,
+                'user_id' => auth()->user()->id
+            ],
+                $data,
+            );
+            $cart['message'] = "Item Add Successfully";
+            return response()->json($cart, 200);
         }catch (\Throwable $th) {
-            \Log::error('api item post : exception');
-            \Log::error($th);
+            return $th;
+            Log::error('api item post : exception');
+            Log::error($th);
             return response()->json(['error'=> "Something went wrong. Please try again later."],500);
         }
     }
@@ -112,8 +126,8 @@ class ProductFilterController extends Controller
             $data = GetCartResource::collection($cart);
             return response()->json($data,200);
         }catch (\Throwable $th) {
-            \Log::error('api item post : exception');
-            \Log::error($th);
+            Log::error('api item post : exception');
+            Log::error($th);
             return response()->json(['error'=> "Something went wrong. Please try again later."],500);
         }
     }
