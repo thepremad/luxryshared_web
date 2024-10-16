@@ -31,6 +31,9 @@ class Cart extends Model
                 "total_cart_amount" => $total_carts,
                 'total_item' => $total_item,
                 'sub_total_amount' => $total_carts,
+                'coupon_code' => '',
+                'discount_amount' => '',
+                'discount_message' => '',
             ];
     
             $ApplyDiscount = ApplyDiscount::where('user_id',$user_id)->first();
@@ -56,9 +59,9 @@ class Cart extends Model
                     }
     
                     $data['total_cart_amount'] = $data['total_cart_amount'] - $less_amount;
-                    $data['total_cart_amount'] = "AED {$data['total_cart_amount']}";
+                    $data['total_cart_amount'] = "{$data['total_cart_amount']}";
                     $data['coupon_code'] = $coupons->code;
-                    $data['discount_amount'] = "AED {$less_amount}";
+                    $data['discount_amount'] = "{$less_amount}";
                     $data['discount_message'] = $message;
                 }
 

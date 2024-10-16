@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\ApplyCouponRequest;
 use App\Http\Requests\Api\CartCheckoutRequest;
 use App\Http\Requests\StoreAddProductRequest;
 use App\Http\Requests\StoreCheckoutRequest;
@@ -21,6 +22,7 @@ use App\Models\Discount;
 use App\Models\Item;
 use App\Models\Menu;
 use App\Models\Wishlist;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -190,6 +192,37 @@ class CheckoutController extends Controller
             'related_products' => $related_products
         ];
         return response()->json($data, 200);
+    }
+
+
+    function applyCoupon(ApplyCouponRequest $request){
+        $date  = date('Y-m-d');
+        $coupons = Discount::where('code', $request->code)
+        ->where('exp_date', '>=',$date)
+        ->first();
+
+        if(!empty($coupons)){
+            ApplyDiscount::updateOrCreate(['user_id' => auth()->user()->id],['discount_id' => $coupons->id]);
+            $values = Cart::cartValue(auth()->user()->id);
+            return response()->json([
+                'cart_values' => $values
+            ]);
+        }
+        throw new HttpResponseException(
+            response()->json([
+                'errors' => [
+                    'code' => ['Your discount code in expired']
+                ]
+            ], 422)
+        );
+    }
+
+    function removeCoupon(){
+        ApplyDiscount::where('user_id',auth()->user()->id)->delete();
+        $values = Cart::cartValue(auth()->user()->id);
+        return response()->json([
+            'cart_values' => $values
+        ]);
     }
 
 
