@@ -35,10 +35,10 @@
     cursor: pointer;
 }
 
-.widget-content.py-4{
-    height: 100% !important;
-    display: block !important;
-}
+.widget-content {
+        transition: height 0.3s ease, padding 0.3s ease; /* Smooth transition */
+        overflow: hidden; /* Ensure content doesn't overflow */
+    }
 
 
 </style>
@@ -56,12 +56,12 @@
                 <div class="col-md-3 col-lg-3 sidebar filterbar">
                     <div class="collapse show" id="sidebarContent">
                         <div class="sidebar_tags">
-                            
+
                             <div class="sidebar_widget categories filter-widget top">
                                 <div class="widget-title">
                                     <h4 id="filterTItle">Categories</h4>
                                 </div>
-                                <div class="widget-content py-4" style="display: none; overflow: hidden;">
+                                <div class="widget-content py-4" style="display: none; height: 0;">
                                     <ul class="sidebar_categories">
                                         @foreach ($categories as $category)
                                             <li class="level1 sub-level">
@@ -69,10 +69,7 @@
                                                 <ul class="sublinks" style="display: none;">
                                                     @foreach ($category->subCategory as $subCategory)
                                                         <li class="level2">
-                                                            <label for="subcategory-{{ $subCategory->id }}">
-                                                                <input type="checkbox" class="subcategory" id="subcategory-{{ $subCategory->id }}" name="subcategories[]" value="{{ $subCategory->id }}" onchange="search()" />
-                                                                {{ $subCategory->name }}
-                                                            </label>
+                                                            <a href="#;">{{ $subCategory->name }}</a>
                                                         </li>
                                                     @endforeach
                                                 </ul>
@@ -81,6 +78,7 @@
                                     </ul>
                                 </div>
                             </div>
+
 
 
                            <!-- Price Filter Section -->
@@ -851,27 +849,50 @@ window.onclick = function(event) {
 <script>
 $(document).ready(function() {
     $(document).on('click', '.site-nav', function(e) {
-        e.preventDefault(); // Prevent default action
+        e.preventDefault();
         var sublinks = $(this).siblings('.sublinks');
 
-        // Toggle visibility of sublinks
-        sublinks.toggle();
-
-        // Set styles for widget-content
-        if (sublinks.is(':visible')) {
-            $(this).closest('.widget-content').css({
-                'height': '100%',
-                'display': 'block'
-            });
-        } else {
-            $(this).closest('.widget-content').css({
-                'height': '',
-                'display': 'none'
-            });
-        }
+        // Delay the toggle to see if it resolves the issue
+        setTimeout(function() {
+            sublinks.stop(true, true).slideToggle();
+        }, 50); // Adjust the delay if needed
     });
 });
 </script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.site-nav').forEach(function(nav) {
+        nav.addEventListener('click', function(e) {
+            e.preventDefault();
+            var sublinks = this.nextElementSibling; // Get the next ul element
+            var widgetContent = this.closest('.sidebar_widget').querySelector('.widget-content'); // Get the widget content
+
+            // Toggle display of sublinks
+            if (sublinks.style.display === 'block') {
+                sublinks.style.display = 'none';
+                widgetContent.style.height = '0'; // Collapse the widget content
+            } else {
+                // Hide other sublinks first
+                document.querySelectorAll('.sublinks').forEach(function(sublink) {
+                    sublink.style.display = 'none';
+                });
+                // Set height based on content
+                var contentHeight = widgetContent.scrollHeight; // Get the full height of content
+                widgetContent.style.height = contentHeight + 'px'; // Expand to full height
+                sublinks.style.display = 'block'; // Show current sublinks
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+
+
 
 
 @endsection

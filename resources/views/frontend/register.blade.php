@@ -6,6 +6,14 @@
             height: 200px;
             width: 100%;
         }
+
+        .fa-eye:before {
+            content: "\f06e"; 
+        }
+
+        .fa-eye-slash:before {
+            content: "\f070"; 
+        }
     </style>
     <div class="register">
         <!--Body Content-->
@@ -20,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row formRow">
+                    <div class="row formRow justify-content-center">
                         <div class="col-md-7 col-lg-7 register-tabSection">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
@@ -59,12 +67,9 @@
                                                 <label for="loginPassword">Password</label>
                                                 <div class="input-group">
                                                     <input type="password" class="form-control" name="password" id="loginPassword" placeholder="Password">
-                                                    
-
                                                     <div class="input-group-append" id="togglePassword">
-                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                                     </div>
-
                                                 </div>
                                                 <div>
                                                     <span class="text-danger validation-class" id="password-login_errors"></span>
@@ -495,11 +500,21 @@
                 jQuery('#popup-container').fadeOut();
                 jQuery('#modalOverly').fadeOut();
             });
+
+            // Password toggle functionality
             $('#togglePassword').on('click', function() {
                 const passwordField = $('#loginPassword');
                 const type = passwordField.attr('type') === 'password' ? 'text' : 'password';
                 passwordField.attr('type', type);
-                $(this).toggleClass('fa-eye fa-eye-slash');
+                $(this).find('i').toggleClass('fa-eye fa-eye-slash');
+            });
+
+            // Username toggle functionality (if needed)
+            $('#toggleUsername').on('click', function() {
+                const usernameField = $('#loginUsername');
+                const type = usernameField.attr('type') === 'text' ? 'text' : 'text'; // Text field logic
+                usernameField.attr('type', type);
+                $(this).find('i').toggleClass('fa-eye fa-eye-slash');
             });
 
             var visits = jQuery.cookie('visits') || 0;
@@ -509,6 +524,7 @@
                 path: '/'
             });
             console.debug(jQuery.cookie('visits'));
+
             if (jQuery.cookie('visits') > 1) {
                 jQuery('#modalOverly').hide();
                 jQuery('#popup-container').hide();
@@ -518,6 +534,7 @@
                 jQuery('#modalOverly').css("height", pageHeight);
                 jQuery('#popup-container').show();
             }
+
             if (jQuery.cookie('noShowWelcome')) {
                 jQuery('#popup-container').hide();
                 jQuery('#active-popup').hide();
@@ -547,6 +564,7 @@
             return false;
         });
     </script>
+
 
     <!-- <script>
         let map;

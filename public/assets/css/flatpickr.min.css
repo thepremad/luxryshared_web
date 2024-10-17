@@ -899,3 +899,97 @@ span.flatpickr-weekday {
         transform: translate3d(0, 0, 0)
     }
 }
+
+.selected-range {
+    background-color: #d1e7dd !important; /* Light green for selected range */
+}
+
+.flatpickr-calendar.animate.open {
+    top: 965.2px !important;
+    left: 830px !important;
+}
+
+@media (max-width: 1366px) {
+    .flatpickr-calendar.animate.open {
+        top: 965.2px !important;
+        left: 780px !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .flatpickr-calendar.animate.open {
+        top: 670px !important;
+        left: 780px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .flatpickr-months .flatpickr-month{
+        height: 30px !important;
+    }
+    .flatpickr-current-month{
+        height: 30px !important;
+        font-size: 100% !important;
+    }
+    .flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month{
+        height: 30px !important;
+        padding: 5px !important;
+    }
+    .flatpickr-calendar{
+        font-size: 16px !important;
+        line-height: 1.2 !important;
+    }
+    .flatpickr-calendar.animate.open{
+        top: 348% !important;
+        left: 64% !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .flatpickr-calendar.animate.open {
+        top: 368% !important;
+        left: 61% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .flatpickr-calendar.animate.open {
+        top: 603% !important;
+        left: 24% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .flatpickr-calendar.animate.open {
+        top: 563% !important;
+        left: 24% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .flatpickr-calendar.animate.open {
+        top: 551% !important;
+        left: 24% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .flatpickr-calendar.animate.open {
+        top: 592% !important;
+        left: 18% !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .flatpickr-calendar.animate.open {
+        top: 603% !important;
+        left: 6% !important;
+        width: 304px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .flatpickr-calendar.animate.open {
+        left: 4% !important;
+    }
+}
