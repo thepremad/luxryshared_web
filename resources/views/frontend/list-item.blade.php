@@ -278,12 +278,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group check-box-label switch">
-    <input type="checkbox" id="enable-purchase" name="buy" value="true">
-    <label for="enable-purchase">
-        ENABLE THIS OPTION, IF YOUR PRODUCT IS AVAILABLE FOR PURCHASE.
-        <span class="slider"></span>
-    </label>
-</div>
+                                    <input type="checkbox" id="enable-purchase" name="buy" value="true">
+                                    <label for="enable-purchase">
+                                        ENABLE THIS OPTION, IF YOUR PRODUCT IS AVAILABLE FOR PURCHASE.
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
 
                                 <div class="form-group" id="additional-deposit-group" style="display: none">
                                     <div class="form-group row">

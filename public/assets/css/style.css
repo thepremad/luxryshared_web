@@ -12943,11 +12943,14 @@ Start CSS All Products Page
       right: 60px;
   }
 }
-.header-wrap.animated{
+
+.header-wrap.animated {
   -webkit-animation-duration: unset !important;
   animation-duration: unset !important;
-  -webkit-animation-fil l-mode: unset !important;
+  -webkit-animation-fill-mode: unset !important; 
   animation-fill-mode: unset !important;
+  box-shadow: unset !important;
+  -webkit-box-shadow: unset !important;
 }
 
 .hot-picks .container .row.justify-content-center:first-child{
@@ -13668,5 +13671,11 @@ Start CSS All Products Page
   }
   .section.hot-picks.editor .productSlider-style2.grid-products{
     margin-left: 70px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .product-single .row .col-lg-7 .slick-track {
+      flex-direction: row !important;
   }
 }
