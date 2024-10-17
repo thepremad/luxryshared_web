@@ -82,6 +82,10 @@ Route::get('get_cart_count',function(){
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
+Route::get('verify_otp/{id}',[LoginContriller::class,'verifyOtp'])->name('verify_otp');
+Route::post('submit_verify_otp',[LoginContriller::class,'submitVerifyOtp'])->name('submit_verify_otp');
+
+
 Route::get('/login', [LoginContriller::class, 'login'])->name('login');
 Route::post('login', [LoginContriller::class, 'loginCheck'])->name('login');
 Route::post('register', [LoginContriller::class, 'register'])->name('register');

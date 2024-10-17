@@ -126,7 +126,12 @@
                 </ul>
 
 
-                <div class="social-icons mt-5">
+                
+                
+                
+
+
+                <div class="social-icons mt-5" style="text-align: center">
                     <a href="https://www.facebook.com" target="_blank">
                         <img src="{{asset('assets/images/icons/Facebook.svg')}}" alt="Facebook" />
                     </a>
@@ -140,6 +145,18 @@
                         <img src="{{asset('assets/images/icons/Tik Tok.svg')}}" alt="TikTok" />
                     </a>
                 </div>
+
+
+                <div style="text-align: center;margin-top:10%" >
+                    <a href="{{ route('logout') }}" class="btn btn-success">
+                        Logout
+                    </a>
+                </div>
+
+
+                
+
+
 
             </div>
 

@@ -105,6 +105,7 @@ class HomeController extends Controller
     }
     public function logout()
     {
+        session()->flash('success','Logout successfully');
         Auth::logout();
         return redirect('/');
     }

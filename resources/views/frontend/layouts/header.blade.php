@@ -132,8 +132,12 @@
                     </div>
                     @else
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                        <div class="site-header__search" onclick="profile()">
-                            <span ><i class="icon anm anm-user-l"></i></span>
+                        {{-- <div class="site-header__search" onclick="profile()"> --}}
+                            <div class="site-header__search" >
+                            <a href="{{ route('login') }}">
+                                <span ><i class="icon anm anm-user-l"></i></span>
+                            </a>
+                            
                             
                         </div>
                     </div>
