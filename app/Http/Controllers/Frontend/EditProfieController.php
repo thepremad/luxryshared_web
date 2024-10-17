@@ -43,6 +43,7 @@ class EditProfieController extends Controller
 
         // WishList
         $wishlist = Wishlist::with('products')->where('user_id', auth()->user()->id)->latest()->get();
+        
         return view('frontend.edit-profile', compact('menu', 'itemsCount', 'lendingData', 'rentingData', 'buyData', 'saleData', 'wishlist'));
     }
     public function editWebProfile(StoreWebEditProfileRequest $request)

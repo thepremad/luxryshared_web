@@ -169,14 +169,7 @@ justify-content: center;
         .date-section {
             display: none; /* Initially hidden */
         }
-        .selected-range {
-            background-color: #d1e7dd !important; /* Light green for selected range */
-        }
 
-        .flatpickr-calendar.animate.open{
-            top: 965.2px !important;
-            left: 830px !important;
-        }
 
 </style>
 <!--Body Content-->

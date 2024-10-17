@@ -331,7 +331,8 @@
   }
 
   .register .loginRegister-section .row:last-child {
-    margin-top: -80px;
+    margin-top: -120px;
+    width: 96%;
   }
 
   .register .loginRegister-section .row.formRow {
@@ -339,7 +340,8 @@
   }
 
   .register .loginRegister-section #myTab li.nav-item .nav-link {
-    font-size: 18px;
+    font-size: 20px;
+    padding-bottom: 20px;
   }
 
   .register .loginRegister-section #myTab li.nav-item .nav-link.active {
@@ -352,7 +354,7 @@
   }
 
   .register .loginRegister-section #myTabContent.tab-content .form-group label {
-    font-size: 15px;
+    font-size: 17px;
   }
 
   .register .loginRegister-section #myTabContent.tab-content .form-group .input-group .input-group-append i {
@@ -380,6 +382,9 @@
   .register .loginRegister-section .register-section h3 {
     font-size: 18px;
   }
+  .register .loginRegister-section #myTabContent.tab-content .loginButton {
+    margin-top: 80px;
+  }
 }
 
 @media (max-width: 1023px) and (min-width: 992px) {
@@ -392,15 +397,17 @@
   }
 
   .register .loginRegister-section .row:last-child {
-    margin-top: -60px;
+    margin-top: -110px;
   }
 
   .register .loginRegister-section .row.formRow {
-    padding: 30px 30px 120px;
+    padding: 50px 30px 50px;
+    width: 97%;
   }
 
   .register .loginRegister-section #myTab li.nav-item .nav-link {
-    font-size: 16px;
+    font-size: 17px;
+    padding-bottom: 15px;
   }
 
   .register .loginRegister-section #myTab li.nav-item .nav-link.active {
@@ -413,7 +420,7 @@
   }
 
   .register .loginRegister-section #myTabContent.tab-content .form-group label {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .register .loginRegister-section #myTabContent.tab-content .form-group .input-group .input-group-append i {
@@ -441,6 +448,9 @@
   .register .loginRegister-section .register-section h3 {
     font-size: 16px;
   }
+  .register .loginRegister-section #myTabContent.tab-content .loginButton {
+    margin-top: 80px;
+  }
 }
 
 @media (max-width: 991px) and (min-width: 768px) {
@@ -453,15 +463,22 @@
   }
 
   .register .loginRegister-section .row:last-child {
-    margin-top: -40px;
+    margin-top: -90px;
   }
 
   .register .loginRegister-section .row.formRow {
-    padding: 20px 20px 100px;
+    padding: 10% 4% 70px;
+  }
+
+  .register .loginRegister-section .row.formRow .register-tabSection{
+    flex: 0 0 80%;
+    max-width: 80%;
+    margin: 0 auto;
   }
 
   .register .loginRegister-section #myTab li.nav-item .nav-link {
-    font-size: 14px;
+    font-size: 16px;
+    padding-bottom: 15px;
   }
 
   .register .loginRegister-section #myTab li.nav-item .nav-link.active {
@@ -474,7 +491,7 @@
   }
 
   .register .loginRegister-section #myTabContent.tab-content .form-group label {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .register .loginRegister-section #myTabContent.tab-content .form-group .input-group .input-group-append i {
@@ -482,7 +499,7 @@
   }
 
   .register .loginRegister-section #myTabContent.tab-content a.d-block {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .register .loginRegister-section #myTabContent.tab-content .loginButton button {
@@ -502,11 +519,18 @@
   .register .loginRegister-section .register-section h3 {
     font-size: 14px;
   }
+  .register .loginRegister-section #myTabContent.tab-content .loginButton {
+    margin-top: 60px;
+  }
 }
 
-@media (max-width: 767px) and (min-width: 576px) {
+@media (max-width: 768px) and (min-width: 576px) {
   .register .header-wrap .container-fluid .row {
     padding: 10px 0;
+  }
+
+  .register .loginRegister-section #myTab{
+    gap: 20px;
   }
 
   .register .loginRegister-section {
@@ -514,15 +538,16 @@
   }
 
   .register .loginRegister-section .row:last-child {
-    margin-top: -20px;
+    margin-top: -100px;
   }
 
   .register .loginRegister-section .row.formRow {
-    padding: 10px 10px 80px;
+      padding: 10% 5% 70px;
   }
 
   .register .loginRegister-section #myTab li.nav-item .nav-link {
-    font-size: 12px;
+    font-size: 17px;
+    padding-bottom: 15px;
   }
 
   .register .loginRegister-section #myTab li.nav-item .nav-link.active {
@@ -535,7 +560,14 @@
   }
 
   .register .loginRegister-section #myTabContent.tab-content .form-group label {
-    font-size: 12px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .register .loginRegister-section .row.formRow .register-tabSection{
+    flex: 0 0 80%;
+    max-width: 80%;
+    margin: 0 auto;
   }
 
   .register .loginRegister-section #myTabContent.tab-content .form-group .input-group .input-group-append i {
@@ -557,14 +589,102 @@
   }
 
   .register .loginRegister-section #myTabContent.tab-content .form-group input {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .register .loginRegister-section .register-section h3 {
-    font-size: 12px;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  .register .loginRegister-section #myTabContent.tab-content .loginButton {
+    margin-top: 50px;
   }
 }
 
+@media (max-width: 575px) {
+  .register .header-wrap .container-fluid .row {
+    padding: 10px 0;
+  }
+
+  .register .loginRegister-section #myTab{
+    gap: 20px;
+  }
+
+  .register .loginRegister-section {
+    width: 90%;
+  }
+
+  .register .loginRegister-section .row:last-child {
+    margin-top: -100px;
+  }
+
+  .register .loginRegister-section .row.formRow {
+    padding: 50px 20px 80px;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link {
+    font-size: 17px;
+    padding-bottom: 15px;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link.active {
+    font-weight: 700;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link::before {
+    height: 2px;
+    width: 25px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group label {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .register .loginRegister-section .row.formRow .register-tabSection{
+    flex: 0 0 80%;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group .input-group .input-group-append i {
+    font-size: 14px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content a.d-block {
+    font-size: 12px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton button {
+    width: 100%;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-btn,
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-google {
+    height: 44px;
+    font-size: 12px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group input {
+    font-size: 14px;
+  }
+
+  .register .loginRegister-section .register-section h3 {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  .register .loginRegister-section #myTabContent.tab-content .loginButton {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 481px) {
+  .register .loginRegister-section .row.formRow .register-tabSection {
+      flex: 0 0 90%;
+      max-width: 90%;
+      margin: 0 auto;
+  }
+}
 
 /* ---------------------------
    End Login and Register Page 

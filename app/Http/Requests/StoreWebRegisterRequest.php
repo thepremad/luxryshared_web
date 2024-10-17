@@ -30,7 +30,9 @@ class StoreWebRegisterRequest extends FormRequest
             'address' => 'required',
             'id_image' => 'required',
             "password_confirmation" => 'required|same:password',
-            'terms' => 'required'
+            'terms' => 'required',
+            'longitude' => 'nullable',
+            'latitude' => 'nullable'
         ];
     }
 }

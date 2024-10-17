@@ -1,12 +1,42 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-<style>
+    <style>
         #map {
             height: 200px;
             width: 100%;
         }
+
+        .fa-eye:before {
+            content: "\f06e"; 
+        }
+
+        .fa-eye-slash:before {
+            content: "\f070"; 
+        }
     </style>
+
+<style>
+    /* Custom styles for suggestions */
+    #autocomplete-results {
+        border: 1px solid #ccc;
+        max-height: 200px;
+        overflow-y: auto;
+        width: 300px;
+        background-color: white;
+        position: absolute;
+        z-index: 1000;
+    }
+
+    .suggestion-item {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .suggestion-item:hover {
+        background-color: #f0f0f0;
+    }
+</style>
     <div class="register">
         <!--Body Content-->
         <div id="page-content">
@@ -20,7 +50,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row formRow">
+                    <div class="row formRow justify-content-center">
                         <div class="col-md-7 col-lg-7 register-tabSection">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
@@ -37,59 +67,63 @@
                                 <div class="tab-pane fade show active" id="login" role="tabpanel"
                                     aria-labelledby="login-tab">
                                     <div class="form-section login-section">
-                                        <form class="loginForm" action="{{ route('login') }}" method="post" id="loginForm" >
+                                        <form class="loginForm" action="{{ route('login') }}" method="post" id="loginForm">
                                             @csrf
                                             <div class="form-group">
-                                                @if(Session::has("email-password"))
-                                                    <p class="alert alert-danger" id="wakoo">{{ Session::get('email-password')}}</p>
+                                                @if (Session::has('email-password'))
+                                                    <p class="alert alert-danger" id="wakoo">
+                                                        {{ Session::get('email-password') }}</p>
                                                 @endif
-                                                
+
                                                 <label for="loginEmail">Your email</label>
                                                 <div class="input-group">
-                                                    <input type="email" class="form-control" name="email" id="loginEmail" placeholder="Enter email">
+                                                    <input type="email" class="form-control" name="email"
+                                                        id="loginEmail" placeholder="Enter email">
                                                 </div>
-                                                
-                                                
+
+
                                                 <div>
-                                                    <span class="text-danger validation-class" id="email-login_errors"></span>
+                                                    <span class="text-danger validation-class"
+                                                        id="email-login_errors"></span>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <label for="loginPassword">Password</label>
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" name="password" id="loginPassword" placeholder="Password">
-                                                    
+                                                    <input type="password" class="form-control" name="password"
+                                                        id="loginPassword" placeholder="Password">
+
 
                                                     <div class="input-group-append" id="togglePassword">
-                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                                     </div>
-
                                                 </div>
                                                 <div>
-                                                    <span class="text-danger validation-class" id="password-login_errors"></span>
+                                                    <span class="text-danger validation-class"
+                                                        id="password-login_errors"></span>
                                                 </div>
                                             </div>
-                                            
-                                        </div>
-                                        <script>
-                                            // Function to hide the alert after 3 seconds
-                                            setTimeout(function() {
-                                                var alert = document.getElementById('wakoo');
-                                                if (alert) {
-                                                    alert.style.display = 'none';
-                                                }
-                                            }, 5000); // 3000 milliseconds = 3 seconds
-                                        </script> 
-                                        <a href="{{ route('forget_password')}}" class="d-block text-right">Forgot Password?</a>
-                                        <div class="loginButton">
-                                            <button type="submit" class="btn btn-primary sign-btn">Sign In</button>
-                                            <!-- <button type="button" class="btn btn-secondary mt-3 sign-google">Google</button> -->
-                                        </div>
+
+                                    </div>
+                                    <script>
+                                        // Function to hide the alert after 3 seconds
+                                        setTimeout(function() {
+                                            var alert = document.getElementById('wakoo');
+                                            if (alert) {
+                                                alert.style.display = 'none';
+                                            }
+                                        }, 5000); // 3000 milliseconds = 3 seconds
+                                    </script>
+                                    <a href="{{ route('forget_password') }}" class="d-block text-right">Forgot Password?</a>
+                                    <div class="loginButton">
+                                        <button type="submit" class="btn btn-primary sign-btn">Sign In</button>
+                                        <!-- <button type="button" class="btn btn-secondary mt-3 sign-google">Google</button> -->
+                                    </div>
                                     </form>
                                 </div>
 
-                                
+
 
                                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                                     <div class="form-section register-section">
@@ -97,7 +131,7 @@
 
                                         <form class="registerForm" action="{{ route('register') }}" method="post"
                                             enctype="multipart/form-data" id="registerForm">
-                                            
+
                                             @csrf
                                             <div class="form-group">
                                                 <label for="registerEmail">Email Address <span>*</span></label>
@@ -107,16 +141,19 @@
                                                     value="{{ old('email') }}">
                                                 <span class="invalid-feedback">{{ $errors->first('email') }}</span>
 
-                                                <span class="text-danger validation-class" id="email-register_errors"></span>
+                                                <span class="text-danger validation-class"
+                                                    id="email-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="firstName">First Name <span>*</span></label>
                                                 <input type="text" name="first_name"
                                                     class="form-control @error('first_name') is-invalid @enderror"
-                                                    id="firstName" placeholder="First Name" value="{{ old('first_name') }}">
+                                                    id="firstName" placeholder="First Name"
+                                                    value="{{ old('first_name') }}">
                                                 <span class="invalid-feedback">{{ $errors->first('first_name') }}</span>
-                                                <span class="text-danger validation-class" id="first_name-register_errors"></span>
+                                                <span class="text-danger validation-class"
+                                                    id="first_name-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
@@ -126,7 +163,8 @@
                                                     id="lastName" placeholder="Last Name"
                                                     value="{{ old('last_name') }}">
                                                 <span class="invalid-feedback">{{ $errors->first('last_name') }}</span>
-                                                <span class="text-danger validation-class" id="last_name-register_errors"></span>
+                                                <span class="text-danger validation-class"
+                                                    id="last_name-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
@@ -135,7 +173,8 @@
                                                     class="form-control @error('password') is-invalid @enderror"
                                                     id="registerPassword" placeholder="Enter Password">
                                                 <span class="invalid-feedback">{{ $errors->first('password') }}</span>
-                                                <span class="text-danger validation-class" id="password-register_errors"></span>
+                                                <span class="text-danger validation-class"
+                                                    id="password-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
@@ -146,7 +185,8 @@
                                                 <span
                                                     class="invalid-feedback">{{ $errors->first('password_confirmation') }}</span>
 
-                                                    <span class="text-danger validation-class" id="password_confirmation-register_errors"></span>
+                                                <span class="text-danger validation-class"
+                                                    id="password_confirmation-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
@@ -156,27 +196,42 @@
                                                     id="mobileNumber" placeholder="Enter Mobile Number"
                                                     value="{{ old('number') }}">
                                                 <span class="invalid-feedback">{{ $errors->first('number') }}</span>
-                                                <span class="text-danger validation-class" id="number-register_errors"></span>
+                                                <span class="text-danger validation-class"
+                                                    id="number-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="referralCode">Referral Code</label>
-                                                <input type="text" name="referralCode" class="form-control" id="referralCode" placeholder="Referral Code">
+                                                <input type="text" name="referralCode" class="form-control"
+                                                    id="referralCode" placeholder="Referral Code">
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="address">Address <span>*</span></label>
-                                                <input type="text" name="address"
+                                                <input type="text" name="address" autocomplete="off"
                                                     class="form-control @error('address') is-invalid @enderror"
-                                                    id="address" placeholder="Enter Address"
-                                                    value="{{ old('address') }}">
+                                                    id="google_address_id" placeholder="Enter Address"
+                                                    value="{{ old('address') }}" >
                                                 <span class="invalid-feedback">{{ $errors->first('address') }}</span>
-                                                <span class="text-danger validation-class" id="address-register_errors"></span>
+                                                <span class="text-danger validation-class"
+                                                    id="address-register_errors"></span>
                                             </div>
 
-                                            <div id="map" style="height: 400px;"></div>
+                                            {{-- <input id="google_address_id" type="text" placeholder="Search for a place" /> --}}
+                                            
+
+                                            <div id="autocomplete-results"></div> 
+
+                                            <input id="lantitude" name="latitude" type="hidden" placeholder="Latitude" readonly />
+                                            <input id="longitude" name="longitude" type="hidden" placeholder="Longitude" readonly />
+
+                                            
+                                            <div id="map" style="height: 400px; width: 100%;"></div>
+
+                                            {{-- <div id="map" style="height: 400px;"></div>
+                                            
                                             <input type="hidden" name="latitude" id="lantitude">
-                                            <input type="hidden" name="longitude" id="longitude">
+                                            <input type="hidden" name="longitude" id="longitude"> --}}
 
 
                                             <div class="form-group" style="margin-top: 20px">
@@ -186,7 +241,8 @@
                                                     id="idVerificationn" accept="image/*, application/pdf">
 
                                                 <span class="invalid-feedback">{{ $errors->first('id_image') }}</span>
-                                                <span class="text-danger validation-class" id="id_image-register_errors"></span>
+                                                <span class="text-danger validation-class"
+                                                    id="id_image-register_errors"></span>
                                             </div>
 
                                             <div class="form-check">
@@ -195,17 +251,22 @@
                                                     id="terms" name="terms">
                                                 <label class="form-check-label" for="terms">I AGREE TO THE TERMS OF
                                                     SERVICES AND
-                                                    PRIVACY POLICY.</label>
+
+                                                    <a href="{{ route('privacy_policy') }}" target="_blank">PRIVACY POLICY.</a>
+
+                                                    </label>
                                                 <span class="invalid-feedback">{{ $errors->first('terms') }}</span>
-                                                <span class="text-danger validation-class" id="terms-register_errors"></span>
+                                                <span class="text-danger validation-class"
+                                                    id="terms-register_errors"></span>
                                             </div>
 
                                             <div class="form-check">
-                                                <input type="checkbox"
-                                                    class="form-check-input mt-0" id="terms2" name="terms2">
-                                                <label class="form-check-label" for="terms2">I AGREE TO RECEIVE MARKETING EMAILS FROM LXRY.</label>
+                                                <input type="checkbox" class="form-check-input mt-0" id="terms2"
+                                                    name="terms2">
+                                                <label class="form-check-label" for="terms2">I AGREE TO RECEIVE
+                                                    MARKETING EMAILS FROM LXRY.</label>
                                             </div>
-                                            
+
 
 
                                             <div class="registerForm-btnSection mt-3">
@@ -495,11 +556,21 @@
                 jQuery('#popup-container').fadeOut();
                 jQuery('#modalOverly').fadeOut();
             });
+
+            // Password toggle functionality
             $('#togglePassword').on('click', function() {
                 const passwordField = $('#loginPassword');
                 const type = passwordField.attr('type') === 'password' ? 'text' : 'password';
                 passwordField.attr('type', type);
-                $(this).toggleClass('fa-eye fa-eye-slash');
+                $(this).find('i').toggleClass('fa-eye fa-eye-slash');
+            });
+
+            // Username toggle functionality (if needed)
+            $('#toggleUsername').on('click', function() {
+                const usernameField = $('#loginUsername');
+                const type = usernameField.attr('type') === 'text' ? 'text' : 'text'; // Text field logic
+                usernameField.attr('type', type);
+                $(this).find('i').toggleClass('fa-eye fa-eye-slash');
             });
 
             var visits = jQuery.cookie('visits') || 0;
@@ -509,6 +580,7 @@
                 path: '/'
             });
             console.debug(jQuery.cookie('visits'));
+
             if (jQuery.cookie('visits') > 1) {
                 jQuery('#modalOverly').hide();
                 jQuery('#popup-container').hide();
@@ -518,6 +590,7 @@
                 jQuery('#modalOverly').css("height", pageHeight);
                 jQuery('#popup-container').show();
             }
+
             if (jQuery.cookie('noShowWelcome')) {
                 jQuery('#popup-container').hide();
                 jQuery('#active-popup').hide();
@@ -548,16 +621,24 @@
         });
     </script>
 
+
     <!-- <script>
         let map;
+
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 26.7980, lng: 75.8193 }, // Default center
+                center: {
+                    lat: 26.7980,
+                    lng: 75.8193
+                }, // Default center
                 zoom: 8,
             });
 
             const marker = new google.maps.Marker({
-                position: { lat: 26.7980, lng: 75.8193 }, // Default marker position
+                position: {
+                    lat: 26.7980,
+                    lng: 75.8193
+                }, // Default marker position
                 map: map,
                 draggable: true,
             });
@@ -565,30 +646,35 @@
             google.maps.event.addListener(marker, 'dragend', function(event) {
                 const lat = event.latLng.lat();
                 const lng = event.latLng.lng();
-            $("#lantitude").val(lat);
-            $("#longitude").val(lng);
+                $("#lantitude").val(lat);
+                $("#longitude").val(lng);
 
             });
         }
     </script> -->
 
 
-    
+
     <!--End For Newsletter Popup-->
 
-    
-    {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> --}}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8wm2FBG5yR1sxWxhOYfZ-Hii45dAk5tQ&callback=initMap" async defer></script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8wm2FBG5yR1sxWxhOYfZ-Hii45dAk5tQ&callback=initMap" async
+        defer></script> --}}
+
+        
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8wm2FBG5yR1sxWxhOYfZ-Hii45dAk5tQ&callback=initMap&libraries=places" async
+        defer></script>
 
     <!-- Register Form Validation and Fillters -->
 
 
     <script>
         $(document).ready(function() {
-    
+
             $('#registerForm').on('submit', function(e) {
                 e.preventDefault(); // Prevent the default form submission
                 var $form = $('#registerForm');
@@ -606,8 +692,8 @@
                         $('.spinner-loader').css('display', 'block');
                     },
                     success: function(res) {
-                        location.reload();
-                        // window.location.href = res;
+                        // location.reload();
+                        window.location.href = res;
                     },
                     error: function(res) {
                         if (res.status == 400 || res.status == 422) {
@@ -622,94 +708,165 @@
                 });
             });
         });
-        
     </script>
 
-<script>
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
-        $('#loginForm').on('submit', function(e) {
-            e.preventDefault(); // Prevent the default form submission
-            var $form = $('#loginForm');
-            var url = $form.attr('action');
-            var formData = new FormData($form[0]);
-            $('.validation-class').html('');
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
-                    $('.spinner-loader').css('display', 'block');
-                },
-                success: function(res) {
-                    // location.reload();
-                    window.location.href = res;
-                },
-                error: function(res) {
-                    if (res.status == 400 || res.status == 422) {
-                        if (res.responseJSON && res.responseJSON.errors) {
-                            var error = res.responseJSON.errors
-                            $.each(error, function(key, value) {
-                                $("#" + key + "-login_errors").text(value[0]);
-                            });
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault(); // Prevent the default form submission
+                var $form = $('#loginForm');
+                var url = $form.attr('action');
+                var formData = new FormData($form[0]);
+                $('.validation-class').html('');
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $('.spinner-loader').css('display', 'block');
+                    },
+                    success: function(res) {
+                        // location.reload();
+                        window.location.href = res;
+                    },
+                    error: function(res) {
+                        if (res.status == 400 || res.status == 422) {
+                            if (res.responseJSON && res.responseJSON.errors) {
+                                var error = res.responseJSON.errors
+                                $.each(error, function(key, value) {
+                                    $("#" + key + "-login_errors").text(value[0]);
+                                });
+                            }
                         }
                     }
-                }
+                });
             });
         });
-    });
-    
-</script>
+    </script>
 
-<script>
-
+    <script>
         let map;
-let marker;
+        let marker;
+        let placesService;
+        let geocoder; // Declare geocoder
 
-function initMap() {
-    const defaultLocation = { lat: 26.7980, lng: 75.8193 }; // Default center
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: defaultLocation,
-        zoom: 8,
-    });
+        function initMap() {
+            const defaultLocation = {
+                lat: 26.7980,
+                lng: 75.8193
+            }; // Default center
 
-    marker = new google.maps.Marker({
-        position: defaultLocation,
-        map: map,
-        draggable: true,
-    });
+            // Initialize the map
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: defaultLocation,
+                zoom: 8,
+            });
 
-    google.maps.event.addListener(marker, 'dragend', function(event) {
-        const lat = event.latLng.lat();
-        const lng = event.latLng.lng();
-        $("#lantitude").val(lat);
-        $("#longitude").val(lng);
-    });
+            // Initialize the draggable marker
+            marker = new google.maps.Marker({
+                position: defaultLocation,
+                map: map,
+                draggable: true,
+            });
 
-    document.getElementById('address').addEventListener('change', function() {
-        const address = this.value;
-        geocodeAddress(address);
-    });
-}
+            // Initialize geocoder for reverse geocoding
+            geocoder = new google.maps.Geocoder();
 
-function geocodeAddress(address) {
-    const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': address }, function(results, status) {
-        if (status === 'OK') {
-            const location = results[0].geometry.location;
-            map.setCenter(location);
-            marker.setPosition(location);
-            $("#lantitude").val(location.lat());
-            $("#longitude").val(location.lng());
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+            // Listen for the marker being dragged and dropped
+            google.maps.event.addListener(marker, 'dragend', function(event) {
+                const lat = event.latLng.lat();
+                const lng = event.latLng.lng();
+                $("#lantitude").val(lat);
+                $("#longitude").val(lng);
+
+                // Reverse geocode to get address from lat/lng
+                geocodeLatLng(lat, lng);
+            });
+
+            // Initialize PlacesService for getting place details
+            placesService = new google.maps.places.PlacesService(map);
+
+            // Initialize Places Autocomplete Service and bind to input
+            const input = document.getElementById('google_address_id');
+            const autocompleteService = new google.maps.places.AutocompleteService();
+
+            // Listen to input changes to provide custom autocomplete
+            input.addEventListener('input', function() {
+                const query = this.value;
+                if (query.length > 0) {
+                    autocompleteService.getPlacePredictions({ input: query }, displaySuggestions);
+                }
+            });
         }
-    });
-}
 
+        // Function to display suggestions in a custom div
+        function displaySuggestions(predictions, status) {
+            const resultsContainer = document.getElementById('autocomplete-results');
+            resultsContainer.innerHTML = ''; // Clear previous results
 
-</script>
+            if (status !== google.maps.places.PlacesServiceStatus.OK || !predictions) {
+                resultsContainer.innerHTML = '<p>No results found</p>';
+                return;
+            }
+
+            // Display each prediction
+            predictions.forEach((prediction) => {
+                const div = document.createElement('div');
+                div.textContent = prediction.description;
+                div.classList.add('suggestion-item');
+
+                // Click handler for the suggestion
+                div.addEventListener('click', function() {
+                    selectPlace(prediction);
+                });
+
+                resultsContainer.appendChild(div);
+            });
+        }
+
+        // Function to handle place selection
+        function selectPlace(prediction) {
+            // Use PlacesService to get details about the selected place
+            placesService.getDetails({ placeId: prediction.place_id }, function(place, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK && place) {
+                    const location = place.geometry.location;
+
+                    // Update the map center and marker position
+                    map.setCenter(location);
+                    map.setZoom(14); // Zoom in to the selected location
+                    marker.setPosition(location);
+
+                    // Update the latitude, longitude, and full address fields
+                    $("#lantitude").val(location.lat());
+                    $("#longitude").val(location.lng());
+                    $("#google_address_id").val(place.formatted_address); // Set the full formatted address
+
+                    // Clear the suggestions list
+                    document.getElementById('autocomplete-results').innerHTML = '';
+                }
+            });
+        }
+
+        // Function to reverse geocode latitude and longitude to an address
+        function geocodeLatLng(lat, lng) {
+            const latlng = { lat: lat, lng: lng };
+            geocoder.geocode({ location: latlng }, function(results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        const address = results[0].formatted_address;
+                        $("#google_address_id").val(address); // Update address input with the full address
+                    } else {
+                        alert('No results found');
+                    }
+                } else {
+                    alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+    </script>
+
 @endsection
 </div>
