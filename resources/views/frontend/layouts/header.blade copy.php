@@ -82,7 +82,7 @@
                     </div> -->
                         <!-- <p class="phone-no"><i class="anm anm-phone-s"></i> +440 0(111) 044 833</p> -->
                     </div>
-                    <div class="col-sm-4 col-md-4 col-lg-4 d-none d-lg-none d-md-block d-lg-block">
+                    <div class="col-sm-4 col-md-4 col-lg-4" style="display: block !important;">
                         <div class="text-center">
                             <p class="top-header_middle-text"> Give 50 AED
                                 Get 50 AED. Get 10% off your first

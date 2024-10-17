@@ -2122,9 +2122,9 @@ label input:checked~span#checkBox-btn i {
   width: 100%;
 }
 
-.listItem-section .row .step-form label span {
+/* .listItem-section .row .step-form label span {
   color: #ee0f0f;
-}
+} */
 
 .listItem-section .row .step-form input,
 .listItem-section .row .step-form select {

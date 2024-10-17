@@ -13087,14 +13087,16 @@ Start CSS All Products Page
     flex-direction: row !important;
   }
   .top-header.home8-jewellery-top .col-sm-4.col-md-4 {
-      width: 80% !important;
+      width: 100% !important;
       max-width: 100% !important ;
-      flex: 0 0 80% !important;
+      flex: 0 0 100% !important;
+      display: block !important;
   }
   .top-header.home8-jewellery-top .col-2.col-sm-4 {
-      width: 20% !important;
+      /* width: 20% !important;
       max-width: 20% !important;
-      flex: 0 0 20% !important;
+      flex: 0 0 20% !important; */
+      display: none !important;
   }
   .productSlider-style2 .slick-slide .col-12.item {
       padding-right: 5px !important;
