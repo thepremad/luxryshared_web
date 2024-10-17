@@ -2277,6 +2277,37 @@ additionalImagePreview{
   margin-bottom: 0;
 }
 
+@media (max-width: 1300px) {
+  .listItem-section .row .step-form label{
+    font-size: 16px;
+  }
+  .listItem-section .row .step-form input, .listItem-section .row .step-form select{
+    font-size: 16px;
+  }
+  .listItem-section .row .step-form .plan-row{
+    gap: 25px 50px;
+  }
+  .listItem-section .row .step-form .plan-row button.btn{
+    width: 30.3%;
+  }
+  .listItem-section .row .step-form #description{
+    font-size: 16px;
+  }
+  .form-group.row.row-half-width{
+    gap: 0 25%;
+  }
+  .listItem-section .row .step-form .button-container button.btn{
+    width: 160px;
+    height: 40px;
+  }
+  .listItem-section .row .step-form a.d-block{
+    font-size: 16px;
+  }
+  .listItem-section .row .step-form p{
+    font-size: 16px;
+  }
+}
+
 @media (max-width: 1024px) {
   .listItem-section .switch label {
     margin-left: 50px;
@@ -2289,6 +2320,21 @@ additionalImagePreview{
     height: 18px;
     width: 18px;
     left: 2px;
+  }
+}
+
+@media (max-width: 960px) {
+  .listItem-section .row .step-form .plan-row button.btn{
+    height: auto !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .listItem-section .row .step-form .plan-row .plan-heading h5{
+    font-size: 14px !important;
+  }
+  .listItem-section .row .step-form .plan-row .plan-heading p{
+    font-size: 12px !important;
   }
 }
 
@@ -2307,7 +2353,21 @@ additionalImagePreview{
   }
 }
 
+@media (max-width: 650px) {
+  .listItem-section .row .step-form .plan-row {
+      gap: 15px 20px;
+  }
+}
+
 @media (max-width: 576px) {
+  .listItem-section .row .step-form .form-group.row {
+      margin: 15px 0 15px;
+  }
+
+  .listItem-section .row .step-form .form-group.row .col-md-6:first-child{
+      margin-bottom: 15px !important;
+  }
+
   .listItem-section .switch label {
     font-size: 14px;
     margin-left: 15px;
@@ -2460,9 +2520,9 @@ additionalImagePreview{
   font-weight: 400;
 }
 
-.shopping-cart .couponCode-section {
+/* .shopping-cart .couponCode-section {
   margin-bottom: 250px;
-}
+} */
 
 @media (max-width: 1366px) and (min-width: 1024px) {
   .shopping-cart .spaced-table tr#cartHeading-row th {

@@ -35,6 +35,26 @@
     cursor: pointer;
 }
 
+.mobile-nav-wrapper {
+        position: fixed; /* Ensures it overlays the content */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: white; /* Adjust background as needed */
+        visibility: hidden; /* Initially hidden */
+        opacity: 0; /* Fully transparent */
+        transform: translateX(-100%); /* Offscreen */
+        transition: visibility 0s, opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+    }
+
+    .mobile-nav-wrapper.active {
+        visibility: visible; /* Make visible */
+        opacity: 1; /* Fully opaque */
+        transform: translateX(0); /* Bring into view */
+    }
+
+
 </style>
 
         <div class="top-header home8-jewellery-top">
@@ -266,3 +286,36 @@ window.onclick = function(event) {
         <!--Mobile Menu-->
         
         <!--End Mobile Menu-->
+
+<script>
+    // Function to toggle the mobile menu
+    function toggleMobileMenu() {
+        const mobileNavWrapper = document.querySelector('.mobile-nav-wrapper');
+        const toggleButton = document.querySelector('.js-mobile-nav-toggle');
+
+        // Check if the menu is currently active
+        if (mobileNavWrapper.classList.contains('active')) {
+            // Hide the menu
+            mobileNavWrapper.style.visibility = 'hidden';
+            mobileNavWrapper.style.opacity = '0';
+            mobileNavWrapper.style.transform = 'translateX(-100%)'; // Move it offscreen
+            mobileNavWrapper.classList.remove('active'); // Remove active class
+            toggleButton.classList.remove('mobile-nav--close');
+            toggleButton.classList.add('mobile-nav--open');
+        } else {
+            // Show the menu
+            mobileNavWrapper.style.visibility = 'visible';
+            mobileNavWrapper.style.opacity = '1';
+            mobileNavWrapper.style.transform = 'translateX(0)'; // Bring it into view
+            mobileNavWrapper.classList.add('active'); // Add active class
+            toggleButton.classList.remove('mobile-nav--open');
+            toggleButton.classList.add('mobile-nav--close');
+        }
+    }
+
+    // Add click event to the toggle button
+    document.querySelector('.js-mobile-nav-toggle').addEventListener('click', toggleMobileMenu);
+
+    // Close the mobile menu when clicking on the close button
+    document.querySelector('.closemobileMenu').addEventListener('click', toggleMobileMenu);
+</script>

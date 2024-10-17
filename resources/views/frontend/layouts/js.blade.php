@@ -3,8 +3,8 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-<!-- <script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js') }}"></script> -->
-<script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js') }}"></script>
+<!-- <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script> -->
 <script src="{{ asset('assets/js/vendor/jquery.cookie.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/wow.min.js') }}"></script>
 <!-- Including Javascript -->

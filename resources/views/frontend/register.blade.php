@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row formRow">
+                    <div class="row formRow justify-content-center">
                         <div class="col-md-7 col-lg-7 register-tabSection">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
