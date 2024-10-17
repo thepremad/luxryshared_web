@@ -7,6 +7,98 @@
         max-height: 50px;
         margin: 10px;
     }
+
+    .listItem-section .switch.form-group {
+    position: relative;
+}
+
+.check-box-label {
+    display: flex;
+    align-items: center;
+}
+
+.listItem-section .switch.form-group input[type="checkbox"] {
+    display: none; /* Hide the default checkbox */
+}
+
+.check-box-label input {
+    margin-right: 10px;
+}
+
+.listItem-section .switch.form-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    padding-left: 70px;
+}
+
+.listItem-section .switch.form-group .slider {
+    width: 40px;
+    height: 20px;
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    position: relative;
+    margin-left: 10px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    position: absolute;
+    left: 0;
+}
+
+.listItem-section .switch.form-group .slider:before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+.listItem-section .switch.form-group input[type="checkbox"]:checked + label .slider {
+    background-color: #4caf50; /* Green background when checked */
+}
+
+.listItem-section .switch.form-group input[type="checkbox"]:checked + label .slider:before {
+    transform: translateX(20px); /* Move slider when checked */
+}
+
+#additional-deposit-group {
+    display: none; /* Initially hide the additional deposit group */
+}
+
+.listItem-section .row .step-form .form-group.row {
+    margin: 20px 0 30px;
+}
+
+.container-fluid .row, .container-fluid .container {
+    width: 100%;
+    max-width: 1347px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.listItem-section .row .step-form p {
+    font-family: 'poppins', sans-serif;
+    font-size: 18px;
+    line-height: 1.3;
+    color: #383838;
+    margin-bottom: 30px;
+}
+
+.btn-secondary.active {
+    background-color: #007bff; /* Change this to your desired color */
+    color: white; /* Change text color if needed */
+    border-color: #007bff; /* Match border color to background */
+}
+
+
 </style>
     <!--Body Content-->
     <div id="page-content">
@@ -118,7 +210,7 @@
                                 </div>
 
 
-                                <div class="form-group row">
+                                <div class="form-group row align-items-start">
 
 
                                     <div class="col-md-6">
@@ -277,29 +369,31 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group check-box-label switch">
-    <input type="checkbox" id="enable-purchase" name="buy" value="true">
-    <label for="enable-purchase">
-        ENABLE THIS OPTION, IF YOUR PRODUCT IS AVAILABLE FOR PURCHASE.
-        <span class="slider"></span>
-    </label>
-</div>
 
-                                <div class="form-group" id="additional-deposit-group" style="display: none">
+                                <div class="form-group check-box-label switch">
+                                    <input type="checkbox" id="enable-purchase" name="buy" value="true">
+                                    <label for="enable-purchase">
+                                        <span id="label-text">ENABLE THIS OPTION, IF YOUR PRODUCT IS AVAILABLE FOR PURCHASE.</span>
+                                        <span class="slider"></span> <!-- Slider span -->
+                                    </label>
+                                </div>
+
+                                <div class="form-group" id="additional-deposit-group" style="display: none;">
                                     <div class="form-group row">
                                         <div class="col-md-6">
                                             <p>Size:</p>
-                                            <p id="selected-size">Size selected in Step 1</p>
+                                            <p id="selected-size">L</p>
                                         </div>
                                         <div class="col-md-6">
                                             <p>Price:</p>
-                                            <p> 
+                                            <p>
                                                 <input type="text" name="buy_price" class="form-control" placeholder="AED">
                                                 <span class="text-danger validation-class" id="buy_price-submit_errors"></span>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
+
 
                                 
 
@@ -702,33 +796,17 @@
 
         document.getElementById('enable-purchase').addEventListener('change', function(event) {
             const additionalDepositGroup = document.getElementById('additional-deposit-group');
+            const labelText = document.getElementById('label-text');
+
             if (event.target.checked) {
-                document.querySelector('#additional-deposit').style.display = 'block';
-                document.querySelector('#enable-purchase').nextElementSibling.textContent =
-                    'YOU CAN NOW SELL YOUR PRODUCT';
-
-                    $('#additional-deposit-group').show();
-                    
-
-                // $('')
-                // additionalDepositGroup.innerHTML = `
-                //     <div class="form-group">
-                //         <label for="additional-deposit">Additional Deposit</label>
-                //         <input type="number" class="form-control" id="additional-deposit">
-                //     </div>`;
+                additionalDepositGroup.style.display = 'block';  // Show additional deposit group
+                labelText.textContent = 'YOU CAN NOW SELL YOUR PRODUCT';  // Update label text
             } else {
-                document.querySelector('#additional-deposit').style.display = 'none';
-                document.querySelector('#enable-purchase').nextElementSibling.textContent =
-                    'ENABLE THIS OPTION, IF YOUR PRODUCT IS AVAILABLE FOR PURCHASE.';
-                // additionalDepositGroup.innerHTML = '';
-
-                
-
-                $('#additional-deposit-group').hide();
-
-
+                additionalDepositGroup.style.display = 'none';  // Hide additional deposit group
+                labelText.textContent = 'ENABLE THIS OPTION, IF YOUR PRODUCT IS AVAILABLE FOR PURCHASE.';  // Reset label text
             }
         });
+
 
 
 
@@ -843,5 +921,20 @@
         });
     });
 });
+</script>
+
+
+<script>
+    document.querySelectorAll('.btn-secondary').forEach(button => {
+    button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        document.querySelectorAll('.btn-secondary').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        // Add active class to the clicked button
+        this.classList.add('active');
+    });
+});
+
 </script>
 @endsection
