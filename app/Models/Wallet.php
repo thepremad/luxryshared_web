@@ -21,6 +21,7 @@ class Wallet extends Model
     ];
 
     static $referral_bonus = 'referral_bonus';
+    static $referral_commission = 'referral_commission';
 
 
 }
