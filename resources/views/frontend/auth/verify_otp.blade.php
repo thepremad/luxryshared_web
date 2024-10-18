@@ -56,6 +56,9 @@
                                         </div>
                                         <div class="form-group saveBtn text-center">
                                             <p>A verification code has been sent to your email, please also check your junk folder.</p>
+
+                                            <button onclick="resentOtp('{{ $user->email }}')" type="button" class="btn btn-primary">Resent OTP</button>
+                                            
                                             <button type="submit" class="btn btn-primary" >Verify</button>
                                         </div>
                                     </form>
@@ -67,6 +70,9 @@
                 </div>
             </div>
         </div>
+
+
+        
  
 
 @endsection
@@ -214,6 +220,38 @@
             });
         });
     });
+</script>
+
+<script>
+    function resentOtp(email){
+
+        $('#pre-loader').show();
+        formData = {
+            'email':email
+        };
+        $.ajax({
+                url: "{{ route('resent_otp') }}",
+                type: 'GET',
+                data: formData,
+                beforeSend: function() {
+                    $('.spinner-loader').css('display', 'block');
+                },
+                success: function(res) {
+                    Toastify({
+                        text: 'OTP Sent successfully',
+                        className: "success",
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        }
+                    }).showToast();
+                    
+                    $('#pre-loader').hide();
+                },
+                error: function(res) {
+                    $('#pre-loader').hide();
+                }
+            });
+    }
 </script>
 
 @endsection

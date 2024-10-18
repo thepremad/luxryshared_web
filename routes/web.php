@@ -84,6 +84,7 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('verify_otp/{id}',[LoginContriller::class,'verifyOtp'])->name('verify_otp');
 Route::post('submit_verify_otp',[LoginContriller::class,'submitVerifyOtp'])->name('submit_verify_otp');
+Route::any('resent_otp',[LoginContriller::class,'resentOtp'])->name('resent_otp');
 
 
 Route::get('/login', [LoginContriller::class, 'login'])->name('login');
