@@ -50,6 +50,8 @@
                                         </div>
                                         <div class="form-group saveBtn text-center">
                                             <button type="submit" class="btn btn-primary" >Verify</button>
+                                            <br><br>
+                                            <button onclick="resentOtp('{{ $user->email }}')" type="button" class="btn btn-primary">Resent OTP</button>
                                         </div>
                                     </form>
                                 </div>
@@ -396,6 +398,37 @@
             var otp = $('#otp1').val() + $('#otp2').val() + $('#otp3').val() + $('#otp4').val();
             $("#main_otp").val(otp);
             
+        }
+    </script>
+
+    <script>
+        function resentOtp(email){
+
+            $('#pre-loader').show();
+            formData = {
+                'email':email
+            };
+            $.ajax({
+                    url: "{{ route('resent_otp') }}",
+                    type: 'GET',
+                    data: formData,
+                    beforeSend: function() {
+                        $('.spinner-loader').css('display', 'block');
+                    },
+                    success: function(res) {
+                        $('#pre-loader').hide();
+                        Toastify({
+                            text: 'OTP Sent successfully',
+                            className: "success",
+                            style: {
+                                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                            }
+                        }).showToast();
+                    },
+                    error: function(res) {
+                        $('#pre-loader').hide();
+                    }
+                });
         }
     </script>
 

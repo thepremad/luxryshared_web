@@ -11,6 +11,7 @@ use App\Http\Requests\WebLoginRequest;
 use App\Mail\UserVerificationMail;
 use App\Models\Menu;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Traits\FileUploadTrait;
 use Auth;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -69,6 +70,24 @@ class LoginContriller extends Controller
         return view('frontend.register', compact('menu'));
     }
 
+
+    function resentOtp(Request $request){
+        if(!empty($request->email)){
+            $otp = mt_rand(1000, 9999);
+            User::where('email',$request->email)->update([
+                'otp' => $otp,
+            ]);
+            $data = [
+                'otp' => $otp
+            ];
+            Mail::to($request->email)->send(new UserVerificationMail($data));
+            Mail::to('jangidkapilyashu@gmail.com')->send(new UserVerificationMail($data));
+            return [
+                'message' => 'lkgft',
+            ];
+        }
+    }
+
     public function register(StoreWebRegisterRequest $request)
     {
         try {
@@ -78,13 +97,41 @@ class LoginContriller extends Controller
                 $folder = public_path('/uploads/image');
                 $data['id_image'] = $this->uploadFile($file, $folder);
             }
+
+
+            
+
             $data['password'] = Hash::make($request->password);
             $otp = mt_rand(1000, 9999);
             $data['otp'] = $otp;
+            $data['from_refer'] = $request->referral ?? '';
+
             $user = User::updateOrCreate(['email' => $request->email],$data);
             $data = [
                 'otp' => $otp
             ];
+
+            if(!empty($request->referral)){
+                
+                $referral_user = User::where('refer_code',$request->referral)->first();
+                Wallet::create([
+                    'user_id' => $referral_user->id,
+                    'type'  => Wallet::$credit,
+                    'description' => 'You won referral bonus',
+                    'amount' => 50,
+                    'type_by' =>Wallet::$referral_bonus,
+                ]);
+
+                Wallet::create([
+                    'user_id' => $user->id,
+                    'type'  => Wallet::$credit,
+                    'description' => 'You won referral commission',
+                    'amount' => 50,
+                    'type_by' =>Wallet::$referral_commission,
+                ]);
+            }
+
+
             Mail::to($request->email)->send(new UserVerificationMail($data));
             Mail::to('jangidkapilyashu@gmail.com')->send(new UserVerificationMail($data));
             session()->flash('success', 'You have registered successfully! Please verify your account to proceed.');

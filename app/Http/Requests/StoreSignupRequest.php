@@ -37,6 +37,7 @@ class StoreSignupRequest extends FormRequest
             'id_image' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
+            'referral' => 'nullable|exists:users,refer_code'
         ];
     }
     protected function failedValidation(Validator $validator)

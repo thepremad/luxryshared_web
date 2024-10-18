@@ -32,7 +32,8 @@ class StoreWebRegisterRequest extends FormRequest
             "password_confirmation" => 'required|same:password',
             'terms' => 'required',
             'longitude' => 'nullable',
-            'latitude' => 'nullable'
+            'latitude' => 'nullable',
+            'referral' => 'nullable|exists:users,refer_code'
         ];
     }
 }
