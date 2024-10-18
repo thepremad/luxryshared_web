@@ -98,10 +98,9 @@
     border-color: #007bff; /* Match border color to background */
 }
 
-
 </style>
     <!--Body Content-->
-    <div id="page-content">
+    <div id="page-content" class="listingProduct">
         <div class="container-fluid">
             <div class="listItem-section">
                 <div class="row justify-content-center">
@@ -407,8 +406,12 @@
 
                             <!-- Step 3 -->
                             <div class="step-form" id="step-3">
-                                <h1 class="text-center">Your Item is been uploaded successfully.</h1>
-                                <h5 class="text-center">Your Item will be LIVE upon approval from LXRY Shared admin</h5>
+                                <div class="success-img text-center">
+
+                                    <img src="{{asset("assets/images/icons/check.png")}}" alt="" class="img-fluid mb-3">
+                                </div>
+                                <h2 class="text-center">Your Item is been uploaded successfully.</h2>
+                                <h3 class="text-center">Your Item will be LIVE upon approval from LXRY Shared admin</h3>
                                 <div class="text-center">
                                     <a href="#" class="btn btn-primary" onclick="goToStep1()">Back to Home</a>
                                 </div>
