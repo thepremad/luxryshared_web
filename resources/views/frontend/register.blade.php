@@ -697,8 +697,8 @@
                     success: function(res) {
                         $('#pre-loader').hide();
                         // location.reload();
-                        
-                        // window.location.href = res;
+
+                        window.location.href = res;
                     },
                     error: function(res) {
                         $('#pre-loader').hide();

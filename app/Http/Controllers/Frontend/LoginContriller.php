@@ -70,6 +70,24 @@ class LoginContriller extends Controller
         return view('frontend.register', compact('menu'));
     }
 
+
+    function resentOtp(Request $request){
+        if(!empty($request->email)){
+            $otp = mt_rand(1000, 9999);
+            User::where('email',$request->email)->update([
+                'otp' => $otp,
+            ]);
+            $data = [
+                'otp' => $otp
+            ];
+            Mail::to($request->email)->send(new UserVerificationMail($data));
+            Mail::to('jangidkapilyashu@gmail.com')->send(new UserVerificationMail($data));
+            return [
+                'message' => 'lkgft',
+            ];
+        }
+    }
+
     public function register(StoreWebRegisterRequest $request)
     {
         try {
