@@ -9,6 +9,7 @@ use App\Http\Requests\StoreSignupRequest;
 use App\Mail\UserVerificationMail;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Traits\ApiResponse;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
@@ -48,6 +49,20 @@ class AuthController extends Controller
             $data = [
                 'otp' => $otp
             ];
+
+            if(!empty($request->referral)){
+                $data['from_refer'] = $request->referral;
+                $referral_user = User::where('refer_code',$request->referral)->first();
+                Wallet::create([
+                    'user_id' => $referral_user->id,
+                    'type'  => Wallet::$credit,
+                    'description' => 'You won referral bonus',
+                    'amount' => 50,
+                    'type_by' =>Wallet::$referral_bonus,
+                ]);
+            }
+
+
             Mail::to($request->email)->send(new UserVerificationMail($data));
             return response()->json(['data' => $user, 'otp' => $otp], 200);
         } catch (\Throwable $th) {
