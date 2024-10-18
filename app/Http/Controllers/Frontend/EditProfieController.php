@@ -11,6 +11,7 @@ use App\Models\Checkout;
 use App\Models\Item;
 use App\Models\Menu;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Models\Wishlist;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
@@ -43,8 +44,11 @@ class EditProfieController extends Controller
 
         // WishList
         $wishlist = Wishlist::with('products')->where('user_id', auth()->user()->id)->latest()->get();
+
+
+        $wallet_amount = Wallet::where('user_id',auth()->user()->id)->sum('amount');
         
-        return view('frontend.edit-profile', compact('menu', 'itemsCount', 'lendingData', 'rentingData', 'buyData', 'saleData', 'wishlist'));
+        return view('frontend.edit-profile', compact('menu', 'itemsCount', 'lendingData', 'rentingData', 'buyData', 'saleData', 'wishlist','wallet_amount'));
     }
     public function editWebProfile(StoreWebEditProfileRequest $request)
     {

@@ -202,8 +202,10 @@
 
                                             <div class="form-group">
                                                 <label for="referralCode">Referral Code</label>
-                                                <input type="text" name="referralCode" class="form-control"
+                                                <input type="text" name="referral" class="form-control"
                                                     id="referralCode" placeholder="Referral Code">
+                                                <span class="text-danger validation-class"
+                                                    id="referral-register_errors"></span>
                                             </div>
 
                                             <div class="form-group">
@@ -676,6 +678,7 @@
         $(document).ready(function() {
 
             $('#registerForm').on('submit', function(e) {
+                $('#pre-loader').show();
                 e.preventDefault(); // Prevent the default form submission
                 var $form = $('#registerForm');
                 var url = $form.attr('action');
@@ -692,10 +695,13 @@
                         $('.spinner-loader').css('display', 'block');
                     },
                     success: function(res) {
+                        $('#pre-loader').hide();
                         // location.reload();
-                        window.location.href = res;
+
+                        // window.location.href = res;
                     },
                     error: function(res) {
+                        $('#pre-loader').hide();
                         if (res.status == 400 || res.status == 422) {
                             if (res.responseJSON && res.responseJSON.errors) {
                                 var error = res.responseJSON.errors
@@ -714,6 +720,9 @@
         $(document).ready(function() {
 
             $('#loginForm').on('submit', function(e) {
+                
+                $('#pre-loader').show();
+
                 e.preventDefault(); // Prevent the default form submission
                 var $form = $('#loginForm');
                 var url = $form.attr('action');
@@ -729,6 +738,7 @@
                         $('.spinner-loader').css('display', 'block');
                     },
                     success: function(res) {
+                        $('#pre-loader').hide();
                         // location.reload();
                         window.location.href = res;
                     },
@@ -741,6 +751,7 @@
                                 });
                             }
                         }
+                        $('#pre-loader').hide();
                     }
                 });
             });

@@ -232,7 +232,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="multiple_image_file_input">Upload 4 More Item Images: <span>*</span>
+                                            <label for="multiple_image_file_input">Upload up to 4 Images: <span>*</span>
                                                 <div class="custom-file-upload mt-3" id="additional-images-container">
                                                     <div class="upload-button">
                                                         <img src="{{ asset('./assets/images/icons/cloud.png') }}" alt="">
@@ -279,14 +279,13 @@
                                     <div class="form-group">
                                         <label for="rrp-price">RRP PRICE</label>
                                         <input type="number" name="rrp_price" class="form-control" id="rrp-price"
-                                            onInput="rrpInput(this)">
-
+                                            onchange="rrpInput()">
                                             <span class="text-danger validation-class" id="rrp_price-submit_errors"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="day-price">Day Price</label>
                                         <input type="number" name="suggested_day_price" class="form-control"
-                                            id="day-price">
+                                            id="day-price" onchange="rrpInput()">
                                             <span class="text-danger validation-class" id="suggested_day_price-submit_errors"></span>
                                     </div>
                                 </div>
@@ -827,9 +826,16 @@
 
         }
 
-        function rrpInput(data) {
-            let price = data.value;
-            var dayprice = (price * 0.03).toFixed(2);
+        function rrpInput() {
+
+            
+            let price = $('#rrp-price').val();
+            let dayprice = $('#day-price').val();
+
+            if (!dayprice) {
+                dayprice = (price * 0.03).toFixed(2);
+            }
+
             var day7_29price = (dayprice * 0.65).toFixed(2);
             var day30price = (dayprice * 0.40).toFixed(2);
             var daypricecommision = (price * 0.03 * 0.80).toFixed(2);
@@ -903,7 +909,9 @@
                 $('.spinner-loader').css('display', 'block');
             },
             success: function(res) {
-                window.location.href = res;
+                showStep(3);
+                
+                // window.location.href = res;
                 // showStep(step + 1);
                 // $('#step_id').val(2);
 
