@@ -59,8 +59,7 @@ class ItemController extends Controller
                         $item_images->save();
                     }
                 }
-
-                session()->flash('success','Item added successfully');
+                // session()->flash('success','Item added successfully');
                 return route('home');
 
             }

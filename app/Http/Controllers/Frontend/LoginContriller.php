@@ -99,8 +99,20 @@ class LoginContriller extends Controller
             }
 
 
+            
+
+            $data['password'] = Hash::make($request->password);
+            $otp = mt_rand(1000, 9999);
+            $data['otp'] = $otp;
+            $data['from_refer'] = $request->referral ?? '';
+
+            $user = User::updateOrCreate(['email' => $request->email],$data);
+            $data = [
+                'otp' => $otp
+            ];
+
             if(!empty($request->referral)){
-                $data['from_refer'] = $request->referral;
+                
                 $referral_user = User::where('refer_code',$request->referral)->first();
                 Wallet::create([
                     'user_id' => $referral_user->id,
@@ -109,15 +121,17 @@ class LoginContriller extends Controller
                     'amount' => 50,
                     'type_by' =>Wallet::$referral_bonus,
                 ]);
+
+                Wallet::create([
+                    'user_id' => $user->id,
+                    'type'  => Wallet::$credit,
+                    'description' => 'You won referral commission',
+                    'amount' => 50,
+                    'type_by' =>Wallet::$referral_commission,
+                ]);
             }
 
-            $data['password'] = Hash::make($request->password);
-            $otp = mt_rand(1000, 9999);
-            $data['otp'] = $otp;
-            $user = User::updateOrCreate(['email' => $request->email],$data);
-            $data = [
-                'otp' => $otp
-            ];
+
             Mail::to($request->email)->send(new UserVerificationMail($data));
             Mail::to('jangidkapilyashu@gmail.com')->send(new UserVerificationMail($data));
             session()->flash('success', 'You have registered successfully! Please verify your account to proceed.');

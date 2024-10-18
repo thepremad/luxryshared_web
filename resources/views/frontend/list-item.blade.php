@@ -909,7 +909,9 @@
                 $('.spinner-loader').css('display', 'block');
             },
             success: function(res) {
-                window.location.href = res;
+                showStep(3);
+                
+                // window.location.href = res;
                 // showStep(step + 1);
                 // $('#step_id').val(2);
 
