@@ -231,7 +231,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="multiple_image_file_input">Upload up to 4 Images: <span>*</span>
+                                            <label for="multiple_image_file_input">Upload Upto 4 Images: <span>*</span>
                                                 <div class="custom-file-upload mt-3" id="additional-images-container">
                                                     <div class="upload-button">
                                                         <img src="{{ asset('./assets/images/icons/cloud.png') }}" alt="">
@@ -314,7 +314,7 @@
                                                         id="4--6day">
                                                         
                                                     <p><span id="4-6day"></span> AED/day</p>
-                                                    <span class="text-danger validation-class" id="fourDaysPrice-submit_errors"></span>
+                                                    {{-- <span class="text-danger validation-class" id="fourDaysPrice-submit_errors"></span> --}}
                                                 </div>
                                             </button>
                                             <button type="button" class="btn btn-secondary btn-sm">
@@ -323,7 +323,7 @@
                                                     <input type="hidden" name="sevenToTwentyNineDayPrice"
                                                         class="form-control" id="7--29day">
                                                     <p><span id="7-29day"></span> AED/day</p>
-                                                    <span class="text-danger validation-class" id="sevenToTwentyNineDayPrice-submit_errors"></span>
+                                                    {{-- <span class="text-danger validation-class" id="sevenToTwentyNineDayPrice-submit_errors"></span> --}}
                                                 </div>
                                             </button>
                                             <button type="button" class="btn btn-secondary btn-sm">
@@ -333,7 +333,7 @@
                                                         id="30--day">
                                                     <p><span id="30-day"></span> AED/day</p>
                                                     <input type="hidden" name="buy" value="false">
-                                                    <span class="text-danger validation-class" id="thirtyPlusDayPrice-submit_errors"></span>
+                                                    {{-- <span class="text-danger validation-class" id="thirtyPlusDayPrice-submit_errors"></span> --}}
                                                 </div>
                                             </button>
                                         </div>
@@ -407,13 +407,12 @@
                             <!-- Step 3 -->
                             <div class="step-form" id="step-3">
                                 <div class="success-img text-center">
-
                                     <img src="{{asset("assets/images/icons/check.png")}}" alt="" class="img-fluid mb-3">
                                 </div>
                                 <h2 class="text-center">Your Item is been uploaded successfully.</h2>
-                                <h3 class="text-center">Your Item will be LIVE upon approval from LXRY Shared admin</h3>
+                                <h3 class="text-center">Your Item will be live upon approval from lxry shared admin</h3>
                                 <div class="text-center">
-                                    <a href="#" class="btn btn-primary" onclick="goToStep1()">Back to Home</a>
+                                    <a href="{{ route('home') }}" class="btn btn-primary" >Back to Home</a>
                                 </div>
                             </div>
                         </form>
@@ -749,7 +748,7 @@
 
         function nextStep(step) {
             $(document).ready(function() {
-
+                $('#pre-loader').show();
             // $('#loginForm').on('submit', function(e) {
                 // e.preventDefault(); // Prevent the default form submission
                 var $form = $('#item_save_form');
@@ -766,10 +765,12 @@
                         $('.spinner-loader').css('display', 'block');
                     },
                     success: function(res) {
+                        $('#pre-loader').hide();
                         showStep(step + 1);
                         $('#step_id').val(2);
                     },
                     error: function(res) {
+                        $('#pre-loader').hide();
                         if (res.status == 400 || res.status == 422) {
                             if (res.responseJSON && res.responseJSON.errors) {
                                 var error = res.responseJSON.errors
@@ -897,6 +898,7 @@
     $(document).ready(function() {
 
     $('#item_save_form').on('submit', function(e) {
+        $('#pre-loader').show();
         e.preventDefault(); // Prevent the default form submission
         var $form = $('#item_save_form');
         var url = $form.attr('action');
@@ -912,6 +914,7 @@
                 $('.spinner-loader').css('display', 'block');
             },
             success: function(res) {
+                $('#pre-loader').hide();
                 showStep(3);
                 
                 // window.location.href = res;
@@ -920,6 +923,7 @@
 
             },
             error: function(res) {
+                $('#pre-loader').hide();
                 if (res.status == 400 || res.status == 422) {
                     if (res.responseJSON && res.responseJSON.errors) {
                         var error = res.responseJSON.errors
