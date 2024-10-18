@@ -1,0 +1,1370 @@
+/* ---------------------------
+ Start Login and Register Page 
+---------------------------*/
+
+.register .header-wrap .container-fluid .row {
+  align-items: flex-start;
+  padding: 20px 0;
+  justify-content: flex-start;
+}
+
+.register .loginRegister-section {
+  width: 1051px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 30px 0 100px;
+}
+
+.register .loginRegister-section .row:last-child {
+  margin-top: -100px;
+}
+
+.register .loginRegister-section .row .register-banner-img img {
+  object-fit: cover;
+}
+
+.register .loginRegister-section .row.formRow {
+  padding: 50px 50px 200px;
+  background: #f9f9f9;
+  border-radius: 70px 70px 0 0;
+  position: relative;
+  z-index: 19999;
+}
+
+.register .loginRegister-section #myTab {
+  gap: 50px;
+  border-bottom: unset;
+}
+
+.register .loginRegister-section #myTab li.nav-item .nav-link {
+  color: #586166;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24.36px;
+  background-color: transparent;
+  border: unset;
+  padding: unset;
+  padding-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.register .loginRegister-section #myTab li.nav-item .nav-link.active {
+  font-weight: 700;
+}
+
+.register .loginRegister-section #myTab li.nav-item .nav-link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 46px;
+  background-color: black;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.register .loginRegister-section #myTab li.nav-item .nav-link:focus {
+  outline: unset;
+}
+
+.register .loginRegister-section #myTab li.nav-item .nav-link.active::before {
+  transform: translateX(0);
+}
+
+.register .loginRegister-section #myTabContent.tab-content .tab-pane {
+  padding: 40px 0;
+}
+
+.register .loginRegister-section #myTabContent.tab-content .form-group {
+  margin-bottom: 20px;
+}
+
+.register .loginRegister-section #myTabContent.tab-content .form-group label {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.49px;
+  margin-bottom: 20px;
+}
+
+.register .loginRegister-section #myTabContent.tab-content .form-group label span{
+  color: #FF0000;
+}
+
+.register .loginRegister-section #myTabContent.tab-content .form-group .input-group {
+  position: relative;
+}
+
+.register .loginRegister-section #myTabContent.tab-content .form-group .input-group .input-group-append i {
+  position: absolute;
+  top: 28%;
+  right: 20px;
+  font-size: 23px;
+  z-index: 19999;
+}
+
+.register .loginRegister-section #myTabContent.tab-content a.d-block {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.49px;
+}
+
+.register .loginRegister-section #myTabContent.tab-content .loginButton {
+  margin-top: 100px;
+}
+
+.register .loginRegister-section #myTabContent.tab-content .loginButton button {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.register .loginRegister-section #myTabContent.tab-content .loginButton .sign-btn {
+  height: 44px;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.49px;
+  border-radius: 8px;
+}
+
+.register .loginRegister-section #myTabContent.tab-content .loginButton .sign-google {
+  height: 44px;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.49px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  color: #000000;
+}
+
+.register .loginRegister-section #myTabContent.tab-content .form-group input {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.49px;
+  color: #A1A3B0;
+  padding: 10px 20px;
+  min-height: 47px;
+  border-radius: 10px;
+  border: unset;
+}
+
+.form-section {
+  display: block;
+}
+
+.form-section.active {
+  display: block;
+}
+
+.register-section {
+  transition: transform 0.5s ease-in-out;
+}
+
+.register-section.hidden {
+  transform: translateY(-80%);
+}
+
+.img-preview {
+  width: 97px;
+  height: 97px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.btn-google {
+  background-color: #4285F4;
+  color: white;
+}
+
+.register .loginRegister-section .register-section h3 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24.36px;
+  color: #000000;
+  margin-bottom: 50px;
+}
+
+.register .loginRegister-section .register-section .registerForm label {
+  font-family: 'poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #00000080;
+}
+
+.register .loginRegister-section .register-section .registerForm input {
+  font-family: 'poppins', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 21px !important;
+  color: #8D9396 !important;
+  padding: 10px 20px !important;
+  min-height: 47px !important;
+  border-radius: 8px !important;
+  border: unset !important;
+  background: #E6E6E6 !important;
+}
+
+.register .loginRegister-section .register-section .registerForm #idDeciade {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #ff0000;
+  position: absolute;
+  width: 100%;
+  padding-left: 10px;
+}
+
+.register .loginRegister-section .register-section .registerForm .img-preview {
+  width: 97px;
+  height: 97px;
+  border-radius: 50%;
+  background-color: #7474744D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.register .loginRegister-section .register-section .registerForm #idVerification {
+  display: none;
+}
+
+.register .loginRegister-section .register-section .registerForm .custom-file-upload {
+  display: inline-block;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  border: 1px solid #007bff;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.register .loginRegister-section .register-section .registerForm .custom-file-upload:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.register .loginRegister-section .register-section .registerForm .custom-file-upload::after {
+  content: 'Upload Document';
+  display: block;
+}
+
+.register .loginRegister-section .register-section .registerForm .form-check {
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+
+.register .loginRegister-section .register-section .registerForm input[type=checkbox] {
+  height: 21px;
+  width: 21px;
+  min-height: unset !important;
+}
+
+
+.register .loginRegister-section .register-section .registerForm .form-check-label {
+  padding-left: 15px;
+}
+
+.register .loginRegister-section .register-section .registerForm .registerForm-btnSection {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.register .loginRegister-section .register-section .registerForm .registerForm-btnSection .btn-register {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  width: 60%;
+  height: 44px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.register .loginRegister-section .register-section .registerForm .registerForm-btnSection p {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #040404;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register .loginRegister-section .register-section .registerForm .registerForm-btnSection .btn-google {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  width: 45%;
+  height: 44px;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #FF1111;
+  border: 1px solid #000000;
+}
+
+
+@media (max-width: 1360px) and (min-width: 1024px) {
+  .register .header-wrap .container-fluid .row {
+    padding: 15px 0;
+  }
+
+  .register .loginRegister-section {
+    width: 90%;
+  }
+
+  .register .loginRegister-section .row:last-child {
+    margin-top: -120px;
+    width: 96%;
+  }
+
+  .register .loginRegister-section .row.formRow {
+    padding: 40px 40px 150px;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link {
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link.active {
+    font-weight: 700;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link::before {
+    height: 3px;
+    width: 40px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group label {
+    font-size: 17px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group .input-group .input-group-append i {
+    font-size: 20px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content a.d-block {
+    font-size: 15px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton button {
+    width: 85%;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-btn,
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-google {
+    height: 40px;
+    font-size: 15px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group input {
+    font-size: 15px;
+  }
+
+  .register .loginRegister-section .register-section h3 {
+    font-size: 18px;
+  }
+  .register .loginRegister-section #myTabContent.tab-content .loginButton {
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 992px) {
+  .register .header-wrap .container-fluid .row {
+    padding: 10px 0;
+  }
+
+  .register .loginRegister-section {
+    width: 85%;
+  }
+
+  .register .loginRegister-section .row:last-child {
+    margin-top: -110px;
+  }
+
+  .register .loginRegister-section .row.formRow {
+    padding: 50px 30px 50px;
+    width: 97%;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link {
+    font-size: 17px;
+    padding-bottom: 15px;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link.active {
+    font-weight: 700;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link::before {
+    height: 3px;
+    width: 35px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group label {
+    font-size: 16px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group .input-group .input-group-append i {
+    font-size: 18px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content a.d-block {
+    font-size: 14px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton button {
+    width: 90%;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-btn,
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-google {
+    height: 42px;
+    font-size: 14px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group input {
+    font-size: 14px;
+  }
+
+  .register .loginRegister-section .register-section h3 {
+    font-size: 16px;
+  }
+  .register .loginRegister-section #myTabContent.tab-content .loginButton {
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .register .header-wrap .container-fluid .row {
+    padding: 5px 0;
+  }
+
+  .register .loginRegister-section {
+    width: 80%;
+  }
+
+  .register .loginRegister-section .row:last-child {
+    margin-top: -90px;
+  }
+
+  .register .loginRegister-section .row.formRow {
+    padding: 10% 4% 70px;
+  }
+
+  .register .loginRegister-section .row.formRow .register-tabSection{
+    flex: 0 0 80%;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link {
+    font-size: 16px;
+    padding-bottom: 15px;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link.active {
+    font-weight: 700;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link::before {
+    height: 3px;
+    width: 30px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group label {
+    font-size: 15px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group .input-group .input-group-append i {
+    font-size: 16px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content a.d-block {
+    font-size: 15px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton button {
+    width: 95%;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-btn,
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-google {
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group input {
+    font-size: 13px;
+  }
+
+  .register .loginRegister-section .register-section h3 {
+    font-size: 14px;
+  }
+  .register .loginRegister-section #myTabContent.tab-content .loginButton {
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 576px) {
+  .register .header-wrap .container-fluid .row {
+    padding: 10px 0;
+  }
+
+  .register .loginRegister-section #myTab{
+    gap: 20px;
+  }
+
+  .register .loginRegister-section {
+    width: 90%;
+  }
+
+  .register .loginRegister-section .row:last-child {
+    margin-top: -100px;
+  }
+
+  .register .loginRegister-section .row.formRow {
+      padding: 10% 5% 70px;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link {
+    font-size: 17px;
+    padding-bottom: 15px;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link.active {
+    font-weight: 700;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link::before {
+    height: 2px;
+    width: 25px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group label {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .register .loginRegister-section .row.formRow .register-tabSection{
+    flex: 0 0 80%;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group .input-group .input-group-append i {
+    font-size: 14px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content a.d-block {
+    font-size: 12px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton button {
+    width: 100%;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-btn,
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-google {
+    height: 44px;
+    font-size: 12px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group input {
+    font-size: 14px;
+  }
+
+  .register .loginRegister-section .register-section h3 {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  .register .loginRegister-section #myTabContent.tab-content .loginButton {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 575px) {
+  .register .header-wrap .container-fluid .row {
+    padding: 10px 0;
+  }
+
+  .register .loginRegister-section #myTab{
+    gap: 20px;
+  }
+
+  .register .loginRegister-section {
+    width: 90%;
+  }
+
+  .register .loginRegister-section .row:last-child {
+    margin-top: -100px;
+  }
+
+  .register .loginRegister-section .row.formRow {
+    padding: 50px 20px 80px;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link {
+    font-size: 17px;
+    padding-bottom: 15px;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link.active {
+    font-weight: 700;
+  }
+
+  .register .loginRegister-section #myTab li.nav-item .nav-link::before {
+    height: 2px;
+    width: 25px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group label {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .register .loginRegister-section .row.formRow .register-tabSection{
+    flex: 0 0 80%;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group .input-group .input-group-append i {
+    font-size: 14px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content a.d-block {
+    font-size: 12px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton button {
+    width: 100%;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-btn,
+  .register .loginRegister-section #myTabContent.tab-content .loginButton .sign-google {
+    height: 44px;
+    font-size: 12px;
+  }
+
+  .register .loginRegister-section #myTabContent.tab-content .form-group input {
+    font-size: 14px;
+  }
+
+  .register .loginRegister-section .register-section h3 {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  .register .loginRegister-section #myTabContent.tab-content .loginButton {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 481px) {
+  .register .loginRegister-section .row.formRow .register-tabSection {
+      flex: 0 0 90%;
+      max-width: 90%;
+      margin: 0 auto;
+  }
+}
+
+/* ---------------------------
+   End Login and Register Page 
+  ---------------------------*/
+
+
+
+/* --------------------------
+    Start OTP Section Page
+-------------------------------- */
+
+/* Default styles for large screens */
+.submitOtp #page-content .row {
+  padding: 150px 0;
+}
+
+.submitOtp #page-content .row .col-lg-8 {
+  flex: 0 0 67.666667%;
+  max-width: 67.666667%;
+}
+
+.submitOtp #page-content .row .col-lg-10 {
+  flex: 0 0 75.43%;
+  max-width: 75.43%;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer {
+  background-color: #F9F9F980;
+  padding: 61.5px 0;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer h2 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 68px;
+  text-transform: capitalize;
+  color: #06152B;
+  margin-bottom: 45px;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  line-height: 36px;
+  font-weight: 500;
+  color: #343D42;
+  margin-bottom: 20px;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer h5 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #843E71;
+  margin-bottom: 10px;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer p {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #586166;
+  max-width: 85.7%;
+  margin: 0 auto;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer .otp-input {
+  width: 66px;
+  height: 63px;
+  text-align: center;
+  margin: 0 5px;
+  font-size: 1.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 0.5rem;
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: 10px;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer .otp-input::-webkit-inner-spin-button,
+.submitOtp #page-content .row .sectionOtp-outer .otp-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer .otp-form {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  gap: 20px;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer .otp-form input {
+  border: 1px solid #000000;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer button.btn {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  text-align: center;
+  text-transform: capitalize;
+  color: #ffffff;
+  width: 14%;
+  height: 58px;
+  border-radius: 6px;
+  border: none;
+  background-color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer button.verifyBtn {
+  width: 198px;
+}
+
+.submitOtp #page-content .row .sectionOtp-outer button.btn:hover {
+  background-color: #000000d8;
+}
+
+/* Media Queries */
+
+@media (max-width: 1360px) {
+  .submitOtp #page-content .row .col-lg-8 {
+    flex: 0 0 70%;
+    max-width: 70%;
+  }
+
+  .submitOtp #page-content .row .col-lg-10 {
+    flex: 0 0 80%;
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .submitOtp #page-content .row .col-lg-8 {
+    flex: 0 0 80%;
+    max-width: 80%;
+  }
+
+  .submitOtp #page-content .row .col-lg-10 {
+    flex: 0 0 85%;
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 992px) {
+  .submitOtp #page-content .row .col-lg-8 {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+
+  .submitOtp #page-content .row .col-lg-10 {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer h2 {
+    font-size: 20px;
+    line-height: 50px;
+    margin-bottom: 30px;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer h5 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .submitOtp #page-content .row {
+    padding: 100px 0;
+  }
+
+  .submitOtp #page-content .row .col-lg-8,
+  .submitOtp #page-content .row .col-lg-10 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer {
+    padding: 30px 0;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer .otp-form {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer .otp-input {
+    width: 50px;
+    height: 50px;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer button.btn {
+    width: 50%;
+    height: 50px;
+  }
+}
+
+@media (max-width: 576px) {
+  .submitOtp #page-content .row {
+    padding: 80px 0;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer .otp-input {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer button.btn {
+    width: 60%;
+    height: 45px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 481px) {
+  .submitOtp #page-content .row {
+    padding: 60px 0;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer .otp-input {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer button.btn {
+    width: 70%;
+    height: 40px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .submitOtp #page-content .row {
+    padding: 40px 0;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer .otp-input {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+
+  .submitOtp #page-content .row .sectionOtp-outer button.btn {
+    width: 80%;
+    height: 35px;
+    font-size: 10px;
+  }
+}
+
+/* --------------------------
+    End OTP Section Page
+-------------------------------- */
+
+
+/* --------------------------
+   Start Forgot Password CSS
+   ------------------------- */
+
+.register .loginRegister-section .formRow.update {
+  margin-top: -380px;
+}
+
+.register-tabSection .step {
+  display: none;
+}
+
+.register-tabSection .step.active {
+  display: block;
+}
+
+.register-tabSection .input-group .form-control {
+  text-align: center;
+}
+
+.register-tabSection .verification-input {
+  width: 60px;
+  margin: 0 5px;
+  text-align: center;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.register-tabSection .verification-input:hover {
+  background-color: #f0f0f0;
+  border-color: #000000;
+}
+
+.register-tabSection .form-control[readonly] {
+  background-color: #e9ecef;
+}
+
+.register-tabSection .password-visibility-toggle {
+  cursor: pointer;
+  transition: color 0.3s;
+  position: absolute;
+  top: 54px;
+  right: 30px;
+}
+
+.register-tabSection .password-visibility-toggle:hover {
+  color: #007bff;
+}
+
+.register-tabSection .password-visibility-toggle i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.register-tabSection .password-wrapper {
+  position: relative;
+}
+
+.register-tabSection .card {
+  background: transparent;
+  border: unset;
+}
+
+.register-tabSection .card #multiStepForm h3 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 20px;
+  line-height: 24.36px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: capitalize;
+  color: #000000;
+  margin-bottom: 50px;
+  transition: color 0.3s;
+}
+
+.register-tabSection .card #multiStepForm label {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  line-height: 19.49px;
+  font-weight: 600;
+  text-transform: math-auto;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.register-tabSection .card #multiStepForm input {
+  padding: 10px 40px;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  line-height: 17.05px;
+  font-weight: 400;
+  text-transform: lowercase;
+  color: #A1A3B0;
+  height: 47px;
+  background: #ffffff;
+  margin-bottom: 50px;
+}
+
+.register-tabSection .card #multiStepForm button.btn {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 12px;
+  line-height: 14.82px;
+  font-weight: 700;
+  width: 60%;
+  background: #000000;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.register-tabSection .card #multiStepForm button.btn:hover {
+  background: #333333;
+}
+
+.register .loginRegister-section .row.formRow.update {
+  padding-bottom: 100px;
+}
+
+.register-tabSection .card #multiStepForm h4 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  line-height: 19.49px;
+  font-weight: 700;
+  color: #303535;
+  margin-bottom: 30px;
+  transition: color 0.3s;
+  text-align: center;
+}
+
+.register-tabSection .card #multiStepForm #step2 div.d-flex {
+  gap: 25px;
+  justify-content: center;
+}
+
+.register-tabSection .card #multiStepForm input.verification-input {
+  width: 55px;
+  padding: 10px;
+  height: 55px;
+  border: unset;
+  color: #000000;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  line-height: 17.05px;
+  font-weight: 400;
+}
+
+.register-tabSection .card #multiStepForm #step3 {
+  text-align: left;
+}
+
+.register-tabSection .card #multiStepForm #step3 .password-wrapper {
+  position: relative;
+}
+
+.register-tabSection .card #multiStepForm #step3 .password-wrapper .password-visibility-toggle {
+  position: absolute;
+  top: 54px;
+  right: 25px;
+}
+
+.register-tabSection .card #multiStepForm .step .saveBtn {
+  text-align: center;
+}
+
+.register-tabSection .card #multiStepForm #step4 h2 {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 38px;
+  line-height: 43.85px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 60px;
+  text-align: left;
+  transition: color 0.3s;
+  text-transform: capitalize;
+  letter-spacing: -2px;
+}
+
+/* Media Queries */
+@media (max-width: 1360px) and (min-width: 1024px) {
+  .register-tabSection .card #multiStepForm {
+    font-size: 14px;
+  }
+
+  .register-tabSection .card #multiStepForm h3 {
+    font-size: 18px;
+  }
+
+  .register-tabSection .card #multiStepForm input,
+  .register-tabSection .card #multiStepForm button.btn {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 992px) {
+  .register-tabSection .card #multiStepForm {
+    font-size: 13px;
+  }
+
+  .register-tabSection .card #multiStepForm h3 {
+    font-size: 17px;
+  }
+
+  .register-tabSection .card #multiStepForm input,
+  .register-tabSection .card #multiStepForm button.btn {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .register-tabSection .card #multiStepForm {
+    font-size: 12px;
+  }
+
+  .register-tabSection .card #multiStepForm h3 {
+    font-size: 16px;
+  }
+
+  .register-tabSection .card #multiStepForm input,
+  .register-tabSection .card #multiStepForm button.btn {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 576px) {
+  .register-tabSection .card #multiStepForm {
+    font-size: 11px;
+  }
+
+  .register-tabSection .card #multiStepForm h3 {
+    font-size: 15px;
+  }
+
+  .register-tabSection .card #multiStepForm input,
+  .register-tabSection .card #multiStepForm button.btn {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 575px) and (min-width: 481px) {
+  .register-tabSection .card #multiStepForm {
+    font-size: 10px;
+  }
+
+  .register-tabSection .card #multiStepForm h3 {
+    font-size: 14px;
+  }
+
+  .register-tabSection .card #multiStepForm input,
+  .register-tabSection .card #multiStepForm button.btn {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-tabSection .card #multiStepForm {
+    font-size: 9px;
+  }
+
+  .register-tabSection .card #multiStepForm h3 {
+    font-size: 13px;
+  }
+
+  .register-tabSection .card #multiStepForm input,
+  .register-tabSection .card #multiStepForm button.btn {
+    font-size: 7px;
+  }
+
+  .register-tabSection .card #multiStepForm input {
+    padding: 10px 20px;
+  }
+
+  .register-tabSection .card #multiStepForm button.btn {
+    width: 80%;
+  }
+
+  .register-tabSection .card #multiStepForm #step3 .password-wrapper .password-visibility-toggle {
+    top: 50px;
+  }
+}
+
+/* --------------------------
+   End Forgot Password CSS
+   ------------------------- */
+
+/* --------------------------
+   Start Product Listing CSS  
+-----------------------------*/
+  .product-list .listItem-section .col-lg-9{
+    flex: 0 0 78%;
+    max-width: 78%;
+  }
+
+  .step-form {
+    display: none;
+  }
+  
+  .step-form.active {
+    display: block;
+  }
+  
+  .image-upload {
+    width: 114px;
+    height: 107px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    display: inline-block;
+    text-align: center;
+    line-height: 107px;
+    position: relative;
+    background-color: #7474744D;
+  }
+  
+  .image-upload img {
+    max-width: 84px;
+    max-height: 84px;
+    border-radius: 50%;
+  }
+  
+  .image-upload .upload-icon {
+    font-size: 24px;
+    color: #fff;
+  }
+  
+  .btn-disabled {
+    background-color: #7474744D;
+    border: none;
+    color: #fff;
+  }
+  
+  .price-plans,
+  .earnings-plans {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .price-plans div,
+  .earnings-plans div {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .check-box-label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .check-box-label input {
+    margin-right: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+  }
+  
+  .button-container button {
+    margin: 5px;
+  }
+  
+  .info-icon {
+    cursor: pointer;
+    margin-left: 5px;
+    color: #007bff;
+  }
+  
+  .info-tooltip {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    z-index: 10;
+  }
+  
+  .info-icon:hover + .info-tooltip {
+    display: block;
+  }
+  
+  .row-half-width {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -10px; 
+  }
+  
+  .row-half-width .form-group {
+    flex: 1 1 50%;
+    max-width: 35%;
+    box-sizing: border-box;
+  }
+  
+  .row-half-width .form-group:last-child {
+    margin-right: 0;
+  }
+  
+  #additional-deposit {
+    display: none;
+  }
+
+  .form-group.row.row-half-width{
+    justify-content: flex-start;
+    gap: 0 12%;
+  }
+
+  #additional.row-half-width{
+    justify-content: flex-start;
+  }
+

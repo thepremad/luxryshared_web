@@ -1,24 +1,24 @@
 
-        <!--Top Header-->
-        <style>
-    .popup {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
+<!--Top Header-->
+<style>
+.popup {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.4); 
 }
 
 .popup-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%; 
 }
 
 .close {
@@ -35,24 +35,13 @@
     cursor: pointer;
 }
 
-.mobile-nav-wrapper {
-        position: fixed; /* Ensures it overlays the content */
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: white; /* Adjust background as needed */
-        visibility: hidden; /* Initially hidden */
-        opacity: 0; /* Fully transparent */
-        transform: translateX(-100%); /* Offscreen */
-        transition: visibility 0s, opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
-    }
 
-    .mobile-nav-wrapper.active {
-        visibility: visible; /* Make visible */
-        opacity: 1; /* Fully opaque */
-        transform: translateX(0); /* Bring into view */
-    }
+
+/* .mobile-nav-wrapper.active {
+    visibility: visible; 
+    opacity: 1; 
+    transform: translateX(0); 
+} */
 
 
 </style>
