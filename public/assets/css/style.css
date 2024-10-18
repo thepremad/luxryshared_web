@@ -8503,7 +8503,7 @@ footer#footer .row.copyrigt-row p a {
   position: absolute;
   top: 150px;
   left: 730px;
-  z-index: 1999;
+  z-index: 199;
 }
 
 #banner-text.banner-details p {
@@ -8559,7 +8559,7 @@ footer#footer .row.copyrigt-row p a {
   }
 
   .header-search input {
-    width: 9%;
+    width: 100%;
     position: relative;
     opacity: 0;
   }
@@ -8610,12 +8610,6 @@ footer#footer .row.copyrigt-row p a {
 
   .banner-content img {
     height: 500px;
-  }
-
-  #banner-text.banner-details p {
-    font-size: 28px;
-    line-height: 35.98px;
-    max-width: 95%;
   }
 
   .banner-buttons-row .banner-button button {
@@ -8820,14 +8814,8 @@ footer#footer .row.copyrigt-row p a {
   }
 
   #banner-text.banner-details {
-    top: 60px;
-    left: 56%;
-  }
-
-  #banner-text.banner-details p {
-    font-size: 21px;
-    line-height: 29.98px;
-    max-width: 89%;
+    top: 92px;
+    left: 67%;
   }
 
   .banner-buttons-row .banner-button button {
@@ -8972,17 +8960,17 @@ footer#footer .row.copyrigt-row p a {
   }
 }
 
+@media only screen and (max-device-width: 680px) {
+  .banner-buttons-row .banner-button button{
+    padding: 25px 0;
+  }
+}
+
 @media only screen and (max-device-width: 576px) {
   .top-header.home8-jewellery-top .col-2.col-sm-4 {
     width: 100%;
     max-width: 100%;
     flex: 0 0 100%;
-  }
-
-  .banner-buttons-row .banner-button button {
-    font-size: 16px;
-    line-height: 25px;
-    padding: 15px;
   }
 
   .banner-buttons-row {
@@ -9159,6 +9147,13 @@ footer#footer .row.copyrigt-row p a {
   }
 }
 
+@media only screen and (max-device-width: 540px) {
+  .banner-buttons-row .banner-button button{
+    padding: 20px 0;
+    font-size: 17px;
+  }
+}
+
 @media only screen and (max-device-width: 481px) {
   .header-search::before {
     left: -7px;
@@ -9187,15 +9182,6 @@ footer#footer .row.copyrigt-row p a {
     padding: 12px 7px;
   }
 
-  #banner-text.banner-details {
-    top: 20px;
-  }
-
-  #banner-text.banner-details p {
-    line-height: 27px;
-    font-size: 18px;
-  }
-
   .section.community .col-md-6 h3 {
     font-size: 18px;
   }
@@ -9218,14 +9204,21 @@ footer#footer .row.copyrigt-row p a {
   .section.lxry-shared {
     margin-bottom: 140px;
   }
+
+  .banner-buttons-row .banner-button button{
+    padding: 17px 0;
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-device-width: 420px) {
+  .banner-buttons-row .banner-button button{
+    padding: 15px 0;
+    font-size: 13px;
+  }
 }
 
 @media only screen and (max-device-width: 400px) {
-  #banner-text.banner-details p {
-    line-height: 22px;
-    font-size: 16px;
-  }
-
   .banner-buttons-row .banner-button button {
     font-size: 14px;
     line-height: 20px;
@@ -11377,7 +11370,7 @@ Start CSS All Products Page
   }
     
   .allProducts .switch .slider:before {
-    top: 1px; 
+    top: 1px !important; 
   }
   
   .allProducts .slider {
@@ -11644,7 +11637,7 @@ Start CSS All Products Page
   }
     
   .allProducts .switch .slider:before {
-    top: 1px; 
+    top: 1px !important; 
   }
   
   .allProducts .slider {
@@ -11910,7 +11903,7 @@ Start CSS All Products Page
   }
     
   .allProducts .switch .slider:before {
-    top: 1px; 
+    top: 1px !important; 
   }
   
   .allProducts .slider {
@@ -12173,7 +12166,7 @@ Start CSS All Products Page
   }
     
   .allProducts .switch .slider:before {
-    top: 1px; 
+    top: 1px !important; 
   }
   
   .allProducts .slider {
@@ -12454,173 +12447,16 @@ Start CSS All Products Page
   justify-content: center !important;
 }
 
-@media screen and (max-width: 1466px) {
-  .listItem-section .row .step-form h4::before{
-    width: 110px !important;
-    left: 110px !important;
-  }
-  .listItem-section .row .step-form h4::after{
-    width: 110px !important;
-    right: 110px !important;
-  }
-}
 
-@media screen and (max-width: 1200px) {
-  .listItem-section .row .step-form h4::before{
-    width: 90px !important;
-    left: 90px !important;
-  }
-  .listItem-section .row .step-form h4::after{
-    width: 90px !important;
-    right: 90px !important;
-  }
-  .listItem-section .row .step-form label{
-    font-size: 16px !important;
-  }
-  .listItem-section .row .step-form input, .listItem-section .row .step-form select{
-    font-size: 15px !important;
-    height: 45px !important;
-  }
-}
 
-@media screen and (max-width: 1024px) {
-  .listItem-section .row.justify-content-center {
-      padding: 100px 0 100px !important;
-  }
-  .listItem-section .row .col-lg-9.col-md-9{
-      padding: 50px 20px 100px !important;
-      margin: 0 auto !important;
-  }
-  .listItem-section .row .step-form h2{
-      font-size: 30px !important;
-  }
 
-  .listItem-section .row .step-form h4::before{
-      width: 90px !important;
-      left: 80px !important;
-  }
 
-  .listItem-section .row .step-form h4::after{
-      width: 90px !important;
-      right: 80px !important;
-  }
 
-  .listItem-section .step-form .form-group.row{
-      flex-direction: row !important;
-  }
-  .listItem-section .row .step-form label{
-    font-size: 16px !important;
-  }
-  .listItem-section .row .step-form input, .listItem-section .row .step-form select{
-    font-size: 15px !important;
-    height: 45px !important;
-  }
-}
 
-@media screen and (max-width: 768px) {
-  .product-list .listItem-section .col-lg-9 {
-      flex: 0 0 100% !important;
-      max-width: 100% !important;
-  }
-  
-  .listItem-section .row .step-form .form-group.row{
-      flex-direction: row !important;
-  }
 
-  /* .listItem-section .row .step-form h4::before{
-      display: none;
-  }
 
-  .listItem-section .row .step-form h4::after{
-      display: none;
-  } */
 
-  .section-header{
-      padding-left: 0 !important;
-  }
-}
 
-@media screen and (max-width: 700px) {
-  .listItem-section .row .step-form h4::before{
-      width: 70px !important;
-      left: 80px !important;
-  }
-  .listItem-section .row .step-form h4::after{
-    width: 70px !important;
-    right: 80px !important;
-  }
-}
-
-@media screen and (max-width: 630px) {
-  .listItem-section .row .step-form h4::before{
-      width: 60px !important;
-      left: 60px !important;
-  }
-  .listItem-section .row .step-form h4::after{
-    width: 60px !important;
-    right: 60px !important;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .listItem-section .row .step-form h2 {
-      font-size: 22px !important;
-  }
-  .listItem-section .row .step-form h4{
-      font-size: 17px !important;
-  }
-  .listItem-section .row .step-form label{
-      font-size: 16px !important;
-  }
-  .listItem-section .row .step-form input, .listItem-section .row .step-form select{
-      font-size: 14px !important;
-      height: 45px !important;
-  }
-  .listItem-section .row .step-form textarea{
-      font-size: 14px !important;
-  }
-  .lxry-shared-contant a {
-      font-size: 14px;
-      padding: 8.9px 12px;
-  }
-  .banner-buttons-row .banner-button button{
-      font-size: 13px !important;
-      padding: 10px !important;
-  }
-}
-
-@media screen and (max-width: 521px) {
-  .listItem-section .row .step-form h4::before{
-      width: 60px !important;
-      left: 40px !important;
-  }
-  .listItem-section .row .step-form h4::after{
-    width: 60px !important;
-    right: 40px !important;
-  }
-}
-
-@media screen and (max-width: 481px) {
-  .listItem-section .row .step-form h4::before{
-      width: 40px !important;
-      left: 40px !important;
-  }
-  .listItem-section .row .step-form h4::after{
-    width: 40px !important;
-    right: 40px !important;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .listItem-section .row .step-form h4::before{
-      width: 40px !important;
-      left: 0 !important;
-  }
-  .listItem-section .row .step-form h4::after{
-    width: 40px !important;
-    right: 0 !important;
-  }
-}
 
 .product-single img#mainImage {
   width: 100%;
@@ -12903,10 +12739,6 @@ Start CSS All Products Page
 }
 
 @media only screen and (max-device-width: 768px) {   
-  .header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div{
-      width: 9% !important;
-  } 
-
   .table.spaced-table{
       width: 100% !important;
       min-width: 700px !important;
@@ -12945,22 +12777,6 @@ Start CSS All Products Page
   }
 }
 
-/* @media only screen and (max-device-width: 576px) {   
-  .header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div{
-      width: 12% !important;
-  }
-  .shopping-cart .spaced-table tbody tr td div.d-flex{
-      gap: unset !important;
-      justify-content: space-between !important;
-  }
-  .shopping-cart .spaced-table tr#cartHeading-row th {
-      font-size: 10px;
-  }
-  .shopping-cart .spaced-table th#cartHeading-1 {
-      padding-left: 20px !important;
-  }
-} */
-
 .container-fluid.shopping-cart {
   overflow-x: auto;
 }
@@ -12998,7 +12814,6 @@ Start CSS All Products Page
   }
 }
 
-
 .plan-outer {
   padding: 10px;
   border: 1px solid #ccc;
@@ -13028,14 +12843,6 @@ Start CSS All Products Page
   p.top-header_middle-text{
       text-wrap: nowrap !important;
       font-size: 11px;
-  }
-  .listItem-section .row .step-form h4::before{
-      width: 120px;
-      left: 60px;
-  }
-  .listItem-section .row .step-form h4::after{
-      width: 120px;
-      right: 60px;
   }
 }
 
@@ -13068,10 +12875,7 @@ Start CSS All Products Page
       padding-left: 8px !important;
       text-transform: capitalize;
   }
-  .header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div {
-      width: 50% !important;
-      text-align: end;
-  }
+
   .header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2){
       gap: 13px !important;
   }
@@ -13090,7 +12894,7 @@ Start CSS All Products Page
       width: 100% !important;
       max-width: 100% !important ;
       flex: 0 0 100% !important;
-      display: block !important;
+      display: block !important ;
   }
   .top-header.home8-jewellery-top .col-2.col-sm-4 {
       /* width: 20% !important;
@@ -13784,7 +13588,7 @@ Start CSS All Products Page
     right: 50px !important;
     flex: auto !important;
     padding: 0;
-    bottom: 141px !important;
+    bottom: 30px !important;
   }
 }
 
@@ -13799,13 +13603,7 @@ Start CSS All Products Page
     margin-right: 20px !important;
   }
   #AccessibleNav.belowlogo .col-md-2 {
-    top: unset;
-    right: 45px !important;
-    flex: auto !important;
-    padding: 0 !important;
-    bottom: 152px !important;
-    max-width: 4% !important;
-    left: unset !important;
+    bottom: 30px;
   }
   .header-search::before{
     width: 25px !important;
@@ -13815,70 +13613,123 @@ Start CSS All Products Page
   }
 }
 
-@media (max-width: 700px) {
-  #AccessibleNav.belowlogo .col-md-2{
-    right: 40px !important;
-    bottom: 147px !important;
-  }
-}
-
-@media (max-width: 650px) {
-  #AccessibleNav.belowlogo .col-md-2{
-    bottom: 142px !important;
-  }
-}
-
-@media (max-width: 650px) {
-  #AccessibleNav.belowlogo .col-md-2{
-    bottom: 134px !important;
-  }
-}
-
-@media (max-width: 576px) {
-  #AccessibleNav.belowlogo .col-md-2{
-    bottom: 77px !important;
-    right: 30px !important;
-  }
-}
-
-@media (max-width: 490px) {
-  #AccessibleNav.belowlogo .col-md-2{
-    bottom: 70px !important;
-    right: 30px !important;
-  }
-}
-
-@media (max-width: 481px) {
-  #AccessibleNav.belowlogo .col-md-2{
-    bottom: 90px !important;
-    right: 30px !important;
-  }
-}
-
-@media (max-width: 430px) {
-  #AccessibleNav.belowlogo .col-md-2{
-    bottom: 83px !important;
-    right: 30px !important;
-  }
-}
-
-@media (max-width: 380px) {
-  #AccessibleNav.belowlogo .col-md-2{
-    bottom: 79px !important;
-    right: 30px !important;
-  }
-}
-
 @media (max-width: 1023px) and (min-width: 800px) {
   .section.hot-picks.editor .productSlider-style2.grid-products {
       margin-left: 30px !important;
   }
 }
 
-@media only screen and (max-width: 991px) {
-    .mobile-nav-wrapper.active {
-        left: 0;
-        opacity: 1;
-        visibility: visible;
-    }
+@media (max-width: 1050px) and (min-width: 990px) {
+    button.search-trigger {
+      font-size: 11px !important;
+      padding: 7.5px 7px !important;
+  }
+  .btn--link.site-header__menu i.icon.anm.anm-times-l{
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .top-header.home8-jewellery-top .row .headerTop-s1{
+    flex: 0 0 0%;
+    max-width: 0%;
+  }
+  .top-header.home8-jewellery-top .row .headerTop-s2{
+    flex: 0 0 65%;
+    max-width: 65%;
+  }
+  .top-header.home8-jewellery-top .row .headerTop-s3{
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+  span.bg-red-txt{
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+  .allProducts .main-col .row.justify-content-start{
+    flex-direction: row !important;
+  }
+    .allProducts .main-col .product-image img {
+      width: 100% !important;
+      height: 330px;;
+  }
+}
+
+@media (max-width: 1200px) {
+  #banner-text.banner-details p{
+    font-size: 2em;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 991px) {
+  .header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div.listItrm-link {
+      margin-right: 10px !important;
+  }
+  .header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div.site-header__search {
+    margin-right: 10px !important;
+  }
+  .header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div.site-cart {
+    margin-right: 10px !important;
+  }
+  .header-wrap.animated.d-flex.home8-jewellery-header .row.align-items-center .col-6.col-sm-6.col-md-6.col-lg-6:nth-child(2) div.site-header__search {
+    margin-right: 10px !important;
+  }
+  #banner-text.banner-details p{
+    font-size: 1.7em;
+    line-height: 1.3;
+  }
+  .container-fluid.allProducts .row.mt-5{
+    flex-direction: row !important;
+  }
+}
+
+@media (max-width: 768px) {
+  span.bg-red-txt{
+    font-size: 1.1rem;
+  }
+  #banner-text.banner-details p{
+    font-size: 1.6em;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 700px) {
+  #banner-text.banner-details p{
+    font-size: 1.4em;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 542px) {
+  #banner-text.banner-details p {
+      font-size: 1.3em;
+      line-height: 1.3;
+      max-width: 83%;
+  }
+}
+
+@media (max-width: 480px) {
+  #banner-text.banner-details p {
+      font-size: 1.19em;
+      line-height: 1.3;
+      max-width: 83%;
+  }
+}
+
+@media (max-width: 1366px) {
+  .container-fluid.allProducts .price-filter.mt-4 .row.justify-content-between{
+    flex-direction: column !important;
+    gap: 20px !important;
+    padding: 0 !important;
+  } 
+  .container-fluid.allProducts .price-filter.mt-4 .row.justify-content-between div.col-6{
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .allProducts .price-filter input[type="text"] {
+    height: 31px;
+    font-size: 18px;
+    width: 100%;
+  }
 }

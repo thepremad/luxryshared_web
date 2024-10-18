@@ -35,36 +35,12 @@
         cursor: pointer;
     }
 
-    .mobile-nav-wrapper {
-        display: none; 
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 300px; 
-        height: 100%;
-        background-color: white;
-        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-        transition: transform 0.3s ease;
-        transform: translateX(100%);
-        z-index: 99999; 
-    }
-
-    .mobile-nav-wrapper.active {
-        display: block;
-        transform: translateX(0);
-    }
-
-    .closemobileMenu {
-        padding: 10px;
-        cursor: pointer;
-        font-size: 16px;
-    }
 </style>
 
 <div class="top-header home8-jewellery-top">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-10 col-sm-8 col-md-5 col-lg-4">
+            <div class="col-10 col-sm-8 col-md-5 col-lg-4 headerTop-s1">
                 <!-- Currency and Language Picker -->
                 <!-- <div class="currency-picker">
                     <span class="selected-currency">USD</span>
@@ -87,12 +63,12 @@
                 </div> -->
                 <!-- <p class="phone-no"><i class="anm anm-phone-s"></i> +440 0(111) 044 833</p> -->
             </div>
-            <div class="col-sm-4 col-md-4 col-lg-4 d-none d-lg-none d-md-block d-lg-block">
+            <div class="col-sm-4 col-md-4 col-lg-4 d-none d-lg-none d-md-block d-lg-block headerTop-s2">
                 <div class="text-center">
                     <p class="top-header_middle-text">Give 50 AED Get 50 AED. Get 10% off your first order.</p>
                 </div>
             </div>
-            <div class="col-2 col-sm-4 col-md-3 col-lg-4 text-right">
+            <div class="col-2 col-sm-4 col-md-3 col-lg-4 text-right headerTop-s3">
                 <span class="user-menu d-block d-lg-none"><i class="anm anm-user-al" aria-hidden="true"></i></span>
                 <ul class="customer-links list-inline">
                     <li><a href="#">Download App</a></li>
@@ -190,7 +166,7 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-nav-wrapper" role="navigation">
-    <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
+    <!-- <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div> -->
     <ul id="MobileNav" class="mobile-nav">
         @if (!empty($menu))
             @foreach ($menu as $val)
