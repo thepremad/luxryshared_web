@@ -11,6 +11,7 @@ use App\Http\Requests\WebLoginRequest;
 use App\Mail\UserVerificationMail;
 use App\Models\Menu;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Traits\FileUploadTrait;
 use Auth;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -78,6 +79,20 @@ class LoginContriller extends Controller
                 $folder = public_path('/uploads/image');
                 $data['id_image'] = $this->uploadFile($file, $folder);
             }
+
+
+            if(!empty($request->referral)){
+                $data['from_refer'] = $request->referral;
+                $referral_user = User::where('refer_code',$request->referral)->first();
+                Wallet::create([
+                    'user_id' => $referral_user->id,
+                    'type'  => Wallet::$credit,
+                    'description' => 'You won referral bonus',
+                    'amount' => 50,
+                    'type_by' =>Wallet::$referral_bonus,
+                ]);
+            }
+
             $data['password'] = Hash::make($request->password);
             $otp = mt_rand(1000, 9999);
             $data['otp'] = $otp;
