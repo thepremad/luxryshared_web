@@ -34,6 +34,9 @@ class LoginContriller extends Controller
                 'role'=> '2',
             ];
             $user = User::where('email',$request->email)->first();
+            if(empty($user->refer_code)){  
+                User::updateReferCode($user->id);
+            }
             if($user->status == 0){
                 $otp = mt_rand(1000, 9999);
                 User::updateOrCreate(['email' => $request->email],['otp' => $otp]);

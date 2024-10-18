@@ -24,8 +24,8 @@
                             <i class="fa-star fa-solid"></i>
                         </span>
                         <span class="rating">12 ratings</span>
-                        <button class="btn btn-primary ml-2">Credit balance: £0.00</button>
-                        <button class="btn btn-secondary ml-2">Give $5 & Get $5</button>
+                        <button class="btn btn-primary ml-2">Credit balance: AED {{ $wallet_amount }}</button>
+                        <button class="btn btn-secondary ml-2">Give AED 50 & Get AED 50</button>
                     </div>
                 </div>
                 <div class="row mt-5 justify-content-start user-information">
@@ -844,15 +844,37 @@
                         <div class="row justify-content-start py-4">
                             <div class="col-12 mb-4 referFriend">
                                 <div class="row flex-column">
-                                    <h4>Give $10, Get $10</h4>
-                                    <p>Introduce a friend to LXRY Shared and get $10 , they’ll will also get $10 their
+                                    <h4>Give AED 50, Get AED 50</h4>
+                                    <p>Introduce a friend to LXRY Shared and get AED 50 , they’ll will also get AED 50 their
                                         first rental.</p>
                                     <h6>Share Your Link</h6>
+                                    <h4>Referral Code : {{ auth()->user()->refer_code }}</h4>
                                     <div class="row justify-content-end py-5">
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
-                                            <button class="btn btn-lg">Copy</button>
+                                            <button class="btn btn-lg" onclick="copyText('{{ auth()->user()->refer_code }}')">Copy</button>
                                         </div>
                                     </div>
+
+
+                                    <script>
+                                        function copyText(text){
+                                            navigator.clipboard.writeText(text).then(function() {
+                                                // alert("Referral code copied to clipboard: " + text);
+
+                                                Toastify({
+                                                    text: `Referral code copied to clipboard: ${text}`,
+                                                    className: "success",
+                                                    style: {
+                                                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                                    }
+                                                }).showToast();
+
+                                            }, function(err) {
+                                                console.error("Error copying referral code: ", err);
+                                            });
+                                        }
+                                    </script>
+
                                     <div class="row justify-content-start mb-5">
                                         <div class="row justify-content-start">
                                             <a href="https://www.facebook.com" target="_blank" class="social-icon mr-3">

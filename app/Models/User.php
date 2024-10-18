@@ -64,6 +64,16 @@ class User extends Authenticatable
         return $this->hasMany(Item::class,'user_id');
     }
 
+    public static function updateReferCode($user_id){
+        $user = User::find($user_id);
+        $firstThreeChars = substr($user->first_name, 0, 4);
+        $fixedNumber = str_pad($user->id, 5, '0', STR_PAD_LEFT);
+        $referal_code = strtoupper($firstThreeChars.$fixedNumber);
+        User::where('id',$user->id)->update([
+            'refer_code' => $referal_code,
+        ]);
+    }
+
 
 
     protected static function boot() {
