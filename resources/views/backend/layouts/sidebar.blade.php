@@ -291,7 +291,7 @@
             </li>  
 
              <li
-                class=" nav-item {{ Request::routeIs('admin.images.index', 'admin.images.create', 'admin.images.show', 'admin.images.edit','admin.sizes.index', 'admin.sizes.create', 'admin.sizes.show', 'admin.sizes.edit','admin.countries.index', 'admin.countries.create', 'admin.countries.show', 'admin.countries.edit','admin.cities.index', 'admin.cities.create', 'admin.cities.show', 'admin.cities.edit', 'admin.privacy_policies.get_policies', 'admin.terms_condetion.get_terms', 'admin.deliveries.delivry', 'admin.menus.create', 'admin.menus.index', 'admin.menus.edit', 'admin.colors.create', 'admin.colors.index', 'admin.colors.edit') ? 'has-sub open' : '' }} ">
+                class=" nav-item {{ Request::routeIs('admin.images.index', 'admin.images.create', 'admin.images.show', 'admin.images.edit','admin.sizes.index', 'admin.sizes.create', 'admin.sizes.show', 'admin.sizes.edit','admin.countries.index', 'admin.countries.create', 'admin.countries.show', 'admin.countries.edit','admin.cities.index', 'admin.cities.create', 'admin.cities.show', 'admin.cities.edit', 'admin.privacy_policies.get_policies', 'admin.terms_condetion.get_terms', 'admin.deliveries.delivry', 'admin.menus.create', 'admin.menus.index', 'admin.menus.edit', 'admin.colors.create', 'admin.colors.index', 'admin.colors.edit',  'admin.category_masters.create', 'admin.category_masters.index', 'admin.category_masters.edit') ? 'has-sub open' : '' }} ">
                 <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-gear"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Settings</span></a>
                 <ul class="menu-content">
@@ -410,6 +410,28 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li
+                        class=" nav-item {{ Request::routeIs('admin.category_masters.index', 'admin.category_masters.create', 'admin.category_masters.show', 'admin.category_masters.edit', 'admin.category_masters.appraisals', 'admin.category_masters.loans', 'admin.category_masters.salaries') ? 'has-sub open' : '' }} ">
+                        <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-tree-city"></i><span
+                                class="menu-title text-truncate" data-i18n="Invoice">FAQ / HELP  <br> Category Master</span></a>
+                        <ul class="menu-content">
+                            <li>
+                                <a class="d-flex align-items-center {{ Request::routeIs('admin.category_masters.index', 'admin.category_masters.show', 'admin.category_masters.edit', 'admin.category_masters.appraisals', 'admin.category_masters.loans', 'admin.category_masters.salaries') && !request()->input('archive') ? 'active' : '' }}"
+                                    href="{{ route('admin.category_masters.index') }}">
+                                    <i data-feather="circle"></i>
+                                    <span class="menu-item text-truncate" data-i18n="Shop"> List </span>
+                                </a>
+                            </li>
+
+                            <li><a class="d-flex align-items-center {{ Request::routeIs('admin.category_masters.create') ? 'active' : '' }} "
+                                    href="{{ route('admin.category_masters.create') }}"><i data-feather="circle"></i><span
+                                        class="menu-item text-truncate" data-i18n="Shop"> Add</span></a>
+                            </li>
+                        </ul>
+                    </li>
+
+
                     <li
                         class=" nav-item {{ Request::routeIs('admin.faqs.index', 'admin.faqs.create', 'admin.faqs.show', 'admin.faqs.edit', 'admin.faqs.appraisals', 'admin.faqs.loans', 'admin.faqs.salaries') ? 'has-sub open' : '' }} ">
                         <a class="d-flex align-items-center" href="#"><i class="fa-solid fa-circle-question"></i><span
@@ -428,6 +450,12 @@
                                     href="{{ route('admin.faqs.create') }}"><i data-feather="circle"></i><span
                                         class="menu-item text-truncate" data-i18n="Shop"> Add Faq</span></a>
                             </li>
+
+                            {{-- <li><a class="d-flex align-items-center {{ Request::routeIs('admin.category_masters.index') ? 'active' : '' }} "
+                                    href="{{ route('admin.category_masters.index') }}"><i data-feather="circle"></i><span
+                                        class="menu-item text-truncate" data-i18n="Shop"> Category Master</span></a>
+                            </li> --}}
+
                         </ul>
                     </li>
                     <li
