@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\StoreFaqRequest;
 use App\Models\Category;
+use App\Models\CategoryMaster;
 use App\Models\Faq;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ class FaqController extends Controller
     public function create()
     {
         $faqs = new Faq();
-        $categories = Category::get();
+        $categories = CategoryMaster::where('type','faq')->get();
         return view('backend.faqs.create',compact('faqs','categories'));
     }
 
@@ -77,7 +78,7 @@ class FaqController extends Controller
      */
     public function edit(string $id)
     {
-        $categories = Category::get();
+        $categories = CategoryMaster::where('type','faq')->get();
         $faqs = Faq::findOrFail($id);
         return view('backend.faqs.create',compact('faqs','categories'));
     }

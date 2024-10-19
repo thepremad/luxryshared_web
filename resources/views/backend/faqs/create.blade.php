@@ -53,7 +53,7 @@
                                         <div class="col-md-6 ">
                                         {!! Form::label('category_id', 'Category') !!}
                                         {!! Form::select('category_id', $categories->pluck('name','id'),$faqs->category_id, ['class' => 'form-select
-                                         ','id' => 'category_id', 'placeholder' => 'Category']) !!}
+                                         ','id' => 'category_id', 'placeholder' => 'Select Category']) !!}
                                                     <span class="text-danger validation-class" id="category_id-error"></span>
 
                                             </div>
