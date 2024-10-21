@@ -3,7 +3,7 @@
 <div id="page-content" class="aboutUs faq">
     <div class="container">
         <div class="aboutUs-Heading">
-            <h4>FAQs</h4>                    
+            <h4>Helps</h4>                    
             <h6 class="text-center mb-5">{{ $category->name }}</h6>                    
             <p class="text-center mb-5" >{{ $category->description ?? '' }}</p>
         </div>

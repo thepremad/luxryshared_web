@@ -10,5 +10,5 @@ class CategoryMaster extends Model
     use HasFactory;
 
 
-    protected $fillable = ['name','id','type'];
+    protected $fillable = ['name','id','type','description'];
 }
