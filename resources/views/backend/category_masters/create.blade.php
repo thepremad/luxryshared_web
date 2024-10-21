@@ -69,6 +69,14 @@
                                                     <span class="text-danger validation-class" id="name-error"></span>
                                                 </div>
                                         </div>
+
+                                        <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label for="">Description</label>
+                                                    <textarea name="description" class="form-control" id="" cols="5" rows="5" placeholder="Enter Description">{{ $category_master->description ?? '' }}</textarea>
+                                                    <span class="text-danger validation-class" id="name-error"></span>
+                                                </div>
+                                        </div>
                                        
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary me-1">Submit</button>

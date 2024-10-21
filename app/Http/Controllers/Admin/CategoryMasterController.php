@@ -39,7 +39,8 @@ class CategoryMasterController extends Controller
     function store(Request $request){
         CategoryMaster::updateOrCreate(['id' => $request->id],[
             'name' => $request->name,
-            'type' => $request->type
+            'type' => $request->type,
+            'description' => $request->description
         ]);
         return redirect()->route('admin.category_masters.index')->with('success','Catyegory Master Save Successfully');
     }
