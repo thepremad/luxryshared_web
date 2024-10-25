@@ -277,13 +277,13 @@
                                 <div class="form-group row row-half-width">
                                     <div class="form-group">
                                         <label for="rrp-price">RRP PRICE</label>
-                                        <input type="number" name="rrp_price" class="form-control" id="rrp-price"
-                                            onchange="rrpInput()">
+                                        <input type="text" name="rrp_price" class="form-control" id="rrp-price"
+                                            onchange="ChangerRpInput()">
                                             <span class="text-danger validation-class" id="rrp_price-submit_errors"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="day-price">Day Price</label>
-                                        <input type="number" name="suggested_day_price" class="form-control"
+                                        <input type="text" name="suggested_day_price" class="form-control"
                                             id="day-price" onchange="rrpInput()">
                                             <span class="text-danger validation-class" id="suggested_day_price-submit_errors"></span>
                                     </div>
@@ -828,6 +828,15 @@
                 }
             });
 
+        }
+
+
+        function ChangerRpInput(){
+            let price = $('#rrp-price').val();
+            dayprice = (price * 0.03).toFixed(2);
+            $('#day-price').val(dayprice);
+
+            rrpInput();
         }
 
         function rrpInput() {
