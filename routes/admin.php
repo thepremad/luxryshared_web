@@ -29,6 +29,8 @@ Route::middleware(['admin'])->group(function () {
     });
 
     Route::resource('categories',CategoryController::class);
+    Route::resource('category_masters',CategoryMasterController::class);
+
     Route::resource('subcategories',SubCategoryController::class);
     Route::resource('images',ImageController::class);
     Route::resource('sizes',SizeController::class);

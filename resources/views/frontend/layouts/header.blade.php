@@ -106,23 +106,43 @@
                 </div>
             </div>
             @if(auth()->user())
-                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="listItrm-link">
-                        <a href="{{ route('list_item') }}">List an item</a>
-                    </div>
-                    <div class="site-header__search">
-                        <span class=""><a href="{{route('wishlist')}}"><i class="icon anm anm-heart-l"></i></a></span>
-                    </div>
-                    <div class="site-cart">
-                        <a href="{{ route('cart') }}" class="site-header__cart" title="Cart">
-                            <i class="icon anm anm-bag-l"></i>
-                            <span id="CartCount" class="site-header__cart-count" data-cart-render="item_count">0</span>
-                        </a>
-                    </div>
-                    <div class="site-header__search">
-                        <a href="{{route('edit_profile')}}"><span class=""><i class="icon anm anm-user-l"></i></span></a>
-                    </div>
-                </div>
+
+
+
+<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="listItrm-link">
+        <a href="{{ route('list_item') }}">List an item</a>
+    </div>
+    <div class="site-header__search">
+        <span><a href="{{ route('wishlist') }}"><i class="icon anm anm-heart-l"></i></a></span>
+    </div>
+    <div class="site-cart">
+        <a href="{{ route('cart') }}" class="site-header__cart" title="Cart">
+            <i class="icon anm anm-bag-l"></i>
+            <span id="CartCount" class="site-header__cart-count" data-cart-render="item_count">0</span>
+        </a>
+    </div>
+    <div class="site-header__search">
+        <a href="{{ route('edit_profile') }}"><span><i class="icon anm anm-user-l"></i></span></a>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    document.querySelector('.site-header__cart').addEventListener('click', function(event) {
+        // Prevent default action for testing
+        event.preventDefault();
+        // You can add a console log to check if this works
+        console.log('Cart link clicked!');
+        // Uncomment the next line to enable actual navigation
+        // window.location.href = "{{ route('cart') }}";
+    });
+</script>
+
+
             @else
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="site-header__search" >
@@ -150,8 +170,8 @@
     <div class="row mr-0">
         <div class="col-md-10">
             <ul id="siteNav" class="site-nav medium center hidearrow">
-                @if (!empty($menu))
-                    @foreach ($menu as $val)
+                @if (!empty($menuData))
+                    @foreach ($menuData as $val)
                         <li class="lvl1 parent megamenu"><a href='{{$val->link}}'>{{$val->name}} <i class="anm anm-angle-down-l"></i></a></li>
                     @endforeach
                 @endif
@@ -229,6 +249,12 @@
             document.getElementById('loginPrompt').style.display = 'none';
         }
     }
+</script>
+
+<script>
+    document.querySelector('.site-header__cart').addEventListener('click', function(event) {
+        window.location.href = "{{ route('cart') }}"; 
+    });
 </script>
 
 <!-- Uncomment if needed -->

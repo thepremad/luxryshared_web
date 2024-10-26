@@ -14,6 +14,7 @@ use App\Http\Resources\StoreBlogResourceApi;
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\CategoryMaster;
 use App\Models\Editor;
 use App\Models\Faq;
 use App\Models\Item;
@@ -117,8 +118,9 @@ class HomeController extends Controller
     public function faq()
     {
         $menu = Menu::latest()->get();
+        $category = CategoryMaster::where('type','faq')->orderBy('name','asc')->get();
         $faq = Faq::latest()->get();
-        return view('frontend.faq', compact('menu', 'faq'));
+        return view('frontend.faq', compact('menu', 'faq','category'));
     }
     public function privacyPolicy()
     {
@@ -167,8 +169,16 @@ class HomeController extends Controller
     }
     public function faqDetails($id)
     {
-        $faq = Faq::findOrFail($id);
+
+        // die;
+        // $faq = Faq::findOrFail($id);
         $menu = Menu::latest()->get();
-        return view('frontend.faq-details', compact('faq', 'menu'));
+
+        $faq = Faq::where('category_id',$id)->get();
+        $category = CategoryMaster::find($id);
+        // return $faq;
+
+
+        return view('frontend.faq-details', compact('faq', 'menu','category'));
     }
 }

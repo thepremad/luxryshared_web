@@ -208,7 +208,7 @@ justify-content: center;
                         <h1 class="product-single__title">{{ $item->item_title }}</h1>
 
                         <div class="d-flex align-items-center">
-                            <h5 class="mb-0">@John Richerd</h5>
+                            <h5 class="mb-0">{{ $item->users->first_name ?? '' }} {{ $item->users->last_name ?? '' }}</h5>
                             <div class="ms-auto">
                                 <i class="fas fa-star" style="color: #E3C01C;"></i>
                                 <i class="fas fa-star" style="color: #E3C01C;"></i>
@@ -220,7 +220,7 @@ justify-content: center;
 
                         <div class="prInfoRow">
                             <div class="product-rent-price d-block">
-                                <h4>SED {{ $item->rrp_price }} / 4 Days</h4>
+                                <h4>AED {{ $item->rrp_price }} / 4 Days</h4>
                             </div>
                             @if ($item->buy == 'true')
                                 <div class="product-sell-price d-block">
@@ -234,7 +234,22 @@ justify-content: center;
                             <div class="size-container">
                                 <h5>{{ $item->size->name ?? '' }}</h5>
                             </div>
-                            <a href="#" class="size-guide-link">Size Guide</a>
+                            <a href="#" class="size-guide-link" data-toggle="modal" data-target="#sizeModal">Size Guide</a>
+                            <div class="modal fade" id="sizeModal" tabindex="-1" role="dialog" aria-labelledby="sizeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="sizeModalLabel">Size Guide</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="http://localhost/luxryshared_web/public/assets/images/icons/size-chart.jpeg" alt="Size chart" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <label for="rentalPeriod" class="form-label">Rental Period</label>
@@ -247,32 +262,32 @@ justify-content: center;
                                 <input type="radio" id="plan1" name="plan" value="4" class="plan-radio" data-days="4">
                                 <label for="plan1" class="plan">
                                     <h5>4 Days</h5>
-                                    <h6 class="price">$62.30</h6>
-                                    <h6 class="price-per-day">$15.57/day</h6>
+                                    <h6 class="price">AED {{ $item->fourDaysPrice * 4 }}</h6>
+                                    <h6 class="price-per-day">AED {{ $item->fourDaysPrice }}/day</h6>
                                 </label>
                             </div>
                             <div class="plan-outer">
                                 <input type="radio" id="plan2" name="plan" value="7" class="plan-radio" data-days="7">
                                 <label for="plan2" class="plan">
-                                    <h5>7 Days</h5>
-                                    <h6 class="price">$85.00</h6>
-                                    <h6 class="price-per-day">$12.14/day</h6>
+                                    <h5>8 Days</h5>
+                                    <h6 class="price">AED {{ $item->sevenToTwentyNineDayPrice * 8 }}</h6>
+                                    <h6 class="price-per-day">AED {{ $item->sevenToTwentyNineDayPrice }}/day</h6>
                                 </label>
                             </div>
                             <div class="plan-outer">
                                 <input type="radio" id="plan3" name="plan" value="10" class="plan-radio" data-days="10">
                                 <label for="plan3" class="plan">
-                                    <h5>10 Days</h5>
-                                    <h6 class="price">$120.00</h6>
-                                    <h6 class="price-per-day">$12.00/day</h6>
+                                    <h5>16 Days</h5>
+                                    <h6 class="price">AED {{ $item->sevenToTwentyNineDayPrice * 16 }}</h6>
+                                    <h6 class="price-per-day">AED {{ $item->sevenToTwentyNineDayPrice }}/day</h6>
                                 </label>
                             </div>
                             <div class="plan-outer">
                                 <input type="radio" id="plan4" name="plan" value="14" class="plan-radio" data-days="14">
                                 <label for="plan4" class="plan">
-                                    <h5>14 Days</h5>
-                                    <h6 class="price">$150.00</h6>
-                                    <h6 class="price-per-day">$10.71/day</h6>
+                                    <h5>30 Days</h5>
+                                    <h6 class="price">AED {{ $item->thirtyPlusDayPrice * 30 }}</h6>
+                                    <h6 class="price-per-day">AED {{ $item->thirtyPlusDayPrice }}/day</h6>
                                 </label>
                             </div>
                         </div>

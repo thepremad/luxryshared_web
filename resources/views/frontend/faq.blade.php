@@ -10,12 +10,12 @@
         </div>
         <div class="faq-container">
             <div class="row faq-contant">
-                @foreach ($faq as $val)
+                @foreach ($category as $val)
                 
                 <a href="{{route('faq_details',$val->id)}}">                            
                     <div class="col-lg-4 col-md-4 col-sm-4 col-6 faqCard">
-                        <h4 class="faq-headingBefore">{{$val->title}}</h4>
-                        <p class="faq-txtBefore">{{$val->text}}</p>
+                        <h4 class="faq-headingBefore">{{$val->name ?? ''}}</h4>
+                        <p class="faq-txtBefore">{{$val->description ?? ''}}</p>
                     </div>
                 </a>
                 @endforeach

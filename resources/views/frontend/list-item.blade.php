@@ -98,6 +98,84 @@
     border-color: #007bff; /* Match border color to background */
 }
 
+.info-icon {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+    position: absolute;
+    right: 40px;
+    top: 57%;
+}
+
+.info-icon a{
+    color: white;
+}
+
+.info-icon.update{
+    right: 25px;
+} 
+
+.info-tooltip {
+    display: none;
+    position: absolute;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 1000;
+    white-space: wrap;
+    right: -290px;
+    top: 41px;
+    width: 100%;
+}
+
+.info-icon:hover + .info-tooltip,
+.info-icon:focus + .info-tooltip {
+    display: block;
+}
+
+.form-group{
+    position: relative;
+}
+
+.listItem-section .row .form-group a {
+    font-family: 'poppins', sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.3;
+    color: #383838;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    text-decoration: underline;
+}
+
+.info-tooltip.img{
+    background: #e1e1e1;
+    right: -285px;
+    width: auto !important;
+    padding: 10px 20px;
+}
+
+.info-tooltip.img img{
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+}
+
+#size-guide{
+    cursor: pointer;
+    color: #4a3838;
+    float: right;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
 </style>
     <!--Body Content-->
     <div id="page-content" class="listingProduct">
@@ -139,11 +217,14 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-6 mb-2">
-                                        <label for="brand">Brand</label>
+                                        <label for="brand">Brand 
+                                            <span class="info-icon" data-toggle="tooltip" data-html="true" title="If your brand isn’t listed, please <a href='mailto:info@lxryshared.com'>email</a> to <a href='mailto:info@lxryshared.com'>info@lxryshared.com</a>." style="cursor: pointer;">
+                                                ?
+                                            </span>
+                                        </label>
                                         <select id="brand" name="brand_id" class="form-control">
                                             @foreach ($brand as $val)
                                                 <option value="{{ $val->id }}">{{ $val->name }}</option>
-                                                <!-- Add options here -->
                                             @endforeach
                                         </select>
                                         <span class="text text-danger">{{ $errors->first('brand_id') }}</span>
@@ -171,7 +252,7 @@
                                     <div class="col-md-12">
                                         <label for="item-title">Item Title</label>
                                         <input type="text" name="item_title" class="form-control" id="item-title"
-                                            placeholder="Enter Item Name">
+                                            placeholder="Enter Item Title">
                                         <span class="text-danger validation-class" id="item_title-submit_errors"></span>
                                     </div>
                                 </div>
@@ -193,18 +274,33 @@
                                     </div>
                                     <div class="col-md-6 row-half-width">
                                         <div>
-                                            <label for="size">Size</label>
-                                            <select id="size" name="size_id" class="form-control">
+                                            <label for="size">Size <span id="size-guide" data-toggle="modal" data-target="#sizeModal">Size Guide</span></label>
+                                            <select id="size" name="size_id" class="form-control" aria-required="true">
                                                 @foreach ($size as $val)
                                                     <option value="{{ $val->id }}">{{ $val->name }}</option>
-                                                    <!-- Add options here -->
                                                 @endforeach
                                             </select>
                                             <span class="text text-danger">{{ $errors->first('size_id') }}</span>
                                             <span class="text-danger validation-class" id="size_id-submit_errors"></span>
-                                            <!-- <i class="fas fa-question-circle info-icon"></i> -->
-                                            <div class="info-tooltip">Size description goes here.</div>
                                         </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="sizeModal" tabindex="-1" role="dialog" aria-labelledby="sizeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="sizeModalLabel">Size Guide</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img src="{{ url('public/assets/images/icons/size-chart.jpeg') }}" alt="Size chart" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -277,16 +373,16 @@
                                 <div class="form-group row row-half-width">
                                     <div class="form-group">
                                         <label for="rrp-price">RRP PRICE</label>
-                                        <input type="number" name="rrp_price" class="form-control" id="rrp-price"
-                                            onchange="rrpInput()">
+                                        <input type="text" name="rrp_price" class="form-control" id="rrp-price"
+                                            onchange="ChangerRpInput()">
                                             <span class="text-danger validation-class" id="rrp_price-submit_errors"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="day-price">Day Price</label>
-                                        <input type="number" name="suggested_day_price" class="form-control"
-                                            id="day-price" onchange="rrpInput()">
-                                            <span class="text-danger validation-class" id="suggested_day_price-submit_errors"></span>
+                                        <label for="day-price">Suggested Day Price</label>
+                                        <input type="text" name="suggested_day_price" class="form-control" id="day-price" onchange="rrpInput()">
+                                        
                                     </div>
+
                                 </div>
                                 <div class="form-group row row-half-width" id="additional">
                                     <div class="form-group" id="additional-deposit">
@@ -296,13 +392,14 @@
                                     <div class="form-group">
                                         <label for="security-deposit">Security Deposit (optional)</label>
                                         <input type="number" class="form-control" id="security-deposit">
-                                        <!-- <i class="fas fa-question-circle info-icon"></i> -->
-                                        <div class="info-tooltip">Security deposit description goes here.</div>
+                                        <span class="info-icon" tabindex="0">?</span>
+                                        <div class="info-tooltip">Security (For added security we recommend a 10% markup on rare items.)</div>
                                     </div>
+
                                 </div>
                                 <a href="#" class="d-block">PRICES & INCOME</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                    ut labore et dolore magna aliqua.</p>
+                                <p>Our pricing algorithm recommends rental rates based on the retail price. With a lower daily rate for longer rentals, your engagement increases, leading to higher earnings for lenders.
+                                </p>
                                 <div class="price-plans">
                                     <div>
                                         <label class="label-rent">Rent Price</label>
@@ -367,6 +464,12 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                
+                                <div class="form-group">
+                                    <a href="#" style="text-decoration: underline">BUY NOW</a>
+                                </div>
+
 
                                 <div class="form-group check-box-label switch">
                                     <input type="checkbox" id="enable-purchase" name="buy" value="true">
@@ -830,6 +933,15 @@
 
         }
 
+
+        function ChangerRpInput(){
+            let price = $('#rrp-price').val();
+            dayprice = (price * 0.03).toFixed(2);
+            $('#day-price').val(dayprice);
+
+            rrpInput();
+        }
+
         function rrpInput() {
 
             
@@ -950,6 +1062,15 @@
         this.classList.add('active');
     });
 });
-
 </script>
+
+<script>
+    $(function () {
+        $('.info-icon').tooltip({
+            html: true,  
+            delay: { "show": 500, "hide": 1000 } 
+        });
+    });
+</script>
+
 @endsection

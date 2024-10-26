@@ -112,7 +112,7 @@ Route::get('product-page_1/{id}/{sub_id}',[ProductListController::class,'categor
 
     Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('about_us');
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
-    Route::get('/faq-details/{id}', [HomeController::class, 'faqDetails'])->name('faq_details');
+    Route::get('faq-details/{id}', [HomeController::class, 'faqDetails'])->name('faq_details');
     Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy_policy');
     Route::get('/terms-and-conditions', [HomeController::class, 'termsAndConditions'])->name('terms_and_conditions');
     Route::get('disclaimer', [StaticPagesController::class, 'desclimer'])->name('desclimer');
@@ -168,6 +168,7 @@ Route::middleware(['website'])->group(function () {
     Route::get('checkout-success', [EditProfieController::class, 'checkoutSuccess'])->name('checkout_success');
     Route::get('withdrawl-request/{id}', [EditProfieController::class, 'withdrawlRequest'])->name('withdrawl_request');
     Route::get('help', [EditProfieController::class, 'help'])->name('help');
+    Route::get('help_detail/{id}', [EditProfieController::class, 'helpDetail'])->name('help_detail');
 
 
 

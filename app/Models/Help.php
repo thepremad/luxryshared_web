@@ -14,6 +14,6 @@ class Help extends Model
         'title'
      ];
      public function category(){
-     return $this->belongsTo(Category::class,'category_id');
+     return $this->belongsTo(CategoryMaster::class,'category_id');
      }
 }
