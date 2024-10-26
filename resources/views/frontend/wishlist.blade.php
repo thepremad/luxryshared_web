@@ -1,5 +1,15 @@
 @extends('frontend.layouts.app')
 @section('content')
+
+
+    <style>
+        .row.wishlist-item .row.mt-3 {
+            margin-top: 20px !important;
+        }
+    </style>
+
+
+
     <div id="page-content" class="aboutUs wishlist">
         <div class="container">
                 <div class="aboutUs-Heading">
