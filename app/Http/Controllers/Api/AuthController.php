@@ -24,7 +24,8 @@ class AuthController extends Controller
     use ApiResponse;
 
 
-    function resendOtp(ResendOtpRequest $request){
+    function resendOtp(ResendOtpRequest $request)
+    {
         try {
             $data = [
                 'otp' => mt_rand(1000, 9999),
@@ -50,16 +51,16 @@ class AuthController extends Controller
             $data = [
                 'otp' => $otp
             ];
-
-            $user = User::updateOrCreate(['email' => $request->email],$user);
-            if(!empty($request->referral)){
-                $referral_user = User::where('refer_code',$request->referral)->first();
+            $data['password'] = Hash::make($request->password);
+            $user = User::create($user);
+            if (!empty($request->referral)) {
+                $referral_user = User::where('refer_code', $request->referral)->first();
                 Wallet::create([
                     'user_id' => $referral_user->id,
                     'type'  => Wallet::$credit,
                     'description' => 'You won referral bonus',
                     'amount' => 50,
-                    'type_by' =>Wallet::$referral_bonus,
+                    'type_by' => Wallet::$referral_bonus,
                 ]);
 
                 Wallet::create([
@@ -67,12 +68,11 @@ class AuthController extends Controller
                     'type'  => Wallet::$credit,
                     'description' => 'You won referral commission',
                     'amount' => 50,
-                    'type_by' =>Wallet::$referral_commission,
+                    'type_by' => Wallet::$referral_commission,
                 ]);
-
             }
 
-            
+
 
             Mail::to($request->email)->send(new UserVerificationMail($data));
             return response()->json(['data' => $user, 'otp' => $otp], 200);
@@ -101,7 +101,6 @@ class AuthController extends Controller
                 }
             } else {
                 return response()->json(['message' => 'admin unable to login'], 500);
-
             }
         } catch (\Throwable $th) {
             Log::error('api login post : exception');
@@ -158,7 +157,6 @@ class AuthController extends Controller
         $transaction->amount = 10;
         $transaction->transcation_type = 'refer amount';
         $transaction->save();
-
     }
     protected function transactionReferSend($id)
     {
@@ -168,6 +166,5 @@ class AuthController extends Controller
         $transaction->amount = 10;
         $transaction->transcation_type = 'bonus amount';
         $transaction->save();
-
     }
 }
