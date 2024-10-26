@@ -15,13 +15,17 @@
                 </div>
                 <div class="faq-container mt-5">
                     <div class="row faq-contant mt-5">
-                        <a href="">                            
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 faqCard faqCard-bottom">
-                                <h4 class="faq-headingBefore">Renting</h4>
-                                <p class="faq-txtBefore">There are many variations of passages of Lorem Ipsum available.</p>
-                            </div>
-                        </a>
-                        <a href="">
+
+                        @foreach ($category as $item)
+                            <a href="{{ route('help_detail',$item->id) }}">                            
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 faqCard faqCard-bottom">
+                                    <h4 class="faq-headingBefore">{{ $item->name }}</h4>
+                                    <p class="faq-txtBefore">{{ $item->description }}</p>
+                                </div>
+                            </a>    
+                        @endforeach
+                        
+                        {{-- <a href="">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 faqCard faqCard-bottom">
                                 <h4 class="faq-headingBefore">Lending</h4>
                                 <p class="faq-txtBefore">There are many variations of passages of Lorem Ipsum available.</p>
@@ -50,7 +54,7 @@
                                 <h4>My Account</h4>
                                 <p>Set your business name, logo, location and contact information.</p>
                             </div>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
                 

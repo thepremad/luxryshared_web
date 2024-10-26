@@ -7,7 +7,10 @@ use App\Http\Requests\StoreWebEditProfileRequest;
 use App\Http\Resources\LendingProductApiResource;
 use App\Http\Resources\RentProductResource;
 use App\Http\Resources\SellingResource;
+use App\Models\CategoryMaster;
 use App\Models\Checkout;
+use App\Models\Faq;
+use App\Models\Help;
 use App\Models\Item;
 use App\Models\Menu;
 use App\Models\User;
@@ -88,6 +91,16 @@ class EditProfieController extends Controller
     }
     public function help(){
         $menu = Menu::latest()->get();
-        return view('frontend.help',compact('menu'));
+        $category = CategoryMaster::where('type','help')->orderBy('name','asc')->get();
+        return view('frontend.help',compact('menu','category'));
     }
+
+    public function helpDetail($id){
+        $menu = Menu::latest()->get();
+        $category = CategoryMaster::find($id);
+        $faq = Help::where('category_id',$id)->get();
+        return view('frontend.help-details',compact('menu','category','faq'));
+    }
+
+
 }

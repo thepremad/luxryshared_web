@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHelpRequest;
 use App\Models\Category;
+use App\Models\CategoryMaster;
 use App\Models\Help;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -43,7 +44,7 @@ class HelpController extends Controller
     public function create()
     {
         $helps = new Help();
-        $categories = Category::get();
+        $categories = CategoryMaster::where('type','help')->get();
         return view('backend.helps.create',compact('helps','categories'));
     }
 
@@ -76,7 +77,7 @@ class HelpController extends Controller
      */
     public function edit(string $id)
     {
-        $categories = Category::get();
+        $categories = CategoryMaster::where('type','help')->get();
         $helps = Help::findOrFail($id);
         return view('backend.helps.create',compact('helps','categories'));
     }
