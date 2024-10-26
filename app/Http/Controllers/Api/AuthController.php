@@ -112,33 +112,7 @@ class AuthController extends Controller
     {
         try {
             DB::beginTransaction();
-            $user = new User();
-            $user->fill($request->all());
-            $x = 0;
-            while ($x < 1) {
-                $refer_codee = 'LXRY' . mt_rand(1000, 9999);
-                $match_refer = User::where('refer_code', $refer_codee)->first();
-                if (!$match_refer) {
-                    $user->refer_code = $refer_codee;
-                    $x++;
-                } else {
-                    $x = 0;
-                }
-            }
-            if ($request->refer_code) {
-                $fromReferCode = User::where('refer_code', $request->refer_code)->first();
-                if ($fromReferCode) {
-                    $user->from_refer = $request->refer_code;
-                    $this->transactionRefer($fromReferCode->id);
-                } else {
-                    return response()->json(['from_refer' => 'refer code not valid'], 422);
-                }
-            }
-            $user->password = Hash::make($request->password);
-            $user->first_name  = strtoupper($request->first_name);
-            $user->last_name  = strtoupper($request->last_name);
-            $user->save();
-            $this->transactionReferSend($user->id);
+            $user = User::where('email',$request->email)->first();
             $token = $user->createToken($user->name)->accessToken;
             DB::commit();
             return response()->json(['message' => 'Successfully Registered', 'token' => $token], 200);
