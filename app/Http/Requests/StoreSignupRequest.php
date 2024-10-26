@@ -23,21 +23,7 @@ class StoreSignupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required',
             'email' => 'required|unique:users,email',
-            'last_name' => 'required',
-            'address' => 'required',
-            'password' => 'required|min:6',
-            'number' => [
-                'required',
-                'unique:users,number',
-                'digits_between:10,13',
-                'regex:/^[0-9]+$/'
-            ],
-            'id_image' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
-            'referral' => 'nullable|exists:users,refer_code'
         ];
     }
     protected function failedValidation(Validator $validator)
