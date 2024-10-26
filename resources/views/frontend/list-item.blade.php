@@ -541,8 +541,7 @@
                                     <img src="{{asset("assets/images/icons/check.png")}}" alt="" class="img-fluid mb-3">
                                 </div>
                                 <h2 class="text-center">Your Item is been uploaded successfully.</h2>
-                                <h3 class="text-center">Your Item will be live upon approval from lxry shared admin</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, quod?</p>
+                                <h3 class="text-center">Your Item will be live upon approval from lxry shared admin</h3>                               
                                 <div class="text-center">
                                     <a href="{{ route('home') }}" class="btn btn-primary" >Back to Home</a>
                                 </div>
