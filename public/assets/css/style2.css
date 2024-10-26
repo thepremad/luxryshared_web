@@ -2078,6 +2078,7 @@ label input:checked~span#checkBox-btn i {
   line-height: 1.3;
   color: #383838;
   margin-bottom: 1.875rem;
+  text-transform: capitalize;
 }
 
 .listItem-section .row .step-form h4 {

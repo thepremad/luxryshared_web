@@ -1,5 +1,13 @@
 @extends('frontend.layouts.app')
 @section('content')
+
+<style>
+    .shopping-cart .row.mt-3{
+        margin-top: 30px !important;
+    } 
+</style>
+
+
 <!--Body Content-->
 <div id="page-content">
 

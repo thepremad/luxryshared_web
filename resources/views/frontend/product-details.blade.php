@@ -234,7 +234,22 @@ justify-content: center;
                             <div class="size-container">
                                 <h5>{{ $item->size->name ?? '' }}</h5>
                             </div>
-                            <a href="#" class="size-guide-link">Size Guide</a>
+                            <a href="#" class="size-guide-link" data-toggle="modal" data-target="#sizeModal">Size Guide</a>
+                            <div class="modal fade" id="sizeModal" tabindex="-1" role="dialog" aria-labelledby="sizeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="sizeModalLabel">Size Guide</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="http://localhost/luxryshared_web/public/assets/images/icons/size-chart.jpeg" alt="Size chart" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <label for="rentalPeriod" class="form-label">Rental Period</label>
