@@ -194,6 +194,11 @@
     }
 }
 
+@media (max-width: 360px) {
+    .info-icon.img4{
+        left: 170px;
+    }
+}
 
 </style>
     <!--Body Content-->
@@ -397,23 +402,14 @@
                                 <div class="form-group row row-half-width">
                                     <div class="form-group">
                                         <label for="rrp-price">RRP PRICE</label>
-                                        <input type="text" name="rrp_price" class="form-control" id="rrp-price"
-                                            onchange="ChangerRpInput()">
-                                            <span class="text-danger validation-class" id="rrp_price-submit_errors"></span>
+                                        <input type="text" name="rrp_price" class="form-control" id="rrp-price" onchange="ChangerRpInput()">
+                                        <span class="text-danger validation-class" id="rrp_price-submit_errors"></span>
                                     </div>
                                     <div class="form-group">
-<<<<<<< HEAD
                                         <label for="day-price">Suggested Day Price</label>
                                         <input type="text" name="suggested_day_price" class="form-control" id="day-price" onchange="rrpInput()">
-                                        
-=======
-                                        <label for="day-price">Day Price</label>
-                                        <input type="text" name="suggested_day_price" class="form-control"
-                                            id="day-price" onchange="rrpInput()">
-                                            <span class="text-danger validation-class" id="suggested_day_price-submit_errors"></span>
->>>>>>> 28de172331a13a181982d8ca2f7955488f97ea53
+                                        <span class="text-danger validation-class" id="suggested_day_price-submit_errors"></span>
                                     </div>
-
                                 </div>
                                 <div class="form-group row row-half-width" id="additional">
                                     <div class="form-group" id="additional-deposit">
@@ -426,8 +422,9 @@
                                         <span class="info-icon" tabindex="0">?</span>
                                         <div class="info-tooltip">Security (For added security we recommend a 10% markup on rare items.)</div>
                                     </div>
-
                                 </div>
+
+
                                 <a href="#" class="d-block">PRICES & INCOME</a>
                                 <p>Our pricing algorithm recommends rental rates based on the retail price. With a lower daily rate for longer rentals, your engagement increases, leading to higher earnings for lenders.
                                 </p>
