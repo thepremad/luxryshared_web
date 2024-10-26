@@ -176,6 +176,25 @@
     text-decoration: underline;
 }
 
+.info-icon.img4{
+    left: 230px;
+    top: 0%;
+}
+
+@media (max-width: 1100px) {
+    .info-icon.img4{
+        left: 190px;
+    }
+}
+
+@media (max-width: 481px) {
+    .info-icon.img4{
+        right: 0px;
+        left: unset;
+    }
+}
+
+
 </style>
     <!--Body Content-->
     <div id="page-content" class="listingProduct">
@@ -328,12 +347,17 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="multiple_image_file_input">Upload Upto 4 Images: <span>*</span>
+                                            <span class="info-icon img4" data-toggle="tooltip" data-html="true" style="cursor: pointer;" data-bs-original-title="Upload at least one more image to improve your chances of rental or resale.   ">
+                                                ?
+                                            </span>
                                                 <div class="custom-file-upload mt-3" id="additional-images-container">
                                                     <div class="upload-button">
                                                         <img src="{{ asset('./assets/images/icons/cloud.png') }}" alt="">
                                                     </div>
                                                 </div>
                                             </label>
+                                            
+
 
                                             <input type="file" name="images[]" class="form-control" id="multiple_image_file_input" accept="image/*" multiple>
                                             <span class="text-danger validation-class" id="images-submit_errors"></span>
@@ -378,9 +402,16 @@
                                             <span class="text-danger validation-class" id="rrp_price-submit_errors"></span>
                                     </div>
                                     <div class="form-group">
+<<<<<<< HEAD
                                         <label for="day-price">Suggested Day Price</label>
                                         <input type="text" name="suggested_day_price" class="form-control" id="day-price" onchange="rrpInput()">
                                         
+=======
+                                        <label for="day-price">Day Price</label>
+                                        <input type="text" name="suggested_day_price" class="form-control"
+                                            id="day-price" onchange="rrpInput()">
+                                            <span class="text-danger validation-class" id="suggested_day_price-submit_errors"></span>
+>>>>>>> 28de172331a13a181982d8ca2f7955488f97ea53
                                     </div>
 
                                 </div>
