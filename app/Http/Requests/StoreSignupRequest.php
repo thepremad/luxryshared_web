@@ -23,7 +23,7 @@ class StoreSignupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|unique:users,email',
+            'email' => 'required|exists:users,email',
         ];
     }
     protected function failedValidation(Validator $validator)
