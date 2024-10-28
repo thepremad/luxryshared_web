@@ -251,9 +251,23 @@
     }
 </script>
 
-<script>
+<!-- <script>
     document.querySelector('.site-header__cart').addEventListener('click', function(event) {
         window.location.href = "{{ route('cart') }}"; 
+    });
+</script> -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartElement = document.querySelector('.site-header__cart');
+        if (cartElement) {
+            cartElement.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default action if necessary
+                window.location.href = "{{ route('cart') }}"; 
+            });
+        } else {
+            console.error('Element with class .site-header__cart not found.');
+        }
     });
 </script>
 
