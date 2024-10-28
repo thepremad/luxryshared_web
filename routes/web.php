@@ -81,10 +81,14 @@ Route::get('get_cart_count',function(){
 })->name('get_cart_count');
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('user-profile/{id}', [HomeController::class, 'userProfile'])->name('user_profile');
 
 Route::get('verify_otp/{id}',[LoginContriller::class,'verifyOtp'])->name('verify_otp');
 Route::post('submit_verify_otp',[LoginContriller::class,'submitVerifyOtp'])->name('submit_verify_otp');
 Route::any('resent_otp',[LoginContriller::class,'resentOtp'])->name('resent_otp');
+
+
+Route::post('rating_item',[HomeController::class,'ratingItem'])->name('rating_item');
 
 
 Route::get('/login', [LoginContriller::class, 'login'])->name('login');
