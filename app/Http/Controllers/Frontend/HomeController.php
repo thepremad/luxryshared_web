@@ -24,6 +24,7 @@ use App\Models\Menu;
 use App\Models\Occasion;
 use App\Models\PrivacyPolicy;
 use App\Models\TermsAndConditions;
+use App\Models\User;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -181,4 +182,11 @@ class HomeController extends Controller
 
         return view('frontend.faq-details', compact('faq', 'menu','category'));
     }
+
+
+    function userProfile($id){
+        $user = User::find($id);
+        return view('frontend.user_profile',compact('user'));
+    }
+
 }
