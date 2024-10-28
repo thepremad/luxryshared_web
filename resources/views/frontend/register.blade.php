@@ -213,7 +213,7 @@
                                                 <input type="text" name="address" autocomplete="off"
                                                     class="form-control @error('address') is-invalid @enderror"
                                                     id="google_address_id" placeholder="Enter Address"
-                                                    value="{{ old('address') }}" >
+                                                    value="57V8+J2M - Business Bay - Dubai - United Arab Emirates" >
                                                 <span class="invalid-feedback">{{ $errors->first('address') }}</span>
                                                 <span class="text-danger validation-class"
                                                     id="address-register_errors"></span>
@@ -766,8 +766,8 @@
 
         function initMap() {
             const defaultLocation = {
-                lat: 26.7980,
-                lng: 75.8193
+                lat: 25.2048,
+                lng: 55.2708
             }; // Default center
 
             // Initialize the map

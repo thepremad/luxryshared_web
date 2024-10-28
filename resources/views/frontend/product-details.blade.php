@@ -208,7 +208,12 @@ justify-content: center;
                         <h1 class="product-single__title">{{ $item->item_title }}</h1>
 
                         <div class="d-flex align-items-center">
-                            <h5 class="mb-0">{{ $item->users->first_name ?? '' }} {{ $item->users->last_name ?? '' }}</h5>
+                            <h5 class="mb-0">
+                                <a href="{{ route('user_profile',$item->users->id) }}">
+                                    {{ $item->users->first_name ?? '' }} {{ $item->users->last_name ?? '' }}
+                                </a>
+                                
+                            </h5>
                             <div class="ms-auto">
                                 <i class="fas fa-star" style="color: #E3C01C;"></i>
                                 <i class="fas fa-star" style="color: #E3C01C;"></i>

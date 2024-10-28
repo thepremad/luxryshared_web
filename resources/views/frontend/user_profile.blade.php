@@ -11,7 +11,7 @@
                 <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2>{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</h2>
+                            <h2>{{ $user->first_name . ' ' . $user->last_name }}</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -24,16 +24,17 @@
                                 <i class="fa-star fa-solid"></i>
                             </span>
                             <span class="rating">12 ratings</span>
-                            <button class="btn btn-primary ml-2">Credit balance: AED {{ $wallet_amount }}</button>
-                            <button class="btn btn-secondary ml-2">Give AED 50 & Get AED 50</button>
+                            {{-- <button class="btn btn-primary ml-2">Follow </button> --}}
+                            <button class="btn btn-secondary ml-2" style="background-color: white;color:#67aba8;border-color: #67aba8;">Follow</button>
+                            <button class="btn btn-secondary ml-2">Message</button>
                         </div>
                     </div>
                     <div class="row mt-5 justify-content-start user-information">
                         <div class="col-md-1 text-center">
-                            <h5>{{ $itemsCount ?? '' }}</h5>
+                            <h5>{{ $itemsCount ?? '0' }}</h5>
                             <p>Items</p>
                         </div>
-                        <div class="col-md-1 text-center">
+                        <div class="col-md-2 text-center">
                             <h5>100</h5>
                             <p>Followers</p>
                         </div>
@@ -51,15 +52,15 @@
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 userProfile-sidebar bg-white rounded-3">
                     <ul class="sidebar-nav">
 
-                        <li class="active">
+                        {{-- <li class="active">
                             <a href="#" data-target="#dashboard">
                                 <img src="{{ asset('assets/images/icons/Message-2.svg') }}" class="editProfile-icon"
                                     alt="Dashboard" />
                                 Dashboard
                             </a>
-                        </li>
+                        </li> --}}
 
-                        <li>
+                        {{-- <li>
                             <a href="#" data-target="#message">
                                 <img src="{{ asset('assets/images/icons/Message.svg') }}" class="editProfile-icon"
                                     alt="Message" />
@@ -73,7 +74,7 @@
                                     alt="Renting" />
                                 Renting
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li>
                             <a href="#" data-target="#lending">
@@ -83,13 +84,13 @@
                             </a>
                         </li>
 
-                        <li>
+                        {{-- <li>
                             <a href="#" data-target="#buying">
                                 <img src="{{ asset('assets/images/icons/Buying.svg') }}" class="editProfile-icon"
                                     alt="Buying" />
                                 Buying
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li>
                             <a href="#" data-target="#resale">
@@ -98,22 +99,22 @@
                                 Resale
                             </a>
                         </li>
-
+{{-- 
                         <li>
                             <a href="#" data-target="#wishlist">
                                 <img src="{{ asset('assets/images/icons/Wishlist.svg') }}" class="editProfile-icon"
                                     alt="Wish list" />
                                 Wish list
                             </a>
-                        </li>
+                        </li> --}}
 
-                        <li>
+                        {{-- <li>
                             <a href="#" data-target="#edit-profile">
                                 <img src="{{ asset('assets/images/icons/Edit Profile.svg') }}" class="editProfile-icon"
                                     alt="Edit my profile" />
                                 Edit my profile
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li>
                             <a href="#" data-target="#reviews">
@@ -122,14 +123,14 @@
                                 Reviews
                             </a>
                         </li>
-
+{{-- 
                         <li>
                             <a href="#" data-target="#refer-friend">
                                 <img src="{{ asset('assets/images/icons/Refer a Friend.png') }}" class="editProfile-icon"
                                     alt="Refer a friend" />
                                 Refer a friend
                             </a>
-                        </li>
+                        </li> --}}
 
                     </ul>
 
@@ -155,11 +156,11 @@
                     </div>
 
 
-                    <div style="text-align: center;margin-top:10%">
+                    {{-- <div style="text-align: center;margin-top:10%">
                         <a href="{{ route('logout') }}" class="btn btn-success">
                             Logout
                         </a>
-                    </div>
+                    </div> --}}
 
 
 
@@ -173,9 +174,9 @@
                 <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9 userProfile-contant bg-white pb-5 pt-0 px-0">
                     <div id="dashboard" class="content-section active">
                         <div class="row py-4">
-                            <h3 class="text-center">Profile Settings</h3>
+                            <h3 class="text-center">Lending</h3>
                         </div>
-                        <div class="container-fluid py-5 bg-white rounded">
+                        {{-- <div class="container-fluid py-5 bg-white rounded">
                             <h3 class="text-center">WELCOME <span
                                     style="color: #57110C; font-weight: 600;">{{ auth()->user()->first_name }} !</span>
                             </h3>
@@ -192,7 +193,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div id="messages" class="content-section">
@@ -200,7 +201,7 @@
                         <p>Content for the Messages section.</p>
                     </div>
 
-                    <div id="renting" class="content-section">
+                    {{-- <div id="renting" class="content-section">
                         <div class="row py-4">
                             <h3 class="text-center">RENTING</h3>
                         </div>
@@ -820,9 +821,9 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div id="wishlist" class="content-section">
+                    {{-- <div id="wishlist" class="content-section">
                         <div class="row py-4">
                             <h3 class="text-center">Wishlist</h3>
                         </div>
@@ -964,7 +965,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
 
                     <div id="reviews" class="content-section">
