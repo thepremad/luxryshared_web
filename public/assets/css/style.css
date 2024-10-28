@@ -13787,3 +13787,24 @@ Start CSS All Products Page
   margin-bottom: 40px;
   /* margin-right: 25px; */
 }
+
+.allProducts #filters-list {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px !important;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.allProducts #filters-list .badge.badge-secondary{
+  background-color: #57110c;
+  font-size: 15px;
+  padding: 7px 15px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.allProducts label.selected {
+  font-weight: 600 !important;
+  color: #000000 !important;
+}

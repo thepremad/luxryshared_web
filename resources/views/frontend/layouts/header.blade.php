@@ -1,42 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Search with Suggestions</title>
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .popup-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Styles for suggestions */
+        .suggestions {
+            border: 1px solid #ccc;
+            position: absolute;
+            background-color: #fff;
+            width: 87%;
+            z-index: 1000;
+            max-height: 150px;
+            overflow-y: auto;
+            display: none;
+            border-radius: 5px;
+        }
+
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
 <!-- Top Header -->
-<style>
-    .popup {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.6);
-    }
-
-    .popup-content {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-</style>
-
 <div class="top-header home8-jewellery-top">
     <div class="container-fluid">
         <div class="row">
@@ -106,46 +135,32 @@
                 </div>
             </div>
             @if(auth()->user())
-
-
-
-<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-    <div class="listItrm-link">
-        <a href="{{ route('list_item') }}">List an item</a>
-    </div>
-    <div class="site-header__search">
-        <span><a href="{{ route('wishlist') }}"><i class="icon anm anm-heart-l"></i></a></span>
-    </div>
-    <div class="site-cart">
-        <a href="{{ route('cart') }}" class="site-header__cart" title="Cart">
-            <i class="icon anm anm-bag-l"></i>
-            <span id="CartCount" class="site-header__cart-count" data-cart-render="item_count">0</span>
-        </a>
-    </div>
-    <div class="site-header__search">
-        <a href="{{ route('edit_profile') }}"><span><i class="icon anm anm-user-l"></i></span></a>
-    </div>
-</div>
-
-
-
-
-
-<script>
-    document.querySelector('.site-header__cart').addEventListener('click', function(event) {
-        // Prevent default action for testing
-        event.preventDefault();
-        // You can add a console log to check if this works
-        console.log('Cart link clicked!');
-        // Uncomment the next line to enable actual navigation
-        // window.location.href = "{{ route('cart') }}";
-    });
-</script>
-
-
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="listItrm-link">
+                        <a href="{{ route('list_item') }}">List an item</a>
+                    </div>
+                    <div class="site-header__search">
+                        <span><a href="{{ route('wishlist') }}"><i class="icon anm anm-heart-l"></i></a></span>
+                    </div>
+                    <div class="site-cart">
+                        <a href="{{ route('cart') }}" class="site-header__cart" title="Cart">
+                            <i class="icon anm anm-bag-l"></i>
+                            <span id="CartCount" class="site-header__cart-count" data-cart-render="item_count">0</span>
+                        </a>
+                    </div>
+                    <div class="site-header__search">
+                        <a href="{{ route('edit_profile') }}"><span><i class="icon anm anm-user-l"></i></span></a>
+                    </div>
+                </div>
+                <script>
+                    document.querySelector('.site-header__cart').addEventListener('click', function(event) {
+                        event.preventDefault();
+                        console.log('Cart link clicked!');
+                    });
+                </script>
             @else
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="site-header__search" >
+                    <div class="site-header__search">
                         <a href="{{ route('login') }}">
                             <span><i class="icon anm anm-user-l"></i></span>
                         </a>
@@ -178,7 +193,10 @@
             </ul>
         </div>
         <div class="col-md-2">
-            <span class="header-search"><input type="text" placeholder="Search"></span>
+            <span class="header-search">
+                <input type="text" id="searchInput" placeholder="Search" onkeyup="showSuggestions(this.value)">
+                <div id="suggestions" class="suggestions"></div>
+            </span>
         </div>
     </div>
 </nav>
@@ -186,7 +204,6 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-nav-wrapper" role="navigation">
-    <!-- <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div> -->
     <ul id="MobileNav" class="mobile-nav">
         @if (!empty($menu))
             @foreach ($menu as $val)
@@ -251,25 +268,12 @@
     }
 </script>
 
+<!-- Uncomment if needed -->
 <!-- <script>
     document.querySelector('.site-header__cart').addEventListener('click', function(event) {
         window.location.href = "{{ route('cart') }}"; 
     });
 </script> -->
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const cartElement = document.querySelector('.site-header__cart');
-        if (cartElement) {
-            cartElement.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default action if necessary
-                window.location.href = "{{ route('cart') }}"; 
-            });
-        } else {
-            console.error('Element with class .site-header__cart not found.');
-        }
-    });
-</script>
 
 <!-- Uncomment if needed -->
 <!-- <script>
@@ -299,3 +303,72 @@
         });
     }
 </script> -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartElement = document.querySelector('.site-header__cart');
+        if (cartElement) {
+            cartElement.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default action if necessary
+                window.location.href = "{{ route('cart') }}"; 
+            });
+        } else {
+            console.error('Element with class .site-header__cart not found.');
+        }
+    });
+</script>
+
+<!-- Dummy Data for Search Suggestions -->
+<script>
+    const dummyData = [
+        "Apple",
+        "Banana",
+        "Cherry",
+        "Date",
+        "Grapes",
+        "Lemon",
+        "Mango",
+        "Orange",
+        "Peach",
+        "Strawberry"
+    ];
+
+    function showSuggestions(query) {
+        const suggestionsContainer = document.getElementById('suggestions');
+        suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+
+        if (query.length === 0) {
+            suggestionsContainer.style.display = 'none';
+            return;
+        }
+
+        const filteredData = dummyData.filter(item => 
+            item.toLowerCase().includes(query.toLowerCase())
+        );
+
+        if (filteredData.length > 0) {
+            filteredData.forEach(item => {
+                const suggestionItem = document.createElement('div');
+                suggestionItem.className = 'suggestion-item';
+                suggestionItem.textContent = item;
+                suggestionItem.onclick = function() {
+                    document.getElementById('searchInput').value = item;
+                    suggestionsContainer.style.display = 'none'; // Hide suggestions after selection
+                };
+                suggestionsContainer.appendChild(suggestionItem);
+            });
+            suggestionsContainer.style.display = 'block'; // Show suggestions
+        } else {
+            suggestionsContainer.style.display = 'none'; // No suggestions found
+        }
+    }
+
+    // Close suggestions when clicking outside
+    window.onclick = function(event) {
+        if (!event.target.matches('#searchInput')) {
+            document.getElementById('suggestions').style.display = 'none';
+        }
+    };
+</script>
+
+

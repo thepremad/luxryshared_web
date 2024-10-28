@@ -52,13 +52,12 @@
 
         <div class="container-fluid allProducts">
             <div class="row mt-5 align-items-start">
-                <!-- Sidebar -->
+
 <!-- Sidebar -->
 <div class="col-md-3 col-lg-3 sidebar filterbar">
     <div class="collapse show" id="sidebarContent">
         <div class="sidebar_tags">
 
-            <!-- Categories Section -->
             <div class="sidebar_widget categories filter-widget top">
                 <div class="widget-title">
                     <h4 id="filterTitle">Categories</h4>
@@ -71,7 +70,10 @@
                                 <ul class="sublinks" style="display: none;">
                                     @foreach ($category->subCategory as $subCategory)
                                         <li class="level2">
-                                            <a href="#;">{{ $subCategory->name }}</a>
+                                            <label>
+                                                <input type="checkbox" class="category-checkbox" name="categories[]" value="{{ $subCategory->id }}" onchange="updateSelectedFilters()" />
+                                                <span class="category-name">{{ $subCategory->name }}</span>
+                                            </label>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -84,7 +86,7 @@
             <!-- Price Filter Section -->
             <div class="sidebar_widget filterBox filter-widget">
                 <div class="widget-title widget-before">
-                    <h4 id="filterTitle">Price</h4>
+                    <h4 id="filterTItle">Price</h4>
                 </div>
                 <form action="#" method="post" class="price-filter mt-4">
                     <div id="slider-range" 
@@ -105,7 +107,6 @@
                 </form>
             </div>
 
-            <!-- Color Filter Section -->
             <div class="sidebar_widget filterBox filter-widget">
                 <div class="widget-title widget-before">
                     <h4 id="filterTitle">Color</h4>
@@ -113,12 +114,8 @@
                 <div class="filter-color swatch-list clearfix mt-4">
                     @foreach ($color as $val)
                         <div class="color-item">
-                            <label class="swatch-btn" for="color-{{ $val->id }}"
-                                style="background-color: {{ $val->code }};">
-                                <input type="checkbox" class="color-checkbox"
-                                    id="color-{{ $val->id }}"
-                                    name="colors[]" value="{{ $val->id }}"
-                                    onchange="search()" />
+                            <label class="swatch-btn" for="color-{{ $val->id }}" style="background-color: {{ $val->code }};">
+                                <input type="checkbox" class="color-checkbox" id="color-{{ $val->id }}" name="colors[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
                             </label>
                             <span class="color-name">{{ $val->name }}</span>
                         </div>
@@ -126,25 +123,20 @@
                 </div>
             </div>
 
-            <!-- Size Filter Section -->
             <div class="sidebar_widget categories filterBox filter-widget">
                 <div class="widget-title widget-before">
                     <h4 id="filterTitle">Size</h4>
                 </div>
-                <div class="sizebutton-group mt-4 pt-3">
+                <div class="sizebutton-group mt-4">
                     @foreach ($size as $val)
                         <label class="checkbox-item">
-                            <input type="checkbox" class="size-checkbox"
-                                id="size-{{ $val->id }}"
-                                name="sizes[]" value="{{ $val->id }}"
-                                onchange="search()" />
+                            <input type="checkbox" class="size-checkbox" name="sizes[]" value="{{ $val->id }}" onchange="updateSelectedFilters()">
                             <span>{{ $val->name }}</span>
                         </label>
                     @endforeach
                 </div>
             </div>
 
-            <!-- Occasions Section -->
             <div class="sidebar_widget categories occasions filter-widget">
                 <div class="widget-title widget-before">
                     <h4 id="filterTitle">Occasions</h4>
@@ -154,10 +146,7 @@
                         @foreach ($occasions as $val)
                             <li class="level1 sub-level">
                                 <label for="occasion-{{ $val->id }}" class="site-nav">
-                                    <input type="checkbox" class="occasion-checkbox"
-                                        id="occasion-{{ $val->id }}"
-                                        name="occasions[]" value="{{ $val->id }}"
-                                        onchange="search()" />
+                                    <input type="checkbox" class="occasion-checkbox" id="occasion-{{ $val->id }}" name="occasions[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
                                     {{ $val->name }}
                                 </label>
                             </li>
@@ -166,94 +155,52 @@
                 </div>
             </div>
 
-            <!-- Brands Section -->
             <div class="sidebar_widget categories brands filter-widget">
                 <div class="widget-title widget-before">
                     <h4 id="filterTitle">Brands</h4>
                 </div>
                 <div class="widget-content py-2">
-                    <input type="search" id="brand-search" placeholder="Search Brand" class="form-control mb-2" />
+                    <input type="search" id="brand-search" placeholder="Search Brand" class="mb-2" oninput="filterBrands()">
                 </div>
-
                 <div class="widget-content py-2">
-                    <ul class="sidebar_categories">
+                    <ul class="sidebar_categories" id="brand-list">
                         @foreach ($brand as $val)
-                            <li class="level1 sub-level">
+                            <li class="level1 sub-level brand-item" data-brand-name="{{ $val->name }}">
                                 <label for="brand-{{ $val->id }}" class="site-nav">
-                                    <input type="checkbox" class="brand-checkbox"
-                                        id="brand-{{ $val->id }}"
-                                        name="brands[]" value="{{ $val->id }}"
-                                        onchange="search()" />
+                                    <input type="checkbox" class="brand-checkbox" id="brand-{{ $val->id }}" name="brands[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
                                     {{ $val->name }}
                                 </label>
                             </li>
                         @endforeach
                     </ul>
-                    <button id="clear-filters" class="btn btn-secondary mt-3" onclick="clearFilters()">Clear Filters</button>
                 </div>
             </div>
 
-            <script>
-function clearFilters() {
-    // Clear the search input
-    document.getElementById('brand-search').value = '';
+            <div class="sidebar_widget">
+                <div id="selected-filters" class="selected-filters mb-4">
+                    <ul id="filters-list" style="list-style-type: none; padding: 0; margin: 0;"></ul>
+                </div>
+                <button id="clear-filters" class="btn btn-secondary mt-3" onclick="reloadPage()">Clear Filters</button>
+            </div>
 
-    // Uncheck all brand checkboxes
-    const checkboxes = document.querySelectorAll('.brand-checkbox');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-    });
-
-    // Reload the page
-    location.reload();
-}
-</script>
 
         </div>
     </div>
 </div>
 
-<!-- JavaScript Code -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    // Get all the category headers
-    const categoryHeaders = document.querySelectorAll('.sidebar_categories > li > a');
 
-    categoryHeaders.forEach(header => {
-        header.addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent default link behavior
-            
-            // Get the sublinks for the clicked category
-            const subLinks = this.nextElementSibling;
 
-            // Check if the clicked sublinks is already visible
-            const isVisible = subLinks.style.display === 'block';
 
-            // Hide all sublinks
-            const allSublinks = document.querySelectorAll('.sublinks');
-            allSublinks.forEach(link => {
-                link.style.display = 'none'; // Hide all other sublinks
-            });
 
-            // Only show the clicked subLinks if it was not already visible
-            if (!isVisible) {
-                subLinks.style.display = 'block'; // Show if hidden
-            }
-        });
-    });
 
-    // Close all sublinks when clicking outside the sidebar
-    document.addEventListener('click', function (e) {
-        if (!e.target.closest('.sidebar')) {
-            const allSublinks = document.querySelectorAll('.sublinks');
-            allSublinks.forEach(link => {
-                link.style.display = 'none'; // Hide all sublinks
-            });
-        }
-    });
-});
 
-</script>
+
+
+
+
+ 
+
+
 
 
 
@@ -773,6 +720,80 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script> -->
 
+
+<script>
+    function updateSelectedFilters() {
+        const selectedFiltersList = document.getElementById('filters-list');
+        selectedFiltersList.innerHTML = '';
+
+        const categoryCheckboxes = document.querySelectorAll('.category-checkbox:checked');
+        categoryCheckboxes.forEach(checkbox => {
+            const categoryName = checkbox.nextElementSibling.textContent.trim();
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span class="badge badge-secondary">${categoryName}</span>`;
+            selectedFiltersList.appendChild(listItem);
+            checkbox.nextElementSibling.style.fontWeight = '600';
+            checkbox.nextElementSibling.style.color = '#000000';
+        });
+
+        const sizeCheckboxes = document.querySelectorAll('.size-checkbox:checked');
+        sizeCheckboxes.forEach(checkbox => {
+            const sizeName = checkbox.nextElementSibling.textContent.trim();
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span class="badge badge-secondary">${sizeName}</span>`;
+            selectedFiltersList.appendChild(listItem);
+        });
+
+        const colorCheckboxes = document.querySelectorAll('.color-checkbox:checked');
+        colorCheckboxes.forEach(checkbox => {
+            const colorName = checkbox.closest('.color-item').querySelector('.color-name').textContent.trim();
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span class="badge badge-secondary">${colorName}</span>`;
+            selectedFiltersList.appendChild(listItem);
+        });
+
+        const occasionCheckboxes = document.querySelectorAll('.occasion-checkbox:checked');
+        occasionCheckboxes.forEach(checkbox => {
+            const occasionLabel = checkbox.closest('label');
+            const occasionName = occasionLabel.textContent.trim();
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span class="badge badge-secondary">${occasionName}</span>`;
+            selectedFiltersList.appendChild(listItem);
+            occasionLabel.style.fontWeight = '600';
+            occasionLabel.style.color = '#000000';
+        });
+
+        const brandCheckboxes = document.querySelectorAll('.brand-checkbox:checked');
+        brandCheckboxes.forEach(checkbox => {
+            const brandLabel = checkbox.closest('label');
+            const brandName = brandLabel.textContent.trim();
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span class="badge badge-secondary">${brandName}</span>`;
+            selectedFiltersList.appendChild(listItem);
+            brandLabel.style.fontWeight = '600';
+            brandLabel.style.color = '#000000';
+        });
+    }
+
+    function reloadPage() {
+        location.reload(); // This will reload the current page
+    }
+
+    function filterBrands() {
+    const searchInput = document.getElementById('brand-search').value.toLowerCase();
+    const brandItems = document.querySelectorAll('.brand-item');
+
+    brandItems.forEach(item => {
+        const brandName = item.getAttribute('data-brand-name').toLowerCase();
+        if (brandName.includes(searchInput)) {
+            item.style.display = ''; // Show the item
+        } else {
+            item.style.display = 'none'; // Hide the item
+        }
+    });
+}
+
+</script>
 
 
 
