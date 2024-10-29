@@ -242,7 +242,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-6 mb-2">
                                         <label for="brand">Brand 
-                                            <span class="info-icon" data-toggle="tooltip" data-html="true" title="If your brand isn’t listed, please <a href='mailto:info@lxryshared.com'>email</a> to <a href='mailto:info@lxryshared.com'>info@lxryshared.com</a>." style="cursor: pointer;">
+                                            <span class="info-icon" data-toggle="tooltip" data-html="true" title="If your brand isn’t listed, <a href='mailto:info@lxryshared.com'>email us</a> to add it to our list." style="cursor: pointer;">
                                                 ?
                                             </span>
                                         </label>
@@ -401,7 +401,7 @@
                                 <h4 class="text-center">PRICE DETAILS</h4>
                                 <div class="form-group row row-half-width">
                                     <div class="form-group">
-                                        <label for="rrp-price">RRP PRICE</label>
+                                        <label for="rrp-price">RRP Price</label>
                                         <input type="text" name="rrp_price" class="form-control" id="rrp-price" onchange="ChangerRpInput()">
                                         <span class="text-danger validation-class" id="rrp_price-submit_errors"></span>
                                     </div>
@@ -409,6 +409,8 @@
                                         <label for="day-price">Suggested Day Price</label>
                                         <input type="text" name="suggested_day_price" class="form-control" id="day-price" onchange="rrpInput()">
                                         <span class="text-danger validation-class" id="suggested_day_price-submit_errors"></span>
+                                        <span class="info-icon" tabindex="0">?</span>
+                                        <div class="info-tooltip">This suggested price is based on our algorithm, designed to maximize your rentals using data from similar items.</div>
                                     </div>
                                 </div>
                                 <div class="form-group row row-half-width" id="additional">
@@ -540,8 +542,8 @@
                                 <div class="success-img text-center">
                                     <img src="{{asset("assets/images/icons/check.png")}}" alt="" class="img-fluid mb-3">
                                 </div>
-                                <h2 class="text-center">Your Item is been uploaded successfully.</h2>
-                                <h3 class="text-center">Your Item will be live upon approval from lxry shared admin</h3>                               
+                                <h2 class="text-center">Your item has been uploaded successfully.</h2>
+                                <h3 class="text-center">Your item will be live after approval from LXRY Shared Admin</h3>                               
                                 <div class="text-center">
                                     <a href="{{ route('home') }}" class="btn btn-primary" >Back to Home</a>
                                 </div>

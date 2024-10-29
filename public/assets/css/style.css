@@ -13808,3 +13808,9 @@ Start CSS All Products Page
   font-weight: 600 !important;
   color: #000000 !important;
 }
+
+.allProducts  #brand-list{
+  width: 100%;
+  height: 210px;
+  overflow-y: scroll;
+}
