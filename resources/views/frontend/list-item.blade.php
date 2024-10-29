@@ -244,7 +244,7 @@
                                         <label for="brand">Brand 
 
                                             <span class="info-icon" data-toggle="tooltip" data-html="true" title="If your brand isn’t listed, email info@lxryshared.com to add it to our list.">
-                                                ?
+                                                ?   
                                             </span>
                                             
                                         </label>
@@ -500,7 +500,9 @@
 
                                 
                                 <div class="form-group">
-                                    <a href="#" style="text-decoration: underline">BUY NOW</a>
+                                    <a href="{{ route('faq') }}" style="text-decoration: underline">BUY NOW</a>
+                                    <span class="info-icon" tabindex="0" style="left: 100px; top: 0%;">?</span>
+                                    <div class="info-tooltip" style="padding: 5px 14px; left: 132px; top: -6px; width: fit-content;"><a href="{{ route('faq') }}">FAQ</a></div>
                                 </div>
 
 
@@ -514,6 +516,11 @@
 
                                 <div class="form-group" id="additional-deposit-group" style="display: none;">
                                     <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <p>
+                                                It's up to you to specify your however we suggest doing so in the item description. You are bound by law to provide a return and refund if an item is not as represented. Therefore, kindly make sure that your images and description are up to date and include any wear or damage.
+                                            </p>
+                                        </div>
                                         <div class="col-md-6">
                                             <p>Size:</p>
                                             <p id="selected-size">L</p>
@@ -1105,7 +1112,16 @@
     $(function () {
         $('.info-icon').tooltip({
             html: true,  
-            delay: { "show": 500, "hide": 1000 } 
+            delay: { "show": 500, "hide": 2000 } 
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        $('.info-icon').info-tooltip({
+            html: true,  
+            delay: { "show": 500, "hide": 2000 } 
         });
     });
 </script>
