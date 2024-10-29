@@ -200,6 +200,17 @@
     }
 }
 
+
+.carousel.slide.item .row img.img-fluid{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    
+}
+
 </style>
     <!--Body Content-->
     <div id="page-content" class="listingProduct">
@@ -288,7 +299,7 @@
 
 
                                 <div class="form-group row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-8 col-lg-6 col-10">
                                         <label for="color">Colour</label>
                                         <select id="color" name="color_id" class="form-control">
                                             @foreach ($color as $val)
@@ -379,20 +390,75 @@
 
                                     
                                 </div>
+                                
+                                                                
+                                <div class="row justify-content-center py-1">
+                                    <div class="col-12 col-sm-10 col-md-8 col-lg-8">
+                                        <div id="carouselExample" class="carousel slide item" data-ride="carousel" data-interval="2000">
+                                                <div class="carousel-inner">
 
+                                                    <div class="carousel-item active">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-lg-6">
+                                                                <img src="{{ asset('./assets/images/slider/1.webp') }}" class="img-fluid">
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <h2 style="font-size: 18px;">Heading for Slide 1</h2>
+                                                                <p style="font-size: 14px;">This is the description for the first slide. Provide details about the product or service here.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
+                                                    <div class="carousel-item">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-lg-6">
+                                                                <img src="{{ asset('./assets/images/slider/2.webp') }}" alt="Product Image 1" class="img-fluid">
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <h2 style="font-size: 18px;">Heading for Slide 1</h2>
+                                                                <p style="font-size: 14px;">This is the description for the first slide. Provide details about the product or service here.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
+                                                    <div class="carousel-item">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-lg-6">
+                                                                <img src="{{ asset('./assets/images/slider/3.webp') }}" alt="Product Image 1" class="img-fluid">
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <h2 style="font-size: 18px;">Heading for Slide 1</h2>
+                                                                <p style="font-size: 14px;">This is the description for the first slide. Provide details about the product or service here.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                <div class="form-group">
-                                    <label for="description">Item Description <span>*</span></label>
-                                    <textarea class="form-control" name="image_description" id="description" rows="5"
-                                        placeholder="Describe your item and include fitting notes eg. perfect sizing, or item comes longer in length"></textarea>
-                                        <span class="text-danger validation-class" id="image_description-submit_errors"></span>
+                                                    <div class="carousel-item">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-lg-6">
+                                                                <img src="{{ asset('./assets/images/slider/4.webp') }}" alt="Product Image 1" class="img-fluid">
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <h2 style="font-size: 18px;">Heading for Slide 1</h2>
+                                                                <p style="font-size: 14px;">This is the description for the first slide. Provide details about the product or service here.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                    </div>
                                 </div>
-                                <span class="text text-danger">{{ $errors->first('image_description') }}</span>
-                                <div class="button-container">
-                                    <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next</button>
-                                </div>
+
 
 
                                 
@@ -552,11 +618,8 @@
                                 <div class="success-img text-center">
                                     <img src="{{asset("assets/images/icons/check.png")}}" alt="" class="img-fluid mb-3">
                                 </div>
-<<<<<<< HEAD
                                 <h2 class="text-center">Your item has been uploaded successfully.</h2>
-=======
                                 <h2 class="text-center">Your Item is been uploaded successfully.</h2>
->>>>>>> 70142a8bb955777b010955064d6bf2ce9e704b56
                                 <h3 class="text-center">Your item will be live after approval from LXRY Shared Admin</h3>                               
                                 <div class="text-center">
                                     <a href="{{ route('home') }}" class="btn btn-primary" >Back to Home</a>
