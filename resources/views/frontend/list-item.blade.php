@@ -500,7 +500,7 @@
 
                                 
                                 <div class="form-group">
-                                    <a href="{{ route('faq') }}" style="text-decoration: underline">BUY NOW</a>
+                                    <a href="{{ route('faq') }}" target="_blank" style="text-decoration: underline">BUY NOW</a>
                                     <span class="info-icon" tabindex="0" style="left: 100px; top: 0%;">?</span>
                                     <div class="info-tooltip" style="padding: 5px 14px; left: 132px; top: -6px; width: fit-content;"><a href="{{ route('faq') }}">FAQ</a></div>
                                 </div>
