@@ -53,140 +53,140 @@
         <div class="container-fluid allProducts">
             <div class="row mt-5 align-items-start">
 
-<!-- Sidebar -->
-<div class="col-md-3 col-lg-3 sidebar filterbar">
-    <div class="collapse show" id="sidebarContent">
-        <div class="sidebar_tags">
+                <!-- Sidebar -->
+                <div class="col-md-3 col-lg-3 sidebar filterbar">
+                    <div class="collapse show" id="sidebarContent">
+                        <div class="sidebar_tags">
 
-            <div class="sidebar_widget categories filter-widget top">
-                <div class="widget-title">
-                    <h4 id="filterTitle">Categories</h4>
-                </div>
-                <div class="widget-content py-4">
-                    <ul class="sidebar_categories">
-                        @foreach ($categories as $category)
-                            <li class="level1 sub-level">
-                                <a href="#;" class="site-nav">{{ $category->name }}</a>
-                                <ul class="sublinks" style="display: none;">
-                                    @foreach ($category->subCategory as $subCategory)
-                                        <li class="level2">
-                                            <label>
-                                                <input type="checkbox" class="category-checkbox" name="categories[]" value="{{ $subCategory->id }}" onchange="updateSelectedFilters()" />
-                                                <span class="category-name">{{ $subCategory->name }}</span>
+                            <div class="sidebar_widget categories filter-widget top">
+                                <div class="widget-title">
+                                    <h4 id="filterTitle">Categories</h4>
+                                </div>
+                                <div class="widget-content py-4">
+                                    <ul class="sidebar_categories">
+                                        @foreach ($categories as $category)
+                                            <li class="level1 sub-level">
+                                                <a href="#;" class="site-nav">{{ $category->name }}</a>
+                                                <ul class="sublinks" style="display: none;">
+                                                    @foreach ($category->subCategory as $subCategory)
+                                                        <li class="level2">
+                                                            <label>
+                                                                <input type="checkbox" class="category-checkbox" name="categories[]" value="{{ $subCategory->id }}" onchange="updateSelectedFilters()" />
+                                                                <span class="category-name">{{ $subCategory->name }}</span>
+                                                            </label>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Price Filter Section -->
+                            <div class="sidebar_widget filterBox filter-widget">
+                                <div class="widget-title widget-before">
+                                    <h4 id="filterTItle">Price</h4>
+                                </div>
+                                <form action="#" method="post" class="price-filter mt-4">
+                                    <div id="slider-range" 
+                                        class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                    </div>
+                                    <div class="row justify-content-between">
+                                        <div class="col-6 p-0" style="flex: 0 0 41.6%; max-width: 41.6%;">
+                                            <p class="no-margin">
+                                                <input id="min-price" type="text" placeholder="Min Price" readonly />
+                                            </p>
+                                        </div>
+                                        <div class="col-6 p-0" style="flex: 0 0 41.6%; max-width: 41.6%;">
+                                            <p class="no-margin">
+                                                <input id="max-price" type="text" placeholder="Max Price" readonly />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="sidebar_widget filterBox filter-widget">
+                                <div class="widget-title widget-before">
+                                    <h4 id="filterTitle">Color</h4>
+                                </div>
+                                <div class="filter-color swatch-list clearfix mt-4">
+                                    @foreach ($color as $val)
+                                        <div class="color-item">
+                                            <label class="swatch-btn" for="color-{{ $val->id }}" style="background-color: {{ $val->code }};">
+                                                <input type="checkbox" class="color-checkbox" id="color-{{ $val->id }}" name="colors[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
                                             </label>
-                                        </li>
+                                            <span class="color-name">{{ $val->name }}</span>
+                                        </div>
                                     @endforeach
-                                </ul>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+                                </div>
+                            </div>
 
-            <!-- Price Filter Section -->
-            <div class="sidebar_widget filterBox filter-widget">
-                <div class="widget-title widget-before">
-                    <h4 id="filterTItle">Price</h4>
-                </div>
-                <form action="#" method="post" class="price-filter mt-4">
-                    <div id="slider-range" 
-                        class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                            <div class="sidebar_widget categories filterBox filter-widget">
+                                <div class="widget-title widget-before">
+                                    <h4 id="filterTitle">Size</h4>
+                                </div>
+                                <div class="sizebutton-group mt-4">
+                                    @foreach ($size as $val)
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" class="size-checkbox" name="sizes[]" value="{{ $val->id }}" onchange="updateSelectedFilters()">
+                                            <span>{{ $val->name }}</span>
+                                        </label>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div class="sidebar_widget categories occasions filter-widget">
+                                <div class="widget-title widget-before">
+                                    <h4 id="filterTitle">Occasions</h4>
+                                </div>
+                                <div class="widget-content py-4">
+                                    <ul class="sidebar_categories">
+                                        @foreach ($occasions as $val)
+                                            <li class="level1 sub-level">
+                                                <label for="occasion-{{ $val->id }}" class="site-nav">
+                                                    <input type="checkbox" class="occasion-checkbox" id="occasion-{{ $val->id }}" name="occasions[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
+                                                    {{ $val->name }}
+                                                </label>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sidebar_widget categories brands filter-widget">
+                                <div class="widget-title widget-before">
+                                    <h4 id="filterTitle">Brands</h4>
+                                </div>
+                                <div class="widget-content py-2">
+                                    <input type="search" id="brand-search" placeholder="Search Brand" class="mb-2" oninput="filterBrands()">
+                                </div>
+                                <div class="widget-content py-2">
+                                    <ul class="sidebar_categories" id="brand-list">
+                                        @foreach ($brand as $val)
+                                            <li class="level1 sub-level brand-item" data-brand-name="{{ $val->name }}">
+                                                <label for="brand-{{ $val->id }}" class="site-nav">
+                                                    <input type="checkbox" class="brand-checkbox" id="brand-{{ $val->id }}" name="brands[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
+                                                    {{ $val->name }}
+                                                </label>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sidebar_widget">
+                                <div id="selected-filters" class="selected-filters mb-4">
+                                    <ul id="filters-list" style="list-style-type: none; padding: 0; margin: 0;"></ul>
+                                </div>
+                                <button id="clear-filters" class="btn btn-secondary mt-3" onclick="reloadPage()">Clear Filters</button>
+                            </div>
+
+
+                        </div>
                     </div>
-                    <div class="row justify-content-between">
-                        <div class="col-6 p-0" style="flex: 0 0 41.6%; max-width: 41.6%;">
-                            <p class="no-margin">
-                                <input id="min-price" type="text" placeholder="Min Price" readonly />
-                            </p>
-                        </div>
-                        <div class="col-6 p-0" style="flex: 0 0 41.6%; max-width: 41.6%;">
-                            <p class="no-margin">
-                                <input id="max-price" type="text" placeholder="Max Price" readonly />
-                            </p>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="sidebar_widget filterBox filter-widget">
-                <div class="widget-title widget-before">
-                    <h4 id="filterTitle">Color</h4>
                 </div>
-                <div class="filter-color swatch-list clearfix mt-4">
-                    @foreach ($color as $val)
-                        <div class="color-item">
-                            <label class="swatch-btn" for="color-{{ $val->id }}" style="background-color: {{ $val->code }};">
-                                <input type="checkbox" class="color-checkbox" id="color-{{ $val->id }}" name="colors[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
-                            </label>
-                            <span class="color-name">{{ $val->name }}</span>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-
-            <div class="sidebar_widget categories filterBox filter-widget">
-                <div class="widget-title widget-before">
-                    <h4 id="filterTitle">Size</h4>
-                </div>
-                <div class="sizebutton-group mt-4">
-                    @foreach ($size as $val)
-                        <label class="checkbox-item">
-                            <input type="checkbox" class="size-checkbox" name="sizes[]" value="{{ $val->id }}" onchange="updateSelectedFilters()">
-                            <span>{{ $val->name }}</span>
-                        </label>
-                    @endforeach
-                </div>
-            </div>
-
-            <div class="sidebar_widget categories occasions filter-widget">
-                <div class="widget-title widget-before">
-                    <h4 id="filterTitle">Occasions</h4>
-                </div>
-                <div class="widget-content py-4">
-                    <ul class="sidebar_categories">
-                        @foreach ($occasions as $val)
-                            <li class="level1 sub-level">
-                                <label for="occasion-{{ $val->id }}" class="site-nav">
-                                    <input type="checkbox" class="occasion-checkbox" id="occasion-{{ $val->id }}" name="occasions[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
-                                    {{ $val->name }}
-                                </label>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-
-            <div class="sidebar_widget categories brands filter-widget">
-                <div class="widget-title widget-before">
-                    <h4 id="filterTitle">Brands</h4>
-                </div>
-                <div class="widget-content py-2">
-                    <input type="search" id="brand-search" placeholder="Search Brand" class="mb-2" oninput="filterBrands()">
-                </div>
-                <div class="widget-content py-2">
-                    <ul class="sidebar_categories" id="brand-list">
-                        @foreach ($brand as $val)
-                            <li class="level1 sub-level brand-item" data-brand-name="{{ $val->name }}">
-                                <label for="brand-{{ $val->id }}" class="site-nav">
-                                    <input type="checkbox" class="brand-checkbox" id="brand-{{ $val->id }}" name="brands[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
-                                    {{ $val->name }}
-                                </label>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-
-            <div class="sidebar_widget">
-                <div id="selected-filters" class="selected-filters mb-4">
-                    <ul id="filters-list" style="list-style-type: none; padding: 0; margin: 0;"></ul>
-                </div>
-                <button id="clear-filters" class="btn btn-secondary mt-3" onclick="reloadPage()">Clear Filters</button>
-            </div>
-
-
-        </div>
-    </div>
-</div>
 
 
 
