@@ -52,6 +52,7 @@
 
         <div class="container-fluid allProducts">
             <div class="row mt-5 align-items-start">
+
                 <!-- Sidebar -->
                 <div class="col-md-3 col-lg-3 sidebar filterbar">
                     <div class="collapse show" id="sidebarContent">
@@ -59,9 +60,9 @@
 
                             <div class="sidebar_widget categories filter-widget top">
                                 <div class="widget-title">
-                                    <h4 id="filterTItle">Categories</h4>
+                                    <h4 id="filterTitle">Categories</h4>
                                 </div>
-                                <div class="widget-content py-4" style="display: none; height: 0;">
+                                <div class="widget-content py-4">
                                     <ul class="sidebar_categories">
                                         @foreach ($categories as $category)
                                             <li class="level1 sub-level">
@@ -69,7 +70,10 @@
                                                 <ul class="sublinks" style="display: none;">
                                                     @foreach ($category->subCategory as $subCategory)
                                                         <li class="level2">
-                                                            <a href="#;">{{ $subCategory->name }}</a>
+                                                            <label>
+                                                                <input type="checkbox" class="category-checkbox" name="categories[]" value="{{ $subCategory->id }}" onchange="updateSelectedFilters()" />
+                                                                <span class="category-name">{{ $subCategory->name }}</span>
+                                                            </label>
                                                         </li>
                                                     @endforeach
                                                 </ul>
@@ -79,9 +83,7 @@
                                 </div>
                             </div>
 
-
-
-                           <!-- Price Filter Section -->
+                            <!-- Price Filter Section -->
                             <div class="sidebar_widget filterBox filter-widget">
                                 <div class="widget-title widget-before">
                                     <h4 id="filterTItle">Price</h4>
@@ -105,274 +107,104 @@
                                 </form>
                             </div>
 
-                            <!-- Color Filter Section -->
                             <div class="sidebar_widget filterBox filter-widget">
                                 <div class="widget-title widget-before">
-                                    <h4 id="filterTItle">Color</h4>
+                                    <h4 id="filterTitle">Color</h4>
                                 </div>
                                 <div class="filter-color swatch-list clearfix mt-4">
-                                    <div class="filter-color swatch-list clearfix mt-4">
-                                        @foreach ($color as $val)
-                                        
-                                            <div class="color-item">
-                                              
-                                                    <label class="swatch-btn" for="color-{{ $val->id }}"
-                                                        style="background-color: {{ $val->code }};">
-                                                        <input type="checkbox" class="color-checkbox"
-                                                        id="color-{{ $val->id }}"
-                                                        name="colors[]" value="{{ $val->id }}"
-                                                        onchange="search()"  />
-                                                    </label>
-                                                    <span class="color-name" >
-                                                        {{ $val->name }}
-                                                    </span>
-                                                
-                                            </div>
-                                        @endforeach
-                                        {{-- <div class="color-item">
-                                        <span class="swatch-btn" style="background-color: #252525;"></span>
-                                        <span class="color-name">Black</span>
-                                    </div>
-                                    <div class="color-item">
-                                        <span class="swatch-btn" style="background-color: #F35528;"></span>
-                                        <span class="color-name">Red</span>
-                                    </div>
-                                    <div class="color-item">
-                                        <span class="swatch-btn" style="background-color: #F16F2B;"></span>
-                                        <span class="color-name">Orange</span>
-                                    </div>
-                                    <div class="color-item">
-                                        <span class="swatch-btn" style="background-color: #345EFF;"></span>
-                                        <span class="color-name">Navy</span>
-                                    </div>
-                                    <div class="color-item">
-                                        <span class="swatch-btn" style="background-color: #F4F1F1;"></span>
-                                        <span class="color-name">White</span>
-                                    </div>
-                                    <div class="color-item">
-                                        <span class="swatch-btn" style="background-color: #D67E3B;"></span>
-                                        <span class="color-name">Broom</span>
-                                    </div>
-                                    <div class="color-item">
-                                        <span class="swatch-btn" style="background-color: #48BC4E;"></span>
-                                        <span class="color-name">Green</span>
-                                    </div>
-                                    <div class="color-item">
-                                        <span class="swatch-btn" style="background-color: #FDC761;"></span>
-                                        <span class="color-name">Yellow</span>
-                                    </div>
-                                    <div class="color-item">
-                                        <span class="swatch-btn" style="background-color: #E4E5E8;"></span>
-                                        <span class="color-name">Grey</span>
-                                    </div>
-                                    <div class="color-item">
-                                        <span class="swatch-btn" style="background-color: #E08D9D;"></span>
-                                        <span class="color-name">Pink</span>
-                                    </div> 
-                                    <div class="color-item">
-                                        <span class="swatch-btn" style="background-color: #3FDEFF;"></span>
-                                        <span class="color-name">Blue</span>
-                                    </div> --}}
-                                    </div>
+                                    @foreach ($color as $val)
+                                        <div class="color-item">
+                                            <label class="swatch-btn" for="color-{{ $val->id }}" style="background-color: {{ $val->code }};">
+                                                <input type="checkbox" class="color-checkbox" id="color-{{ $val->id }}" name="colors[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
+                                            </label>
+                                            <span class="color-name">{{ $val->name }}</span>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
 
-                            <!-- Size Filter Section -->
                             <div class="sidebar_widget categories filterBox filter-widget">
                                 <div class="widget-title widget-before">
-                                    <h4 id="filterTItle">Size</h4>
+                                    <h4 id="filterTitle">Size</h4>
                                 </div>
-                                <div class="sizebutton-group mt-4 pt-3">
+                                <div class="sizebutton-group mt-4">
                                     @foreach ($size as $val)
                                         <label class="checkbox-item">
-                                            
-                                                       <input type="checkbox" class="size-checkbox"
-                                                        id="size-{{ $val->id }}"
-                                                        name="sizes[]" value="{{ $val->id }}"
-                                                        onchange="search()"  />
-                                                        <span>{{ $val->name }}</span>
-                                            
+                                            <input type="checkbox" class="size-checkbox" name="sizes[]" value="{{ $val->id }}" onchange="updateSelectedFilters()">
+                                            <span>{{ $val->name }}</span>
                                         </label>
                                     @endforeach
-                                    {{-- <label class="checkbox-item">
-                                    <input type="checkbox" value="XS" id="check2" />
-                                    <span>XS</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" value="S" id="check3" />
-                                    <span>S</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" value="M" id="check4" />
-                                    <span>M</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" value="L" id="check5" />
-                                    <span>L</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" value="XL" id="check6" />
-                                    <span>XL</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" value="XXL" id="check7" />
-                                    <span>XXL</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" value="3XL" id="check8" />
-                                    <span>3XL</span>
-                                </label>
-                                <label class="checkbox-item">
-                                    <input type="checkbox" value="4XL" id="check9" />
-                                    <span>4XL</span>
-                                </label> --}}
                                 </div>
                             </div>
 
-                            <!-- Occasions Section -->
                             <div class="sidebar_widget categories occasions filter-widget">
                                 <div class="widget-title widget-before">
-                                    <h4 id="filterTItle">Occasions</h4>
+                                    <h4 id="filterTitle">Occasions</h4>
                                 </div>
                                 <div class="widget-content py-4">
                                     <ul class="sidebar_categories">
                                         @foreach ($occasions as $val)
                                             <li class="level1 sub-level">
-                                            <label for="occasion-{{ $val->id }}"
-                                                class="site-nav">
-                                                <input type="checkbox" class="occasion-checkbox"
-                                                    id="occasion-{{ $val->id }}"
-                                                    name="occasions[]" value="{{ $val->id }}"
-                                                    onchange="search()"  />
-                                                {{ $val->name }}
-                                            </label>
-                                                {{-- <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Dresses</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Suits</a>
-                                            </li>
-                                        </ul> --}}
+                                                <label for="occasion-{{ $val->id }}" class="site-nav">
+                                                    <input type="checkbox" class="occasion-checkbox" id="occasion-{{ $val->id }}" name="occasions[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
+                                                    {{ $val->name }}
+                                                </label>
                                             </li>
                                         @endforeach
-                                        {{-- <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Casual</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">T-shirts</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Shorts</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Business</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Dress Shirts</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Trousers</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Sport</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Activewear</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Sneakers</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Elegant</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Evening Gowns</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Cocktail Dresses</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Formal (evening)</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Tuxedos</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Formal Suits</a>
-                                            </li>
-                                        </ul>
-                                    </li> --}}
                                     </ul>
                                 </div>
                             </div>
 
-                            <!-- Branded Section -->
                             <div class="sidebar_widget categories brands filter-widget">
                                 <div class="widget-title widget-before">
-                                    <h4 id="filterTtle">Brands</h4>
+                                    <h4 id="filterTitle">Brands</h4>
                                 </div>
-                                <div class="widget-content py-4">
-                                    <ul class="sidebar_categories">
+                                <div class="widget-content py-2">
+                                    <input type="search" id="brand-search" placeholder="Search Brand" class="mb-2" oninput="filterBrands()">
+                                </div>
+                                <div class="widget-content py-2">
+                                    <ul class="sidebar_categories" id="brand-list">
                                         @foreach ($brand as $val)
-                                            <li class="level1 sub-level">
-                                            <label for="brand-{{ $val->id }}"
-                                                class="site-nav">
-                                                <input type="checkbox" class="brand-checkbox"
-                                                    id="brand-{{ $val->id }}"
-                                                    name="brands[]" value="{{ $val->id }}"
-                                                    onchange="search()" />
-                                                {{ $val->name }}
-                                            </label>
-                                                {{-- <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Dresses</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Suits</a>
-                                            </li>
-                                        </ul> --}}
+                                            <li class="level1 sub-level brand-item" data-brand-name="{{ $val->name }}">
+                                                <label for="brand-{{ $val->id }}" class="site-nav">
+                                                    <input type="checkbox" class="brand-checkbox" id="brand-{{ $val->id }}" name="brands[]" value="{{ $val->id }}" onchange="updateSelectedFilters()" />
+                                                    {{ $val->name }}
+                                                </label>
                                             </li>
                                         @endforeach
-                                        {{-- <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Casual</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">T-shirts</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Shorts</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1 sub-level">
-                                        <a href="#;" class="site-nav">Business</a>
-                                        <ul class="sublinks">
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Dress Shirts</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="#;" class="site-nav">Trousers</a>
-                                            </li>
-                                        </ul>
-                                    </li> --}}
                                     </ul>
                                 </div>
                             </div>
 
+                            <div class="sidebar_widget">
+                                <div id="selected-filters" class="selected-filters mb-4">
+                                    <ul id="filters-list" style="list-style-type: none; padding: 0; margin: 0;"></ul>
+                                </div>
+                                <button id="clear-filters" class="btn btn-secondary mt-3" onclick="reloadPage()">Clear Filters</button>
+                            </div>
 
 
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
 
                 <!-- Main Content Area -->
                 <div class="col-lg-9 col-md-12 col-sm-12 col-12 main-col p-0">
@@ -691,9 +523,9 @@
 @endsection
 @section('js')
     <!-- Including Jquery -->
-    <script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js') }}"></script>
+    <!-- <script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js') }}"></script> -->
     <script src="{{ asset('assets/js/vendor/jquery.cookie.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
+    <!-- <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script> -->
     <script src="{{ asset('assets/js/vendor/wow.min.js') }}"></script>
     <!-- Including Javascript -->
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -703,8 +535,8 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> -->
 
    
 
@@ -846,7 +678,7 @@ window.onclick = function(event) {
 }
 </script>
 
-<script>
+<!-- <script>
 $(document).ready(function() {
     $(document).on('click', '.site-nav', function(e) {
         e.preventDefault();
@@ -858,10 +690,10 @@ $(document).ready(function() {
         }, 50); // Adjust the delay if needed
     });
 });
-</script>
+</script> -->
 
 
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.site-nav').forEach(function(nav) {
         nav.addEventListener('click', function(e) {
@@ -886,7 +718,83 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+</script> -->
+
+
+<script>
+    function updateSelectedFilters() {
+        const selectedFiltersList = document.getElementById('filters-list');
+        selectedFiltersList.innerHTML = '';
+
+        const categoryCheckboxes = document.querySelectorAll('.category-checkbox:checked');
+        categoryCheckboxes.forEach(checkbox => {
+            const categoryName = checkbox.nextElementSibling.textContent.trim();
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span class="badge badge-secondary">${categoryName}</span>`;
+            selectedFiltersList.appendChild(listItem);
+            checkbox.nextElementSibling.style.fontWeight = '600';
+            checkbox.nextElementSibling.style.color = '#000000';
+        });
+
+        const sizeCheckboxes = document.querySelectorAll('.size-checkbox:checked');
+        sizeCheckboxes.forEach(checkbox => {
+            const sizeName = checkbox.nextElementSibling.textContent.trim();
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span class="badge badge-secondary">${sizeName}</span>`;
+            selectedFiltersList.appendChild(listItem);
+        });
+
+        const colorCheckboxes = document.querySelectorAll('.color-checkbox:checked');
+        colorCheckboxes.forEach(checkbox => {
+            const colorName = checkbox.closest('.color-item').querySelector('.color-name').textContent.trim();
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span class="badge badge-secondary">${colorName}</span>`;
+            selectedFiltersList.appendChild(listItem);
+        });
+
+        const occasionCheckboxes = document.querySelectorAll('.occasion-checkbox:checked');
+        occasionCheckboxes.forEach(checkbox => {
+            const occasionLabel = checkbox.closest('label');
+            const occasionName = occasionLabel.textContent.trim();
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span class="badge badge-secondary">${occasionName}</span>`;
+            selectedFiltersList.appendChild(listItem);
+            occasionLabel.style.fontWeight = '600';
+            occasionLabel.style.color = '#000000';
+        });
+
+        const brandCheckboxes = document.querySelectorAll('.brand-checkbox:checked');
+        brandCheckboxes.forEach(checkbox => {
+            const brandLabel = checkbox.closest('label');
+            const brandName = brandLabel.textContent.trim();
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span class="badge badge-secondary">${brandName}</span>`;
+            selectedFiltersList.appendChild(listItem);
+            brandLabel.style.fontWeight = '600';
+            brandLabel.style.color = '#000000';
+        });
+    }
+
+    function reloadPage() {
+        location.reload(); // This will reload the current page
+    }
+
+    function filterBrands() {
+    const searchInput = document.getElementById('brand-search').value.toLowerCase();
+    const brandItems = document.querySelectorAll('.brand-item');
+
+    brandItems.forEach(item => {
+        const brandName = item.getAttribute('data-brand-name').toLowerCase();
+        if (brandName.includes(searchInput)) {
+            item.style.display = ''; // Show the item
+        } else {
+            item.style.display = 'none'; // Hide the item
+        }
+    });
+}
+
 </script>
+
 
 
 

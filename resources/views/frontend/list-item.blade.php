@@ -125,8 +125,8 @@
 .info-tooltip {
     display: none;
     position: absolute;
-    background-color: black;
-    color: white;
+    background-color: #ffffff;
+    color: #000000;
     padding: 5px;
     border-radius: 5px;
     z-index: 1000;
@@ -242,9 +242,11 @@
                                 <div class="form-group row">
                                     <div class="col-md-6 mb-2">
                                         <label for="brand">Brand 
-                                            <span class="info-icon" data-toggle="tooltip" data-html="true" title="If your brand isn’t listed, please <a href='mailto:info@lxryshared.com'>email</a> to <a href='mailto:info@lxryshared.com'>info@lxryshared.com</a>." style="cursor: pointer;">
-                                                ?
+
+                                            <span class="info-icon" data-toggle="tooltip" data-html="true" title="If your brand isn’t listed, email info@lxryshared.com to add it to our list.">
+                                                ?   
                                             </span>
+                                            
                                         </label>
                                         <select id="brand" name="brand_id" class="form-control">
                                             @foreach ($brand as $val)
@@ -257,7 +259,8 @@
                                     
 
                                     <div class="col-md-6 mb-2">
-                                        <label for="brand">Occasion</label>
+                                        <label for="brand">Occasion
+                                        </label>
                                         <select id="brand" name="occasion_id" class="form-control">
                                             <option value="">(Select Occasion)</option>
                                             @foreach ($occasions as $val)
@@ -401,7 +404,7 @@
                                 <h4 class="text-center">PRICE DETAILS</h4>
                                 <div class="form-group row row-half-width">
                                     <div class="form-group">
-                                        <label for="rrp-price">RRP PRICE</label>
+                                        <label for="rrp-price">RRP Price</label>
                                         <input type="text" name="rrp_price" class="form-control" id="rrp-price" onchange="ChangerRpInput()">
                                         <span class="text-danger validation-class" id="rrp_price-submit_errors"></span>
                                     </div>
@@ -409,6 +412,8 @@
                                         <label for="day-price">Suggested Day Price</label>
                                         <input type="text" name="suggested_day_price" class="form-control" id="day-price" onchange="rrpInput()">
                                         <span class="text-danger validation-class" id="suggested_day_price-submit_errors"></span>
+                                        <span class="info-icon" tabindex="0">?</span>
+                                        <div class="info-tooltip">This suggested price is based on our algorithm, designed to maximize your rentals using data from similar items.</div>
                                     </div>
                                 </div>
                                 <div class="form-group row row-half-width" id="additional">
@@ -420,7 +425,7 @@
                                         <label for="security-deposit">Security Deposit (optional)</label>
                                         <input type="number" class="form-control" id="security-deposit">
                                         <span class="info-icon" tabindex="0">?</span>
-                                        <div class="info-tooltip">Security (For added security we recommend a 10% markup on rare items.)</div>
+                                        <div class="info-tooltip">For added security we recommend a 10% markup on rare items.</div>
                                     </div>
                                 </div>
 
@@ -495,7 +500,9 @@
 
                                 
                                 <div class="form-group">
-                                    <a href="#" style="text-decoration: underline">BUY NOW</a>
+                                    <a href="{{ route('faq') }}" target="_blank" style="text-decoration: underline">BUY NOW</a>
+                                    <span class="info-icon" tabindex="0" style="left: 100px; top: 0%;">?</span>
+                                    <div class="info-tooltip" style="padding: 5px 14px; left: 132px; top: -6px; width: fit-content;"><a href="{{ route('faq') }}">FAQ</a></div>
                                 </div>
 
 
@@ -509,6 +516,11 @@
 
                                 <div class="form-group" id="additional-deposit-group" style="display: none;">
                                     <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <p>
+                                                It's up to you to specify your however we suggest doing so in the item description. You are bound by law to provide a return and refund if an item is not as represented. Therefore, kindly make sure that your images and description are up to date and include any wear or damage.
+                                            </p>
+                                        </div>
                                         <div class="col-md-6">
                                             <p>Size:</p>
                                             <p id="selected-size">L</p>
@@ -540,8 +552,12 @@
                                 <div class="success-img text-center">
                                     <img src="{{asset("assets/images/icons/check.png")}}" alt="" class="img-fluid mb-3">
                                 </div>
+<<<<<<< HEAD
+                                <h2 class="text-center">Your item has been uploaded successfully.</h2>
+=======
                                 <h2 class="text-center">Your Item is been uploaded successfully.</h2>
-                                <h3 class="text-center">Your Item will be live upon approval from lxry shared admin</h3>                               
+>>>>>>> 70142a8bb955777b010955064d6bf2ce9e704b56
+                                <h3 class="text-center">Your item will be live after approval from LXRY Shared Admin</h3>                               
                                 <div class="text-center">
                                     <a href="{{ route('home') }}" class="btn btn-primary" >Back to Home</a>
                                 </div>
@@ -1096,7 +1112,16 @@
     $(function () {
         $('.info-icon').tooltip({
             html: true,  
-            delay: { "show": 500, "hide": 1000 } 
+            delay: { "show": 500, "hide": 2000 } 
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        $('.info-icon').info-tooltip({
+            html: true,  
+            delay: { "show": 500, "hide": 2000 } 
         });
     });
 </script>
