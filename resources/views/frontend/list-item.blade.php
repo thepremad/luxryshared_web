@@ -125,8 +125,8 @@
 .info-tooltip {
     display: none;
     position: absolute;
-    background-color: black;
-    color: white;
+    background-color: #ffffff;
+    color: #000000;
     padding: 5px;
     border-radius: 5px;
     z-index: 1000;
@@ -242,9 +242,11 @@
                                 <div class="form-group row">
                                     <div class="col-md-6 mb-2">
                                         <label for="brand">Brand 
-                                            <span class="info-icon" data-toggle="tooltip" data-html="true" title="If your brand isn’t listed, <a href='mailto:info@lxryshared.com'>email us</a> to add it to our list." style="cursor: pointer;">
+
+                                            <span class="info-icon" data-toggle="tooltip" data-html="true" title="If your brand isn’t listed, email info@lxryshared.com to add it to our list.">
                                                 ?
                                             </span>
+                                            
                                         </label>
                                         <select id="brand" name="brand_id" class="form-control">
                                             @foreach ($brand as $val)
@@ -257,7 +259,8 @@
                                     
 
                                     <div class="col-md-6 mb-2">
-                                        <label for="brand">Occasion</label>
+                                        <label for="brand">Occasion
+                                        </label>
                                         <select id="brand" name="occasion_id" class="form-control">
                                             <option value="">(Select Occasion)</option>
                                             @foreach ($occasions as $val)
@@ -422,7 +425,7 @@
                                         <label for="security-deposit">Security Deposit (optional)</label>
                                         <input type="number" class="form-control" id="security-deposit">
                                         <span class="info-icon" tabindex="0">?</span>
-                                        <div class="info-tooltip">Security (For added security we recommend a 10% markup on rare items.)</div>
+                                        <div class="info-tooltip">For added security we recommend a 10% markup on rare items.</div>
                                     </div>
                                 </div>
 
@@ -542,7 +545,11 @@
                                 <div class="success-img text-center">
                                     <img src="{{asset("assets/images/icons/check.png")}}" alt="" class="img-fluid mb-3">
                                 </div>
+<<<<<<< HEAD
                                 <h2 class="text-center">Your item has been uploaded successfully.</h2>
+=======
+                                <h2 class="text-center">Your Item is been uploaded successfully.</h2>
+>>>>>>> 70142a8bb955777b010955064d6bf2ce9e704b56
                                 <h3 class="text-center">Your item will be live after approval from LXRY Shared Admin</h3>                               
                                 <div class="text-center">
                                     <a href="{{ route('home') }}" class="btn btn-primary" >Back to Home</a>
