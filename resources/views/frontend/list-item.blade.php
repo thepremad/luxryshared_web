@@ -181,6 +181,39 @@
     top: 0%;
 }
 
+.listItem-section .row #step-3 h3{
+    font-family: 'poppins', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    color: #383838;
+    margin-bottom: 1.875rem;
+    text-transform: capitalize;
+    margin: 0 auto;
+    margin-bottom: 1.9rem;
+    font-weight: 600;
+    max-width: 39%;
+}
+
+.listItem-section .row #step-3 a{
+    width: 12.875rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    text-transform: capitalize;
+}
+
+.listItem-section .row .step-form h2{
+    text-transform: capitalize;
+    max-width: 50%;
+    margin: 0 auto;
+    margin-bottom: 1.3rem;
+    font-weight: 600;   
+}
+
 @media (max-width: 1100px) {
     .info-icon.img4{
         left: 190px;
@@ -218,6 +251,7 @@
             <div class="listItem-section">
                 <div class="row justify-content-center">
                     <div class="col-lg-9 col-md-9 col-sm-9 col-9">
+
                         <form id="item_save_form" action="{{ route('save_item') }}" method="post"
                             enctype="multipart/form-data">
                             <!-- Step 1 -->
@@ -391,6 +425,14 @@
                                     
                                 </div>
                                 
+                                <div class="form-group">
+                                    <label for="description">Item Description <span>*</span></label>
+                                    <textarea class="form-control" name="image_description" id="description" rows="5"
+                                        placeholder="Describe your item and include fitting notes eg. perfect sizing, or item comes longer in length"></textarea>
+                                        <span class="text-danger validation-class" id="image_description-submit_errors"></span>
+                                </div>
+                                <span class="text text-danger">{{ $errors->first('image_description') }}</span>
+
                                                                 
                                 <div class="row justify-content-center py-1">
                                     <div class="col-12 col-sm-10 col-md-8 col-lg-8">
@@ -459,7 +501,9 @@
                                     </div>
                                 </div>
 
-
+                                <div class="button-container">
+                                    <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next</button>
+                                </div>
 
                                 
                             </div>
@@ -619,12 +663,12 @@
                                     <img src="{{asset("assets/images/icons/check.png")}}" alt="" class="img-fluid mb-3">
                                 </div>
                                 <h2 class="text-center">Your item has been uploaded successfully.</h2>
-                                <h2 class="text-center">Your Item is been uploaded successfully.</h2>
                                 <h3 class="text-center">Your item will be live after approval from LXRY Shared Admin</h3>                               
                                 <div class="text-center">
                                     <a href="{{ route('home') }}" class="btn btn-primary" >Back to Home</a>
                                 </div>
                             </div>
+                            
                         </form>
 
                     </div>
@@ -1026,61 +1070,64 @@
         showStep(currentStep); // Show initial step
     </script>
 
-    <script>
-        function getSubCateogry(data) {
-            let subCateogry = {!! json_encode($subCategory) !!};
-            $('#toku').empty();
-            subCateogry.forEach(item => {
-
-                if (item.category_id == data.value) {
-                    var newRow = '<option value="' + item.id + '">' + item.name + '</option>';
-                    $('#toku').append(newRow);
-                }
-            });
-
-        }
 
 
-        function ChangerRpInput(){
-            let price = $('#rrp-price').val();
-            dayprice = (price * 0.03).toFixed(2);
-            $('#day-price').val(dayprice);
 
-            rrpInput();
-        }
+<script>
+    function getSubCateogry(data) {
+        let subCateogry = {!! json_encode($subCategory) !!};
+        $('#toku').empty();
+        subCateogry.forEach(item => {
 
-        function rrpInput() {
-
-            
-            let price = $('#rrp-price').val();
-            let dayprice = $('#day-price').val();
-
-            if (!dayprice) {
-                dayprice = (price * 0.03).toFixed(2);
+            if (item.category_id == data.value) {
+                var newRow = '<option value="' + item.id + '">' + item.name + '</option>';
+                $('#toku').append(newRow);
             }
+        });
 
-            var day7_29price = (dayprice * 0.65).toFixed(2);
-            var day30price = (dayprice * 0.40).toFixed(2);
-            var daypricecommision = (price * 0.03 * 0.80).toFixed(2);
-            var day7_29pricecommision = (dayprice * 0.65 * 0.80).toFixed(2);
-            var day30pricecommision = (dayprice * 0.40 * 0.80).toFixed(2);
-            $("#day-price").val(dayprice);
-            $("#4--6day").val(dayprice);
-            $("#4-6day").html(dayprice);
-            $("#7--29day").val(day7_29price);
-            $("#7-29day").html(day7_29price);
-            $("#30--day").val(day30price);
-            $("#30-day").html(day30price);
-
-            $("#46day").html(daypricecommision);
-
-            $("#729day").html(day7_29pricecommision);
-
-            $("#300day").html(day30pricecommision);
+    }
 
 
+    function ChangerRpInput(){
+        let price = $('#rrp-price').val();
+        dayprice = (price * 0.03).toFixed(2);
+        $('#day-price').val(dayprice);
+
+        rrpInput();
+    }
+
+    function rrpInput() {
+
+        
+        let price = $('#rrp-price').val();
+        let dayprice = $('#day-price').val();
+
+        if (!dayprice) {
+            dayprice = (price * 0.03).toFixed(2);
         }
-    </script>
+
+        var day7_29price = (dayprice * 0.65).toFixed(2);
+        var day30price = (dayprice * 0.40).toFixed(2);
+        var daypricecommision = (price * 0.03 * 0.80).toFixed(2);
+        var day7_29pricecommision = (dayprice * 0.65 * 0.80).toFixed(2);
+        var day30pricecommision = (dayprice * 0.40 * 0.80).toFixed(2);
+        $("#day-price").val(dayprice);
+        $("#4--6day").val(dayprice);
+        $("#4-6day").html(dayprice);
+        $("#7--29day").val(day7_29price);
+        $("#7-29day").html(day7_29price);
+        $("#30--day").val(day30price);
+        $("#30-day").html(day30price);
+
+        $("#46day").html(daypricecommision);
+
+        $("#729day").html(day7_29pricecommision);
+
+        $("#300day").html(day30pricecommision);
+
+
+    }
+</script>
 
 
 <script>
